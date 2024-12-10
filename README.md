@@ -1,6 +1,10 @@
 # CQF Measures
 
-This implementation guide describes an approach to representing electronic Clinical Quality Measures (eCQMs) using the FHIR Clinical Reasoning Module and Clinical Quality Language (CQL) in the U.S. Realm. However, this Implementation Guide can be usable for multiple use cases across domains, and much of the content is likely to be usable outside the U.S. Realm.
+This implementation guide describes an approach to representing electronic Clinical Quality Measures (eCQMs) using the FHIR Clinical Reasoning Module and Clinical Quality Language (CQL) in the Universal Realm. 
+
+THe Quality Measure IG based on U.S. Realm can be found here:
+
+[https://hl7.org/fhir/us/cqfmeasures](https://hl7.org/fhir/us/cqfmeasures)
 
 Commits to this repository will automatically trigger a new build of the IG, which will then be published to the following location:
 
