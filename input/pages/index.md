@@ -3,7 +3,7 @@
 {:toc}
 
 {:.stu-note}
->  This STU 1.0.0 ballot updates the Quality Measure IG, moving it from the US Realm to the Universal Realm.. The US realm is still available [here.](https://hl7.org/fhir/us/cqfmeasures/index.html) 
+>  This STU 1.0.0 ballot updates the Quality Measure IG, moving it from the US Realm to the Universal Realm. The US realm is still available [here.](https://hl7.org/fhir/us/cqfmeasures/index.html) 
 
 Where possible, new and updated content are highlighted with green text and background
 {: .new-content}
