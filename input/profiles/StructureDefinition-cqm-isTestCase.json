@@ -1,0 +1,85 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "cqm-isTestCase",
+  "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-isTestCase",
+  "version": "1.0.0",
+  "name": "CQMIsTestCase",
+  "title": "CQM Is Test Case",
+  "status": "active",
+  "experimental": false,
+  "publisher": "Clinical Quality Information WG",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "url",
+          "value": "http://www.hl7.org/Special/committees/cqi/index.cfm"
+        }
+      ]
+    }
+  ],
+  "description": "Indicates whether this instance represents the definition of a test case.",
+  "jurisdiction": [
+      {
+        "coding": [
+          {
+            "system": "http://unstats.un.org/unsd/methods/m49/m49.htm",
+            "code": "001"
+          }
+        ]
+      }
+    ],
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    }
+  ],
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "MeasureReport"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "Test Case?",
+        "definition": "Indicates whether this instance represents the definition of a test case.",
+        "meaningWhenMissing": "If this extension is not specified, the MeasureReport is _not_ a test case",
+        "min": 0,
+        "max": "1",
+        "isModifier": true,
+        "isModifierReason": "This extension is a modifier because it changes whether the MeasureReport is an actual measure report, or if it is a test case describing expected results"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "fixedUri": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-isTestCase"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "type": [
+          {
+            "code": "boolean"
+          }
+        ]
+      }
+    ]
+  }
+}

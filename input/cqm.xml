@@ -7,7 +7,7 @@
   </extension>
   <url value="http://hl7.org/fhir/uv/cqm/ImplementationGuide/hl7.fhir.uv.cqm"/>
   <version value="1.0.0-ballot"/>
-  <name value="CQFMeasures"/>
+  <name value="CQMeasures"/>
   <title value="Quality Measure Implementation Guide"/>
   <status value="draft"/>
   <experimental value="false"/>
@@ -364,7 +364,7 @@
       </reference>
       <name value="Device - Software System Example"/>
       <description value="Example of a Software System Device used to illustrate tooling, testing, or authoring system"/>
-      <exampleCanonical value="http://hl7.org/fhir/uv/cqfmeasures/StructureDefinition/device-softwaresystem-cqfm"/>
+      <exampleCanonical value="http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-device-softwaresystem"/>
     </resource>
     <resource>
       <reference>
@@ -372,7 +372,7 @@
       </reference>
       <name value="MeasureReport - Test Case Example"/>
       <description value="Example of a MeasureReport illustrating a test case"/>
-      <exampleCanonical value="http://hl7.org/fhir/uv/cqfmeasures/StructureDefinition/test-case-cqfm"/>
+      <exampleCanonical value="http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-testcase"/>
     </resource>
     <resource>
       <reference>

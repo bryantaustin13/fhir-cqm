@@ -1,6 +1,6 @@
 {:toc}
 
-This topic discusses the use of Clinical Quality Language (CQL) to provide computable and/or executable representation of the various criteria of a measure through the expression-valued elements of the Measure resource. The [CQLMeasure](StructureDefinition-cql-measure-cqfm.html) and [ELMMeasure](StructureDefinition-elm-measure-cqfm.html) profiles define the expectations for measures that make use of CQL and/or ELM. Support for the use of other expression languages is possible, but is out of scope for this implementation guide.
+This topic discusses the use of Clinical Quality Language (CQL) to provide computable and/or executable representation of the various criteria of a measure through the expression-valued elements of the Measure resource. The [CQLMeasure](StructureDefinition-cqm-cqlmeasure.html) and [ELMMeasure](StructureDefinition-cqm-elmmeasure.html) profiles define the expectations for measures that make use of CQL and/or ELM. Support for the use of other expression languages is possible, but is out of scope for this implementation guide.
 
 Measures that use CQL do so with libaries to contain the logic used to define the various criteria of the measure. CQL libraries are used in accordance with the [Using CQL With FHIR]({{site.data.fhir.ver.cql}}) (UCWF) implementation guide, as well as additional conformance requirements specific to the use of measures, as detailed in the following sections.
 

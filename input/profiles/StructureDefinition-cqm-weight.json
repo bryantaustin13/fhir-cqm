@@ -1,0 +1,84 @@
+{
+  "resourceType": "StructureDefinition",
+  "id": "cqm-weight",
+  "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-weight",
+  "version": "1.0.0",
+  "name": "CQMWeight",
+  "title": "CQM Weight",
+  "status": "active",
+  "experimental": false,
+  "publisher": "Clinical Quality Information WG",
+  "contact": [
+    {
+      "telecom": [
+        {
+          "system": "url",
+          "value": "http://www.hl7.org/Special/committees/cqi/index.cfm"
+        }
+      ]
+    }
+  ],
+  "description": "What is the weight of the contribution of this measure to the overall score.",
+  "jurisdiction": [
+      {
+        "coding": [
+          {
+            "system": "http://unstats.un.org/unsd/methods/m49/m49.htm",
+            "code": "001"
+          }
+        ]
+      }
+    ],
+  "purpose": "When computing weighted composite measures, the weight of each contribution must be specified.",
+  "fhirVersion": "4.0.1",
+  "mapping": [
+    {
+      "identity": "rim",
+      "uri": "http://hl7.org/v3",
+      "name": "RIM Mapping"
+    }
+  ],
+  "kind": "complex-type",
+  "abstract": false,
+  "context": [
+    {
+      "type": "element",
+      "expression": "RelatedArtifact"
+    }
+  ],
+  "type": "Extension",
+  "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Extension",
+  "derivation": "constraint",
+  "differential": {
+    "element": [
+      {
+        "id": "Extension",
+        "path": "Extension",
+        "short": "Contribution?",
+        "definition": "What is the weight of the contribution of this measure to the overall score.",
+        "comment": "If the weight of a composite is not specified, a default of 1 is assumed (identity contribution).",
+        "min": 0,
+        "max": "1"
+      },
+      {
+        "id": "Extension.url",
+        "path": "Extension.url",
+        "type": [
+          {
+            "code": "uri"
+          }
+        ],
+        "fixedUri": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-weight"
+      },
+      {
+        "id": "Extension.value[x]",
+        "path": "Extension.value[x]",
+        "type": [
+          {
+            "code": "decimal"
+          }
+        ]
+      }
+    ]
+  }
+}

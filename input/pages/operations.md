@@ -12,5 +12,5 @@ These operations are defined to support artifact packaging and dependency tracin
 
 | **Operation** | **Description** |
 |----|----|
-| [CQFM Package](OperationDefinition-cqfm-package.html) | Packages a specified canonical resource for use in a target environment, optionally including related content such as dependencies, components, and testing cases and data. |
+| [CQM Package](OperationDefinition-cqm-package.html) | Packages a specified canonical resource for use in a target environment, optionally including related content such as dependencies, components, and testing cases and data. |
 {: .grid }

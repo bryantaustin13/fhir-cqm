@@ -54,16 +54,16 @@ The following are conformance requirements when packaging a Measure:
   4. Measure bundles MAY include any code systems and value sets referenced by the primary library or any required libraries.
   5. Measure bundles MAY include any test case bundles defined for the measure
   6. If the capabilities parameter of the package request includes `computable`:
-      a. The Measure resource SHALL conform to the [CQFMComputableMeasure](StructureDefinition-computable-measure-cqfm.html) profile.
+      a. The Measure resource SHALL conform to the [CQMComputableMeasure](StructureDefinition-cqm-computablemeasure.html) profile.
       b. The Library resource(s) SHALL conform to the [CRMIComputableLibrary]({{site.data.fhir.ver.crmi}}/StructureDefinition-crmi-computablelibrary.html) profile.
       b. For Measures using CQL:
-          i. The Measure resource SHALL conform to the [CQLMeasure](StructureDefinition-cql-measure-cqfm.html) profile.
+          i. The Measure resource SHALL conform to the [CQLMeasure](StructureDefinition-cqm-cqlmeasure.html) profile.
           ii. The Library resource(s) SHALL conform to the [CQLLibrary]({{site.data.fhir.ver.cql}}/StructureDefinition-cql-library.html)
   7. If the capabilities parameter of the package request includes `executable`: 
-      a. The Measure resource SHALL conform to the [CQFMExecutableMeasure](StructureDefinition-executable-measure-cqfm.html) profile.
+      a. The Measure resource SHALL conform to the [CQMExecutableMeasure](StructureDefinition-cqm-executablemeasure.html) profile.
       b. The Library resource(s) SHALL conform to the [CRMIExecutableLibrary]({{site.data.fhir.ver.crmi}}/StructureDefinition-crmi-executablelibrary.html) profile.
       a. For Measures using CQL
-          i. The Measure resource SHALL conform to the [ELMMeasure](StructureDefinition-elm-measure-cqfm.html) profile.
+          i. The Measure resource SHALL conform to the [ELMMeasure](StructureDefinition-cqm-elmmeasure.html) profile.
           ii. The Library resource(s) SHALL conform to one (or both) of the [ELMXMLLibrary]({{site.data.fhir.ver.cql}}/StructureDefinition-elm-xml-library.html) or [ELMJSONLibrary]({{site.data.fhir.ver.cql}}/StructureDefinition-elm-json-library.html) profiles.
 
 ### Packaging Terminology
@@ -74,7 +74,7 @@ The following are conformance requirements when packaging a Measure:
 ### Packaging Test Cases
 {: #packaging-test-cases}
 
-Basic testing of measure logic should involve at least one positive and negative test of each of the population criteria. A test case is represented as a set of test resources, together with a MeasureReport that conforms to the [CQFMTestCase](StructureDefinition-test-case-cqfm.html) profile to define the expected results. The test case bundle can then be used to package and distribute the test case.
+Basic testing of measure logic should involve at least one positive and negative test of each of the population criteria. A test case is represented as a set of test resources, together with a MeasureReport that conforms to the [CQMTestCase](StructureDefinition-cqm-testcase.html) profile to define the expected results. The test case bundle can then be used to package and distribute the test case.
 
 **Conformance Requirement 6.3 (Test Case Packaging):** [<img src="conformance.png" width="20" class="self-link" height="20"/>](#conformance-requirement-6-3)
 {: #conformance-requirement-6-3}

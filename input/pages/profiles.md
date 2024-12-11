@@ -22,29 +22,29 @@ Measure profiles supported in this IG are defined to allow for use independently
 | **Capability** | **Profile** | **Description** |
 |----|----|----|
 | Shareable | [CRMIShareableMeasure]({{site.data.fhir.ver.crmi}}/StructureDefinition-crmi-shareablemeasure.html)  |  The shareable measure profile defines minimal expectations for exchanging a measure.  | 
-| Computable | [CQFMComputableMeasure](StructureDefinition-computable-measure-cqfm.html)  |  The computable measure profile defines the elements and constraints that are required to represent the calculation of a measure score, regardless of the specific language used to communicate the criteria expressions   |
-| Publishable | [CQFMPublishableMeasure](StructureDefinition-publishable-measure-cqfm.html)  |  The publishable measure profile defines the expectations and constraints for metadata associated with formal publication of a measure specification.   | 
-| Executable | [CQFMExecutableMeasure](StructureDefinition-executable-measure-cqfm.html)  | The executable measure profile defines the elements that are required to support execution of a measure in an implementation environment.    | 
+| Computable | [CQMComputableMeasure](StructureDefinition-cqm-computablemeasure.html)  |  The computable measure profile defines the elements and constraints that are required to represent the calculation of a measure score, regardless of the specific language used to communicate the criteria expressions   |
+| Publishable | [CQMPublishableMeasure](StructureDefinition-cqm-publishablemeasure.html)  |  The publishable measure profile defines the expectations and constraints for metadata associated with formal publication of a measure specification.   | 
+| Executable | [CQMExecutableMeasure](StructureDefinition-cqm-executablemeasure.html)  | The executable measure profile defines the elements that are required to support execution of a measure in an implementation environment.    | 
 {: .grid }
 
 In addition to conforming to profiles to support appropriate function or representation, measures are required to conform to the appropriate measure profile based on their scoring type:
 
 <table class="grid">
   <tr><th>Scoring Type</th><th>Profile</th></tr>
-  <tr><td>Cohort</td><td><a href="StructureDefinition-cohort-measure-cqfm.html">CQFMCohortMeasure</a></td></tr>
-  <tr><td>Proportion</td><td><a href="StructureDefinition-proportion-measure-cqfm.html">CQFMProportionMeasure</a></td></tr>
-  <tr><td>Ratio</td><td><a href="StructureDefinition-ratio-measure-cqfm.html">CQFMRatioMeasure</a></td></tr>
-  <tr><td>Continuous Variable</td><td><a href="StructureDefinition-cv-measure-cqfm.html">CQFMContinuousVariableMeasure</a></td></tr>
-  <tr><td>Composite</td><td><a href="StructureDefinition-composite-measure-cqfm.html">CQFMCompositeMeasure</a></td></tr>
-  <tr><td>Attestation</td><td><a href="StructureDefinition-attestation-measure-cqfm.html">CQFMAttestationMeasure</a></td></tr>
+  <tr><td>Cohort</td><td><a href="StructureDefinition-cqm-cohortmeasure.html">CQMCohortMeasure</a></td></tr>
+  <tr><td>Proportion</td><td><a href="StructureDefinition-cqm-proportionmeasure.html">CQMProportionMeasure</a></td></tr>
+  <tr><td>Ratio</td><td><a href="StructureDefinition-cqm-ratiomeasure.html">CQMRatioMeasure</a></td></tr>
+  <tr><td>Continuous Variable</td><td><a href="StructureDefinition-cqm-cvmeasure.html">CQMContinuousVariableMeasure</a></td></tr>
+  <tr><td>Composite</td><td><a href="StructureDefinition-cqm-compositemeasure.html">CQMCompositeMeasure</a></td></tr>
+  <tr><td>Attestation</td><td><a href="StructureDefinition-cqm-attestationmeasure.html">CQMAttestationMeasure</a></td></tr>
 </table>
 
 As well, the profiles are designed to separate communication of the computable aspects from the specific expression language used to communicate criteria. This implementation guide supports specification of expression criteria using Clinical Quality Language (CQL) and Expression Logical Model (ELM) (i.e. compiled CQL), but other expression languages could be used with this IG if desired:
 
 <table class="grid">
   <tr><th>Language</th><th>Profile</th></tr>
-  <tr><td>CQL</td><td><a href="StructureDefinition-cql-measure-cqfm.html">CQLMeasure</a></td></tr>
-  <tr><td>ELM</td><td><a href="StructureDefinition-elm-measure-cqfm.html">ELMMeasure</a></td></tr>
+  <tr><td>CQL</td><td><a href="StructureDefinition-cqm-cqlmeasure.html">CQLMeasure</a></td></tr>
+  <tr><td>ELM</td><td><a href="StructureDefinition-cqm-elmmeasure.html">ELMMeasure</a></td></tr>
 </table>
 
 ### Library Profile Usage
@@ -102,7 +102,7 @@ To support packaging, testing, and distribution of measure and library artifacts
 |----|----|
 | [CRMISoftwareSystemDevice]({{site.data.fhir.ver.crmi}}/StructureDefinition-crmi-softwaresystemdevice.html) | A software device used in the creation, validation, evaluation, packaging, and/or testing of a library or measure artifact.  |
 | [CRMIManifestLibrary]({{site.data.fhir.ver.crmi}}/StructureDefinition-crmi-manifestlibrary.html) |  Used to establish a set of measures together with the version information for code system and value sets referenced by those measures. See the [Manifest](measure-conformance.html#manifest) topic for more information.  |
-| [CQFMTestCase](StructureDefinition-test-case-cqfm.html) | A measure report profile that allows definition and exchange of test cases for a measure.  |
+| [CQMTestCase](StructureDefinition-cqm-testcase.html) | A measure report profile that allows definition and exchange of test cases for a measure.  |
 {: .grid }
 
 ## Alphabetical Listing

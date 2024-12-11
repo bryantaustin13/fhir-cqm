@@ -37,10 +37,10 @@ A ShareableMeasureRepository:
 3. For executable libraries, SHALL represent executable Library information, as specified by the [ELMLibrary]({{site.data.fhir.ver.cql}}/StructureDefinition-elm-json-library.html) profile. 
 4. For published libraries, SHALL represent publishable Library information, as specified by the [CRMIPublishableLibrary]({{site.data.fhir.ver.crmi}}/StructureDefinition-crmi-publishablelibrary.html) profile. 
 5. SHALL Represent basic Measure information, as specified by the [CRMIShareableMeasure]({{site.data.fhir.ver.crmi}}/StructureDefinition-crmi-shareablemeasure.html) profile, which includes url, identifier, version, name, title, type, status, experimental, date, publisher, contact, description, useContext, and jurisdiction. 
-6. For computable measures, SHALL represent computable Measure information, as specified by the [CQFMComputableMeasure](StructureDefinition-computable-measure-cqfm.html) profile. 
-7. For published measures, SHALL represent publishable Measure information, as specified by the [CQFMPublishableMeasure](StructureDefinition-publishable-measure-cqfm.html) profile.
+6. For computable measures, SHALL represent computable Measure information, as specified by the [CQMComputableMeasure](StructureDefinition-cqm-computablemeasure.html) profile. 
+7. For published measures, SHALL represent publishable Measure information, as specified by the [CQMPublishableMeasure](StructureDefinition-cqm-publishablemeasure.html) profile.
 
-The CQFMShareableMeasureRepository capability statement captures these requirements formally.
+The CQMShareableMeasureRepository capability statement captures these requirements formally.
 
 ### Publishable Measure Repository 
 
@@ -57,17 +57,17 @@ A PublishableMeasureRepository:
 7. SHOULD support minimum measure write capability (Publish, Retire, Archive)
 8. SHOULD support minimum library write capability (Publish, Retire, Archive) 
 
-The CQFMPublishableMeasureRepository capability statement captures these requirements formally. 
+The CQMPublishableMeasureRepository capability statement captures these requirements formally. 
 
 ##### MeasureReports 
 
 A PublishableMeasureRepository: 
 
-1. MAY support representation of test cases using the [CQFMTestCase](StructureDefinition-test-case-cqfm.html) profile. 
+1. MAY support representation of test cases using the [CQMTestCase](StructureDefinition-cqm-testcase.html) profile. 
 2. MAY support retrieval of test cases by server-specific id through the MeasureReport/read interaction 
 3. MAY support searching of test cases by the measure search parameter 
 4. MAY support including test cases in measure packages. 
-5. MAY support test case packaging: [MeasureReport/$cqfm.package](OperationDefinition-cqfm-package.html) operation 
+5. MAY support test case packaging: [MeasureReport/$cqm.package](OperationDefinition-cqm-package.html) operation 
 
 ### Authoring Measure Repository 
 

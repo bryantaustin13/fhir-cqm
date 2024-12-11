@@ -9,7 +9,7 @@ In FHIR, a Quality Measure (QM) is represented as a [Measure](http://hl7.org/fhi
     <start value="2018-01-01"/>
     <end value="2018-12-31"/>
   </effectivePeriod>
-  <library value="http://hl7.org/fhir/uv/cqfmeasures/Library/EXMLogic-FHIR"/>
+  <library value="http://hl7.org/fhir/uv/cqm/Library/EXMLogic-FHIR"/>
   <group>
     <population>
       <code>
@@ -87,7 +87,7 @@ When using multiple CQL libraries to define a measure, refer to the [Nested Libr
 Inclusion of CQL in a FHIR QM is accomplished through the use of a FHIR Library resource as shown in Snippet 3-4. These libraries are then incorporated into the FHIR QM using the `library` element of the Measure (Snippet 3). CQL library content is encoded as `base64` and included as the `content` element of the Library resource.
 
 ```xml
-<library value="http://hl7.org/fhir/uv/cqfmeasures/Library/EXMLogic-FHIR"/>
+<library value="http://hl7.org/fhir/uv/cqm/Library/EXMLogic-FHIR"/>
 ```
 Snippet 3-3: `library` element from Snippet 3-1
 
@@ -108,7 +108,7 @@ Snippet 3-4 illustrates a FHIR Library resource containing a CQL library with a 
       "http://hl7.org/fhir/uv/cql/StructureDefinition/cql-library"
     ]
   },
-  "url": "http://hl7.org/fhir/uv/cqfmeasures/Library/exm-146",
+  "url": "http://hl7.org/fhir/uv/cqm/Library/exm-146",
   "identifier": [
     {
       "use": "official",
@@ -151,7 +151,7 @@ Snippet 3-4 illustrates a FHIR Library resource containing a CQL library with a 
       "valueCodeableConcept": {
         "coding": [
           {
-            "system": "http://hl7.org/fhir/uv/cqfmeasures/CodeSystem/quality-programs",
+            "system": "http://hl7.org/fhir/uv/cqm/CodeSystem/quality-programs",
             "code": "ep-ec",
             "display": "EP/EC"
           }
@@ -429,16 +429,16 @@ Snippet 3-6: CQL declaration of the measurement period parameter (from [EXM146.c
 
 Rather than specifying a static effective period, implementations may specify the effective period using a start date and a reporting period duration.
 
-This implementation guide defines two extensions, [`cqfm-effectivePeriodAnchor`](StructureDefinition-cqfm-effectivePeriodAnchor.html) and [`cqfm-effectivePeriodDuration`](StructureDefinition-cqfm-effectivePeriodDuration.html) to support this alternative.
+This implementation guide defines two extensions, [`cqm-effectivePeriodAnchor`](StructureDefinition-cqm-effectivePeriodAnchor.html) and [`cqm-effectivePeriodDuration`](StructureDefinition-cqm-effectivePeriodDuration.html) to support this alternative.
 
 As shown below in Snippet 3-7, a measure anchored to January 1, 2019 with a calendar duration of 1 year, would have valid Measurement Periods of 1/1/2019-12/31/2019, 1/1/2020-12/31/2020, etc. Note that although UCUM definite-duration units are required within FHIR, the semantics in this case use calendar duration semantics.
 
 ```xml
 <effectivePeriod>
-	<extension url="http://hl7.org/fhir/uv/cqfmeasures/cqfm-effectivePeriodAnchor">
+	<extension url="http://hl7.org/fhir/uv/cqm/cqm-effectivePeriodAnchor">
 		<valueDateTime value="2019-01-01"/>
 	</extension>
-	<extension url="http://hl7.org/fhir/uv/cqfmeasures/cqfm-effectivePeriodDuration">
+	<extension url="http://hl7.org/fhir/uv/cqm/cqm-effectivePeriodDuration">
 		<valueDuration>
 			<value value="1"/>
 			<code value="a"/>
@@ -446,12 +446,12 @@ As shown below in Snippet 3-7, a measure anchored to January 1, 2019 with a cale
 	</extension>
 </effectivePeriod>
 ```
-Snippet 3-7: Example of [effectivePeriodAnchor extension](StructureDefinition-cqfm-effectivePeriodAnchor.html) (used to define the starting date and range) and [effectivePeriodDuration extension](StructureDefinition-cqfm-effectivePeriodDuration.html) (used to specify the reporting period).
+Snippet 3-7: Example of [effectivePeriodAnchor extension](StructureDefinition-cqm-effectivePeriodAnchor.html) (used to define the starting date and range) and [effectivePeriodDuration extension](StructureDefinition-cqm-effectivePeriodDuration.html) (used to specify the reporting period).
 
 **Conformance Requirement 3.4 (Measurement Period):** [<img src="conformance.png" width="20" class="self-link" height="20"/>](#conformance-requirement-3-4)
 {: #conformance-requirement-3-4}
 
-1. FHIR-based QMs SHALL provide either an `effectivePeriod` element, or an `cqfm-effectivePeriodAnchor` and `cqfm-effectivePeriodDuration` extension
+1. FHIR-based QMs SHALL provide either an `effectivePeriod` element, or an `cqm-effectivePeriodAnchor` and `cqm-effectivePeriodDuration` extension
 2. Measurement Period SHALL be either the `effectivePeriod` as specified, or an appropriate interval of length duration, starting at the specified anchor
 
 
@@ -512,7 +512,7 @@ For measures that use CQL, valuesets and direct-reference codes that are associa
 
 Snippet 3-9: Example Library terminology definitions (from [library-Terminology.json](Library-Terminology-FHIR.json.html))
 
-Regardless of whether a measure uses CQL, all valuesets and direct-reference codes referenced by the measure are surfaced in the [_effective data requirements_](StructureDefinition-computable-measure-cqfm-definitions.html#diff_Measure.extension:effectiveDataRequirements) library for a computable measure. 
+Regardless of whether a measure uses CQL, all valuesets and direct-reference codes referenced by the measure are surfaced in the [_effective data requirements_](StructureDefinition-cqm-computablemeasure-definitions.html#diff_Measure.extension:effectiveDataRequirements) library for a computable measure. 
 
 **Conformance Requirement 3.5 (Terminology Inclusion):** [<img src="conformance.png" width="20" class="self-link" height="20"/>](#conformance-requirement-3-5)
 {: #conformance-requirement-3-5}
@@ -683,7 +683,7 @@ The Population Criteria (Snippet 3-14) includes definitions of criteria used to 
 
 Snippet 3-14: Population Criteria from Snippet 3-1 (FHIR Measure structure - abridged for clarity (from sample [Measure-EXMLogic.xml](Measure-EXMLogic-FHIR.xml.html)))
 
-CQL provides the logical expression language that is used to define population criteria. CQL-based constraints are then referenced from the group elements of the FHIR Measure resource. Once included in the FHIR Measure, expressions defined in the CQL can be used to further refine the data criteria and to define population criteria.  [Figure 2-1](https://hl7.org/fhir/uv/cqfmeasures/introduction.html#background) illustrates the general concept.  Figure 3-1 illustrates the relationship between the FHIR Measure resource and CQL documents: The FHIR Measure resource references a CQL expression script (#1), the FHIR library resource references a particular expression from the referenced CQL file (#2), the referenced expression in-turn may include or call another expression (#3) in the same (or a different) CQL expression script. Snippet 3-14 and Snippet 3-15 demonstrate the use of the FHIR Measure resource and CQL in the definition of the "initial-population".
+CQL provides the logical expression language that is used to define population criteria. CQL-based constraints are then referenced from the group elements of the FHIR Measure resource. Once included in the FHIR Measure, expressions defined in the CQL can be used to further refine the data criteria and to define population criteria.  [Figure 2-1](https://hl7.org/fhir/uv/cqm/introduction.html#background) illustrates the general concept.  Figure 3-1 illustrates the relationship between the FHIR Measure resource and CQL documents: The FHIR Measure resource references a CQL expression script (#1), the FHIR library resource references a particular expression from the referenced CQL file (#2), the referenced expression in-turn may include or call another expression (#3) in the same (or a different) CQL expression script. Snippet 3-14 and Snippet 3-15 demonstrate the use of the FHIR Measure resource and CQL in the definition of the "initial-population".
 
 **Figure 3-1: Relationship between FHIR Measure and CQL Expression Script**
 
@@ -810,7 +810,7 @@ In addition to the measure scoring, measures generally fall into two categories,
 **Conformance Requirement 3.10 (Population Basis):** [<img src="conformance.png" width="20" class="self-link" height="20"/>](#conformance-requirement-3-10)
 {: #conformance-requirement-3-10}
 
-1. The [`cqfm-populationBasis`](StructureDefinition-cqfm-populationBasis.html) extension SHALL be used to identify the result type of population criteria used in the measure
+1. The [`cqm-populationBasis`](StructureDefinition-cqm-populationBasis.html) extension SHALL be used to identify the result type of population criteria used in the measure
 2. Expressions used in population criteria SHALL return a value of the type specified by the populationBasis for the measure.
 
 Snippet 3-16 illustrates the use of the populationBasis extension for a patient-based measure:
@@ -818,7 +818,7 @@ Snippet 3-16 illustrates the use of the populationBasis extension for a patient-
 ```json
   "extension": [
     {
-      "url": "http://hl7.org/fhir/uv/cqfmeasures/StructureDefinition/cqfm-populationBasis",
+      "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
       "valueCode": "boolean"
     }
   ]
@@ -831,7 +831,7 @@ Snippet 3-17 illustrates the use of the populationBasis extension for an non-pat
 ```json
   "extension": [
     {
-      "url": "http://hl7.org/fhir/uv/cqfmeasures/StructureDefinition/cqfm-populationBasis",
+      "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
       "valueCode": "Encounter"
     }
   ]
@@ -898,7 +898,7 @@ For complete examples of patient based proportion measures, see the Screening Me
 **Conformance Requirement 3.12 (Proportion Measures):** [<img src="conformance.png" width="20" class="self-link" height="20"/>](#conformance-requirement-3-12)
 {: #conformance-requirement-3-12}
 
-1. Proportion measures SHALL conform to the [CQFM Proportion Measure](StructureDefinition-proportion-measure-cqfm.html) profile.
+1. Proportion measures SHALL conform to the [CQM Proportion Measure](StructureDefinition-cqm-proportionmeasure.html) profile.
 2. Population criteria SHALL each reference a single expression as defined by [Conformance Requirement 3.8](#conformance-requirement-3-8).
 3. Expressions for patient-based measures SHALL return a Boolean to indicate whether a patient matches the population criteria (true) or not (false).
 4. Expressions for non-patient-based measures SHALL return a List of events of the same type, such as an Encounter or Procedure.
@@ -1013,7 +1013,7 @@ In addition, it may also include one or more measure-observation elements. The s
 **Conformance Requirement 3.13 (Ratio Measures):** [<img src="conformance.png" width="20" class="self-link" height="20"/>](#conformance-requirement-3-13)
 {: #conformance-requirement-3-13}
 
-1. Ratio measures SHALL conform to the [CQFM Ratio Measure](StructureDefinition-ratio-measure-cqfm.html) profile.
+1. Ratio measures SHALL conform to the [CQM Ratio Measure](StructureDefinition-cqm-ratiomeasure.html) profile.
 1. Population criteria SHALL each reference a single expression as defined by [Conformance Requirement 3.8](#conformance-requirement-3-8).
 2. measure-observation criteria SHALL reference expressions as defined by [Conformance Requirement 3.14](#conformance-requirement-3-14), with the exception that instead of a measure-population, the criteriaReference element SHALL reference a numerator or denominator criteria.
 3. Expressions for patient-based measures SHALL return a Boolean to indicate whether a patient matches the population criteria (true) or not (false).
@@ -1158,11 +1158,11 @@ The criteria referenced from the measure-observation component refers to an expr
 {
   "extension": [
     {
-      "url": "http://hl7.org/fhir/uv/cqfmeasures/StructureDefinition/cqfm-criteriaReference",
+      "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-criteriaReference",
       "valueString": "measure-population-identifier"
     },
     {
-      "url": "http://hl7.org/fhir/uv/cqfmeasures/StructureDefinition/cqfm-aggregateMethod",
+      "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-aggregateMethod",
       "valueCode": "median"
     }
   ],
@@ -1209,7 +1209,7 @@ In the example shown in Snippet 3-22 and Snippet 3-23: the measure reports the a
 
 ```json
 {
-  "url": "http://hl7.org/fhir/uv/cqfmeasures/StructureDefinition/cqfm-aggregateMethod",
+  "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-aggregateMethod",
   "valueCode": "median"
 }
 ```
@@ -1227,7 +1227,7 @@ Snippet 3-26: "Measure Observation" function in Snippet 3-23 (Sample CQL (from [
 
 ```json
 {
-  "url": "http://hl7.org/fhir/uv/cqfmeasures/StructureDefinition/cqfm-criteriaReference",
+  "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-criteriaReference",
   "valueString": "measure-population-identifier"
 }
 ```
@@ -1241,7 +1241,7 @@ Snippet 3-28: Definition from Snippet 3-23 (Sample CQL (from [EXM55.cql](Library
 **Conformance Requirement 3.14 (Continuous Variable Measures):** [<img src="conformance.png" width="20" class="self-link" height="20"/>](#conformance-requirement-3-14)
 {: #conformance-requirement-3-14}
 
-1. Continuous variable measures SHALL conform to the [CQFM Continuous Variable Measure](StructureDefinition-cv-measure-cqfm.html) profile.
+1. Continuous variable measures SHALL conform to the [CQM Continuous Variable Measure](StructureDefinition-cqm-cvmeasure.html) profile.
 2. Population criteria SHALL each reference a single expression as defined by [Conformance Requirement 3.8](#conformance-requirement-3-8).
 3. The aggregateMethod extension SHALL be used on the measureObservation criteria to indicate the aggregate method for the observations. Expressions referenced from measure-observation criteria elements SHALL be consistent with the context used for the population criteria of the measure.
 4. The population element of a measure-observation criteria SHALL contain a criteriaReference extension that refers to the population criteria within the same population group that is the target population criteria for the measure-observation
@@ -1326,7 +1326,7 @@ In a cohort measure, a population is identified from the population of all items
 **Conformance Requirement 3.15 (Cohort Definitions):** [<img src="conformance.png" width="20" class="self-link" height="20"/>](#conformance-requirement-3-15)
 {: #conformance-requirement-3-15}
 
-1. Cohort Measures SHALL conform to the [CQFMCohortMeasure](StructureDefinition-cohort-measure-cqfm.html) profile
+1. Cohort Measures SHALL conform to the [CQMCohortMeasure](StructureDefinition-cqm-cohortmeasure.html) profile
 
 **Figure 3-6: Population criteria for Cohort measures illustration**
 
@@ -1352,7 +1352,7 @@ Here is an example of using the population types to select data on patients who 
 
 The measure is an attestation, derived from the base [Measure]({{site.data.fhir.path}}measure.html), meaning that the reporter of the measure is attesting the measure score. This is typically used for true/false attestations, but can be used for other types of measure scores as well. The key distinction is that the measure is not computably represented (i.e. as a calculation or aggregation performed on some data in the reporting system), but rather is a simple assertion made by the measure reporter. 
 
-[CQFMAttestationMeasure](StructureDefinition-attestation-measure-cqfm.html) 
+[CQMAttestationMeasure](StructureDefinition-cqm-attestationmeasure.html) 
 
 #### Measures with Multiple Populations
 {: #measures-with-multiple-populations}
