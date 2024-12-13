@@ -9,7 +9,7 @@
     "descmd": "This STU v1.0.0-ballot moves the QM IG from US Realm to Universal Realm. It incorporates updates based on implementation and connectathon feedback. For a detailed change log, please refer to the home page of the ballot IG.",
     "first" : true,
     "title" : "Quality Measure Implementation Guide",
-    "ci-build": "https://build.fhir.org/ig/HL7/fhir-cqm/",
+    "ci-build": "http://build.fhir.org/ig/HL7/fhir-cqm/",
     "category": "Quality/CDS",
     "introduction": "The Quality Measure Implementation Guide (QM IG) describes an approach to representing Quality Measures (QMs) using the FHIR Clinical Reasoning Module and Clinical Quality Language (CQL). This Implementation Guide can be used for multiple use cases across many domains"
 }
