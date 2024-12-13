@@ -14,8 +14,9 @@ v: {
   "display" : "Chronic aggressive type B viral hepatitis",
   "code" : "1116000",
   "system" : "http://snomed.info/sct",
-  "version" : "http://snomed.info/sct/731000124108/version/20230901",
+  "version" : "http://snomed.info/sct/731000124108/version/20240901",
   "server" : "http://tx.fhir.org/r4",
+  "unknown-systems" : "",
   "issues" : {
   "resourceType" : "OperationOutcome"
 }
@@ -37,8 +38,9 @@ v: {
   "display" : "Chronic viral hepatitis",
   "code" : "10295004",
   "system" : "http://snomed.info/sct",
-  "version" : "http://snomed.info/sct/731000124108/version/20230901",
+  "version" : "http://snomed.info/sct/731000124108/version/20240901",
   "server" : "http://tx.fhir.org/r4",
+  "unknown-systems" : "",
   "issues" : {
   "resourceType" : "OperationOutcome"
 }
@@ -61,9 +63,10 @@ v: {
   "display" : "Cirrhosis of liver not due to alcohol",
   "code" : "111370006",
   "system" : "http://snomed.info/sct",
-  "version" : "http://snomed.info/sct/731000124108/version/20230901",
+  "version" : "http://snomed.info/sct/731000124108/version/20240901",
   "server" : "http://tx.fhir.org/r4",
   "inactive" : true,
+  "unknown-systems" : "",
   "issues" : {
   "resourceType" : "OperationOutcome"
 }
@@ -75,7 +78,7 @@ v: {
   "version" : "http://snomed.info/sct/731000124108/version/201709",
   "code" : "37687000",
   "display" : "Congenital absence of cervix (disorder)"
-}, "valueSet" :null, "langs":"", "useServer":"true", "useClient":"true", "guessSystem":"false", "activeOnly":"false", "membershipOnly":"false", "displayWarningMode":"false", "versionFlexible":"true", "profile": {
+}, "valueSet" :null, "langs":"en-US", "useServer":"true", "useClient":"true", "guessSystem":"false", "activeOnly":"false", "membershipOnly":"false", "displayWarningMode":"false", "versionFlexible":"true", "profile": {
   "resourceType" : "Parameters",
   "id" : "exp-params",
   "parameter" : [{
@@ -87,8 +90,9 @@ v: {
   "display" : "Congenital absence of cervix",
   "code" : "37687000",
   "system" : "http://snomed.info/sct",
-  "version" : "http://snomed.info/sct/731000124108/version/20230901",
+  "version" : "http://snomed.info/sct/731000124108/version/20240901",
   "server" : "http://tx.fhir.org/r4",
+  "unknown-systems" : "",
   "issues" : {
   "resourceType" : "OperationOutcome"
 }
@@ -100,7 +104,7 @@ v: {
   "version" : "http://snomed.info/sct/731000124108/version/201709",
   "code" : "428361000124107",
   "display" : "Discharge to home for hospice care (procedure)"
-}, "valueSet" :null, "langs":"en", "useServer":"true", "useClient":"true", "guessSystem":"false", "activeOnly":"false", "membershipOnly":"false", "displayWarningMode":"false", "versionFlexible":"true", "profile": {
+}, "valueSet" :null, "langs":"en-US", "useServer":"true", "useClient":"true", "guessSystem":"false", "activeOnly":"false", "membershipOnly":"false", "displayWarningMode":"false", "versionFlexible":"true", "profile": {
   "resourceType" : "Parameters",
   "id" : "exp-params",
   "parameter" : [{
@@ -112,8 +116,9 @@ v: {
   "display" : "Discharge to home for hospice care (procedure)",
   "code" : "428361000124107",
   "system" : "http://snomed.info/sct",
-  "version" : "http://snomed.info/sct/731000124108/version/20230901",
+  "version" : "http://snomed.info/sct/731000124108/version/20240901",
   "server" : "http://tx.fhir.org/r4",
+  "unknown-systems" : "",
   "issues" : {
   "resourceType" : "OperationOutcome"
 }
@@ -125,7 +130,7 @@ v: {
   "version" : "http://snomed.info/sct/731000124108/version/201709",
   "code" : "428371000124100",
   "display" : "Discharge to healthcare facility for hospice care (procedure)"
-}, "valueSet" :null, "langs":"en", "useServer":"true", "useClient":"true", "guessSystem":"false", "activeOnly":"false", "membershipOnly":"false", "displayWarningMode":"false", "versionFlexible":"true", "profile": {
+}, "valueSet" :null, "langs":"en-US", "useServer":"true", "useClient":"true", "guessSystem":"false", "activeOnly":"false", "membershipOnly":"false", "displayWarningMode":"false", "versionFlexible":"true", "profile": {
   "resourceType" : "Parameters",
   "id" : "exp-params",
   "parameter" : [{
@@ -137,58 +142,9 @@ v: {
   "display" : "Discharge to healthcare facility for hospice care (procedure)",
   "code" : "428371000124100",
   "system" : "http://snomed.info/sct",
-  "version" : "http://snomed.info/sct/731000124108/version/20230901",
+  "version" : "http://snomed.info/sct/731000124108/version/20240901",
   "server" : "http://tx.fhir.org/r4",
-  "issues" : {
-  "resourceType" : "OperationOutcome"
-}
-
-}
--------------------------------------------------------------------------------------
-{"code" : {
-  "system" : "http://snomed.info/sct",
-  "version" : "http://snomed.info/sct/731000124108/version/201709",
-  "code" : "428361000124107",
-  "display" : "Discharge to home for hospice care (procedure)"
-}, "valueSet" :null, "langs":"", "useServer":"true", "useClient":"true", "guessSystem":"false", "activeOnly":"false", "membershipOnly":"false", "displayWarningMode":"false", "versionFlexible":"true", "profile": {
-  "resourceType" : "Parameters",
-  "id" : "exp-params",
-  "parameter" : [{
-    "name" : "system-version",
-    "valueUri" : "http://snomed.info/sct|http://snomed.info/sct/731000124108"
-  }]
-}}####
-v: {
-  "display" : "Discharge to home for hospice care (procedure)",
-  "code" : "428361000124107",
-  "system" : "http://snomed.info/sct",
-  "version" : "http://snomed.info/sct/731000124108/version/20230901",
-  "server" : "http://tx.fhir.org/r4",
-  "issues" : {
-  "resourceType" : "OperationOutcome"
-}
-
-}
--------------------------------------------------------------------------------------
-{"code" : {
-  "system" : "http://snomed.info/sct",
-  "version" : "http://snomed.info/sct/731000124108/version/201709",
-  "code" : "428371000124100",
-  "display" : "Discharge to healthcare facility for hospice care (procedure)"
-}, "valueSet" :null, "langs":"", "useServer":"true", "useClient":"true", "guessSystem":"false", "activeOnly":"false", "membershipOnly":"false", "displayWarningMode":"false", "versionFlexible":"true", "profile": {
-  "resourceType" : "Parameters",
-  "id" : "exp-params",
-  "parameter" : [{
-    "name" : "system-version",
-    "valueUri" : "http://snomed.info/sct|http://snomed.info/sct/731000124108"
-  }]
-}}####
-v: {
-  "display" : "Discharge to healthcare facility for hospice care (procedure)",
-  "code" : "428371000124100",
-  "system" : "http://snomed.info/sct",
-  "version" : "http://snomed.info/sct/731000124108/version/20230901",
-  "server" : "http://tx.fhir.org/r4",
+  "unknown-systems" : "",
   "issues" : {
   "resourceType" : "OperationOutcome"
 }
@@ -217,8 +173,8 @@ e: {
   "resourceType" : "ValueSet",
   "status" : "active",
   "expansion" : {
-    "identifier" : "urn:uuid:fc1b82fc-28db-4e0e-9e0a-aea11d417c12",
-    "timestamp" : "2024-03-28T18:52:25.324Z",
+    "identifier" : "urn:uuid:f04fd982-3106-491b-9281-381a816ccf10",
+    "timestamp" : "2024-12-13T18:33:36.821Z",
     "total" : 2,
     "offset" : 0,
     "parameter" : [{
@@ -235,11 +191,11 @@ e: {
     },
     {
       "name" : "used-codesystem",
-      "valueUri" : "http://snomed.info/sct|http://snomed.info/sct/731000124108/version/20230901"
+      "valueUri" : "http://snomed.info/sct|http://snomed.info/sct/731000124108/version/20240901"
     },
     {
       "name" : "version",
-      "valueUri" : "http://snomed.info/sct|http://snomed.info/sct/731000124108/version/20230901"
+      "valueUri" : "http://snomed.info/sct|http://snomed.info/sct/731000124108/version/20240901"
     }],
     "contains" : [{
       "system" : "http://snomed.info/sct",
@@ -272,84 +228,6 @@ e: {
 }}####
 e: {
   "from-server" : true,
-  "error" : "Error from http://tx.fhir.org/r4: Unable to provide support for code system http://snomed.info/sct version http://snomed.info/sct/731000124108/version/20150301 (known versions = http://snomed.info/sct/827022005/version/20221130,http://snomed.info/sct/731000124108/version/20230901,http://snomed.info/sct/83821000000107/version/20230412,http://snomed.info/sct/20611000087101/version/20220930,http://snomed.info/sct/32506021000036107/version/20230731,http://snomed.info/sct/900000000000207008/version/20230131,http://snomed.info/sct/2011000195101/version/20230607,http://snomed.info/sct/11000172109/version/20231115,http://snomed.info/sct/11000146104/version/20230331,http://snomed.info/sct/554471000005108/version/20210930,http://snomed.info/sct/900000000000207008/version/20240201,http://snomed.info/sct/45991000052106/version/20231130,http://snomed.info/sct/45991000052106/version/20220531,http://snomed.info/sct/900000000000207008/version/20230731)"
-}
--------------------------------------------------------------------------------------
-{"code" : {
-  "system" : "http://snomed.info/sct",
-  "version" : "http://snomed.info/sct/731000124108/version/201709",
-  "code" : "37687000",
-  "display" : "Congenital absence of cervix (disorder)"
-}, "valueSet" :null, "langs":"en-US", "useServer":"true", "useClient":"true", "guessSystem":"false", "activeOnly":"false", "membershipOnly":"false", "displayWarningMode":"false", "versionFlexible":"true", "profile": {
-  "resourceType" : "Parameters",
-  "id" : "exp-params",
-  "parameter" : [{
-    "name" : "system-version",
-    "valueUri" : "http://snomed.info/sct|http://snomed.info/sct/731000124108"
-  }]
-}}####
-v: {
-  "display" : "Congenital absence of cervix",
-  "code" : "37687000",
-  "system" : "http://snomed.info/sct",
-  "version" : "http://snomed.info/sct/731000124108/version/20240301",
-  "server" : "http://tx.fhir.org/r4",
-  "unknown-systems" : "",
-  "issues" : {
-  "resourceType" : "OperationOutcome"
-}
-
-}
--------------------------------------------------------------------------------------
-{"code" : {
-  "system" : "http://snomed.info/sct",
-  "version" : "http://snomed.info/sct/731000124108/version/201709",
-  "code" : "428361000124107",
-  "display" : "Discharge to home for hospice care (procedure)"
-}, "valueSet" :null, "langs":"en-US", "useServer":"true", "useClient":"true", "guessSystem":"false", "activeOnly":"false", "membershipOnly":"false", "displayWarningMode":"false", "versionFlexible":"true", "profile": {
-  "resourceType" : "Parameters",
-  "id" : "exp-params",
-  "parameter" : [{
-    "name" : "system-version",
-    "valueUri" : "http://snomed.info/sct|http://snomed.info/sct/731000124108"
-  }]
-}}####
-v: {
-  "display" : "Discharge to home for hospice care (procedure)",
-  "code" : "428361000124107",
-  "system" : "http://snomed.info/sct",
-  "version" : "http://snomed.info/sct/731000124108/version/20240301",
-  "server" : "http://tx.fhir.org/r4",
-  "unknown-systems" : "",
-  "issues" : {
-  "resourceType" : "OperationOutcome"
-}
-
-}
--------------------------------------------------------------------------------------
-{"code" : {
-  "system" : "http://snomed.info/sct",
-  "version" : "http://snomed.info/sct/731000124108/version/201709",
-  "code" : "428371000124100",
-  "display" : "Discharge to healthcare facility for hospice care (procedure)"
-}, "valueSet" :null, "langs":"en-US", "useServer":"true", "useClient":"true", "guessSystem":"false", "activeOnly":"false", "membershipOnly":"false", "displayWarningMode":"false", "versionFlexible":"true", "profile": {
-  "resourceType" : "Parameters",
-  "id" : "exp-params",
-  "parameter" : [{
-    "name" : "system-version",
-    "valueUri" : "http://snomed.info/sct|http://snomed.info/sct/731000124108"
-  }]
-}}####
-v: {
-  "display" : "Discharge to healthcare facility for hospice care (procedure)",
-  "code" : "428371000124100",
-  "system" : "http://snomed.info/sct",
-  "version" : "http://snomed.info/sct/731000124108/version/20240301",
-  "server" : "http://tx.fhir.org/r4",
-  "unknown-systems" : "",
-  "issues" : {
-  "resourceType" : "OperationOutcome"
-}
-
+  "error" : "Error from http://tx.fhir.org/r4: Unable to provide support for code system http://snomed.info/sct version http://snomed.info/sct/731000124108/version/20150301 (known versions = http://snomed.info/sct/827022005/version/20221130,http://snomed.info/sct/11000146104/version/20240930,http://snomed.info/sct/731000124108/version/20240901,http://snomed.info/sct/83821000000107/version/20230412,http://snomed.info/sct/554471000005108/version/20240331,http://snomed.info/sct/900000000000207008/version/20240801,http://snomed.info/sct/20611000087101/version/20220930,http://snomed.info/sct/32506021000036107/version/20230731,http://snomed.info/sct/2011000195101/version/20230607,http://snomed.info/sct/11000172109/version/20231115,http://snomed.info/sct/900000000000207008/version/20240201,http://snomed.info/sct/45991000052106/version/20231130,http://snomed.info/sct/45991000052106/version/20220531,http://snomed.info/sct/900000000000207008/version/20230731)"
 }
 -------------------------------------------------------------------------------------
