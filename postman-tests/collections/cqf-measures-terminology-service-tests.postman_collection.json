@@ -6287,6 +6287,8 @@
                       "listen": "test",
                       "script": {
                         "exec": [
+                          "//SOT@## ValueSet 12 POST @SOT",
+                          "// Based on source of truth: SOT@ http://hl7.org/fhir/ValueSet/care-team-status|4.0.1 @SOT",
                           "",
                           "pm.test(\"Response status code is 200\", function () {",
                           "    pm.expect(pm.response.code).to.equal(200);",
@@ -6372,6 +6374,7 @@
                       "listen": "test",
                       "script": {
                         "exec": [
+                          "// Based on source of truth: SOT@ http://hl7.org/fhir/ValueSet/care-team-status @SOT",
                           "",
                           "pm.test(\"Response status code is 200\", function () {",
                           "    pm.expect(pm.response.code).to.equal(200);",
@@ -6457,6 +6460,7 @@
                       "listen": "test",
                       "script": {
                         "exec": [
+                          "// Based on source of truth: SOT@ http://hl7.org/fhir/ValueSet/care-team-status @SOT",
                           "",
                           "pm.test(\"Response status code is 200\", function () {",
                           "    pm.expect(pm.response.code).to.equal(200);",
@@ -6542,6 +6546,7 @@
                       "listen": "test",
                       "script": {
                         "exec": [
+                          "// Based on source of truth: SOT@ http://hl7.org/fhir/ValueSet/care-team-status @SOT",
                           "",
                           "pm.test(\"Response status code is 200\", function () {",
                           "    pm.expect(pm.response.code).to.equal(200);",
@@ -6627,6 +6632,7 @@
                       "listen": "test",
                       "script": {
                         "exec": [
+                          "// Based on source of truth: SOT@ http://hl7.org/fhir/ValueSet/care-team-status @SOT",
                           "",
                           "pm.test(\"Response status code is 200\", function () {",
                           "    pm.expect(pm.response.code).to.equal(200);",
@@ -6712,6 +6718,7 @@
                       "listen": "test",
                       "script": {
                         "exec": [
+                          "// Based on source of truth: SOT@ http://hl7.org/fhir/ValueSet/care-team-status|4.0.1 @SOT",
                           "",
                           "pm.test(\"Response status code is 200\", function () {",
                           "    pm.expect(pm.response.code).to.equal(200);",
@@ -6797,6 +6804,7 @@
                       "listen": "test",
                       "script": {
                         "exec": [
+                          "// Based on source of truth: SOT@ http://hl7.org/fhir/ValueSet/care-team-status|4.0.1 @SOT",
                           "",
                           "pm.test(\"Response status code is 200\", function () {",
                           "    pm.expect(pm.response.code).to.equal(200);",
@@ -6882,6 +6890,7 @@
                       "listen": "test",
                       "script": {
                         "exec": [
+                          "// Based on source of truth: SOT@ http://hl7.org/fhir/ValueSet/care-team-status|4.0.1 @SOT",
                           "",
                           "pm.test(\"Response status code is 200\", function () {",
                           "    pm.expect(pm.response.code).to.equal(200);",
@@ -6967,6 +6976,7 @@
                       "listen": "test",
                       "script": {
                         "exec": [
+                          "// Based on source of truth: SOT@ http://hl7.org/fhir/ValueSet/care-team-status|4.0.1 @SOT",
                           "",
                           "pm.test(\"Response status code is 200\", function () {",
                           "    pm.expect(pm.response.code).to.equal(200);",
@@ -7052,6 +7062,7 @@
                       "listen": "test",
                       "script": {
                         "exec": [
+                          "// Based on source of truth: SOT@ http://hl7.org/fhir/ValueSet/care-team-status|4.0.1 @SOT",
                           "",
                           "pm.test(\"Response status code is 200\", function () {",
                           "    pm.expect(pm.response.code).to.equal(200);",
@@ -7137,6 +7148,7 @@
                       "listen": "test",
                       "script": {
                         "exec": [
+                          "// Based on source of truth: SOT@ http://hl7.org/fhir/ValueSet/care-team-status|4.0.1 @SOT",
                           "",
                           "pm.test(\"Response status code is 200\", function () {",
                           "    pm.expect(pm.response.code).to.equal(200);",
@@ -7222,6 +7234,7 @@
                       "listen": "test",
                       "script": {
                         "exec": [
+                          "// Based on source of truth: SOT@ http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1110.69|20230308 @SOT",
                           "pm.test(\"Response status code is 200\", function () {\r",
                           "    pm.expect(pm.response.code).to.equal(200);\r",
                           "});\r",
@@ -7288,6 +7301,8 @@
                       "listen": "test",
                       "script": {
                         "exec": [
+                          "//SOT@## ValueSet 13 Timeouts @SOT",
+                          "// Based on source of truth: SOT@ http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1034.127 @SOT",
                           "\r",
                           "pm.test(\"Response status code is 200\", function () {\r",
                           "    pm.expect(pm.response.code).to.equal(200);\r",
@@ -7340,6 +7355,7 @@
                       "listen": "test",
                       "script": {
                         "exec": [
+                          "// Based on source of truth: SOT@ http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.2.1079 @SOT",
                           "\r",
                           "pm.test(\"Response status code is 200\", function () {\r",
                           "    pm.expect(pm.response.code).to.equal(200);\r",
@@ -7392,6 +7408,7 @@
                       "listen": "test",
                       "script": {
                         "exec": [
+                          "// Based on source of truth: SOT@ http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1146.1407 @SOT",
                           "\r",
                           "pm.test(\"Response status code is 200\", function () {\r",
                           "    pm.expect(pm.response.code).to.equal(200);\r",
@@ -7444,6 +7461,7 @@
                       "listen": "test",
                       "script": {
                         "exec": [
+                          "// Based on source of truth: SOT@ http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.3157.1004.28 @SOT",
                           "\r",
                           "pm.test(\"Response status code is 200\", function () {\r",
                           "    pm.expect(pm.response.code).to.equal(200);\r",
@@ -7496,6 +7514,7 @@
                       "listen": "test",
                       "script": {
                         "exec": [
+                          "// Based on source of truth: SOT@ http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.199.11.1104 @SOT",
                           "\r",
                           "pm.test(\"Response status code is 200\", function () {\r",
                           "    pm.expect(pm.response.code).to.equal(200);\r",
@@ -8681,7 +8700,84 @@
         },
         {
           "name": "Quality Program 7 Package",
-          "item": []
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "//SOT@## Quality Program 7 Package @SOT",
+                  "// Based on FHIR R4 source of truth: SOT@ https://madie.cms.gov/Measure/BreastCancerScreeningFHIR @SOT",
+                  "// NOTE: all package operations are specific to a server. Different servers support packaging for different resources. To see possible resources: https://build.fhir.org/ig/HL7/crmi-ig/OperationDefinition-crmi-package.html",
+                  "// Description of the $package operation https://build.fhir.org/ig/HL7/crmi-ig/distribution.html",
+                  "// As of 11/29/2024 the only server I have found that supports $package is the cqf-ruler",
+                  "\r",
+                  "pm.test(\"Response status code is 200\", function () {\r",
+                  "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
+                  "    const responseData = pm.response.json();\r",
+                  "       console.log(responseData);",
+                  "    }",
+                  "    pm.expect(pm.response.code).to.equal(200);\r",
+                  "});\r",
+                  "\r",
+                  "// resourceType\r",
+                  "pm.test(\"A resourceType of 'Bundle' is returned.\", function () {\r",
+                  "    const responseData = pm.response.json();\r",
+                  "\r",
+                  "    pm.expect(responseData.resourceType).equal(\"Bundle\", \"Invalid return resourceType\");\r",
+                  "});\r",
+                  "\r",
+                  "// bundle type\r",
+                  "// NOTE: This is based on latest as of this test date\r",
+                  "pm.test(\"Bundle type is 'collection'\", function () {\r",
+                  "    const responseData = pm.response.json();\r",
+                  "\r",
+                  "    pm.expect(responseData.type).to.equal(\"collection\", \"Invalid bundle type\");\r",
+                  "});\r",
+                  "\r",
+                  "// Bundle contains the measure BreastCancerScreeningFHIR\r",
+                  "pm.test(\"Bundle contains the measure BreastCancerScreeningFHIR\", function () {\r",
+                  "    const responseData = pm.response.json();\r",
+                  "    const responseDataEntry = responseData.entry.find(e => e.resource.id === \"BreastCancerScreeningFHIR\");",
+                  "    pm.expect(responseDataEntry.id).to.equal(\"BreastCancerScreeningFHIR\");",
+                  "});\r",
+                  "// Bundle contains the Library effective-data-requirements\r",
+                  "pm.test(\"Bundle contains the Library effective-data-requirements\", function () {\r",
+                  "    const responseData = pm.response.json();\r",
+                  "    const responseDataEntry = responseData.entry.find(e => e.resource.id === \"effective-data-requirements\");",
+                  "    pm.expect(responseDataEntry.id).to.equal(\"effective-data-requirements\");",
+                  "});\r",
+                  "// Bundle contains the CodeSystem http://snomed.info/sct\r",
+                  "pm.test(\"Bundle contains the CodeSystem http://snomed.info/sct\", function () {\r",
+                  "    const responseData = pm.response.json();\r",
+                  "    const responseDataEntry = responseData.entry.find(e => e.resource.url === \"http://snomed.info/sct\");",
+                  "    pm.expect(responseDataEntry.url).to.equal(\"http://snomed.info/sct\");",
+                  "});\r",
+                  "// Bundle contains the ValueSet Mammography\r",
+                  "pm.test(\"Bundle contains the ValueSet Mammography\", function () {\r",
+                  "    const responseData = pm.response.json();\r",
+                  "    const responseDataEntry = responseData.entry.find(e => e.resource.id === \"Mammography\");",
+                  "    pm.expect(responseDataEntry.id).to.equal(\"Mammography\");",
+                  "});\r",
+                  "\r"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{SERVER_URL}}CodeSystem/$package?url=https://madie.cms.gov/Measure/BreastCancerScreeningFHIR",
+              "host": [
+                "{{SERVER_URL}}CodeSystem"
+              ],
+              "path": [
+                "$package"
+              ]
+            }
+          },
+          "response": []
         },
         {
           "name": "Release 8",
