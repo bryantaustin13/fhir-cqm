@@ -122,6 +122,7 @@ Additional variables required for risk adjustment or other purposes of data aggr
 | dQM | --- | Digital Quality Measure |
 | eCQM | --- | 	electronic Clinical Quality Measures |
 | DEQM | --- |	Data Exchange for Quality Measures |
+| UCWF | --- | Using CQL with FHIR IG |
 | EHR |	--- | Electronic Health Record |
 | ELM |	--- | Expression Logical Model |
 | FHIR | --- |	Fast Healthcare Interoperability Resources |
