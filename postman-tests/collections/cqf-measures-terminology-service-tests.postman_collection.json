@@ -7757,1489 +7757,739 @@
             }
           ],
           "description": "These tests validate that the server supports the CQFMPublishableLibrary profile for quality programs:\n\nPublishable Library Required Items\n\n- profile\n    \n- title\n    \n- date\n    \n\nPublishable Library Must Support Items\n\n- purpose\n    \n- usage\n    \n- copyright\n    \n- approvalDate\n    \n- lastReviewDate\n    \n- effectivePeriod\n    \n- topic\n    \n- author\n    \n- editor\n    \n- reviewer\n    \n- endorser"
-        }
-      ]
-    },
-    {
-      "name": "Quality Program 3 Read",
-      "item": [
-        {
-          "name": "Quality Program 3",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Response status code is 200\", function () {\r",
-                  "    pm.expect(pm.response.code).to.equal(200);\r",
-                  "});\r",
-                  "\r",
-                  "// resourceType\r",
-                  "pm.test(\"Resource Type is Library\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.resourceType).to.equal(\"Library\");\r",
-                  "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
-                  "       console.log(responseData);",
-                  "    }",
-                  "});\r",
-                  "\r",
-                  "// profile\r",
-                  "pm.test(\"Publishable profile is present in meta\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "if (pm.environment.get(\"VERSION\") === \"STU4\"){",
-                  "    pm.expect(responseData.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-library-cqfm\");\r",
-                  "} else if (pm.environment.get(\"VERSION\") === \"STU5\"){",
-                  "    pm.expect(responseData.meta.profile).contains(\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablelibrary\");\r",
-                  "}\r",
-                  "    pm.expect(responseData.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/quality-program-cqfm\");\r",
-                  "});\r",
-                  "\r",
-                  "// url\r",
-                  "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.url).equal(\"http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\");\r",
-                  "});\r",
-                  "\r",
-                  "// version\r",
-                  "pm.test(\"Version is 1.0.0\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.version).to.equal(\"1.0.0\", \"Invalid version\");\r",
-                  "});\r",
-                  "\r",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{SERVER_URL}}Library/ecqm-update-2022-05-05",
-              "host": [
-                "{{SERVER_URL}}Library"
-              ],
-              "path": [
-                "ecqm-update-2022-05-05"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Quality Program 4 Search",
-      "item": [
-        {
-          "name": "Quality Program 4.1 Search by Url",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Response status code is 200\", function () {\r",
-                  "    pm.expect(pm.response.code).to.equal(200);\r",
-                  "});\r",
-                  "\r",
-                  "// total\r",
-                  "pm.test(\"Response total is 1\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.total).to.equal(1);\r",
-                  "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
-                  "       console.log(responseData);",
-                  "    }",
-                  "});\r",
-                  "\r",
-                  "// profile\r",
-                  "pm.test(\"Publishable profile is present in meta\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "if (pm.environment.get(\"VERSION\") === \"STU4\"){",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-library-cqfm\");\r",
-                  "} else if (pm.environment.get(\"VERSION\") === \"STU5\"){",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablelibrary\");\r",
-                  "}",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/quality-program-cqfm\");\r",
-                  "});\r",
-                  "\r",
-                  "// url\r",
-                  "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.entry[0].resource.url).equal(\"http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\");\r",
-                  "});\r",
-                  "\r",
-                  "// version\r",
-                  "pm.test(\"Version is 1.0.0\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.entry[0].resource.version).to.equal(\"1.0.0\", \"Invalid version\");\r",
-                  "});\r",
-                  "\r",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{SERVER_URL}}Library/?url=http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05",
-              "host": [
-                "{{SERVER_URL}}Library"
-              ],
-              "path": [
-                ""
-              ],
-              "query": [
-                {
-                  "key": "url",
-                  "value": "http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05"
-                }
-              ]
-            }
-          },
-          "response": []
         },
         {
-          "name": "Quality Program 4.2 Search by Version",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Response status code is 200\", function () {\r",
-                  "    pm.expect(pm.response.code).to.equal(200);\r",
-                  "});\r",
-                  "\r",
-                  "// total\r",
-                  "pm.test(\"Response total is 1\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.total).to.equal(1);\r",
-                  "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
-                  "       console.log(responseData);",
-                  "    }",
-                  "});\r",
-                  "\r",
-                  "// profile\r",
-                  "pm.test(\"Publishable profile is present in meta\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "if (pm.environment.get(\"VERSION\") === \"STU4\"){",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-library-cqfm\");\r",
-                  "} else if (pm.environment.get(\"VERSION\") === \"STU5\"){",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablelibrary\");\r",
-                  "}",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/quality-program-cqfm\");\r",
-                  "});\r",
-                  "\r",
-                  "// url\r",
-                  "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.entry[0].resource.url).equal(\"http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\");\r",
-                  "});\r",
-                  "\r",
-                  "// version\r",
-                  "pm.test(\"Version is 1.0.0\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.entry[0].resource.version).to.equal(\"1.0.0\", \"Invalid version\");\r",
-                  "});\r",
-                  "\r",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{SERVER_URL}}Library/?url=http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05&version=1.0.0",
-              "host": [
-                "{{SERVER_URL}}Library"
-              ],
-              "path": [
-                ""
-              ],
-              "query": [
-                {
-                  "key": "url",
-                  "value": "http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05"
-                },
-                {
-                  "key": "version",
-                  "value": "1.0.0"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Quality Program 4.3 Search by Identifier",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Response status code is 200\", function () {\r",
-                  "    pm.expect(pm.response.code).to.equal(200);\r",
-                  "});\r",
-                  "\r",
-                  "// total\r",
-                  "pm.test(\"Response total is 1\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.total).to.equal(1);\r",
-                  "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
-                  "       console.log(responseData);",
-                  "    }",
-                  "});\r",
-                  "\r",
-                  "// profile\r",
-                  "pm.test(\"Publishable profile is present in meta\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "if (pm.environment.get(\"VERSION\") === \"STU4\"){",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-library-cqfm\");\r",
-                  "} else if (pm.environment.get(\"VERSION\") === \"STU5\"){",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablelibrary\");\r",
-                  "}",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/quality-program-cqfm\");\r",
-                  "});\r",
-                  "\r",
-                  "// url\r",
-                  "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.entry[0].resource.url).equal(\"http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\");\r",
-                  "});\r",
-                  "\r",
-                  "// version\r",
-                  "pm.test(\"Version is 1.0.0\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.entry[0].resource.version).to.equal(\"1.0.0\", \"Invalid version\");\r",
-                  "});\r",
-                  "\r",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{SERVER_URL}}Library/?identifier=ecqm-update-2022-05-05",
-              "host": [
-                "{{SERVER_URL}}Library"
-              ],
-              "path": [
-                ""
-              ],
-              "query": [
-                {
-                  "key": "identifier",
-                  "value": "ecqm-update-2022-05-05"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Quality Program 4.4 Search by Name",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Response status code is 200\", function () {\r",
-                  "    pm.expect(pm.response.code).to.equal(200);\r",
-                  "});\r",
-                  "\r",
-                  "// total\r",
-                  "pm.test(\"Response total is 1\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.total).to.equal(1);\r",
-                  "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
-                  "       console.log(responseData);",
-                  "    }",
-                  "});\r",
-                  "\r",
-                  "// profile\r",
-                  "pm.test(\"Publishable profile is present in meta\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "if (pm.environment.get(\"VERSION\") === \"STU4\"){",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-library-cqfm\");\r",
-                  "} else if (pm.environment.get(\"VERSION\") === \"STU5\"){",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablelibrary\");\r",
-                  "}",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/quality-program-cqfm\");\r",
-                  "});\r",
-                  "\r",
-                  "// url\r",
-                  "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.entry[0].resource.url).equal(\"http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\");\r",
-                  "});\r",
-                  "\r",
-                  "// version\r",
-                  "pm.test(\"Version is 1.0.0\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.entry[0].resource.version).to.equal(\"1.0.0\", \"Invalid version\");\r",
-                  "});\r",
-                  "\r",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{SERVER_URL}}Library/?name=eCQM Update 2022-05-05",
-              "host": [
-                "{{SERVER_URL}}Library"
-              ],
-              "path": [
-                ""
-              ],
-              "query": [
-                {
-                  "key": "name",
-                  "value": "eCQM Update 2022-05-05"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Quality Program 4.5 Search by Title",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Response status code is 200\", function () {\r",
-                  "    pm.expect(pm.response.code).to.equal(200);\r",
-                  "});\r",
-                  "\r",
-                  "// total\r",
-                  "pm.test(\"Response total is 1\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.total).to.equal(1);\r",
-                  "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
-                  "       console.log(responseData);",
-                  "    }",
-                  "});\r",
-                  "\r",
-                  "// profile\r",
-                  "pm.test(\"Publishable profile is present in meta\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "if (pm.environment.get(\"VERSION\") === \"STU4\"){",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-library-cqfm\");\r",
-                  "} else if (pm.environment.get(\"VERSION\") === \"STU5\"){",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablelibrary\");\r",
-                  "}",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/quality-program-cqfm\");\r",
-                  "});\r",
-                  "\r",
-                  "// url\r",
-                  "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.entry[0].resource.url).equal(\"http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\");\r",
-                  "});\r",
-                  "\r",
-                  "// version\r",
-                  "pm.test(\"Version is 1.0.0\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.entry[0].resource.version).to.equal(\"1.0.0\", \"Invalid version\");\r",
-                  "});\r",
-                  "\r",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{SERVER_URL}}Library/?title=eCQM Update 2022-05-05",
-              "host": [
-                "{{SERVER_URL}}Library"
-              ],
-              "path": [
-                ""
-              ],
-              "query": [
-                {
-                  "key": "title",
-                  "value": "eCQM Update 2022-05-05"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Quality Program 4.6 Search by Status",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Response status code is 200\", function () {\r",
-                  "    pm.expect(pm.response.code).to.equal(200);\r",
-                  "});\r",
-                  "\r",
-                  "// total\r",
-                  "pm.test(\"Response total is 1\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.total).to.equal(1);\r",
-                  "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
-                  "       console.log(responseData);",
-                  "    }",
-                  "});\r",
-                  "\r",
-                  "// profile\r",
-                  "pm.test(\"Publishable profile is present in meta\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "if (pm.environment.get(\"VERSION\") === \"STU4\"){",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-library-cqfm\");\r",
-                  "} else if (pm.environment.get(\"VERSION\") === \"STU5\"){",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablelibrary\");\r",
-                  "}",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/quality-program-cqfm\");\r",
-                  "});\r",
-                  "\r",
-                  "// url\r",
-                  "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.entry[0].resource.url).equal(\"http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\");\r",
-                  "});\r",
-                  "\r",
-                  "// version\r",
-                  "pm.test(\"Version is 1.0.0\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.entry[0].resource.version).to.equal(\"1.0.0\", \"Invalid version\");\r",
-                  "});\r",
-                  "\r",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{SERVER_URL}}Library/?url=http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05&status=active",
-              "host": [
-                "{{SERVER_URL}}Library"
-              ],
-              "path": [
-                ""
-              ],
-              "query": [
-                {
-                  "key": "url",
-                  "value": "http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05"
-                },
-                {
-                  "key": "status",
-                  "value": "active"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Quality Program 4.7 Search by Description",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Response status code is 200\", function () {\r",
-                  "    pm.expect(pm.response.code).to.equal(200);\r",
-                  "});\r",
-                  "\r",
-                  "// total\r",
-                  "pm.test(\"Response total is 1\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.total).to.equal(1);\r",
-                  "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
-                  "       console.log(responseData);",
-                  "    }",
-                  "});\r",
-                  "\r",
-                  "// profile\r",
-                  "pm.test(\"Publishable profile is present in meta\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "if (pm.environment.get(\"VERSION\") === \"STU4\"){",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-library-cqfm\");\r",
-                  "} else if (pm.environment.get(\"VERSION\") === \"STU5\"){",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablelibrary\");\r",
-                  "}",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/quality-program-cqfm\");\r",
-                  "});\r",
-                  "\r",
-                  "// url\r",
-                  "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.entry[0].resource.url).equal(\"http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\");\r",
-                  "});\r",
-                  "\r",
-                  "// version\r",
-                  "pm.test(\"Version is 1.0.0\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.entry[0].resource.version).to.equal(\"1.0.0\", \"Invalid version\");\r",
-                  "});\r",
-                  "\r",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{SERVER_URL}}Library/?description=eCQM Update 2022-05-05",
-              "host": [
-                "{{SERVER_URL}}Library"
-              ],
-              "path": [
-                ""
-              ],
-              "query": [
-                {
-                  "key": "description",
-                  "value": "eCQM Update 2022-05-05"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Quality Program 4.8 Search by Expansion Identifier",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Response status code is 200\", function () {\r",
-                  "    pm.expect(pm.response.code).to.equal(200);\r",
-                  "});\r",
-                  "\r",
-                  "// total\r",
-                  "pm.test(\"Response total is 1\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.total).to.equal(1);\r",
-                  "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
-                  "       console.log(responseData);",
-                  "    }",
-                  "});\r",
-                  "\r",
-                  "// profile\r",
-                  "pm.test(\"Publishable profile is present in meta\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "if (pm.environment.get(\"VERSION\") === \"STU4\"){",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-library-cqfm\");\r",
-                  "} else if (pm.environment.get(\"VERSION\") === \"STU5\"){",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablelibrary\");\r",
-                  "}",
-                  "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/quality-program-cqfm\");\r",
-                  "});\r",
-                  "\r",
-                  "// url\r",
-                  "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.entry[0].resource.url).equal(\"http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\");\r",
-                  "});\r",
-                  "\r",
-                  "// version\r",
-                  "pm.test(\"Version is 1.0.0\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.entry[0].resource.version).to.equal(\"1.0.0\", \"Invalid version\");\r",
-                  "});\r",
-                  "\r",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{SERVER_URL}}Library/?expansion-identifier=eCQM Update 2022-05-05",
-              "host": [
-                "{{SERVER_URL}}Library"
-              ],
-              "path": [
-                ""
-              ],
-              "query": [
-                {
-                  "key": "expansion-identifier",
-                  "value": "eCQM Update 2022-05-05"
-                }
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Quality Program 5 Expansion Rules",
-      "item": []
-    },
-    {
-      "name": "Quality Program 6 Manifest Support",
-      "item": [
-        {
-          "name": "Quality Program Manifest Support 6.1 Expand With Parameters",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "\r",
-                  "pm.test(\"Response status code is 200\", function () {\r",
-                  "    pm.expect(pm.response.code).to.equal(200);\r",
-                  "});\r",
-                  "\r",
-                  "// profile\r",
-                  "pm.test(\"Executable profile is present in meta\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/executable-valueset-cqfm\");\r",
-                  "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
-                  "       console.log(responseData);",
-                  "    }",
-                  "});\r",
-                  "\r",
-                  "// url\r",
-                  "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.url).equal(\"http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010\");\r",
-                  "});\r",
-                  "\r",
-                  "// version\r",
-                  "// NOTE: This is based on latest as of this test date\r",
-                  "pm.test(\"Version is 20200306\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.version).to.equal(\"20200306\", \"Invalid version\");\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"Expansion is present\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.expansion).exist;\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"Code is present\", function() {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.expansion.contains.find(function(obj) { return obj.system == \"http://snomed.info/sct\" && obj.code == \"107691000119101\" })).exist;\r",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{SERVER_URL}}ValueSet/$expand?url=http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010&valueSetVersion=20200306&system-version=http://hl7.org/fhir/sid/icd-10-cm|2022&system-version=http://snomed.info/sct|http://snomed.info/sct/731000124108/version/20220901&canonicalVersion=http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.2.1078|20220218&canonicalVersion=http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.2.1079|20230217",
-              "host": [
-                "{{SERVER_URL}}ValueSet"
-              ],
-              "path": [
-                "$expand"
-              ],
-              "query": [
-                {
-                  "key": "url",
-                  "value": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010"
-                },
-                {
-                  "key": "valueSetVersion",
-                  "value": "20200306"
-                },
-                {
-                  "key": "system-version",
-                  "value": "http://hl7.org/fhir/sid/icd-10-cm|2022"
-                },
-                {
-                  "key": "system-version",
-                  "value": "http://snomed.info/sct|http://snomed.info/sct/731000124108/version/20220901"
-                },
-                {
-                  "key": "canonicalVersion",
-                  "value": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.2.1078|20220218"
-                },
-                {
-                  "key": "canonicalVersion",
-                  "value": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.2.1079|20230217"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Quality Program Manifest Support 6.5 Expand With Url",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "\r",
-                  "pm.test(\"Response status code is 200\", function () {\r",
-                  "    pm.expect(pm.response.code).to.equal(200);\r",
-                  "});\r",
-                  "\r",
-                  "// profile\r",
-                  "pm.test(\"Executable profile is present in meta\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/executable-valueset-cqfm\");\r",
-                  "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
-                  "       console.log(responseData);",
-                  "    }",
-                  "});\r",
-                  "\r",
-                  "// url\r",
-                  "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.url).equal(\"http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010\");\r",
-                  "});\r",
-                  "\r",
-                  "// version\r",
-                  "// NOTE: This is based on latest as of this test date\r",
-                  "pm.test(\"Version is 20200306\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.version).to.equal(\"20200306\", \"Invalid version\");\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"Expansion is present\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.expansion).exist;\r",
-                  "});\r",
-                  "\r",
-                  "// NOTE: SNOMED Version here is based on latest version\r",
-                  "pm.test(\"Code is present\", function() {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.expansion.contains.find(function(obj) { return obj.system == \"http://snomed.info/sct\" && obj.version == \"http://snomed.info/sct/731000124108/version/20230901\" && obj.code == \"107691000119101\" })).exist;\r",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{SERVER_URL}}ValueSet/$expand?url=http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010",
-              "host": [
-                "{{SERVER_URL}}ValueSet"
-              ],
-              "path": [
-                "$expand"
-              ],
-              "query": [
-                {
-                  "key": "url",
-                  "value": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010"
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Quality Program Manifest Support 6.6 Expand With Manifest",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "\r",
-                  "pm.test(\"Response status code is 200\", function () {\r",
-                  "    pm.expect(pm.response.code).to.equal(200);\r",
-                  "});\r",
-                  "\r",
-                  "// profile\r",
-                  "pm.test(\"Executable profile is present in meta\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/executable-valueset-cqfm\");\r",
-                  "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
-                  "       console.log(responseData);",
-                  "    }",
-                  "});\r",
-                  "\r",
-                  "// url\r",
-                  "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.url).equal(\"http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010\");\r",
-                  "});\r",
-                  "\r",
-                  "// version\r",
-                  "// NOTE: This is based on latest as of this test date\r",
-                  "pm.test(\"Version is 20200306\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.version).to.equal(\"20200306\", \"Invalid version\");\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"Expansion is present\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.expansion).exist;\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"Code is present\", function() {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.expansion.contains.find(function(obj) { return obj.system == \"http://snomed.info/sct\" && obj.code == \"107691000119101\" && obj.version != \"http://snomed.info/sct/731000124108/version/20230901\" })).exist;\r",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{SERVER_URL}}ValueSet/$expand?url=http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010&manifest=http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2023-05-04",
-              "host": [
-                "{{SERVER_URL}}ValueSet"
-              ],
-              "path": [
-                "$expand"
-              ],
-              "query": [
-                {
-                  "key": "url",
-                  "value": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010"
-                },
-                {
-                  "key": "manifest",
-                  "value": "http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2023-05-04"
-                }
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Quality Program 7 Package",
-      "item": [
-        {
-          "name": "Quality Program 7.1 Package (URL)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "//SOT@## Quality Program 7.1 Package @SOT",
-                  "// Based on FHIR R4 source of truth: SOT@ https://madie.cms.gov/Measure/BreastCancerScreeningFHIR @SOT",
-                  "// NOTE: all package operations are specific to a server. Different servers support packaging for different resources. To see possible resources: https://build.fhir.org/ig/HL7/crmi-ig/OperationDefinition-crmi-package.html",
-                  "// Description of the $package operation https://build.fhir.org/ig/HL7/crmi-ig/distribution.html",
-                  "// As of 11/29/2024 the only server I have found that supports $package is the cqf-ruler",
-                  "\r",
-                  "pm.test(\"Response status code is 200\", function () {\r",
-                  "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
-                  "    const responseData = pm.response.json();\r",
-                  "       console.log(responseData);",
-                  "    }",
-                  "    pm.expect(pm.response.code).to.equal(200);\r",
-                  "});\r",
-                  "\r",
-                  "// resourceType\r",
-                  "pm.test(\"A resourceType of 'Bundle' is returned.\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.resourceType).equal(\"Bundle\", \"Invalid return resourceType\");\r",
-                  "});\r",
-                  "\r",
-                  "// bundle type\r",
-                  "// NOTE: This is based on latest as of this test date\r",
-                  "pm.test(\"Bundle type is 'collection'\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "\r",
-                  "    pm.expect(responseData.type).to.equal(\"collection\", \"Invalid bundle type\");\r",
-                  "});\r",
-                  "\r",
-                  "// Bundle contains the measure BreastCancerScreeningFHIR\r",
-                  "pm.test(\"Bundle contains the measure BreastCancerScreeningFHIR\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "    const responseDataEntry = responseData.entry.find(e => e.resource.id === \"BreastCancerScreeningFHIR\");",
-                  "    pm.expect(responseDataEntry.id).to.equal(\"BreastCancerScreeningFHIR\");",
-                  "});\r",
-                  "// Bundle contains the Library effective-data-requirements\r",
-                  "pm.test(\"Bundle contains the Library effective-data-requirements\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "    const responseDataEntry = responseData.entry.find(e => e.resource.id === \"effective-data-requirements\");",
-                  "    pm.expect(responseDataEntry.id).to.equal(\"effective-data-requirements\");",
-                  "});\r",
-                  "// Bundle contains the CodeSystem http://snomed.info/sct\r",
-                  "pm.test(\"Bundle contains the CodeSystem http://snomed.info/sct\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "    const responseDataEntry = responseData.entry.find(e => e.resource.url === \"http://snomed.info/sct\");",
-                  "    pm.expect(responseDataEntry.url).to.equal(\"http://snomed.info/sct\");",
-                  "});\r",
-                  "// Bundle contains the ValueSet Mammography\r",
-                  "pm.test(\"Bundle contains the ValueSet Mammography\", function () {\r",
-                  "    const responseData = pm.response.json();\r",
-                  "    const responseDataEntry = responseData.entry.find(e => e.resource.id === \"Mammography\");",
-                  "    pm.expect(responseDataEntry.id).to.equal(\"Mammography\");",
-                  "});\r",
-                  "\r"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{SERVER_URL}}CodeSystem/$package?url=https://madie.cms.gov/Measure/BreastCancerScreeningFHIR",
-              "host": [
-                "{{SERVER_URL}}CodeSystem"
-              ],
-              "path": [
-                "$package"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Quality Program 7.2 Package (Version)",
-          "event": [
-            {
-            }
-          ],
-          "request": {},
-          "response": []
-        },
-        {
-          "name": "Quality Program 7.3 Package (Offset)",
-          "event": [
-            {
-            }
-          ],
-          "request": {},
-          "response": []
-        },
-        {
-          "name": "Quality Program 7.4 Package (Count)",
-          "event": [
-            {
-            }
-          ],
-          "request": {},
-          "response": []
-        },
-        {
-          "name": "Quality Program 7.5 Package (CanonicalVersion)",
-          "event": [
-            {
-            }
-          ],
-          "request": {},
-          "response": []
-        },
-        {
-          "name": "Quality Program 7.6 Package (CheckCanonicalVersion)",
-          "event": [
-            {
-            }
-          ],
-          "request": {},
-          "response": []
-        },
-        {
-          "name": "Quality Program 7.7 Package (ForceCanonicalVersion)",
-          "event": [
-            {
-            }
-          ],
-          "request": {},
-          "response": []
-        },
-        {
-          "name": "Quality Program 7.8 Package (Manifest)",
-          "event": [
-            {
-            }
-          ]
-        }
-      ],
-      "request": {},
-      "response": []
-    },
-    {
-      "name": "Quality Program 8 Release",
-      "item": [
-        {
-          "name": "Quality Program Release 8.1 Create Draft",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "",
-                  "pm.test(\"Response status code is 200 or 201\", function () {",
-                  "    pm.expect(pm.response.code).to.oneOf([200, 201]);",
-                  "});",
-                  "",
-                  "",
-                  "pm.test(\"Resource Type should not be empty\", function () {",
-                  "    const responseData = pm.response.json();",
-                  "",
-                  "    pm.expect(responseData.resourceType).to.exist.and.to.not.be.empty;",
-                  "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
-                  "       console.log(responseData);",
-                  "    }",
-                  "});",
-                  "",
-                  "pm.test(\"Resource Type should be transaction-response\", function (){",
-                  "    const responseData = pm.response.json();",
-                  "",
-                  "    pm.expect(responseData.type).to.exist.and.to.not.be.empty;",
-                  "})",
-                  "",
-                  "",
-                  "pm.test(\"Test that id is not empty\", function () {",
-                  "    const responseData = pm.response.json();",
-                  "",
-                  "    pm.expect(responseData.id).to.exist.and.to.not.be.empty;",
-                  "});",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"resourceType\": \"Library\",\n    \"id\": \"postLibraryTest\",\n    \"title\": \"Post Library Test\",\n    \"status\": \"draft\",\n    \"version\": \"0.0.1\",\n    \"url\": \"postLibraryTest\",\n    \"type\": {\n        \"coding\": [\n            {\n                \"system\": \"http://terminology.hl7.org/CodeSystem/library-type\",\n                \"code\": \"logic-library\",\n                \"display\": \"Logic Library\"\n            }\n        ],\n        \"text\": \"Test Logic Library\"\n    }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{SERVER_URL}}Library",
-              "host": [
-                "{{SERVER_URL}}Library"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Quality Program Release 8.2 Update Draft",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "",
-                  "pm.test(\"Response status code is 200 or 201\", function () {",
-                  "    pm.expect(pm.response.code).to.oneOf([200, 201]);",
-                  "});",
-                  "",
-                  "",
-                  "pm.test(\"Resource Type should not be empty\", function () {",
-                  "    const responseData = pm.response.json();",
-                  "",
-                  "    pm.expect(responseData.resourceType).to.exist.and.to.not.be.empty;",
-                  "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
-                  "       console.log(responseData);",
-                  "    }",
-                  "});",
-                  "",
-                  "pm.test(\"Resource Type should be transaction-response\", function (){",
-                  "    const responseData = pm.response.json();",
-                  "",
-                  "    pm.expect(responseData.type).to.exist.and.to.not.be.empty;",
-                  "})",
-                  "",
-                  "",
-                  "pm.test(\"Test that id is not empty\", function () {",
-                  "    const responseData = pm.response.json();",
-                  "",
-                  "    pm.expect(responseData.id).to.exist.and.to.not.be.empty;",
-                  "});",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"resourceType\": \"Library\",\n    \"id\": \"postLibraryTest\",\n    \"title\": \"Post Library Test\",\n    \"status\": \"draft\",\n    \"version\": \"0.0.1\",\n    \"url\": \"postLibraryTest\",\n    \"type\": {\n        \"coding\": [\n            {\n                \"system\": \"http://terminology.hl7.org/CodeSystem/library-type\",\n                \"code\": \"logic-library\",\n                \"display\": \"Logic Library\"\n            }\n        ],\n        \"text\": \"Test Logic Library, test using PUT to update\"\n    }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{SERVER_URL}}Library/postLibraryTest",
-              "host": [
-                "{{SERVER_URL}}Library"
-              ],
-              "path": [
-                "postLibraryTest"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Quality Program Release 8.3 Release Library",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "",
-                  "pm.test(\"Response status code is 200\", function () {",
-                  "    pm.expect(pm.response.code).equals(\"200\");",
-                  "});",
-                  "",
-                  "",
-                  "pm.test(\"Resource Type should not be empty\", function () {",
-                  "    const responseData = pm.response.json();",
-                  "",
-                  "    pm.expect(responseData.resourceType).to.exist.and.to.not.be.empty;",
-                  "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
-                  "       console.log(responseData);",
-                  "    }",
-                  "});",
-                  "",
-                  "pm.test(\"Resource Type should be transaction-response\", function (){",
-                  "    const responseData = pm.response.json();",
-                  "",
-                  "    pm.expect(responseData.type).to.exist.and.to.not.be.empty;",
-                  "})",
-                  "",
-                  "pm.test(\"Test that id is not empty\", function () {",
-                  "    const responseData = pm.response.json();",
-                  "",
-                  "    pm.expect(responseData.id).to.exist.and.to.not.be.empty;",
-                  "});",
-                  "",
-                  "pm.test(\"Status is active\", function (){",
-                  "    const responseData = pm.response.json();",
-                  "",
-                  "    pm.expect(responseData.status).equals(\"active\");",
-                  "})",
-                  "",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"resourceType\": \"Library\",\n    \"id\": \"postLibraryTest\",\n    \"title\": \"Post Library Test\",\n    \"status\": \"active\",\n    \"version\": \"0.0.1\",\n    \"url\": \"postLibraryTest\",\n    \"type\": {\n        \"coding\": [\n            {\n                \"system\": \"http://terminology.hl7.org/CodeSystem/library-type\",\n                \"code\": \"logic-library\",\n                \"display\": \"Logic Library\"\n            }\n        ],\n        \"text\": \"Test Logic Library, test using PUT to update\"\n    }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{SERVER_URL}}Library/postLibraryTest",
-              "host": [
-                "{{SERVER_URL}}Library"
-              ],
-              "path": [
-                "postLibraryTest"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Quality Program Release 8.4 Retire Library",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "",
-                  "pm.test(\"Response status code is 200\", function () {",
-                  "    pm.expect(pm.response.code).equals(\"200\");",
-                  "});",
-                  "",
-                  "",
-                  "pm.test(\"Resource Type should not be empty\", function () {",
-                  "    const responseData = pm.response.json();",
-                  "",
-                  "    pm.expect(responseData.resourceType).to.exist.and.to.not.be.empty;",
-                  "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
-                  "       console.log(responseData);",
-                  "    }",
-                  "});",
-                  "",
-                  "pm.test(\"Resource Type should be transaction-response\", function (){",
-                  "    const responseData = pm.response.json();",
-                  "",
-                  "    pm.expect(responseData.type).to.exist.and.to.not.be.empty;",
-                  "})",
-                  "",
-                  "pm.test(\"Test that id is not empty\", function () {",
-                  "    const responseData = pm.response.json();",
-                  "",
-                  "    pm.expect(responseData.id).to.exist.and.to.not.be.empty;",
-                  "});",
-                  "",
-                  "pm.test(\"Status is retired\", function (){",
-                  "    const responseData = pm.response.json();",
-                  "",
-                  "    pm.expect(responseData.status).equals(\"retired\");",
-                  "})",
-                  "",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"resourceType\": \"Library\",\n    \"id\": \"postLibraryTest\",\n    \"title\": \"Post Library Test\",\n    \"status\": \"retired\",\n    \"version\": \"0.0.1\",\n    \"url\": \"postLibraryTest\",\n    \"type\": {\n        \"coding\": [\n            {\n                \"system\": \"http://terminology.hl7.org/CodeSystem/library-type\",\n                \"code\": \"logic-library\",\n                \"display\": \"Logic Library\"\n            }\n        ],\n        \"text\": \"Test Logic Library, test using PUT to update\"\n    }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{SERVER_URL}}Library/postLibraryTest",
-              "host": [
-                "{{SERVER_URL}}Library"
-              ],
-              "path": [
-                "postLibraryTest"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Quality Program Release 8.5 Libraries Immutable",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "",
-                  "pm.test(\"Response status code is NOT 200\", function () {",
-                  "    pm.expect(pm.response.code).not.equals(\"200\");",
-                  "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
-                  "       console.log(pm.response.json());",
-                  "    }",
-                  "});",
-                  ""
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"resourceType\": \"Library\",\n    \"id\": \"postLibraryTest\",\n    \"title\": \"Post Library Test\",\n    \"status\": \"active\",\n    \"version\": \"0.0.1\",\n    \"url\": \"postLibraryTest\",\n    \"type\": {\n        \"coding\": [\n            {\n                \"system\": \"http://terminology.hl7.org/CodeSystem/library-type\",\n                \"code\": \"logic-library\",\n                \"display\": \"Logic Library\"\n            }\n        ],\n        \"text\": \"test logic library should be rejected, because library is not in draft mode\"\n    }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{SERVER_URL}}Library/postLibraryTest",
-              "host": [
-                "{{SERVER_URL}}Library"
-              ],
-              "path": [
-                "postLibraryTest"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Quality Program Release 8.6 Libraries Unique",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"resourceType\": \"Library\",\n    \"id\": \"postLibraryTest\",\n    \"title\": \"Post Library Test\",\n    \"status\": \"draft\",\n    \"version\": \"0.0.1\",\n    \"url\": \"postLibraryTest\",\n    \"type\": {\n        \"coding\": [\n            {\n                \"system\": \"http://terminology.hl7.org/CodeSystem/library-type\",\n                \"code\": \"logic-library\",\n                \"display\": \"Logic Library\"\n            }\n        ],\n        \"text\": \"Test Logic Library that should be rejected due to duplicate url and version\"\n    }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{SERVER_URL}}Library",
-              "host": [
-                "{{SERVER_URL}}Library"
-              ]
-            }
-          },
-          "response": []
-          "name": "Release 8",
+          "name": "Quality Program 3 Read",
           "item": [
             {
-              "name": "Quality Program Release 8.1 Create Draft",
+              "name": "Quality Program 3",
               "event": [
                 {
                   "listen": "test",
                   "script": {
                     "exec": [
-                      "//NOTE: this test uses a PUT instead of a POST. Otherwise you get an error: 'A Manifest with the same id or url already exists.' after 1 POST",
-                      "// Based on source of truth: SOT@ https://github.com/cqframework/ecqm-content-qicore-2024-subset/blob/main/input/resources/library/Manifest-Final-Draft.json @SOT",
-                      "",
-                      "pm.test(\"Response status code is 200 or 201\", function () {",
-                      "    pm.expect(pm.response.code).to.oneOf([200, 201]);",
-                      "});",
-                      "",
-                      "    const responseData = pm.response.json();",
+                      "pm.test(\"Response status code is 200\", function () {\r",
+                      "    pm.expect(pm.response.code).to.equal(200);\r",
+                      "});\r",
+                      "\r",
+                      "// resourceType\r",
+                      "pm.test(\"Resource Type is Library\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.resourceType).to.equal(\"Library\");\r",
                       "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
                       "       console.log(responseData);",
                       "    }",
-                      "",
-                      "pm.test(\"Resource Type should be Library\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "    pm.expect(responseData.resourceType).to.equal(\"Library\");",
-                      "});",
-                      "",
-                      "pm.test(\"Test that id is Manifest-Final-Draft\", function () {",
-                      "    const responseData = pm.response.json();",
-                      "",
-                      "    pm.expect(responseData.id).to.equal(\"Manifest-Final-Draft\");",
-                      "});",
-                      "",
-                      "pm.test(\"Contains system-version 'http://loinc.org|2.76'\", function () {",
-                      "const responseData = pm.response.json();",
-                      "const expParams = responseData.contained.find(",
-                      "r => r.resourceType === \"Parameters\" && r.id === \"exp-params\"",
-                      ");",
-                      "pm.expect(expParams).to.be.an(\"object\", \"exp-params not found\");",
-                      "const hasLoinc = expParams.parameter.some(",
-                      "p => p.name === \"system-version\" && p.valueUri === \"http://loinc.org|2.76\"",
-                      ");",
-                      "pm.expect(hasLoinc).to.be.true;",
-                      "});",
-                      "",
-                      "pm.test(\"Contains endpointUri 'https://uat-cts.nlm.nih.gov/fhir/'\", function () {",
-                      "const responseData = pm.response.json();",
-                      "const endpoints = responseData.contained.find(",
-                      "r => r.resourceType === \"Parameters\" && r.id === \"endpoints\"",
-                      ");",
-                      "pm.expect(endpoints).to.be.an(\"object\", \"endpoints not found\");",
-                      "const hasEndpoint = endpoints.parameter.some(config =>",
-                      "config.name === \"artifactEndpointConfiguration\" && config.part?.some(p =>",
-                      "p.name === \"endpointUri\" && p.valueUri === \"https://uat-cts.nlm.nih.gov/fhir/\")",
-                      ");",
-                      " pm.expect(hasEndpoint).to.be.true;",
-                      "});",
-                      "",
-                      "pm.test(\"Contains relatedArtifact 'Hospital Harm - Severe Hyperglycemia' measure\", function () {",
-                      "const responseData = pm.response.json();",
-                      "const hasArtifact = responseData.relatedArtifact?.some(artifact =>",
-                      "artifact.resource === \"https://madie.cms.gov/Measure/HospitalHarmHyperglycemiainHospitalizedPatientsFHIR|0.1.000\"",
-                      ");",
-                      "pm.expect(hasArtifact).to.be.true;",
+                      "});\r",
+                      "\r",
+                      "// profile\r",
+                      "pm.test(\"Publishable profile is present in meta\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "if (pm.environment.get(\"VERSION\") === \"STU4\"){",
+                      "    pm.expect(responseData.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-library-cqfm\");\r",
+                      "} else if (pm.environment.get(\"VERSION\") === \"STU5\"){",
+                      "    pm.expect(responseData.meta.profile).contains(\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablelibrary\");\r",
+                      "}\r",
+                      "    pm.expect(responseData.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/quality-program-cqfm\");\r",
+                      "});\r",
+                      "\r",
+                      "// url\r",
+                      "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.url).equal(\"http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\");\r",
+                      "});\r",
+                      "\r",
+                      "// version\r",
+                      "pm.test(\"Version is 1.0.0\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.version).to.equal(\"1.0.0\", \"Invalid version\");\r",
+                      "});\r",
+                      "\r",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{SERVER_URL}}Library/ecqm-update-2022-05-05",
+                  "host": [
+                    "{{SERVER_URL}}Library"
+                  ],
+                  "path": [
+                    "ecqm-update-2022-05-05"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Quality Program 4 Search",
+          "item": [
+            {
+              "name": "Quality Program 4.1 Search by Url",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function () {\r",
+                      "    pm.expect(pm.response.code).to.equal(200);\r",
+                      "});\r",
+                      "\r",
+                      "// total\r",
+                      "pm.test(\"Response total is 1\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.total).to.equal(1);\r",
+                      "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
+                      "       console.log(responseData);",
+                      "    }",
+                      "});\r",
+                      "\r",
+                      "// profile\r",
+                      "pm.test(\"Publishable profile is present in meta\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "if (pm.environment.get(\"VERSION\") === \"STU4\"){",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-library-cqfm\");\r",
+                      "} else if (pm.environment.get(\"VERSION\") === \"STU5\"){",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablelibrary\");\r",
+                      "}",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/quality-program-cqfm\");\r",
+                      "});\r",
+                      "\r",
+                      "// url\r",
+                      "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.entry[0].resource.url).equal(\"http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\");\r",
+                      "});\r",
+                      "\r",
+                      "// version\r",
+                      "pm.test(\"Version is 1.0.0\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.entry[0].resource.version).to.equal(\"1.0.0\", \"Invalid version\");\r",
+                      "});\r",
+                      "\r",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{SERVER_URL}}Library/?url=http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05",
+                  "host": [
+                    "{{SERVER_URL}}Library"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Quality Program 4.2 Search by Version",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function () {\r",
+                      "    pm.expect(pm.response.code).to.equal(200);\r",
+                      "});\r",
+                      "\r",
+                      "// total\r",
+                      "pm.test(\"Response total is 1\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.total).to.equal(1);\r",
+                      "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
+                      "       console.log(responseData);",
+                      "    }",
+                      "});\r",
+                      "\r",
+                      "// profile\r",
+                      "pm.test(\"Publishable profile is present in meta\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "if (pm.environment.get(\"VERSION\") === \"STU4\"){",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-library-cqfm\");\r",
+                      "} else if (pm.environment.get(\"VERSION\") === \"STU5\"){",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablelibrary\");\r",
+                      "}",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/quality-program-cqfm\");\r",
+                      "});\r",
+                      "\r",
+                      "// url\r",
+                      "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.entry[0].resource.url).equal(\"http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\");\r",
+                      "});\r",
+                      "\r",
+                      "// version\r",
+                      "pm.test(\"Version is 1.0.0\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.entry[0].resource.version).to.equal(\"1.0.0\", \"Invalid version\");\r",
+                      "});\r",
+                      "\r",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{SERVER_URL}}Library/?url=http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05&version=1.0.0",
+                  "host": [
+                    "{{SERVER_URL}}Library"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05"
+                    },
+                    {
+                      "key": "version",
+                      "value": "1.0.0"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Quality Program 4.3 Search by Identifier",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function () {\r",
+                      "    pm.expect(pm.response.code).to.equal(200);\r",
+                      "});\r",
+                      "\r",
+                      "// total\r",
+                      "pm.test(\"Response total is 1\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.total).to.equal(1);\r",
+                      "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
+                      "       console.log(responseData);",
+                      "    }",
+                      "});\r",
+                      "\r",
+                      "// profile\r",
+                      "pm.test(\"Publishable profile is present in meta\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "if (pm.environment.get(\"VERSION\") === \"STU4\"){",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-library-cqfm\");\r",
+                      "} else if (pm.environment.get(\"VERSION\") === \"STU5\"){",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablelibrary\");\r",
+                      "}",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/quality-program-cqfm\");\r",
+                      "});\r",
+                      "\r",
+                      "// url\r",
+                      "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.entry[0].resource.url).equal(\"http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\");\r",
+                      "});\r",
+                      "\r",
+                      "// version\r",
+                      "pm.test(\"Version is 1.0.0\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.entry[0].resource.version).to.equal(\"1.0.0\", \"Invalid version\");\r",
+                      "});\r",
+                      "\r",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{SERVER_URL}}Library/?identifier=ecqm-update-2022-05-05",
+                  "host": [
+                    "{{SERVER_URL}}Library"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "identifier",
+                      "value": "ecqm-update-2022-05-05"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Quality Program 4.4 Search by Name",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function () {\r",
+                      "    pm.expect(pm.response.code).to.equal(200);\r",
+                      "});\r",
+                      "\r",
+                      "// total\r",
+                      "pm.test(\"Response total is 1\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.total).to.equal(1);\r",
+                      "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
+                      "       console.log(responseData);",
+                      "    }",
+                      "});\r",
+                      "\r",
+                      "// profile\r",
+                      "pm.test(\"Publishable profile is present in meta\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "if (pm.environment.get(\"VERSION\") === \"STU4\"){",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-library-cqfm\");\r",
+                      "} else if (pm.environment.get(\"VERSION\") === \"STU5\"){",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablelibrary\");\r",
+                      "}",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/quality-program-cqfm\");\r",
+                      "});\r",
+                      "\r",
+                      "// url\r",
+                      "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.entry[0].resource.url).equal(\"http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\");\r",
+                      "});\r",
+                      "\r",
+                      "// version\r",
+                      "pm.test(\"Version is 1.0.0\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.entry[0].resource.version).to.equal(\"1.0.0\", \"Invalid version\");\r",
+                      "});\r",
+                      "\r",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{SERVER_URL}}Library/?name=eCQM Update 2022-05-05",
+                  "host": [
+                    "{{SERVER_URL}}Library"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "eCQM Update 2022-05-05"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Quality Program 4.5 Search by Title",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function () {\r",
+                      "    pm.expect(pm.response.code).to.equal(200);\r",
+                      "});\r",
+                      "\r",
+                      "// total\r",
+                      "pm.test(\"Response total is 1\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.total).to.equal(1);\r",
+                      "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
+                      "       console.log(responseData);",
+                      "    }",
+                      "});\r",
+                      "\r",
+                      "// profile\r",
+                      "pm.test(\"Publishable profile is present in meta\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "if (pm.environment.get(\"VERSION\") === \"STU4\"){",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-library-cqfm\");\r",
+                      "} else if (pm.environment.get(\"VERSION\") === \"STU5\"){",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablelibrary\");\r",
+                      "}",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/quality-program-cqfm\");\r",
+                      "});\r",
+                      "\r",
+                      "// url\r",
+                      "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.entry[0].resource.url).equal(\"http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\");\r",
+                      "});\r",
+                      "\r",
+                      "// version\r",
+                      "pm.test(\"Version is 1.0.0\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.entry[0].resource.version).to.equal(\"1.0.0\", \"Invalid version\");\r",
+                      "});\r",
+                      "\r",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{SERVER_URL}}Library/?title=eCQM Update 2022-05-05",
+                  "host": [
+                    "{{SERVER_URL}}Library"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "title",
+                      "value": "eCQM Update 2022-05-05"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Quality Program 4.6 Search by Status",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function () {\r",
+                      "    pm.expect(pm.response.code).to.equal(200);\r",
+                      "});\r",
+                      "\r",
+                      "// total\r",
+                      "pm.test(\"Response total is 1\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.total).to.equal(1);\r",
+                      "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
+                      "       console.log(responseData);",
+                      "    }",
+                      "});\r",
+                      "\r",
+                      "// profile\r",
+                      "pm.test(\"Publishable profile is present in meta\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "if (pm.environment.get(\"VERSION\") === \"STU4\"){",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-library-cqfm\");\r",
+                      "} else if (pm.environment.get(\"VERSION\") === \"STU5\"){",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablelibrary\");\r",
+                      "}",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/quality-program-cqfm\");\r",
+                      "});\r",
+                      "\r",
+                      "// url\r",
+                      "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.entry[0].resource.url).equal(\"http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\");\r",
+                      "});\r",
+                      "\r",
+                      "// version\r",
+                      "pm.test(\"Version is 1.0.0\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.entry[0].resource.version).to.equal(\"1.0.0\", \"Invalid version\");\r",
+                      "});\r",
+                      "\r",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{SERVER_URL}}Library/?url=http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05&status=active",
+                  "host": [
+                    "{{SERVER_URL}}Library"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05"
+                    },
+                    {
+                      "key": "status",
+                      "value": "active"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Quality Program 4.7 Search by Description",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function () {\r",
+                      "    pm.expect(pm.response.code).to.equal(200);\r",
+                      "});\r",
+                      "\r",
+                      "// total\r",
+                      "pm.test(\"Response total is 1\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.total).to.equal(1);\r",
+                      "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
+                      "       console.log(responseData);",
+                      "    }",
+                      "});\r",
+                      "\r",
+                      "// profile\r",
+                      "pm.test(\"Publishable profile is present in meta\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "if (pm.environment.get(\"VERSION\") === \"STU4\"){",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-library-cqfm\");\r",
+                      "} else if (pm.environment.get(\"VERSION\") === \"STU5\"){",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablelibrary\");\r",
+                      "}",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/quality-program-cqfm\");\r",
+                      "});\r",
+                      "\r",
+                      "// url\r",
+                      "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.entry[0].resource.url).equal(\"http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\");\r",
+                      "});\r",
+                      "\r",
+                      "// version\r",
+                      "pm.test(\"Version is 1.0.0\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.entry[0].resource.version).to.equal(\"1.0.0\", \"Invalid version\");\r",
+                      "});\r",
+                      "\r",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{SERVER_URL}}Library/?description=eCQM Update 2022-05-05",
+                  "host": [
+                    "{{SERVER_URL}}Library"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "description",
+                      "value": "eCQM Update 2022-05-05"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Quality Program 4.8 Search by Expansion Identifier",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Response status code is 200\", function () {\r",
+                      "    pm.expect(pm.response.code).to.equal(200);\r",
+                      "});\r",
+                      "\r",
+                      "// total\r",
+                      "pm.test(\"Response total is 1\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.total).to.equal(1);\r",
+                      "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
+                      "       console.log(responseData);",
+                      "    }",
+                      "});\r",
+                      "\r",
+                      "// profile\r",
+                      "pm.test(\"Publishable profile is present in meta\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "if (pm.environment.get(\"VERSION\") === \"STU4\"){",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-library-cqfm\");\r",
+                      "} else if (pm.environment.get(\"VERSION\") === \"STU5\"){",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablelibrary\");\r",
+                      "}",
+                      "    pm.expect(responseData.entry[0].resource.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/quality-program-cqfm\");\r",
+                      "});\r",
+                      "\r",
+                      "// url\r",
+                      "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.entry[0].resource.url).equal(\"http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2022-05-05\");\r",
+                      "});\r",
+                      "\r",
+                      "// version\r",
+                      "pm.test(\"Version is 1.0.0\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.entry[0].resource.version).to.equal(\"1.0.0\", \"Invalid version\");\r",
+                      "});\r",
+                      "\r",
+                      ""
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{SERVER_URL}}Library/?expansion-identifier=eCQM Update 2022-05-05",
+                  "host": [
+                    "{{SERVER_URL}}Library"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "expansion-identifier",
+                      "value": "eCQM Update 2022-05-05"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Quality Program 5 Expansion Rules",
+          "item": []
+        },
+        {
+          "name": "Quality Program 6 Manifest Support",
+          "item": [
+            {
+              "name": "Quality Program Manifest Support 6.1 Expand With Parameters",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "\r",
+                      "pm.test(\"Response status code is 200\", function () {\r",
+                      "    pm.expect(pm.response.code).to.equal(200);\r",
+                      "});\r",
+                      "\r",
+                      "// profile\r",
+                      "pm.test(\"Executable profile is present in meta\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/executable-valueset-cqfm\");\r",
+                      "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
+                      "       console.log(responseData);",
+                      "    }",
+                      "});\r",
+                      "\r",
+                      "// url\r",
+                      "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.url).equal(\"http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010\");\r",
+                      "});\r",
+                      "\r",
+                      "// version\r",
+                      "// NOTE: This is based on latest as of this test date\r",
+                      "pm.test(\"Version is 20200306\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.version).to.equal(\"20200306\", \"Invalid version\");\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Expansion is present\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.expansion).exist;\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Code is present\", function() {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.expansion.contains.find(function(obj) { return obj.system == \"http://snomed.info/sct\" && obj.code == \"107691000119101\" })).exist;\r",
                       "});"
                     ],
                     "type": "text/javascript"
@@ -9247,27 +8497,596 @@
                 }
               ],
               "request": {
-                "method": "PUT",
+                "method": "GET",
                 "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\"resourceType\":\"Library\",\"id\":\"Manifest-Final-Draft\",\"meta\":{\"profile\":[\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-manifestlibrary\"]},\"contained\":[{\"resourceType\":\"Parameters\",\"id\":\"exp-params\",\"parameter\":[{\"name\":\"system-version\",\"valueUri\":\"http://snomed.info/sct|http://snomed.info/sct/731000124108/version/20230901\"},{\"name\":\"system-version\",\"valueUri\":\"http://loinc.org|2.76\"},{\"name\":\"system-version\",\"valueUri\":\"http://terminology.hl7.org/CodeSystem/v3-ActCode|9.0.0\"},{\"name\":\"system-version\",\"valueUri\":\"http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender|3.0.0\"},{\"name\":\"system-version\",\"valueUri\":\"http://terminology.hl7.org/CodeSystem/CD2|2.0.1\"},{\"name\":\"system-version\",\"valueUri\":\"urn:oid:2.16.840.1.113883.6.238|1.2\"},{\"name\":\"system-version\",\"valueUri\":\"http://www.ama-assn.org/go/cpt|3.0.1\"},{\"name\":\"system-version\",\"valueUri\":\"http://hl7.org/fhir/sid/cvx|4.0.0\"},{\"name\":\"system-version\",\"valueUri\":\"http://terminology.hl7.org/CodeSystem/HCPCS-all-codes|3.0.0\"},{\"name\":\"system-version\",\"valueUri\":\"http://www.cms.gov/Medicare/Coding/HCPCSReleaseCodeSets|1.0.2\"},{\"name\":\"system-version\",\"valueUri\":\"http://hl7.org/fhir/sid/icd-10-cm|2.0.1\"},{\"name\":\"system-version\",\"valueUri\":\"http://www.cms.gov/Medicare/Coding/ICD10|2.0.1\"},{\"name\":\"system-version\",\"valueUri\":\"http://terminology.hl7.org/CodeSystem/icd9cm|2.0.1\"},{\"name\":\"system-version\",\"valueUri\":\"http://terminology.hl7.org/CodeSystem/v2-0895|2.2.0\"},{\"name\":\"system-version\",\"valueUri\":\"http://www.nlm.nih.gov/research/umls/rxnorm|3.0.1\"},{\"name\":\"system-version\",\"valueUri\":\"https://nahdo.org/sopt|1.0.1\"}]},{\"resourceType\":\"Parameters\",\"id\":\"endpoints\",\"parameter\":[{\"name\":\"artifactEndpointConfiguration\",\"part\":[{\"name\":\"artifactRoute\",\"valueUri\":\"http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820\"},{\"name\":\"endpointUri\",\"valueUri\":\"https://example.org/fhir/\"}]},{\"name\":\"artifactEndpointConfiguration\",\"part\":[{\"name\":\"artifactRoute\",\"valueUri\":\"http://cts.nlm.nih.gov/fhir/\"},{\"name\":\"endpointUri\",\"valueUri\":\"https://uat-cts.nlm.nih.gov/fhir/\"}]},{\"name\":\"artifactEndpointConfiguration\",\"part\":[{\"name\":\"artifactRoute\",\"valueUri\":\"http://terminology.hl7.org/\"},{\"name\":\"endpointUri\",\"valueUri\":\"https://tx.fhir.org/r4/\"}]},{\"name\":\"artifactEndpointConfiguration\",\"part\":[{\"name\":\"artifactRoute\",\"valueUri\":\"http://hl7.org/fhir/\"},{\"name\":\"endpointUri\",\"valueUri\":\"https://tx.fhir.org/r4/\"}]}]}],\"extension\":[{\"url\":\"http://hl7.org/fhir/StructureDefinition/cqf-expansionParameters\",\"valueReference\":{\"reference\":\"#exp-params\"}},{\"url\":\"http://hl7.org/fhir/StructureDefinition/cqf-endpointConfiguration\",\"valueReference\":{\"reference\":\"#endpoints\"}}],\"url\":\"http://hl7.org/fhir/us/cqfmeasures/Library/ecqm-update-2024\",\"identifier\":[{\"use\":\"official\",\"system\":\"http://example.org/fhir/cqi/ecqm/Library/Identifier\",\"value\":\"eCQM Update 2024\"}],\"version\":\"1.0.0\",\"name\":\"ECQMUpdate2024\",\"title\":\"eCQM Update 2024\",\"status\":\"draft\",\"experimental\":true,\"type\":{\"coding\":[{\"system\":\"http://terminology.hl7.org/CodeSystem/library-type\",\"code\":\"asset-collection\"}]},\"date\":\"2024-04-23\",\"publisher\":\"Clinical Quality Information WG\",\"contact\":[{\"telecom\":[{\"system\":\"url\",\"value\":\"http://www.hl7.org/Special/committees/cqi\"}]}],\"description\":\"This library is an example final draft of a version manifest (also referred to as an expansion profile) that specifies expansion rules for a set of value sets used for an example set of EP/EC measures.\",\"jurisdiction\":[{\"coding\":[{\"system\":\"urn:iso:std:iso:3166\",\"code\":\"US\"}]}],\"purpose\":\"This library is defined to illustrate a Version Manifest in final draft status, as it would look at the end of an eCQM Annual Update cycle, approved on April 23rd, 2024. The latest available version of code systems used at that time is specified to provide stability for value set expansion during the testing and implementation phase. Terminology.HL7.org, in particular, was version 5.5.0 at the time, and FHIR code system versions are chosen from that release.\",\"approvalDate\":\"2024-04-23\",\"lastReviewDate\":\"2024-04-23\",\"relatedArtifact\":[{\"type\":\"composed-of\",\"display\":\"Measure Discharged on Antithrombotic TherapyFHIR, 0.9.000\",\"resource\":\"https://madie.cms.gov/Measure/DischargedonAntithromboticTherapyFHIR|0.9.000\"},{\"type\":\"composed-of\",\"display\":\"Measure Global Malnutrition CompositeFHIR, 0.2.000\",\"resource\":\"https://madie.cms.gov/Measure/GlobalMalnutritionCompositeFHIR|0.2.000\"},{\"type\":\"composed-of\",\"display\":\"Measure HIV ScreeningFHIR, 0.2.000\",\"resource\":\"https://madie.cms.gov/Measure/HIVScreeningFHIR|0.2.000\"},{\"type\":\"composed-of\",\"display\":\"Measure Hospital Harm - Severe HyperglycemiaFHIR, 0.1.000\",\"resource\":\"https://madie.cms.gov/Measure/HospitalHarmHyperglycemiainHospitalizedPatientsFHIR|0.1.000\"},{\"type\":\"composed-of\",\"display\":\"Measure Core Clinical Data Elements for the Hybrid Hospital Wide All Condition All Procedure Risk Standardized Mortality Measure HWMFHIR, 0.0.001\",\"resource\":\"https://madie.cms.gov/Measure/HybridHospitalWideMortalityFHIR|0.0.001\"},{\"type\":\"composed-of\",\"display\":\"Measure Primary Caries Prevention Intervention as Offered by DentistsFHIR, 0.0.002\",\"resource\":\"https://madie.cms.gov/Measure/PrimaryCariesPreventionasOfferedbyDentistsFHIR|0.0.002\"},{\"type\":\"composed-of\",\"display\":\"Measure Severe Obstetric ComplicationsFHIR, 0.1.000\",\"resource\":\"https://madie.cms.gov/Measure/SevereObstetricComplicationsFHIR|0.1.000\"}]}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
                 "url": {
-                  "raw": "{{SERVER_URL}}Library/Manifest-Final-Draft",
+                  "raw": "{{SERVER_URL}}ValueSet/$expand?url=http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010&valueSetVersion=20200306&system-version=http://hl7.org/fhir/sid/icd-10-cm|2022&system-version=http://snomed.info/sct|http://snomed.info/sct/731000124108/version/20220901&canonicalVersion=http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.2.1078|20220218&canonicalVersion=http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.2.1079|20230217",
                   "host": [
-                    "{{SERVER_URL}}Library/Manifest-Final-Draft"
+                    "{{SERVER_URL}}ValueSet"
+                  ],
+                  "path": [
+                    "$expand"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010"
+                    },
+                    {
+                      "key": "valueSetVersion",
+                      "value": "20200306"
+                    },
+                    {
+                      "key": "system-version",
+                      "value": "http://hl7.org/fhir/sid/icd-10-cm|2022"
+                    },
+                    {
+                      "key": "system-version",
+                      "value": "http://snomed.info/sct|http://snomed.info/sct/731000124108/version/20220901"
+                    },
+                    {
+                      "key": "canonicalVersion",
+                      "value": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.2.1078|20220218"
+                    },
+                    {
+                      "key": "canonicalVersion",
+                      "value": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.2.1079|20230217"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Quality Program Manifest Support 6.5 Expand With Url",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "\r",
+                      "pm.test(\"Response status code is 200\", function () {\r",
+                      "    pm.expect(pm.response.code).to.equal(200);\r",
+                      "});\r",
+                      "\r",
+                      "// profile\r",
+                      "pm.test(\"Executable profile is present in meta\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/executable-valueset-cqfm\");\r",
+                      "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
+                      "       console.log(responseData);",
+                      "    }",
+                      "});\r",
+                      "\r",
+                      "// url\r",
+                      "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.url).equal(\"http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010\");\r",
+                      "});\r",
+                      "\r",
+                      "// version\r",
+                      "// NOTE: This is based on latest as of this test date\r",
+                      "pm.test(\"Version is 20200306\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.version).to.equal(\"20200306\", \"Invalid version\");\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Expansion is present\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.expansion).exist;\r",
+                      "});\r",
+                      "\r",
+                      "// NOTE: SNOMED Version here is based on latest version\r",
+                      "pm.test(\"Code is present\", function() {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.expansion.contains.find(function(obj) { return obj.system == \"http://snomed.info/sct\" && obj.version == \"http://snomed.info/sct/731000124108/version/20230901\" && obj.code == \"107691000119101\" })).exist;\r",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{SERVER_URL}}ValueSet/$expand?url=http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010",
+                  "host": [
+                    "{{SERVER_URL}}ValueSet"
+                  ],
+                  "path": [
+                    "$expand"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Quality Program Manifest Support 6.6 Expand With Manifest",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "\r",
+                      "pm.test(\"Response status code is 200\", function () {\r",
+                      "    pm.expect(pm.response.code).to.equal(200);\r",
+                      "});\r",
+                      "\r",
+                      "// profile\r",
+                      "pm.test(\"Executable profile is present in meta\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/executable-valueset-cqfm\");\r",
+                      "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
+                      "       console.log(responseData);",
+                      "    }",
+                      "});\r",
+                      "\r",
+                      "// url\r",
+                      "pm.test(\"Resource url equal to http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.url).equal(\"http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010\");\r",
+                      "});\r",
+                      "\r",
+                      "// version\r",
+                      "// NOTE: This is based on latest as of this test date\r",
+                      "pm.test(\"Version is 20200306\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.version).to.equal(\"20200306\", \"Invalid version\");\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Expansion is present\", function () {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.expansion).exist;\r",
+                      "});\r",
+                      "\r",
+                      "pm.test(\"Code is present\", function() {\r",
+                      "    const responseData = pm.response.json();\r",
+                      "\r",
+                      "    pm.expect(responseData.expansion.contains.find(function(obj) { return obj.system == \"http://snomed.info/sct\" && obj.code == \"107691000119101\" && obj.version != \"http://snomed.info/sct/731000124108/version/20230901\" })).exist;\r",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{SERVER_URL}}ValueSet/$expand?url=http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010&manifest=http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2023-05-04",
+                  "host": [
+                    "{{SERVER_URL}}ValueSet"
+                  ],
+                  "path": [
+                    "$expand"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1010"
+                    },
+                    {
+                      "key": "manifest",
+                      "value": "http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2023-05-04"
+                    }
                   ]
                 }
               },
               "response": []
             }
           ]
+        },
+        {
+          "name": "Quality Program 7 Package",
+          "item": []
+        },
+        {
+          "name": "Release 8",
+          "item": [
+            {
+              "name": "Release 8",
+              "item": [
+                {
+                  "name": "Quality Program Release 8.1 Create Draft",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "//NOTE: this test uses a PUT instead of a POST. Otherwise you get an error: 'A Manifest with the same id or url already exists.' after 1 POST",
+                          "// Based on source of truth: SOT@ https://github.com/cqframework/ecqm-content-qicore-2024-subset/blob/main/input/resources/library/Manifest-Final-Draft.json @SOT",
+                          "",
+                          "pm.test(\"Response status code is 200 or 201\", function () {",
+                          "    pm.expect(pm.response.code).to.oneOf([200, 201]);",
+                          "});",
+                          "",
+                          "    const responseData = pm.response.json();",
+                          "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
+                          "       console.log(responseData);",
+                          "    }",
+                          "",
+                          "pm.test(\"Resource Type should be Library\", function () {",
+                          "    const responseData = pm.response.json();",
+                          "    pm.expect(responseData.resourceType).to.equal(\"Library\");",
+                          "});",
+                          "",
+                          "pm.test(\"Test that id is Manifest-Final-Draft\", function () {",
+                          "    const responseData = pm.response.json();",
+                          "",
+                          "    pm.expect(responseData.id).to.equal(\"Manifest-Final-Draft\");",
+                          "});",
+                          "",
+                          "pm.test(\"Contains system-version 'http://loinc.org|2.76'\", function () {",
+                          "const responseData = pm.response.json();",
+                          "const expParams = responseData.contained.find(",
+                          "r => r.resourceType === \"Parameters\" && r.id === \"exp-params\"",
+                          ");",
+                          "pm.expect(expParams).to.be.an(\"object\", \"exp-params not found\");",
+                          "const hasLoinc = expParams.parameter.some(",
+                          "p => p.name === \"system-version\" && p.valueUri === \"http://loinc.org|2.76\"",
+                          ");",
+                          "pm.expect(hasLoinc).to.be.true;",
+                          "});",
+                          "",
+                          "pm.test(\"Contains endpointUri 'https://uat-cts.nlm.nih.gov/fhir/'\", function () {",
+                          "const responseData = pm.response.json();",
+                          "const endpoints = responseData.contained.find(",
+                          "r => r.resourceType === \"Parameters\" && r.id === \"endpoints\"",
+                          ");",
+                          "pm.expect(endpoints).to.be.an(\"object\", \"endpoints not found\");",
+                          "const hasEndpoint = endpoints.parameter.some(config =>",
+                          "config.name === \"artifactEndpointConfiguration\" && config.part?.some(p =>",
+                          "p.name === \"endpointUri\" && p.valueUri === \"https://uat-cts.nlm.nih.gov/fhir/\")",
+                          ");",
+                          " pm.expect(hasEndpoint).to.be.true;",
+                          "});",
+                          "",
+                          "pm.test(\"Contains relatedArtifact 'Hospital Harm - Severe Hyperglycemia' measure\", function () {",
+                          "const responseData = pm.response.json();",
+                          "const hasArtifact = responseData.relatedArtifact?.some(artifact =>",
+                          "artifact.resource === \"https://madie.cms.gov/Measure/HospitalHarmHyperglycemiainHospitalizedPatientsFHIR|0.1.000\"",
+                          ");",
+                          "pm.expect(hasArtifact).to.be.true;",
+                          "});"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\"resourceType\":\"Library\",\"id\":\"Manifest-Final-Draft\",\"meta\":{\"profile\":[\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-manifestlibrary\"]},\"contained\":[{\"resourceType\":\"Parameters\",\"id\":\"exp-params\",\"parameter\":[{\"name\":\"system-version\",\"valueUri\":\"http://snomed.info/sct|http://snomed.info/sct/731000124108/version/20230901\"},{\"name\":\"system-version\",\"valueUri\":\"http://loinc.org|2.76\"},{\"name\":\"system-version\",\"valueUri\":\"http://terminology.hl7.org/CodeSystem/v3-ActCode|9.0.0\"},{\"name\":\"system-version\",\"valueUri\":\"http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender|3.0.0\"},{\"name\":\"system-version\",\"valueUri\":\"http://terminology.hl7.org/CodeSystem/CD2|2.0.1\"},{\"name\":\"system-version\",\"valueUri\":\"urn:oid:2.16.840.1.113883.6.238|1.2\"},{\"name\":\"system-version\",\"valueUri\":\"http://www.ama-assn.org/go/cpt|3.0.1\"},{\"name\":\"system-version\",\"valueUri\":\"http://hl7.org/fhir/sid/cvx|4.0.0\"},{\"name\":\"system-version\",\"valueUri\":\"http://terminology.hl7.org/CodeSystem/HCPCS-all-codes|3.0.0\"},{\"name\":\"system-version\",\"valueUri\":\"http://www.cms.gov/Medicare/Coding/HCPCSReleaseCodeSets|1.0.2\"},{\"name\":\"system-version\",\"valueUri\":\"http://hl7.org/fhir/sid/icd-10-cm|2.0.1\"},{\"name\":\"system-version\",\"valueUri\":\"http://www.cms.gov/Medicare/Coding/ICD10|2.0.1\"},{\"name\":\"system-version\",\"valueUri\":\"http://terminology.hl7.org/CodeSystem/icd9cm|2.0.1\"},{\"name\":\"system-version\",\"valueUri\":\"http://terminology.hl7.org/CodeSystem/v2-0895|2.2.0\"},{\"name\":\"system-version\",\"valueUri\":\"http://www.nlm.nih.gov/research/umls/rxnorm|3.0.1\"},{\"name\":\"system-version\",\"valueUri\":\"https://nahdo.org/sopt|1.0.1\"}]},{\"resourceType\":\"Parameters\",\"id\":\"endpoints\",\"parameter\":[{\"name\":\"artifactEndpointConfiguration\",\"part\":[{\"name\":\"artifactRoute\",\"valueUri\":\"http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820\"},{\"name\":\"endpointUri\",\"valueUri\":\"https://example.org/fhir/\"}]},{\"name\":\"artifactEndpointConfiguration\",\"part\":[{\"name\":\"artifactRoute\",\"valueUri\":\"http://cts.nlm.nih.gov/fhir/\"},{\"name\":\"endpointUri\",\"valueUri\":\"https://uat-cts.nlm.nih.gov/fhir/\"}]},{\"name\":\"artifactEndpointConfiguration\",\"part\":[{\"name\":\"artifactRoute\",\"valueUri\":\"http://terminology.hl7.org/\"},{\"name\":\"endpointUri\",\"valueUri\":\"https://tx.fhir.org/r4/\"}]},{\"name\":\"artifactEndpointConfiguration\",\"part\":[{\"name\":\"artifactRoute\",\"valueUri\":\"http://hl7.org/fhir/\"},{\"name\":\"endpointUri\",\"valueUri\":\"https://tx.fhir.org/r4/\"}]}]}],\"extension\":[{\"url\":\"http://hl7.org/fhir/StructureDefinition/cqf-expansionParameters\",\"valueReference\":{\"reference\":\"#exp-params\"}},{\"url\":\"http://hl7.org/fhir/StructureDefinition/cqf-endpointConfiguration\",\"valueReference\":{\"reference\":\"#endpoints\"}}],\"url\":\"http://hl7.org/fhir/us/cqfmeasures/Library/ecqm-update-2024\",\"identifier\":[{\"use\":\"official\",\"system\":\"http://example.org/fhir/cqi/ecqm/Library/Identifier\",\"value\":\"eCQM Update 2024\"}],\"version\":\"1.0.0\",\"name\":\"ECQMUpdate2024\",\"title\":\"eCQM Update 2024\",\"status\":\"draft\",\"experimental\":true,\"type\":{\"coding\":[{\"system\":\"http://terminology.hl7.org/CodeSystem/library-type\",\"code\":\"asset-collection\"}]},\"date\":\"2024-04-23\",\"publisher\":\"Clinical Quality Information WG\",\"contact\":[{\"telecom\":[{\"system\":\"url\",\"value\":\"http://www.hl7.org/Special/committees/cqi\"}]}],\"description\":\"This library is an example final draft of a version manifest (also referred to as an expansion profile) that specifies expansion rules for a set of value sets used for an example set of EP/EC measures.\",\"jurisdiction\":[{\"coding\":[{\"system\":\"urn:iso:std:iso:3166\",\"code\":\"US\"}]}],\"purpose\":\"This library is defined to illustrate a Version Manifest in final draft status, as it would look at the end of an eCQM Annual Update cycle, approved on April 23rd, 2024. The latest available version of code systems used at that time is specified to provide stability for value set expansion during the testing and implementation phase. Terminology.HL7.org, in particular, was version 5.5.0 at the time, and FHIR code system versions are chosen from that release.\",\"approvalDate\":\"2024-04-23\",\"lastReviewDate\":\"2024-04-23\",\"relatedArtifact\":[{\"type\":\"composed-of\",\"display\":\"Measure Discharged on Antithrombotic TherapyFHIR, 0.9.000\",\"resource\":\"https://madie.cms.gov/Measure/DischargedonAntithromboticTherapyFHIR|0.9.000\"},{\"type\":\"composed-of\",\"display\":\"Measure Global Malnutrition CompositeFHIR, 0.2.000\",\"resource\":\"https://madie.cms.gov/Measure/GlobalMalnutritionCompositeFHIR|0.2.000\"},{\"type\":\"composed-of\",\"display\":\"Measure HIV ScreeningFHIR, 0.2.000\",\"resource\":\"https://madie.cms.gov/Measure/HIVScreeningFHIR|0.2.000\"},{\"type\":\"composed-of\",\"display\":\"Measure Hospital Harm - Severe HyperglycemiaFHIR, 0.1.000\",\"resource\":\"https://madie.cms.gov/Measure/HospitalHarmHyperglycemiainHospitalizedPatientsFHIR|0.1.000\"},{\"type\":\"composed-of\",\"display\":\"Measure Core Clinical Data Elements for the Hybrid Hospital Wide All Condition All Procedure Risk Standardized Mortality Measure HWMFHIR, 0.0.001\",\"resource\":\"https://madie.cms.gov/Measure/HybridHospitalWideMortalityFHIR|0.0.001\"},{\"type\":\"composed-of\",\"display\":\"Measure Primary Caries Prevention Intervention as Offered by DentistsFHIR, 0.0.002\",\"resource\":\"https://madie.cms.gov/Measure/PrimaryCariesPreventionasOfferedbyDentistsFHIR|0.0.002\"},{\"type\":\"composed-of\",\"display\":\"Measure Severe Obstetric ComplicationsFHIR, 0.1.000\",\"resource\":\"https://madie.cms.gov/Measure/SevereObstetricComplicationsFHIR|0.1.000\"}]}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{SERVER_URL}}Library",
+                      "host": [
+                        "{{SERVER_URL}}Library"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Quality Program Release 8.2 Update Draft",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "//NOTE: this test uses a PUT instead of a POST. Otherwise you get an error: 'A Manifest with the same id or url already exists.' after 1 POST",
+                          "// Based on source of truth: SOT@ https://github.com/cqframework/ecqm-content-qicore-2024-subset/blob/main/input/resources/library/Manifest-Final-Draft.json @SOT",
+                          "",
+                          "pm.test(\"Response status code is 200 or 201\", function () {",
+                          "    pm.expect(pm.response.code).to.oneOf([200, 201]);",
+                          "});",
+                          "",
+                          "    const responseData = pm.response.json();",
+                          "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
+                          "       console.log(responseData);",
+                          "    }",
+                          "",
+                          "pm.test(\"Resource Type should be Library\", function () {",
+                          "    const responseData = pm.response.json();",
+                          "    pm.expect(responseData.resourceType).to.equal(\"Library\");",
+                          "});",
+                          "",
+                          "pm.test(\"Test that id is Manifest-Final-Draft\", function () {",
+                          "    const responseData = pm.response.json();",
+                          "",
+                          "    pm.expect(responseData.id).to.equal(\"Manifest-Final-Draft\");",
+                          "});",
+                          "",
+                          "pm.test(\"Contains system-version 'http://loinc.org|2.76'\", function () {",
+                          "const responseData = pm.response.json();",
+                          "const expParams = responseData.contained.find(",
+                          "r => r.resourceType === \"Parameters\" && r.id === \"exp-params\"",
+                          ");",
+                          "pm.expect(expParams).to.be.an(\"object\", \"exp-params not found\");",
+                          "const hasLoinc = expParams.parameter.some(",
+                          "p => p.name === \"system-version\" && p.valueUri === \"http://loinc.org|2.76\"",
+                          ");",
+                          "pm.expect(hasLoinc).to.be.true;",
+                          "});",
+                          "",
+                          "pm.test(\"Contains endpointUri 'https://uat-cts.nlm.nih.gov/fhir/'\", function () {",
+                          "const responseData = pm.response.json();",
+                          "const endpoints = responseData.contained.find(",
+                          "r => r.resourceType === \"Parameters\" && r.id === \"endpoints\"",
+                          ");",
+                          "pm.expect(endpoints).to.be.an(\"object\", \"endpoints not found\");",
+                          "const hasEndpoint = endpoints.parameter.some(config =>",
+                          "config.name === \"artifactEndpointConfiguration\" && config.part?.some(p =>",
+                          "p.name === \"endpointUri\" && p.valueUri === \"https://uat-cts.nlm.nih.gov/fhir/\")",
+                          ");",
+                          " pm.expect(hasEndpoint).to.be.true;",
+                          "});",
+                          "",
+                          "pm.test(\"Contains relatedArtifact 'Hospital Harm - Severe Hyperglycemia' measure\", function () {",
+                          "const responseData = pm.response.json();",
+                          "const hasArtifact = responseData.relatedArtifact?.some(artifact =>",
+                          "artifact.resource === \"https://madie.cms.gov/Measure/HospitalHarmHyperglycemiainHospitalizedPatientsFHIR|0.1.000\"",
+                          ");",
+                          "pm.expect(hasArtifact).to.be.true;",
+                          "});"
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\"resourceType\":\"Library\",\"id\":\"Manifest-Final-Draft\",\"meta\":{\"profile\":[\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-manifestlibrary\"],\"lastUpdated\": \"2025-05-09T00:00:00Z\"},\"contained\":[{\"resourceType\":\"Parameters\",\"id\":\"exp-params\",\"parameter\":[{\"name\":\"system-version\",\"valueUri\":\"http://snomed.info/sct|http://snomed.info/sct/731000124108/version/20230901\"},{\"name\":\"system-version\",\"valueUri\":\"http://loinc.org|2.76\"},{\"name\":\"system-version\",\"valueUri\":\"http://terminology.hl7.org/CodeSystem/v3-ActCode|9.0.0\"},{\"name\":\"system-version\",\"valueUri\":\"http://terminology.hl7.org/CodeSystem/v3-AdministrativeGender|3.0.0\"},{\"name\":\"system-version\",\"valueUri\":\"http://terminology.hl7.org/CodeSystem/CD2|2.0.1\"},{\"name\":\"system-version\",\"valueUri\":\"urn:oid:2.16.840.1.113883.6.238|1.2\"},{\"name\":\"system-version\",\"valueUri\":\"http://www.ama-assn.org/go/cpt|3.0.1\"},{\"name\":\"system-version\",\"valueUri\":\"http://hl7.org/fhir/sid/cvx|4.0.0\"},{\"name\":\"system-version\",\"valueUri\":\"http://terminology.hl7.org/CodeSystem/HCPCS-all-codes|3.0.0\"},{\"name\":\"system-version\",\"valueUri\":\"http://www.cms.gov/Medicare/Coding/HCPCSReleaseCodeSets|1.0.2\"},{\"name\":\"system-version\",\"valueUri\":\"http://hl7.org/fhir/sid/icd-10-cm|2.0.1\"},{\"name\":\"system-version\",\"valueUri\":\"http://www.cms.gov/Medicare/Coding/ICD10|2.0.1\"},{\"name\":\"system-version\",\"valueUri\":\"http://terminology.hl7.org/CodeSystem/icd9cm|2.0.1\"},{\"name\":\"system-version\",\"valueUri\":\"http://terminology.hl7.org/CodeSystem/v2-0895|2.2.0\"},{\"name\":\"system-version\",\"valueUri\":\"http://www.nlm.nih.gov/research/umls/rxnorm|3.0.1\"},{\"name\":\"system-version\",\"valueUri\":\"https://nahdo.org/sopt|1.0.1\"}]},{\"resourceType\":\"Parameters\",\"id\":\"endpoints\",\"parameter\":[{\"name\":\"artifactEndpointConfiguration\",\"part\":[{\"name\":\"artifactRoute\",\"valueUri\":\"http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167|20220820\"},{\"name\":\"endpointUri\",\"valueUri\":\"https://example.org/fhir/\"}]},{\"name\":\"artifactEndpointConfiguration\",\"part\":[{\"name\":\"artifactRoute\",\"valueUri\":\"http://cts.nlm.nih.gov/fhir/\"},{\"name\":\"endpointUri\",\"valueUri\":\"https://uat-cts.nlm.nih.gov/fhir/\"}]},{\"name\":\"artifactEndpointConfiguration\",\"part\":[{\"name\":\"artifactRoute\",\"valueUri\":\"http://terminology.hl7.org/\"},{\"name\":\"endpointUri\",\"valueUri\":\"https://tx.fhir.org/r4/\"}]},{\"name\":\"artifactEndpointConfiguration\",\"part\":[{\"name\":\"artifactRoute\",\"valueUri\":\"http://hl7.org/fhir/\"},{\"name\":\"endpointUri\",\"valueUri\":\"https://tx.fhir.org/r4/\"}]}]}],\"extension\":[{\"url\":\"http://hl7.org/fhir/StructureDefinition/cqf-expansionParameters\",\"valueReference\":{\"reference\":\"#exp-params\"}},{\"url\":\"http://hl7.org/fhir/StructureDefinition/cqf-endpointConfiguration\",\"valueReference\":{\"reference\":\"#endpoints\"}}],\"url\":\"http://hl7.org/fhir/us/cqfmeasures/Library/ecqm-update-2024\",\"identifier\":[{\"use\":\"official\",\"system\":\"http://example.org/fhir/cqi/ecqm/Library/Identifier\",\"value\":\"eCQM Update 2024\"}],\"version\":\"1.0.0\",\"name\":\"ECQMUpdate2024\",\"title\":\"eCQM Update 2024\",\"status\":\"draft\",\"experimental\":true,\"type\":{\"coding\":[{\"system\":\"http://terminology.hl7.org/CodeSystem/library-type\",\"code\":\"asset-collection\"}]},\"date\":\"2024-04-23\",\"publisher\":\"Clinical Quality Information WG\",\"contact\":[{\"telecom\":[{\"system\":\"url\",\"value\":\"http://www.hl7.org/Special/committees/cqi\"}]}],\"description\":\"This library is an example final draft of a version manifest (also referred to as an expansion profile) that specifies expansion rules for a set of value sets used for an example set of EP/EC measures.\",\"jurisdiction\":[{\"coding\":[{\"system\":\"urn:iso:std:iso:3166\",\"code\":\"US\"}]}],\"purpose\":\"This library is defined to illustrate a Version Manifest in final draft status, as it would look at the end of an eCQM Annual Update cycle, approved on April 23rd, 2024. The latest available version of code systems used at that time is specified to provide stability for value set expansion during the testing and implementation phase. Terminology.HL7.org, in particular, was version 5.5.0 at the time, and FHIR code system versions are chosen from that release.\",\"approvalDate\":\"2024-04-23\",\"lastReviewDate\":\"2024-04-23\",\"relatedArtifact\":[{\"type\":\"composed-of\",\"display\":\"Measure Discharged on Antithrombotic TherapyFHIR, 0.9.000\",\"resource\":\"https://madie.cms.gov/Measure/DischargedonAntithromboticTherapyFHIR|0.9.000\"},{\"type\":\"composed-of\",\"display\":\"Measure Global Malnutrition CompositeFHIR, 0.2.000\",\"resource\":\"https://madie.cms.gov/Measure/GlobalMalnutritionCompositeFHIR|0.2.000\"},{\"type\":\"composed-of\",\"display\":\"Measure HIV ScreeningFHIR, 0.2.000\",\"resource\":\"https://madie.cms.gov/Measure/HIVScreeningFHIR|0.2.000\"},{\"type\":\"composed-of\",\"display\":\"Measure Hospital Harm - Severe HyperglycemiaFHIR, 0.1.000\",\"resource\":\"https://madie.cms.gov/Measure/HospitalHarmHyperglycemiainHospitalizedPatientsFHIR|0.1.000\"},{\"type\":\"composed-of\",\"display\":\"Measure Core Clinical Data Elements for the Hybrid Hospital Wide All Condition All Procedure Risk Standardized Mortality Measure HWMFHIR, 0.0.001\",\"resource\":\"https://madie.cms.gov/Measure/HybridHospitalWideMortalityFHIR|0.0.001\"},{\"type\":\"composed-of\",\"display\":\"Measure Primary Caries Prevention Intervention as Offered by DentistsFHIR, 0.0.002\",\"resource\":\"https://madie.cms.gov/Measure/PrimaryCariesPreventionasOfferedbyDentistsFHIR|0.0.002\"},{\"type\":\"composed-of\",\"display\":\"Measure Severe Obstetric ComplicationsFHIR, 0.1.000\",\"resource\":\"https://madie.cms.gov/Measure/SevereObstetricComplicationsFHIR|0.1.000\"}]}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{SERVER_URL}}Library/Manifest-Final-Draft",
+                      "host": [
+                        "{{SERVER_URL}}Library/Manifest-Final-Draft"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Quality Program Release 8.3 Release Library",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "",
+                          "pm.test(\"Response status code is 200\", function () {",
+                          "    pm.expect(pm.response.code === \"200\");",
+                          "});",
+                          "",
+                          "",
+                          "pm.test(\"Resource Type should not be empty\", function () {",
+                          "    const responseData = pm.response.json();",
+                          "",
+                          "    pm.expect(responseData.resourceType).to.exist.and.to.not.be.empty;",
+                          "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
+                          "       console.log(responseData);",
+                          "    }",
+                          "});",
+                          "",
+                          "pm.test(\"Resource Type should not be transaction-response\", function (){",
+                          "    const responseData = pm.response.json();",
+                          "",
+                          "    pm.expect(responseData.type).to.exist.and.to.not.be.empty;",
+                          "})",
+                          "",
+                          "pm.test(\"Test that id is not empty\", function () {",
+                          "    const responseData = pm.response.json();",
+                          "",
+                          "    pm.expect(responseData.id).to.exist.and.to.not.be.empty;",
+                          "});",
+                          "",
+                          "pm.test(\"Status is active\", function (){",
+                          "    const responseData = pm.response.json();",
+                          "",
+                          "    pm.expect(responseData.status).equals(\"active\");",
+                          "})",
+                          "",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"resourceType\": \"Library\",\n    \"id\": \"postLibraryTest\",\n    \"title\": \"Post Library Test\",\n    \"status\": \"active\",\n    \"version\": \"0.0.1\",\n    \"url\": \"postLibraryTest\",\n    \"type\": {\n        \"coding\": [\n            {\n                \"system\": \"http://terminology.hl7.org/CodeSystem/library-type\",\n                \"code\": \"logic-library\",\n                \"display\": \"Logic Library\"\n            }\n        ],\n        \"text\": \"Test Logic Library, test using PUT to update\"\n    }\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{SERVER_URL}}Library/postLibraryTest",
+                      "host": [
+                        "{{SERVER_URL}}Library"
+                      ],
+                      "path": [
+                        "postLibraryTest"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Quality Program Release 8.4 Retire Library",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "",
+                          "pm.test(\"Response status code is 200\", function () {",
+                          "    pm.expect(pm.response.code === \"200\");",
+                          "});",
+                          "",
+                          "",
+                          "pm.test(\"Resource Type should not be empty\", function () {",
+                          "    const responseData = pm.response.json();",
+                          "",
+                          "    pm.expect(responseData.resourceType).to.exist.and.to.not.be.empty;",
+                          "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
+                          "       console.log(responseData);",
+                          "    }",
+                          "});",
+                          "",
+                          "pm.test(\"Resource Type should be transaction-response\", function (){",
+                          "    const responseData = pm.response.json();",
+                          "",
+                          "    pm.expect(responseData.type).to.exist.and.to.not.be.empty;",
+                          "})",
+                          "",
+                          "pm.test(\"Test that id is not empty\", function () {",
+                          "    const responseData = pm.response.json();",
+                          "",
+                          "    pm.expect(responseData.id).to.exist.and.to.not.be.empty;",
+                          "});",
+                          "",
+                          "pm.test(\"Status is retired\", function (){",
+                          "    const responseData = pm.response.json();",
+                          "",
+                          "    pm.expect(responseData.status).equals(\"retired\");",
+                          "})",
+                          "",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"resourceType\": \"Library\",\n    \"id\": \"postLibraryTest\",\n    \"title\": \"Post Library Test\",\n    \"status\": \"retired\",\n    \"version\": \"0.0.1\",\n    \"url\": \"postLibraryTest\",\n    \"type\": {\n        \"coding\": [\n            {\n                \"system\": \"http://terminology.hl7.org/CodeSystem/library-type\",\n                \"code\": \"logic-library\",\n                \"display\": \"Logic Library\"\n            }\n        ],\n        \"text\": \"Test Logic Library, test using PUT to update\"\n    }\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{SERVER_URL}}Library/postLibraryTest",
+                      "host": [
+                        "{{SERVER_URL}}Library"
+                      ],
+                      "path": [
+                        "postLibraryTest"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Quality Program Release 8.5 Libraries Immutable",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "",
+                          "pm.test(\"Response status code is NOT 200\", function () {",
+                          "    pm.expect(pm.response.code).not.equals(\"200\");",
+                          "    if (pm.environment.get(\"QUALITY_PROGRAM_DEBUG\") === true){",
+                          "       console.log(pm.response.json());",
+                          "    }",
+                          "});",
+                          ""
+                        ],
+                        "type": "text/javascript"
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"resourceType\": \"Library\",\n    \"id\": \"postLibraryTest\",\n    \"title\": \"Post Library Test\",\n    \"status\": \"active\",\n    \"version\": \"0.0.1\",\n    \"url\": \"postLibraryTest\",\n    \"type\": {\n        \"coding\": [\n            {\n                \"system\": \"http://terminology.hl7.org/CodeSystem/library-type\",\n                \"code\": \"logic-library\",\n                \"display\": \"Logic Library\"\n            }\n        ],\n        \"text\": \"test logic library should be rejected, because library is not in draft mode\"\n    }\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{SERVER_URL}}Library/postLibraryTest",
+                      "host": [
+                        "{{SERVER_URL}}Library"
+                      ],
+                      "path": [
+                        "postLibraryTest"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Quality Program Release 8.6 Libraries Unique",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n    \"resourceType\": \"Library\",\n    \"id\": \"postLibraryTest\",\n    \"title\": \"Post Library Test\",\n    \"status\": \"draft\",\n    \"version\": \"0.0.1\",\n    \"url\": \"postLibraryTest\",\n    \"type\": {\n        \"coding\": [\n            {\n                \"system\": \"http://terminology.hl7.org/CodeSystem/library-type\",\n                \"code\": \"logic-library\",\n                \"display\": \"Logic Library\"\n            }\n        ],\n        \"text\": \"Test Logic Library that should be rejected due to duplicate url and version\"\n    }\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{SERVER_URL}}Library",
+                      "host": [
+                        "{{SERVER_URL}}Library"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            }           ]
         }
       ]
     },
