@@ -4353,6 +4353,81 @@
           "description": "Tests version-independent and version-specific read. Both should result in the ValueSet resource directly (not in a bundle). The version-independent read should provide the latest active version of the value set, the version-specific should provide the expected version of the value set."
         },
         {
+          "name": "ValueSet 7.2B Read Version-Specific",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Based on source of truth: SOT@ http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.877 @SOT",
+                  "pm.test(\"Response status code is 200\", function () {\r",
+                  "    pm.expect(pm.response.code).to.equal(200);\r",
+                  "});\r",
+                  "\r",
+                  "// resourceType\r",
+                  "pm.test(\"Resource Type is ValueSet\", function () {\r",
+                  "    const responseData = pm.response.json();\r",
+                  "\r",
+                  "    pm.expect(responseData.resourceType).to.equal(\"ValueSet\");\r",
+                  "    if (pm.environment.get(\"VALUESET_DEBUG\") === true){",
+                  "       console.log(responseData);",
+                  "    }",
+                  "});\r",
+                  "\r",
+                  "// profile\r",
+                  "pm.test(\"Shareable and Publishable profile is present in meta\", function () {\r",
+                  "    const responseData = pm.response.json();\r",
+                  "\r",
+                  "if (pm.environment.get(\"VERSION\") === \"STU4\"){\r",
+                  "    pm.expect(responseData.meta.profile).contains(\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/publishable-valueset-cqfm\");\r",
+                  "    pm.expect(responseData.meta.profile).contains(\"http://hl7.org/fhir/StructureDefinition/shareablevalueset\");\r",
+                  "} else if (pm.environment.get(\"VERSION\") === \"STU5\"){\r",
+                  "    pm.expect(responseData.meta.profile).contains(\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-publishablevalueset\");\r",
+                  "    pm.expect(responseData.meta.profile).contains(\"http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-shareablevalueset\");\r",
+                  "}\r",
+                  "});\r",
+                  "\r",
+                  "// id\r",
+                  "pm.test(\"Resource id equal to 2.16.840.1.113883.3.464.1003.198.12.1005-20190315\", function () {\r",
+                  "    const responseData = pm.response.json();\r",
+                  "\r",
+                  "    pm.expect(responseData.id).equal(\"2.16.840.1.114222.4.11.877\");\r",
+                  "})\r",
+                  "\r",
+                  "// version\r",
+                  "pm.test(\"Version is not present in the include\", function () {\r",
+                  "    const responseData = pm.response.json();\r",
+                  "\r",
+                  "    const includes = body.compose && body.compose.include;",
+                  "    pm.expect(includes).to.be.an(\"array\");",
+                  "    includes.forEach((include, idx) => {",
+                  "        pm.expect(include).to.not.have.property(\"version\", `compose.include[${idx}] SHOULD NOT have a 'version'`);",
+                  "    });",
+                  "});\r",
+                  "\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{SERVER_URL}}ValueSet/2.16.840.1.114222.4.11.877",
+              "host": [
+                "{{SERVER_URL}}ValueSet"
+              ],
+              "path": [
+                "2.16.840.1.114222.4.11.877"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "ValueSet 8 Search",
           "item": [
             {
