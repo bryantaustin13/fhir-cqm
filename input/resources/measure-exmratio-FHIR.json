@@ -213,7 +213,7 @@
           "id" : "denominator-observation",
           "extension" : [
             {
-              "url" : "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-criteriaReference",
+              "url" : "http://hl7.org/fhir/StructureDefinition/cqf-criteriaReference",
               "valueString" : "denominator"
             },
             {
@@ -239,7 +239,7 @@
           "id" : "numerator-observation",
           "extension" : [
             {
-              "url" : "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-criteriaReference",
+              "url" : "http://hl7.org/fhir/StructureDefinition/cqf-criteriaReference",
               "valueString" : "numerator"
             },
             {
