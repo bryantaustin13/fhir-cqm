@@ -33,7 +33,6 @@
     {
       "url": "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-effectiveDataRequirements",
       "valueCanonical": "#effective-data-requirements-exmlogic"
-
     }
   ],
   "url" : "http://example.org/fhir/measures/measure-ratio-exm",
