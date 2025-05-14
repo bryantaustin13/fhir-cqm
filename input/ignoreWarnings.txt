@@ -252,6 +252,7 @@ WARNING: Measure/PreventiveCareandWellnessWeightedComposite: Measure: A measure 
 
 Accepted pinning, only occurring because multiple versions of hl7.terminology are being included through dependencies
 INFORMATION: Library.relatedArtifact[2].resource: Pinned the version of http://terminology.hl7.org/CodeSystem/diagnosis-role to 1.1.0 from choices of 1.1.0 (hl7.terminology#5.5.0), 1.1.1 (hl7.terminology.r4#6.1.0)
+INFORMATION: Measure.contained[0].relatedArtifact[1].resource: Pinned the version of http://terminology.hl7.org/CodeSystem/diagnosis-role to 1.1.0 from choices of 1.1.0 (hl7.terminology#5.5.0), 1.1.1 (hl7.terminology.r4#6.1.0)
 INFORMATION: StructureDefinition.snapshot.element[42].binding.valueSet: Pinned the version of http://terminology.hl7.org/ValueSet/measure-scoring to 2.0.0 from choices of 1.0.0 (hl7.terminology#5.5.0), 2.0.0 (hl7.terminology.r4#6.1.0)
 INFORMATION: StructureDefinition.snapshot.element[49].binding.valueSet: Pinned the version of http://terminology.hl7.org/ValueSet/measure-improvement-notation to 1.0.0 from choices of 1.0.0 (hl7.terminology#5.5.0), 1.0.1 (hl7.terminology.r4#6.1.0)
 INFORMATION: StructureDefinition.snapshot.element[4].binding.valueSet: Pinned the version of http://terminology.hl7.org/ValueSet/measure-improvement-notation to 1.0.0 from choices of 1.0.0 (hl7.terminology#5.5.0), 1.0.1 (hl7.terminology.r4#6.1.0)
