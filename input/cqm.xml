@@ -364,7 +364,7 @@
       </reference>
       <name value="Device - Software System Example"/>
       <description value="Example of a Software System Device used to illustrate tooling, testing, or authoring system"/>
-      <exampleCanonical value="http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-device-softwaresystem"/>
+      <exampleCanonical value="http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-softwaresystemdevice"/>
     </resource>
     <resource>
       <reference>
@@ -910,6 +910,10 @@
     <parameter>
       <code value="generate"/>
       <value value="JSON"/>
+    </parameter>
+    <parameter>
+      <code value="pin-canonicals"/>
+      <value value="pin-multiples"/>
     </parameter>
   </definition>
 </ImplementationGuide>
