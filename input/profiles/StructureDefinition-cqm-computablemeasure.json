@@ -73,34 +73,34 @@
             "key" : "comp-2",
             "severity" : "error",
             "human" : "Scoring is required. It must be specified on the root only, or on every group, and it cannot be on both.",
-            "expression" : "(scoring.exists() and group.extension('http://hl7.org/fhir/uv/cqfmeasures/StructureDefinition/cqfm-scoring').empty()) xor (scoring.empty() and group.all(extension('http://hl7.org/fhir/uv/cqfmeasures/StructureDefinition/cqfm-scoring').exists()))"
+            "expression" : "(scoring.exists() and group.extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoring').empty()) xor (scoring.empty() and group.all(extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoring').exists()))"
           },
           {
-            "key" : "cmp-3",
+            "key" : "comp-3",
             "severity" : "error",
             "human" : "Scoring unit may only be specified at the root if the scoring is also specified at the root",
             "expression" : "extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoringUnit').exists() implies scoring.exists()"
           },
           {
-            "key" : "cmp-4",
+            "key" : "comp-4",
             "severity" : "error",
             "human" : "If scoring is specified on the root and the scoring type is 'proportion','ratio', or 'continuous-variable' then the improvementNotation element is required on the root.",
 			"expression" : "scoring.exists() and (scoring.coding.code in ('proportion' | 'ratio' | 'continuous-variable')) implies improvementNotation.exists()"
           },
           {
-            "key" : "cmp-5",
+            "key" : "comp-5",
             "severity" : "error",
             "human" : "If type is specified at the root, it may not be specified on any group",
             "expression" : "type.exists() implies group.select(extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-type').exists()).allFalse()"
           },
           {
-            "key" : "cmp-6",
+            "key" : "comp-6",
             "severity" : "error",
             "human" : "If riskAdjustment is specified at the root, it may not be specified on any group",
             "expression" : "riskAdjustment.exists() implies group.select(extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-riskAdjustment').exists()).allFalse()"
           },
           {
-            "key" : "cmp-7",
+            "key" : "comp-7",
             "severity" : "error",
             "human" : "If rateAggregation is specified at the root, it may not be specified on any group",
             "expression" : "rateAggregation.exists() implies group.select(extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-rateAggregation').exists()).allFalse()"
@@ -142,7 +142,7 @@
           }
         ],
         "condition" : [
-          "cmp-3"
+          "comp-3"
         ],
         "mustSupport" : true
       },
@@ -211,8 +211,8 @@
         "path" : "Measure.scoring",
         "condition" : [
           "comp-2",
-          "cmp-3",
-          "cmp-4"
+          "comp-3",
+          "comp-4"
         ],
         "mustSupport" : true,
         "binding" : {
@@ -224,7 +224,7 @@
         "id" : "Measure.type",
         "path" : "Measure.type",
         "condition" : [
-          "cmp-5"
+          "comp-5"
         ],
         "mustSupport" : true
       },
@@ -232,7 +232,7 @@
         "id" : "Measure.riskAdjustment",
         "path" : "Measure.riskAdjustment",
         "condition" : [
-          "cmp-6"
+          "comp-6"
         ],
         "mustSupport" : false
       },
@@ -240,7 +240,7 @@
         "id" : "Measure.rateAggregation",
         "path" : "Measure.rateAggregation",
         "condition" : [
-          "cmp-7"
+          "comp-7"
         ],
         "mustSupport" : false
       },
@@ -248,7 +248,7 @@
         "id" : "Measure.improvementNotation",
         "path" : "Measure.improvementNotation",
         "condition" : [
-          "cmp-4"
+          "comp-4"
         ],
         "mustSupport" : true,
         "binding" : {
@@ -261,16 +261,16 @@
         "path" : "Measure.group",
         "constraint" : [
           {
-            "key" : "cmp-8",
+            "key" : "comp-8",
             "severity" : "error",
             "human" : "Scoring unit may only be specified at the root if the scoring is also specified at the root",
             "expression" : "extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoringUnit').exists() implies extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoring').exists()"
           },
           {
-            "key" : "cmp-9",
+            "key" : "comp-9",
             "severity" : "error",
             "human" : "If scoring is specified on the group and the scoring type is 'proportion', 'ratio', or 'continuous-variable' then the improvementNotation element is required.",
-            "expression" : "extension('http://hl7.org/fhir/uv/cqfmeasures/StructureDefinition/cqfm-scoring').exists() and extension('http://hl7.org/fhir/uv/cqfmeasures/StructureDefinition/cqfm-scoring').value.code.coding in ('proportion' | 'ratio' | 'continuous-variable') implies extension('http://hl7.org/fhir/uv/cqfmeasures/StructureDefinition/cqfm-improvementNotation').exists()"
+            "expression" : "extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoring').exists() and extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoring').value.coding.code in ('proportion' | 'ratio' | 'continuous-variable') implies extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-improvementNotation').exists()"
           }
         ],
         "mustSupport" : true
@@ -310,8 +310,8 @@
         ],
         "condition" : [
           "comp-2",
-          "cmp-8",
-          "cmp-9"
+          "comp-8",
+          "comp-9"
         ],
         "mustSupport" : true
       },
@@ -330,7 +330,7 @@
           }
         ],
         "condition" : [
-          "cmp-8"
+          "comp-8"
         ],
         "mustSupport" : true
       },
@@ -396,7 +396,7 @@
           }
         ],
         "condition" : [
-          "cmp-5"
+          "comp-5"
         ],
         "mustSupport" : false
       },
@@ -415,7 +415,7 @@
           }
         ],
         "condition" : [
-          "cmp-6"
+          "comp-6"
         ],
         "mustSupport" : false
       },
@@ -434,7 +434,7 @@
           }
         ],
         "condition" : [
-          "cmp-7"
+          "comp-7"
         ],
         "mustSupport" : false
       },
@@ -453,7 +453,7 @@
           }
         ],
         "condition" : [
-          "cmp-9"
+          "comp-9"
         ],
         "mustSupport" : true
       },
