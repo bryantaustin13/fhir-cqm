@@ -18,7 +18,7 @@
       ]
     }
   ],
-  "description": "The CQM Computable Measure Profile describes minimum expectations for a computable electronic Quality Measure (QM), including the use of a computable library. For more information on the usage of this profile, refer to the Profiles and Packaging pages in this implementation guide.",
+  "description": "The CQM Computable Measure Profile describes minimum expectations for a computable electronic Quality Measure (QM), including the use of a computable library. For more information on the usage of this profile, refer to the Profiles and Packaging pages in this implementation guide. Implementations SHOULD support using the `id` elements of group, population, stratifier, and supplementalData as a backwards-compatible mechanism for linking between Measure and MeasureReport",
   "jurisdiction": [
       {
         "coding": [
@@ -275,7 +275,6 @@
         ],
         "mustSupport" : true
       },
-      ,
       {
         "id": "Measure.group.extension:linkId",
         "path": "Measure.group.extension",
@@ -490,6 +489,22 @@
         "mustSupport" : true
       },
       {
+        "id": "Measure.group.population.extension:linkId",
+        "path": "Measure.group.population.extension",
+        "sliceName": "linkId",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
         "id" : "Measure.group.population.code",
         "path" : "Measure.group.population.code",
         "mustSupport" : true
@@ -521,6 +536,22 @@
         "mustSupport" : false
       },
       {
+        "id": "Measure.group.stratifier.extension:linkId",
+        "path": "Measure.group.stratifier.extension",
+        "sliceName": "linkId",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.stratifier.linkId"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
         "id" : "Measure.group.stratifier.code",
         "path" : "Measure.group.stratifier.code",
         "mustSupport" : true
@@ -536,6 +567,22 @@
         "mustSupport" : true
       },
       {
+        "id": "Measure.group.stratifier.component.extension:linkId",
+        "path": "Measure.group.stratifier.component.extension",
+        "sliceName": "linkId",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.stratifier.component.linkId"
+            ]
+          }
+        ],
+        "mustSupport": true
+      },
+      {
         "id" : "Measure.group.stratifier.component.code",
         "path" : "Measure.group.stratifier.component.code",
         "mustSupport" : true
@@ -549,6 +596,22 @@
         "id" : "Measure.supplementalData",
         "path" : "Measure.supplementalData",
         "mustSupport" : true
+      },
+      {
+        "id": "Measure.supplementalData.extension:linkId",
+        "path": "Measure.supplementalData.extension",
+        "sliceName": "linkId",
+        "min": 1,
+        "max": "1",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId"
+            ]
+          }
+        ],
+        "mustSupport": true
       },
       {
         "id" : "Measure.supplementalData.code",
