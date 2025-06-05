@@ -479,6 +479,12 @@
       "mustSupport" : true
     },
       {
+        "id": "Measure.description",
+        "path": "Measure.description",
+        "short": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
+        "mustSupport": true
+      },
+      {
         "id" : "Measure.useContext",
         "path" : "Measure.useContext",
         "slicing" : {
@@ -870,12 +876,6 @@
         "short": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
         "mustSupport" : false
       },
-    {
-      "id": "Measure.description",
-      "path": "Measure.description",
-      "short": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
-      "mustSupport": true
-    },
 	{
         "id": "Measure.supplementalData",
         "path": "Measure.supplementalData",
