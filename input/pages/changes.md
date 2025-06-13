@@ -11,6 +11,7 @@
 * **Applied**: change cqm to uppercase CQM in measure profile descriptions	([FHIR-49597](https://jira.hl7.org/browse/FHIR-49597)) Applied ([here](StructureDefinition-cqm-cvmeasure.html)), ([here](StructureDefinition-cqm-publishablemeasure.html)), ([here](StructureDefinition-cqm-executablemeasure.html)), ([here](StructureDefinition-cqm-proportionmeasure.html)), and ([here](StructureDefinition-cqm-ratiomeasure.html))
 * **Applied**: Software system device profile was removed ([FHIR-50666](https://jira.hl7.org/browse/FHIR-50666)) Applied ([here](device-software-system-example.html))
 * **Applied**: Extension Issues ([FHIR-49245](https://jira.hl7.org/browse/FHIR-49245)) Applied ([here](StructureDefinition-cqm-cvmeasure.html)), ([here](StructureDefinition-cqm-improvementNotation.html)), ([here](StructureDefinition-cqm-ratiomeasure.html)), ([here](measure-exmratio-FHIR.html)), and ([here](measure-exm55-FHIR.html))
+* **Applied**: Clarify calculation semantics ([FHIR-49921](https://jira.hl7.org/browse/FHIR-49921)) Applied ([here](measure-conformance.html))
 * **Applied**: align deqm-2/4 and cmp-4/9 ([FHIR-49859](https://jira.hl7.org/browse/FHIR-49859)) Applied ([here](StructureDefinition-cqm-computablemeasure.html))
 * **Applied**: Clarify guidance on linking support to MeasureReport([FHIR-49669](https://jira.hl7.org/browse/FHIR-49669)) Applied ([here](StructureDefinition-cqm-computablemeasure.html))
 
