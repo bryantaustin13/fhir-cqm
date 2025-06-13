@@ -4,6 +4,7 @@
 {: #changes}
 
 ### Changes and Updates for STU1 Publication (STU1)
+* **Applied**: upda ([FHIR-49593](https://jira.hl7.org/browse/FHIR-49593)) Applied ([here](introduction.html#scope))
 * **Applied**: Update Change Log ([FHIR-49579](https://jira.hl7.org/browse/FHIR-49579)) Applied ([here](index.html))
 * **Applied**: attestation measure population expression shouldn't indicate CQL ([FHIR-49416](https://jira.hl7.org/browse/FHIR-49416)) Applied ([here](Measure-measure-pi-exm.html))
 * **Applied**: change cqm to uppercase CQM in measure profile descriptions	([FHIR-49597](https://jira.hl7.org/browse/FHIR-49597)) Applied ([here](StructureDefinition-cqm-cvmeasure.html)), ([here](StructureDefinition-cqm-publishablemeasure.html)), ([here](StructureDefinition-cqm-executablemeasure.html)), ([here](StructureDefinition-cqm-proportionmeasure.html)), and ([here](StructureDefinition-cqm-ratiomeasure.html))
