@@ -18,7 +18,7 @@
       ]
     }
   ],
-  "description": "The cqm Continuous Variable Measure Profile describes a continuous variable scoring measure. For more information on the usage of this profile, refer to the Profiles and Packaging pages in this implementation guide.",
+  "description": "The CQM Continuous Variable Measure Profile describes a continuous variable scoring measure. For more information on the usage of this profile, refer to the Profiles and Packaging pages in this implementation guide.",
   "jurisdiction": [
       {
         "coding": [
@@ -238,7 +238,7 @@
           {
             "code": "Extension",
             "profile": [
-              "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-criteriaReference"
+              "http://hl7.org/fhir/StructureDefinition/cqf-criteriaReference"
             ]
           }
         ],
