@@ -18,7 +18,7 @@
       ]
     }
   ],
-  "description": "The CQM Computable Measure Profile describes minimum expectations for a computable electronic Quality Measure (QM), including the use of a computable library. For more information on the usage of this profile, refer to the Profiles and Packaging pages in this implementation guide.",
+  "description": "The CQM Computable Measure Profile describes minimum expectations for a computable electronic Quality Measure (QM), including the use of a computable library. For more information on the usage of this profile, refer to the Profiles and Packaging pages in this implementation guide. Implementations SHOULD support using the `id` elements of group, population, stratifier, and supplementalData as a backwards-compatible mechanism for linking between Measure and MeasureReport",
   "jurisdiction": [
       {
         "coding": [
