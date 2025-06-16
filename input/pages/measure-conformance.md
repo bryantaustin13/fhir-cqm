@@ -928,14 +928,17 @@ The population types for a Proportion measure are "Initial Population", "Denomin
 | Denominator Exception                       | Denominator exceptions are conditions that should remove a patient, subject, or event from the denominator of a measure only if the numerator criteria are not met. Denominator exception allows for adjustment of the calculated score for those providers with higher risk populations. Denominator exception criteria are only used in proportion measures.                                                                                                                                                                                                                                    |
 {: .grid}
 
-* Initial population: Identify those cases that meets the Initial Population criteria.
-* Denominator: Identify that subset of the Initial Population that meets the Denominator criteria.
-* Denominator Exclusion: Identify that subset of the Denominator that meets the Denominator Exclusion criteria. There are cases that should be removed from the Denominator as exclusion. Once these cases are removed, the subset remaining would reflect the Denominator per criteria.
-* Numerator: Identify those cases in the Denominator and NOT in the Denominator Exclusion that meets the Numerator criteria. In proportion measures, the Numerator criteria are the processes or outcomes expected for each patient, procedure, or other unit of measurement defined in the Denominator.
-* Numerator Exclusion: Identify that subset of the Numerator that meets the Numerator Exclusion criteria. Numerator Exclusion is used only in ratio measures to define instances that should not be included in the Numerator data.
-* Denominator Exception: Identify those meeting Denominator and Denominator Exception criteria and fail to meet both the Denominator Exclusion and the Numerator criteria.
+Take the following steps to add labels to each case to determine population membership:
+* For each case that meets the Initial Population criteria, add the label "initial-population".
+* For each case labeled "initial-population" that meets the Denominator criteria, add the label "denominator".
+* For each case labeled "denominator" that meets the Denominator Exclusion criteria, add the label "denominator-exclusion".
+* For each case labeled "denominator" and not "denominator-exclusion" that meets the Numerator criteria, add the label "numerator".
+* For each case labeled "denominator" and not "denominator-exclusion" that does not meet Numerator criteria, if the case meets Denominator Exception criteria, add the label "denominator-exception"
+* For each case labeled "numerator" that meets the Numerator Exclusion criteria, add the label "numerator-exclusion".
 
-The "performance rate" is a ratio of patients meeting Numerator criteria, divided by patients in the Denominator (accounting for exclusion and exception). Performance rate can be calculated using this formula:
+Population counts are then determined by simply counting the number of cases that are labeled with each population type code.
+
+The “performance rate” is a ratio of patients in the Numerator (accounting for exclusions), divided by patients in the Denominator (accounting for exclusions and exceptions). Performance rate can be calculated using this formula:
 
 ```
 Performance rate = (Numerator - Numerator Exclusion) / (Denominator – Denominator Exclusion – Denominator Exception)
@@ -1010,6 +1013,8 @@ A Measure document representing a ratio measure will include one or more populat
 
 In addition, it may also include one or more measure-observation elements. The semantics of these components are unchanged from the base [Measure]({{site.data.fhir.path}}measure.html) specification; the only difference is that each measure population component and each measure observation definition references a single criterion encoded as a CQL expression.
 
+The difference between a ratio measure and a proportion measure is that in a proportion measure the numerator is fully derived from the denominator and in a ratio measure it is not.
+
 **Conformance Requirement 3.13 (Ratio Measures):** [<img src="conformance.png" width="20" class="self-link" height="20"/>](#conformance-requirement-3-13)
 {: #conformance-requirement-3-13}
 
@@ -1053,11 +1058,15 @@ The population types for a Ratio measure are "Initial Population", "Denominator"
 | Numerator Exclusion | Entities that should be removed from the QM's Numerator before determining if Numerator criteria are met. Numerator Exclusions are used in Proportion and Ratio measures to help narrow the Numerator.              |
 {: .grid}
 
-* Initial population: Identify those cases that meet the Initial Population criteria. (Some ratio measures will require multiple initial populations, one for the numerator, and one for the denominator.)
-* Denominator: Identify that subset of the Initial Population that meets the Denominator criteria.
-* Denominator Exclusion: Identify that subset of the Denominator that meets the Denominator Exclusion criteria.
-* Numerator: Identify that subset of the Initial Population that meets the Numerator criteria.
-* Numerator Exclusion: Identify that subset of the Numerator that meets the Numerator Exclusion criteria.
+Take the following steps to add labels to each case to determine population membership:
+
+* For each case that meets Initial Population criteria, add the label "initial-population". (Ratio measures require multiple initial populations, one for the numerator, and one for the denominator.)
+* For each case labeled "initial-population" that meets the Denominator criteria, add the label "denominator".
+* For each case labeled "denominator" that meets Denominator Exclusion criteria, add the label "denominator-exclusion".
+* For each case labeled "initial population" that meets Numerator criteria, add the label "numerator".
+* For each case labeled "numerator" that meets the Numerator Exclusion criteria, add the label "numerator-exclusion".
+
+Population counts are then determined by simply counting the number of cases that are labeled with each population type code.
 
 Here is an example of using the population types to select data on patients with central line catheters for a ratio measure:
 
@@ -1158,7 +1167,7 @@ The criteria referenced from the measure-observation component refers to an expr
 {
   "extension": [
     {
-      "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-criteriaReference",
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-criteriaReference",
       "valueString": "measure-population-identifier"
     },
     {
@@ -1227,7 +1236,7 @@ Snippet 3-26: "Measure Observation" function in Snippet 3-23 (Sample CQL (from [
 
 ```json
 {
-  "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-criteriaReference",
+  "url": "http://hl7.org/fhir/StructureDefinition/cqf-criteriaReference",
   "valueString": "measure-population-identifier"
 }
 ```
@@ -1276,9 +1285,12 @@ The population types for a Continuous Variable measure are "Initial Population",
 | Measure Population Exclusion | Patients who should be removed from the QM's Initial Population and Measure Population before determining the outcome of one or more continuous variables defined within a Measure Observation. Measure Population Exclusions are used in Continuous Variable measures to help narrow the Measure Population. |
 {: .grid}
 
-* Initial Population: Identify those cases that meet the Initial Population criteria.
-* Measure Population: Identify that subset of the Initial Population that meets the Measure Population criteria.
-* Measure Population Exclusion: Identify that subset of the Measure Population that meets the Measure Population Exclusion criteria.
+Take the following steps to add labels to each case to determine population membership:
+* For each case that meets Initial Population criteria, add the label "initial-population".
+* For each case labeled "initial-population" that meets Measure Population criteria, add the label "measure-population".
+* For each case labeled "measure-population" that meets Measure Population Exclusion criteria, add the label "measure-population-exclusion".
+
+Population counts are then determined by simply counting the number of cases that are labeled with each population type code.
 
 Here is an example of using the population types to select data on emergency department patients for a Continuous Variable measure:
 
