@@ -180,7 +180,7 @@
       {
         "id": "MeasureReport.group.population.extension:countQuantity",
         "path": "MeasureReport.group.population.extension",
-        "sliceName": "countQuntity",
+        "sliceName": "countQuantity",
 
         "min": 0,
         "max": "1",
