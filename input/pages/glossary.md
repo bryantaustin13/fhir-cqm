@@ -120,7 +120,6 @@ Additional variables required for risk adjustment or other purposes of data aggr
 | dQM | --- | Digital Quality Measure |
 | eCQM | --- | 	electronic Clinical Quality Measures |
 | DEQM | --- |	Data Exchange for Quality Measures |
-| UCWF | --- | Using CQL with FHIR IG |
 | EHR |	--- | Electronic Health Record |
 | ELM |	--- | Expression Logical Model |
 | FHIR | --- |	Fast Healthcare Interoperability Resources |
@@ -139,6 +138,7 @@ Additional variables required for risk adjustment or other purposes of data aggr
 | SDE |	--- | Supplemental Data Element |
 | SNOMED-CT |	--- | Systematized Nomenclature of Medicine -- Clinical Terms |
 | STU | --- |	FHIR Release (STU) |
+| UCWF | --- | Using CQL with FHIR IG |
 | URI | --- |	Uniform Resource Identifier |
 | URL | --- |	Uniform Resource Locater |
 | XML | --- |	eXtensible Markup Language |
