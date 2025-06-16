@@ -15,6 +15,7 @@
 * **Applied**: Clarify calculation semantics ([FHIR-49921](https://jira.hl7.org/browse/FHIR-49921)) Applied ([here](measure-conformance.html))
 * **Applied**: align deqm-2/4 and cmp-4/9 ([FHIR-49859](https://jira.hl7.org/browse/FHIR-49859)) Applied ([here](StructureDefinition-cqm-computablemeasure.html))
 * **Applied**: Clarify guidance on linking support to MeasureReport([FHIR-49669](https://jira.hl7.org/browse/FHIR-49669)) Applied ([here](StructureDefinition-cqm-computablemeasure.html))
+* **Applied**: Allow for count as a quantity ([FHIR-43090](https://jira.hl7.org/browse/FHIR-43090)) Applied ([here](StructureDefinition-cqm-testcase.html))
 
 ### STU1 Ballot for FHIR R4 (v1.0.0)
 
