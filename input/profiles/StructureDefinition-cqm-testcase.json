@@ -180,6 +180,8 @@
       {
         "id": "MeasureReport.group.population.extension:countQuantity",
         "path": "MeasureReport.group.population.extension",
+        "sliceName": "countQuntity",
+
         "min": 0,
         "max": "1",
         "type": [
@@ -258,6 +260,7 @@
       {
         "id": "MeasureReport.group.stratifier.stratum.population.extension:countQuantity",
         "path": "MeasureReport.group.stratifier.stratum.population.extension",
+        "sliceName": "countQuantity",
         "min": 0,
         "max": "1",
         "type": [
