@@ -4353,7 +4353,7 @@
           "description": "Tests version-independent and version-specific read. Both should result in the ValueSet resource directly (not in a bundle). The version-independent read should provide the latest active version of the value set, the version-specific should provide the expected version of the value set."
         },
         {
-          "name": "ValueSet 7.2B Read - Does not include version in compose/include",
+          "name": "ValueSet 7.2B Read Version-Specific - Does not include version in compose/include",
           "event": [
             {
               "listen": "test",
