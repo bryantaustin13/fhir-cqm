@@ -101,7 +101,7 @@ A ratio is a score that is derived by dividing a count of one type of data by a 
 
 Criteria used to classify populations into one or more characteristics, variables, or other categories. These subsets of the overall population, or stratifications, are a form of risk adjustment, and are used in analysis and interpretation. Examples of stratification include age, discharge status for an inpatient stay, facility location within a hospital (e.g., ICU, Emergency Department), surgical procedures, and specific conditions.
 
-#### Supplemental Data Elements
+#### Supplemental Data Elements (SDE)
 
 Additional variables required for risk adjustment or other purposes of data aggregation. Comparison of results across strata can be used to show where disparities exist or where there is a need to expose differences in results. Examples of supplemental data elements include payer, ethnicity, race and gender.
 
