@@ -4353,7 +4353,7 @@
           "description": "Tests version-independent and version-specific read. Both should result in the ValueSet resource directly (not in a bundle). The version-independent read should provide the latest active version of the value set, the version-specific should provide the expected version of the value set."
         },
         {
-          "name": "ValueSet 7.2B Read Version-Specific",
+          "name": "ValueSet 7.2B Read Version-Specific - Does not include version in compose/include",
           "event": [
             {
               "listen": "test",
@@ -6349,6 +6349,56 @@
                     }
                   },
                   "response": []
+                },
+                {
+                  "name": "ValueSet 11.19 GET Expand activeOnly",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "exec": [
+                          "// Based on source of truth: SOT@ http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.877 @SOT",
+                          "pm.test(\"Response status code is 200\", function () {\r",
+                          "    pm.expect(pm.response.code).to.equal(200);\r",
+                          "});\r",
+                          "// resourceType\r",
+                          "pm.test(\"Resource Type is ValueSet\", function () {\r",
+                          "    const responseData = pm.response.json();\r",
+                          "    pm.expect(responseData.resourceType).to.equal(\"ValueSet\");\r",
+                          "    if (pm.environment.get(\"VALUESET_DEBUG\") === true){",
+                          "       console.log(responseData);",
+                          "    }",
+                          "});",
+                          "\r",
+                          "pm.test(\"id is allergyintolerance-clinical\", function(){\r",
+                          "    const responseData = pm.response.json();\r",
+                          "    pm.expect(responseData.id).to.equal(\"allergyintolerance-clinical\");",
+                          "});\r",
+                          "pm.test(\"status is active\", function(){\r",
+                          "    const responseData = pm.response.json();\r",
+                          "    pm.expect(responseData.status).to.equal(\"active\");",
+                          "});\r"
+                        ]
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{SERVER_URL}}ValueSet/allergyintolerance-clinical$expand?activeOnly=true",
+                      "host": [
+                        "{{SERVER_URL}}ValueSet"
+                      ],
+                      "path": [
+                        "allergyintolerance-clinical",
+                        "$expand",
+                        "activeOnly=false"
+                      ]
+                    }
+                  },
+                  "response": []
+
                 }
               ]
             },
