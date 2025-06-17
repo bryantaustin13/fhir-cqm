@@ -194,7 +194,7 @@
       {
         "id" : "Measure.description",
         "path" : "Measure.description",
-        "short": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
+        "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
         "mustSupport" : false
       },
       {
@@ -487,7 +487,7 @@
       {
         "id" : "Measure.group.description",
         "path" : "Measure.group.description",
-        "short": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
+        "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
         "mustSupport" : true
       },
       {
@@ -519,7 +519,7 @@
       {
         "id" : "Measure.group.population.description",
         "path" : "Measure.group.population.description",
-        "short": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
+        "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
         "mustSupport" : true
       },
       {
@@ -567,7 +567,7 @@
       {
         "id" : "Measure.group.stratifier.description",
         "path" : "Measure.group.stratifier.description",
-        "short": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
+        "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
         "mustSupport" : true
       },
       {
@@ -599,6 +599,7 @@
       {
         "id" : "Measure.group.stratifier.component.description",
         "path" : "Measure.group.stratifier.component.description",
+        "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
         "mustSupport" : true
       },
       {
@@ -630,13 +631,13 @@
       {
         "id" : "Measure.supplementalData.usage",
         "path" : "Measure.supplementalData.usage",
-        "short": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
+        "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
         "mustSupport" : true
       },
       {
         "id" : "Measure.supplementalData.description",
         "path" : "Measure.supplementalData.description",
-        "short": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
+        "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
         "mustSupport" : true
       }
     ]

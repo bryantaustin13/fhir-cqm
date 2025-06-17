@@ -65,12 +65,12 @@ Snippet 3-1: FHIR Measure structure - abridged for clarity (from sample [Measure
 
 Note that for string-valued description elements, these elements are markdown valued in future versions so systems SHOULD be able to render markdown content when it appears in these elements:
 
-Measure.usage
-Measure.description
-Measure.group.description
-Measure.population.description
-Measure.stratifier.description
-Measure.supplementalData.description
+* Measure.usage
+* Measure.group.description
+* Measure.population.description
+* Measure.stratifier.description
+* Measure.stratifier.component.description
+* Measure.supplementalData.description
 
 ### Metadata
 {: #metadata}

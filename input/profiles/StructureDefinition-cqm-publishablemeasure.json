@@ -479,12 +479,6 @@
       "mustSupport" : true
     },
       {
-        "id": "Measure.description",
-        "path": "Measure.description",
-        "short": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
-        "mustSupport": true
-      },
-      {
         "id" : "Measure.useContext",
         "path" : "Measure.useContext",
         "slicing" : {
@@ -552,7 +546,8 @@
     {
       "id" : "Measure.usage",
       "path" : "Measure.usage",
-      "short" : "Allows measure developers to provide additional guidance so that implementers can more easily interpret and implement components of the measure. Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
+      "short" : "Allows measure developers to provide additional guidance so that implementers can more easily interpret and implement components of the measure.",
+      "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
       "requirements" : "A published measure should provide clinical usage notes for the measure.",
       "mustSupport" : true
     },
@@ -873,7 +868,7 @@
       {
         "id" : "Measure.group.description",
         "path" : "Measure.group.description",
-        "short": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
+        "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
         "mustSupport" : false
       },
 	{
@@ -892,7 +887,12 @@
         "profile" : ["http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-includeInReportType"]
       }],
       "mustSupport": true
-	}
-	]
+	},
+      {
+        "id": "Measure.supplementalData",
+        "path": "Measure.supplementalData",
+        "mustSupport": true
+      }
+    ]
   }
 }
