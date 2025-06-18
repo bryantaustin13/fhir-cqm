@@ -192,12 +192,6 @@
         }
       },
       {
-        "id" : "Measure.description",
-        "path" : "Measure.description",
-        "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
-        "mustSupport" : false
-      },
-      {
         "id" : "Measure.library",
         "path" : "Measure.library",
         "type" : [

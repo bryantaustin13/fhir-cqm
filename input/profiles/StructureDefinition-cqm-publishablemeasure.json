@@ -533,7 +533,8 @@
           "strength" : "extensible",
           "valueSet" : "http://hl7.org/fhir/uv/cqm/ValueSet/intended-venue"
         }
-      },    {
+      },
+      {
       "id" : "Measure.purpose",
       "path" : "Measure.purpose",
       "short" : "Why this measure is defined",
@@ -871,6 +872,28 @@
         "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
         "mustSupport" : false
       },
+      {
+        "id" : "Measure.group.population",
+        "path" : "Measure.group.population",
+        "mustSupport" : true
+      },
+      {
+        "id" : "Measure.group.population.description",
+        "path" : "Measure.group.population.description",
+        "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
+        "mustSupport" : true
+      },
+      {
+        "id" : "Measure.group.stratifier",
+        "path" : "Measure.group.stratifier",
+        "mustSupport" : true
+      },
+      {
+        "id" : "Measure.group.stratifier.description",
+        "path" : "Measure.group.stratifier.description",
+        "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
+        "mustSupport" : true
+      },
 	{
         "id": "Measure.supplementalData",
         "path": "Measure.supplementalData",
@@ -889,8 +912,9 @@
       "mustSupport": true
 	},
       {
-        "id": "Measure.supplementalData",
-        "path": "Measure.supplementalData",
+        "id": "Measure.supplementalData.description",
+        "path": "Measure.supplementalData.description",
+        "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
         "mustSupport": true
       }
     ]
