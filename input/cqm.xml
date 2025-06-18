@@ -43,7 +43,7 @@
   <dependsOn id="ext">
     <uri value="http://hl7.org/fhir/extensions/ImplementationGuide/hl7.fhir.uv.extensions"/>
      <packageId value="hl7.fhir.uv.extensions.r4"/>
-     <version value="5.1.0"/>
+     <version value="5.2.0"/>
   </dependsOn>
   <dependsOn id="crmi">
     <uri value="http://hl7.org/fhir/uv/crmi/ImplementationGuide/hl7.fhir.uv.crmi"/>
@@ -364,7 +364,7 @@
       </reference>
       <name value="Device - Software System Example"/>
       <description value="Example of a Software System Device used to illustrate tooling, testing, or authoring system"/>
-      <exampleCanonical value="http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-device-softwaresystem"/>
+      <exampleCanonical value="http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-softwaresystemdevice"/>
     </resource>
     <resource>
       <reference>
@@ -910,6 +910,10 @@
     <parameter>
       <code value="generate"/>
       <value value="JSON"/>
+    </parameter>
+    <parameter>
+      <code value="pin-canonicals"/>
+      <value value="pin-multiples"/>
     </parameter>
   </definition>
 </ImplementationGuide>
