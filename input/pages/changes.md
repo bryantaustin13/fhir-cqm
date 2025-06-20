@@ -18,6 +18,7 @@
 * **Applied**: Corrected reference to data requirements in primary library([FHIR-49938](https://jira.hl7.org/browse/FHIR-49938)) Applied ([here](measure-conformance.html#terminology))
 * **Applied**: Measures With Multiple Populations ([FHIR-49978](https://jira.hl7.org/browse/FHIR-49978)) Applied ([here](measure-conformance.html#measures-with-multiple-populations))
 * **Applied**: Allow for count as a quantity ([FHIR-43090](https://jira.hl7.org/browse/FHIR-43090)) Applied ([here](StructureDefinition-cqm-testcase.html))
+* **Applied**: Provide guidance regarding description elements ([FHIR-50925](https://jira.hl7.org/browse/FHIR-50925)) Applied ([here](measure-conformance.html)), ([here](StructureDefinition-cqm-publishablemeasure.html)), and ([here](StructureDefinition-cqm-computablemeasure.html))
 
 ### STU1 Ballot for FHIR R4 (v1.0.0)
 

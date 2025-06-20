@@ -192,6 +192,12 @@
         }
       },
       {
+        "id" : "Measure.usage",
+        "path" : "Measure.usage",
+        "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
+        "mustSupport" : true
+      },
+      {
         "id" : "Measure.library",
         "path" : "Measure.library",
         "type" : [
@@ -481,6 +487,7 @@
       {
         "id" : "Measure.group.description",
         "path" : "Measure.group.description",
+        "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
         "mustSupport" : true
       },
       {
@@ -512,6 +519,7 @@
       {
         "id" : "Measure.group.population.description",
         "path" : "Measure.group.population.description",
+        "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
         "mustSupport" : true
       },
       {
@@ -559,6 +567,7 @@
       {
         "id" : "Measure.group.stratifier.description",
         "path" : "Measure.group.stratifier.description",
+        "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
         "mustSupport" : true
       },
       {
@@ -590,6 +599,7 @@
       {
         "id" : "Measure.group.stratifier.component.description",
         "path" : "Measure.group.stratifier.component.description",
+        "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
         "mustSupport" : true
       },
       {
@@ -621,11 +631,13 @@
       {
         "id" : "Measure.supplementalData.usage",
         "path" : "Measure.supplementalData.usage",
+        "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
         "mustSupport" : true
       },
       {
         "id" : "Measure.supplementalData.description",
         "path" : "Measure.supplementalData.description",
+        "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
         "mustSupport" : true
       }
     ]
