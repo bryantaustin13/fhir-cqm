@@ -61,6 +61,16 @@ Snippet 3-1: FHIR Measure structure - abridged for clarity (from sample [Measure
 2. In addition, measures with a status of active SHALL conform to the [CRMIPublishableMeasure profile]({{site.data.fhir.ver.crmi}}/StructureDefinition-crmi-publishablemeasure.html) in particular. 
 3. FHIR-based measures SHALL contain a narrative containing a human-readable representation of the measure content.
     a. Narrative should be consistent with the narratives in this IG. Liquid templates are provided as informative resources to facilitate consistency across measures. [Measure.liquid](https://github.com/cqframework/sample-content-ig/blob/master/templates/liquid/Measure.liquid)
+4. FHIR based measures should contain Measure.usage and Measure.description elements.  In addition, other elements may be needed based on measure structure and intent (stratifier, supplemental data, etc.)
+
+Note that for string-valued description elements, these elements are markdown valued in future versions so systems SHOULD be able to render markdown content when it appears in these elements:
+
+* Measure.usage
+* Measure.group.description
+* Measure.population.description
+* Measure.stratifier.description
+* Measure.stratifier.component.description
+* Measure.supplementalData.description
 
 ### Metadata
 {: #metadata}
@@ -1032,16 +1042,10 @@ For ratio measures that include a Measure Observation, the measure observation i
 The population types for a Ratio measure are "Initial Population", "Denominator", "Denominator Exclusion", "Numerator" and "Numerator Exclusion". The following diagrams✧ show the relationships between the populations for Ratio measures and the table below provides their definitions
 
 
-**Figure 3-3: Population criteria for Ratio measures illustration - Numerator**
+**Figure 3-3: The two initial populations from which the denominator and numerator are derived.**
 
 <div>
-<img src="OutcomeFlow__Ratio_Numerator.png">
-</div>
-
-**Figure 3-4: Population criteria for Ratio measures illustration - Denominator**
-
-<div>
-<img src="OutcomeFlow__Ratio_Denominator.png">
+<img src="OutcomeFlow_Ratio_DenNum.png">
 </div>
 
 ✧ The ratio diagrams depict a ratio measure. Ratio measures may also include continuous variable calculations for the numerator and denominator (continuous variable ratio measures) but the diagrams do not depict the continuous variable ratio measures.
@@ -1051,7 +1055,7 @@ The population types for a Ratio measure are "Initial Population", "Denominator"
 
 | Population | Definition |
 |:----|:----|
-| Initial Population | All entities to be evaluated by a measure which may but are not required to share a common set of specified characteristics within a named measurement set to which the measure belongs. Ratio measures are allowed to have two Initial Populations, one for Numerator and one for Denominator. In most cases, there is only 1 Initial Population |
+| Initial Population | Ratio measures establish a relationship between two distinct populations, one for Numerator and one for Denominator. |
 | Denominator | The same as the Initial Population or a subset of the Initial Population to further constrain the population for the purpose of the measure.                                                                                                                                                                                                      |
 | Denominator Exclusion | Entities that should be removed from the Denominator before determining if Numerator criteria are met. Denominator exclusions are used in Proportion and Ratio measures to help narrow the Denominator.           |
 | Numerator |  The outcomes expected for each entity defined in the respective Initial Population of a Ratio measure.       |
@@ -1270,7 +1274,7 @@ Note that the criteria reference in the measure observation definition is presen
 
 The population types for a Continuous Variable measure are "Initial Population", "Measure Population", and "Measure Population Exclusion". In addition to these populations, a Measure Observation is defined which contains one or more Continuous Variable statements that are used to score one or more particular aspects of performance. The following diagram shows the relationships between the populations for Continuous Variable measures and the table below provides their definitions.
 
-**Figure 3-5: Population criteria for Continuous Variable measures illustration**
+**Figure 3-4: Population criteria for Continuous Variable measures illustration**
 
 <div>
 <img src="OutcomeFlow_CV_Version.png">
@@ -1340,7 +1344,7 @@ In a cohort measure, a population is identified from the population of all items
 
 1. Cohort Measures SHALL conform to the [CQMCohortMeasure](StructureDefinition-cqm-cohortmeasure.html) profile
 
-**Figure 3-6: Population criteria for Cohort measures illustration**
+**Figure 3-5: Population criteria for Cohort measures illustration**
 
 <div>
 <img src="Cohort1.png">
@@ -1399,6 +1403,7 @@ Note also that when a measure has multiple population groups, the expectation is
     1. the same type as other population criteria expressions in the measure (i.e. the population basis), or
     2. the stratum value
 2. If component stratifiers are used, all the component expressions SHALL return the same type within a stratifier (i.e. within a stratifier, all the component expression must use the same stratification approach)
+3. Stratification descriptions SHOULD be in markdown (see [Conformance statement 3.1](#conformance-requirement-3-1) item 4 for more information)
 
 Stratification is represented using the `stratifier` element. The semantics of this element are unchanged from the base [Measure]({{site.data.fhir.path}}measure.html) specification.
 
@@ -1462,6 +1467,8 @@ The stratum value for a given Patient would be the combination of gender and pay
 1. Supplemental Data Elements SHALL be included within the supplementalData element using a usage element of supplemental-data.
 2. Supplemental Data Elements SHOULD reference a single expression definition, with a name beginning with SDE.
 3. Supplemental data element criteria expressions MAY be of any type, including lists
+4. Supplemental data elements descriptions SHOULD be in markdown (see [Conformance statement 3.1](#conformance-requirement-3-1) item 4 for more information)
+
 
 Part of the definition of a quality measure involves the ability to specify additional information to be returned for each member of a population. Within a FHIR-based QM, these supplemental data elements are specified using expressions, typically involving patient characteristics (such as Race, Ethnicity, Payer, and Administrative Sex) and then marking them with an SDE code within the FHIR Measure resource. Snippet 3-33 demonstrates an example supplemental data definition using the `supplementalData` element.
 
