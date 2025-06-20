@@ -1042,16 +1042,10 @@ For ratio measures that include a Measure Observation, the measure observation i
 The population types for a Ratio measure are "Initial Population", "Denominator", "Denominator Exclusion", "Numerator" and "Numerator Exclusion". The following diagrams✧ show the relationships between the populations for Ratio measures and the table below provides their definitions
 
 
-**Figure 3-3: Population criteria for Ratio measures illustration - Numerator**
+**Figure 3-3: The two initial populations from which the denominator and numerator are derived.**
 
 <div>
-<img src="OutcomeFlow__Ratio_Numerator.png">
-</div>
-
-**Figure 3-4: Population criteria for Ratio measures illustration - Denominator**
-
-<div>
-<img src="OutcomeFlow__Ratio_Denominator.png">
+<img src="OutcomeFlow_Ratio_DenNum.png">
 </div>
 
 ✧ The ratio diagrams depict a ratio measure. Ratio measures may also include continuous variable calculations for the numerator and denominator (continuous variable ratio measures) but the diagrams do not depict the continuous variable ratio measures.
@@ -1061,7 +1055,7 @@ The population types for a Ratio measure are "Initial Population", "Denominator"
 
 | Population | Definition |
 |:----|:----|
-| Initial Population | All entities to be evaluated by a measure which may but are not required to share a common set of specified characteristics within a named measurement set to which the measure belongs. Ratio measures are allowed to have two Initial Populations, one for Numerator and one for Denominator. In most cases, there is only 1 Initial Population |
+| Initial Population | Ratio measures establish a relationship between two distinct populations, one for Numerator and one for Denominator. |
 | Denominator | The same as the Initial Population or a subset of the Initial Population to further constrain the population for the purpose of the measure.                                                                                                                                                                                                      |
 | Denominator Exclusion | Entities that should be removed from the Denominator before determining if Numerator criteria are met. Denominator exclusions are used in Proportion and Ratio measures to help narrow the Denominator.           |
 | Numerator |  The outcomes expected for each entity defined in the respective Initial Population of a Ratio measure.       |
@@ -1280,7 +1274,7 @@ Note that the criteria reference in the measure observation definition is presen
 
 The population types for a Continuous Variable measure are "Initial Population", "Measure Population", and "Measure Population Exclusion". In addition to these populations, a Measure Observation is defined which contains one or more Continuous Variable statements that are used to score one or more particular aspects of performance. The following diagram shows the relationships between the populations for Continuous Variable measures and the table below provides their definitions.
 
-**Figure 3-5: Population criteria for Continuous Variable measures illustration**
+**Figure 3-4: Population criteria for Continuous Variable measures illustration**
 
 <div>
 <img src="OutcomeFlow_CV_Version.png">
@@ -1350,7 +1344,7 @@ In a cohort measure, a population is identified from the population of all items
 
 1. Cohort Measures SHALL conform to the [CQMCohortMeasure](StructureDefinition-cqm-cohortmeasure.html) profile
 
-**Figure 3-6: Population criteria for Cohort measures illustration**
+**Figure 3-5: Population criteria for Cohort measures illustration**
 
 <div>
 <img src="Cohort1.png">
