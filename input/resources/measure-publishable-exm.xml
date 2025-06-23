@@ -197,7 +197,6 @@
   </extension>
   <extension url="http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-effectiveDataRequirements">
     <valueCanonical value="http://hl7.org/fhir/uv/cqm/Library/moduledefinition-example"/>
-    </valueCanonical>
   </extension>
   <url value="http://example.org/fhir/measures/measure-publishable-exm"/>
   <identifier>
