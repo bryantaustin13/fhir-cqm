@@ -20,15 +20,15 @@
   ],
   "description": "The CQM Computable Measure Profile describes minimum expectations for a computable electronic Quality Measure (QM), including the use of a computable library. For more information on the usage of this profile, refer to the Profiles and Packaging pages in this implementation guide. Implementations SHOULD support using the `id` elements of group, population, stratifier, and supplementalData as a backwards-compatible mechanism for linking between Measure and MeasureReport",
   "jurisdiction": [
-      {
-        "coding": [
-          {
-            "system": "http://unstats.un.org/unsd/methods/m49/m49.htm",
-            "code": "001"
-          }
-        ]
-      }
-    ],
+    {
+      "coding": [
+        {
+          "system": "http://unstats.un.org/unsd/methods/m49/m49.htm",
+          "code": "001"
+        }
+      ]
+    }
+  ],
   "fhirVersion": "4.0.1",
   "mapping": [
     {
@@ -57,229 +57,235 @@
   "type": "Measure",
   "baseDefinition": "http://hl7.org/fhir/StructureDefinition/Measure",
   "derivation": "constraint",
-  "differential" : {
-    "element" : [
+  "differential": {
+    "element": [
       {
-        "id" : "Measure",
-        "path" : "Measure",
-        "constraint" : [
+        "id": "Measure",
+        "path": "Measure",
+        "constraint": [
           {
-            "key" : "comp-1",
-            "severity" : "error",
-            "human" : "Population basis must be specified at the root, or on each group",
-            "expression" : "extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis').exists() or group.select(extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis').exists()).allTrue()"
+            "key": "comp-1",
+            "severity": "error",
+            "human": "Population basis must be specified at the root, or on each group",
+            "expression": "extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis').exists() or group.select(extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis').exists()).allTrue()"
           },
           {
-            "key" : "comp-2",
-            "severity" : "error",
-            "human" : "Scoring is required. It must be specified on the root only, or on every group, and it cannot be on both.",
-            "expression" : "(scoring.exists() and group.extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoring').empty()) xor (scoring.empty() and group.all(extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoring').exists()))"
+            "key": "comp-2",
+            "severity": "error",
+            "human": "Scoring is required. It must be specified on the root only, or on every group, and it cannot be on both.",
+            "expression": "(scoring.exists() and group.extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoring').empty()) xor (scoring.empty() and group.all(extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoring').exists()))"
           },
           {
-            "key" : "comp-3",
-            "severity" : "error",
-            "human" : "Scoring unit may only be specified at the root if the scoring is also specified at the root",
-            "expression" : "extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoringUnit').exists() implies scoring.exists()"
+            "key": "comp-3",
+            "severity": "error",
+            "human": "Scoring unit may only be specified at the root if the scoring is also specified at the root",
+            "expression": "extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoringUnit').exists() implies scoring.exists()"
           },
           {
-            "key" : "comp-4",
-            "severity" : "error",
-            "human" : "If scoring is specified on the root and the scoring type is 'proportion','ratio', or 'continuous-variable' then the improvementNotation element is required on the root.",
-			"expression" : "scoring.exists() and (scoring.coding.code in ('proportion' | 'ratio' | 'continuous-variable')) implies improvementNotation.exists()"
+            "key": "comp-4",
+            "severity": "error",
+            "human": "If scoring is specified on the root and the scoring type is 'proportion','ratio', or 'continuous-variable' then the improvementNotation element is required on the root.",
+            "expression": "scoring.exists() and (scoring.coding.code in ('proportion' | 'ratio' | 'continuous-variable')) implies improvementNotation.exists()"
           },
           {
-            "key" : "comp-5",
-            "severity" : "error",
-            "human" : "If type is specified at the root, it may not be specified on any group",
-            "expression" : "type.exists() implies group.select(extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-type').exists()).allFalse()"
+            "key": "comp-5",
+            "severity": "error",
+            "human": "If type is specified at the root, it may not be specified on any group",
+            "expression": "type.exists() implies group.select(extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-type').exists()).allFalse()"
           },
           {
-            "key" : "comp-6",
-            "severity" : "error",
-            "human" : "If riskAdjustment is specified at the root, it may not be specified on any group",
-            "expression" : "riskAdjustment.exists() implies group.select(extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-riskAdjustment').exists()).allFalse()"
+            "key": "comp-6",
+            "severity": "error",
+            "human": "If riskAdjustment is specified at the root, it may not be specified on any group",
+            "expression": "riskAdjustment.exists() implies group.select(extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-riskAdjustment').exists()).allFalse()"
           },
           {
-            "key" : "comp-7",
-            "severity" : "error",
-            "human" : "If rateAggregation is specified at the root, it may not be specified on any group",
-            "expression" : "rateAggregation.exists() implies group.select(extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-rateAggregation').exists()).allFalse()"
+            "key": "comp-7",
+            "severity": "error",
+            "human": "If rateAggregation is specified at the root, it may not be specified on any group",
+            "expression": "rateAggregation.exists() implies group.select(extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-rateAggregation').exists()).allFalse()"
+          },
+          {
+            "key": "valset-1",
+            "severity": "warning",
+            "human": "If present, the value set shall be consistent with the criteria (i.e., the criteria, when evaluated, will result in values from the value set).",
+            "expression": "extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-valueSet').empty() or true"
           }
         ],
-        "mustSupport" : true
+        "mustSupport": true
       },
       {
-        "id" : "Measure.extension:populationBasis",
-        "path" : "Measure.extension",
-        "sliceName" : "populationBasis",
-        "min" : 0,
-        "max" : "1",
-        "type" : [
+        "id": "Measure.extension:populationBasis",
+        "path": "Measure.extension",
+        "sliceName": "populationBasis",
+        "min": 0,
+        "max": "1",
+        "type": [
           {
-            "code" : "Extension",
-            "profile" : [
+            "code": "Extension",
+            "profile": [
               "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis"
             ]
           }
         ],
-        "condition" : [
+        "condition": [
           "comp-1"
         ],
-        "mustSupport" : true
+        "mustSupport": true
       },
       {
-        "id" : "Measure.extension:scoringUnit",
-        "path" : "Measure.extension",
-        "sliceName" : "scoringUnit",
-        "min" : 0,
-        "max" : "1",
-        "type" : [
+        "id": "Measure.extension:scoringUnit",
+        "path": "Measure.extension",
+        "sliceName": "scoringUnit",
+        "min": 0,
+        "max": "1",
+        "type": [
           {
-            "code" : "Extension",
-            "profile" : [
+            "code": "Extension",
+            "profile": [
               "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoringUnit"
             ]
           }
         ],
-        "condition" : [
+        "condition": [
           "comp-3"
         ],
-        "mustSupport" : true
+        "mustSupport": true
       },
       {
-        "id" : "Measure.extension:effectiveDataRequirements",
-        "path" : "Measure.extension",
-        "sliceName" : "effectiveDataRequirements",
-        "min" : 0,
-        "max" : "1",
-        "type" : [
+        "id": "Measure.extension:effectiveDataRequirements",
+        "path": "Measure.extension",
+        "sliceName": "effectiveDataRequirements",
+        "min": 0,
+        "max": "1",
+        "type": [
           {
-            "code" : "Extension",
-            "profile" : [
+            "code": "Extension",
+            "profile": [
               "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-effectiveDataRequirements"
             ]
           }
         ],
-        "mustSupport" : true
+        "mustSupport": true
       },
       {
-        "id" : "Measure.extension:scoringPrecision",
-        "path" : "Measure.extension",
-        "sliceName" : "scoringPrecision",
-        "min" : 0,
-        "max" : "1",
-        "type" : [
+        "id": "Measure.extension:scoringPrecision",
+        "path": "Measure.extension",
+        "sliceName": "scoringPrecision",
+        "min": 0,
+        "max": "1",
+        "type": [
           {
-            "code" : "Extension",
-            "profile" : [
-             "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoringPrecision"
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoringPrecision"
             ]
           }
         ]
       },
       {
-        "id" : "Measure.subject[x]",
-        "path" : "Measure.subject[x]",
-        "short" : "E.g. Patient, Practitioner, RelatedPerson, Organization, Location, Device",
-        "definition" : "The intended subjects for the measure. If this element is not provided, a Patient subject is assumed, but the subject of the measure can be anything.",
-        "comment" : "The subject of the measure is critical in interpreting the criteria definitions, as the logic in the measures is evaluated with respect to a particular subject. This corresponds roughly to the notion of a Compartment in that it limits what content is available based on its relationship to the subject. In CQL, this corresponds to the context declaration.",
-        "min" : 0,
-        "max" : "1",
-        "mustSupport" : true,
-               "binding" : {
-          "strength" : "extensible",
-          "valueSet" : "http://hl7.org/fhir/uv/cqm/ValueSet/subject-type"
+        "id": "Measure.subject[x]",
+        "path": "Measure.subject[x]",
+        "short": "E.g. Patient, Practitioner, RelatedPerson, Organization, Location, Device",
+        "definition": "The intended subjects for the measure. If this element is not provided, a Patient subject is assumed, but the subject of the measure can be anything.",
+        "comment": "The subject of the measure is critical in interpreting the criteria definitions, as the logic in the measures is evaluated with respect to a particular subject. This corresponds roughly to the notion of a Compartment in that it limits what content is available based on its relationship to the subject. In CQL, this corresponds to the context declaration.",
+        "min": 0,
+        "max": "1",
+        "mustSupport": true,
+        "binding": {
+          "strength": "extensible",
+          "valueSet": "http://hl7.org/fhir/uv/cqm/ValueSet/subject-type"
         }
       },
       {
-        "id" : "Measure.usage",
-        "path" : "Measure.usage",
+        "id": "Measure.usage",
+        "path": "Measure.usage",
         "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
-        "mustSupport" : true
+        "mustSupport": true
       },
       {
-        "id" : "Measure.library",
-        "path" : "Measure.library",
-        "type" : [
+        "id": "Measure.library",
+        "path": "Measure.library",
+        "type": [
           {
-            "code" : "canonical",
-            "targetProfile" : [
+            "code": "canonical",
+            "targetProfile": [
               "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-computablelibrary"
             ]
           }
         ],
-        "min" : 0,
-        "max" : "1",
-        "mustSupport" : true
+        "min": 0,
+        "max": "1",
+        "mustSupport": true
       },
       {
-        "id" : "Measure.scoring",
-        "path" : "Measure.scoring",
-        "condition" : [
+        "id": "Measure.scoring",
+        "path": "Measure.scoring",
+        "condition": [
           "comp-2",
           "comp-3",
           "comp-4"
         ],
-        "mustSupport" : true,
-        "binding" : {
-          "strength" : "extensible",
-          "valueSet" : "http://terminology.hl7.org/ValueSet/measure-scoring"
+        "mustSupport": true,
+        "binding": {
+          "strength": "extensible",
+          "valueSet": "http://terminology.hl7.org/ValueSet/measure-scoring"
         }
       },
       {
-        "id" : "Measure.type",
-        "path" : "Measure.type",
-        "condition" : [
+        "id": "Measure.type",
+        "path": "Measure.type",
+        "condition": [
           "comp-5"
         ],
-        "mustSupport" : true
+        "mustSupport": true
       },
       {
-        "id" : "Measure.riskAdjustment",
-        "path" : "Measure.riskAdjustment",
-        "condition" : [
+        "id": "Measure.riskAdjustment",
+        "path": "Measure.riskAdjustment",
+        "condition": [
           "comp-6"
         ],
-        "mustSupport" : false
+        "mustSupport": false
       },
       {
-        "id" : "Measure.rateAggregation",
-        "path" : "Measure.rateAggregation",
-        "condition" : [
+        "id": "Measure.rateAggregation",
+        "path": "Measure.rateAggregation",
+        "condition": [
           "comp-7"
         ],
-        "mustSupport" : false
+        "mustSupport": false
       },
       {
-        "id" : "Measure.improvementNotation",
-        "path" : "Measure.improvementNotation",
-        "condition" : [
+        "id": "Measure.improvementNotation",
+        "path": "Measure.improvementNotation",
+        "condition": [
           "comp-4"
         ],
-        "mustSupport" : true,
-        "binding" : {
-          "strength" : "required",
-          "valueSet" : "http://terminology.hl7.org/ValueSet/measure-improvement-notation"
+        "mustSupport": true,
+        "binding": {
+          "strength": "required",
+          "valueSet": "http://terminology.hl7.org/ValueSet/measure-improvement-notation"
         }
       },
       {
-        "id" : "Measure.group",
-        "path" : "Measure.group",
-        "constraint" : [
+        "id": "Measure.group",
+        "path": "Measure.group",
+        "constraint": [
           {
-            "key" : "comp-8",
-            "severity" : "error",
-            "human" : "Scoring unit may only be specified at the root if the scoring is also specified at the root",
-            "expression" : "extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoringUnit').exists() implies extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoring').exists()"
+            "key": "comp-8",
+            "severity": "error",
+            "human": "Scoring unit may only be specified at the root if the scoring is also specified at the root",
+            "expression": "extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoringUnit').exists() implies extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoring').exists()"
           },
           {
-            "key" : "comp-9",
-            "severity" : "error",
-            "human" : "If scoring is specified on the group and the scoring type is 'proportion', 'ratio', or 'continuous-variable' then the improvementNotation element is required.",
-            "expression" : "extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoring').exists() and extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoring').value.coding.code in ('proportion' | 'ratio' | 'continuous-variable') implies extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-improvementNotation').exists()"
+            "key": "comp-9",
+            "severity": "error",
+            "human": "If scoring is specified on the group and the scoring type is 'proportion', 'ratio', or 'continuous-variable' then the improvementNotation element is required.",
+            "expression": "extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoring').exists() and extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoring').value.coding.code in ('proportion' | 'ratio' | 'continuous-variable') implies extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-improvementNotation').exists()"
           }
         ],
-        "mustSupport" : true
+        "mustSupport": true
       },
       {
         "id": "Measure.group.extension:linkId",
@@ -298,202 +304,202 @@
         "mustSupport": true
       },
       {
-        "id" : "Measure.group.extension:populationBasis",
-        "path" : "Measure.group.extension",
-        "sliceName" : "populationBasis",
-        "min" : 0,
-        "max" : "1",
-        "type" : [
+        "id": "Measure.group.extension:populationBasis",
+        "path": "Measure.group.extension",
+        "sliceName": "populationBasis",
+        "min": 0,
+        "max": "1",
+        "type": [
           {
-            "code" : "Extension",
-            "profile" : [
+            "code": "Extension",
+            "profile": [
               "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis"
             ]
           }
         ],
-        "condition" : [
+        "condition": [
           "comp-1"
         ],
-        "mustSupport" : true
+        "mustSupport": true
       },
       {
-        "id" : "Measure.group.extension:scoring",
-        "path" : "Measure.group.extension",
-        "sliceName" : "scoring",
-        "min" : 0,
-        "max" : "1",
-        "type" : [
+        "id": "Measure.group.extension:scoring",
+        "path": "Measure.group.extension",
+        "sliceName": "scoring",
+        "min": 0,
+        "max": "1",
+        "type": [
           {
-            "code" : "Extension",
-            "profile" : [
-               "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoring"
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoring"
             ]
           }
         ],
-        "condition" : [
+        "condition": [
           "comp-2",
           "comp-8",
           "comp-9"
         ],
-        "mustSupport" : true
+        "mustSupport": true
       },
       {
-        "id" : "Measure.group.extension:scoringUnit",
-        "path" : "Measure.group.extension",
-        "sliceName" : "scoringUnit",
-        "min" : 0,
-        "max" : "1",
-        "type" : [
+        "id": "Measure.group.extension:scoringUnit",
+        "path": "Measure.group.extension",
+        "sliceName": "scoringUnit",
+        "min": 0,
+        "max": "1",
+        "type": [
           {
-            "code" : "Extension",
-            "profile" : [
-               "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoringUnit"
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoringUnit"
             ]
           }
         ],
-        "condition" : [
+        "condition": [
           "comp-8"
         ],
-        "mustSupport" : true
+        "mustSupport": true
       },
       {
-        "id" : "Measure.group.extension:scoringPrecision",
-        "path" : "Measure.group.extension",
-        "sliceName" : "scoringPrecision",
-        "min" : 0,
-        "max" : "1",
-        "type" : [
+        "id": "Measure.group.extension:scoringPrecision",
+        "path": "Measure.group.extension",
+        "sliceName": "scoringPrecision",
+        "min": 0,
+        "max": "1",
+        "type": [
           {
-            "code" : "Extension",
-            "profile" : [
+            "code": "Extension",
+            "profile": [
               "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoringPrecision"
             ]
           }
         ]
       },
       {
-        "id" : "Measure.group.extension:compositeScoring",
-        "path" : "Measure.group.extension",
-        "sliceName" : "compositeScoring",
-        "min" : 0,
-        "max" : "1",
-        "type" : [
+        "id": "Measure.group.extension:compositeScoring",
+        "path": "Measure.group.extension",
+        "sliceName": "compositeScoring",
+        "min": 0,
+        "max": "1",
+        "type": [
           {
-            "code" : "Extension",
-            "profile" : [
+            "code": "Extension",
+            "profile": [
               "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-compositeScoring"
             ]
           }
         ],
-        "mustSupport" : true
+        "mustSupport": true
       },
       {
-        "id" : "Measure.group.extension:component",
-        "path" : "Measure.group.extension",
-        "sliceName" : "component",
-        "min" : 0,
-        "max" : "*",
-        "type" : [
+        "id": "Measure.group.extension:component",
+        "path": "Measure.group.extension",
+        "sliceName": "component",
+        "min": 0,
+        "max": "*",
+        "type": [
           {
-            "code" : "Extension",
-            "profile" : [
+            "code": "Extension",
+            "profile": [
               "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-component"
             ]
           }
         ],
-        "mustSupport" : true
+        "mustSupport": true
       },
       {
-        "id" : "Measure.group.extension:type",
-        "path" : "Measure.group.extension",
-        "sliceName" : "type",
-        "min" : 0,
-        "max" : "*",
-        "type" : [
+        "id": "Measure.group.extension:type",
+        "path": "Measure.group.extension",
+        "sliceName": "type",
+        "min": 0,
+        "max": "*",
+        "type": [
           {
-            "code" : "Extension",
-            "profile" : [
-             "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-type"
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-type"
             ]
           }
         ],
-        "condition" : [
+        "condition": [
           "comp-5"
         ],
-        "mustSupport" : false
+        "mustSupport": false
       },
       {
-        "id" : "Measure.group.extension:riskAdjustment",
-        "path" : "Measure.group.extension",
-        "sliceName" : "riskAdjustment",
-        "min" : 0,
-        "max" : "1",
-        "type" : [
+        "id": "Measure.group.extension:riskAdjustment",
+        "path": "Measure.group.extension",
+        "sliceName": "riskAdjustment",
+        "min": 0,
+        "max": "1",
+        "type": [
           {
-            "code" : "Extension",
-            "profile" : [
+            "code": "Extension",
+            "profile": [
               "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-riskAdjustment"
             ]
           }
         ],
-        "condition" : [
+        "condition": [
           "comp-6"
         ],
-        "mustSupport" : false
+        "mustSupport": false
       },
       {
-        "id" : "Measure.group.extension:rateAggregation",
-        "path" : "Measure.group.extension",
-        "sliceName" : "rateAggregation",
-        "min" : 0,
-        "max" : "1",
-        "type" : [
+        "id": "Measure.group.extension:rateAggregation",
+        "path": "Measure.group.extension",
+        "sliceName": "rateAggregation",
+        "min": 0,
+        "max": "1",
+        "type": [
           {
-            "code" : "Extension",
-            "profile" : [
-             "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-rateAggregation"
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-rateAggregation"
             ]
           }
         ],
-        "condition" : [
+        "condition": [
           "comp-7"
         ],
-        "mustSupport" : false
+        "mustSupport": false
       },
       {
-        "id" : "Measure.group.extension:improvementNotation",
-        "path" : "Measure.group.extension",
-        "sliceName" : "improvementNotation",
-        "min" : 0,
-        "max" : "1",
-        "type" : [
+        "id": "Measure.group.extension:improvementNotation",
+        "path": "Measure.group.extension",
+        "sliceName": "improvementNotation",
+        "min": 0,
+        "max": "1",
+        "type": [
           {
-            "code" : "Extension",
-            "profile" : [
-               "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-improvementNotation"
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-improvementNotation"
             ]
           }
         ],
-        "condition" : [
+        "condition": [
           "comp-9"
         ],
-        "mustSupport" : true
+        "mustSupport": true
       },
       {
-        "id" : "Measure.group.code",
-        "path" : "Measure.group.code",
-        "mustSupport" : true
+        "id": "Measure.group.code",
+        "path": "Measure.group.code",
+        "mustSupport": true
       },
       {
-        "id" : "Measure.group.description",
-        "path" : "Measure.group.description",
+        "id": "Measure.group.description",
+        "path": "Measure.group.description",
         "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
-        "mustSupport" : true
+        "mustSupport": true
       },
       {
-        "id" : "Measure.group.population",
-        "path" : "Measure.group.population",
-        "mustSupport" : true
+        "id": "Measure.group.population",
+        "path": "Measure.group.population",
+        "mustSupport": true
       },
       {
         "id": "Measure.group.population.extension:linkId",
@@ -512,36 +518,36 @@
         "mustSupport": true
       },
       {
-        "id" : "Measure.group.population.code",
-        "path" : "Measure.group.population.code",
-        "mustSupport" : true
+        "id": "Measure.group.population.code",
+        "path": "Measure.group.population.code",
+        "mustSupport": true
       },
       {
-        "id" : "Measure.group.population.description",
-        "path" : "Measure.group.population.description",
+        "id": "Measure.group.population.description",
+        "path": "Measure.group.population.description",
         "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
-        "mustSupport" : true
+        "mustSupport": true
       },
       {
-        "id" : "Measure.group.stratifier",
-        "path" : "Measure.group.stratifier",
-        "mustSupport" : true
+        "id": "Measure.group.stratifier",
+        "path": "Measure.group.stratifier",
+        "mustSupport": true
       },
       {
-        "id" : "Measure.group.stratifier.extension:appliesTo",
-        "path" : "Measure.group.stratifier.extension",
-        "sliceName" : "appliesTo",
-        "min" : 0,
-        "max" : "*",
-        "type" : [
+        "id": "Measure.group.stratifier.extension:appliesTo",
+        "path": "Measure.group.stratifier.extension",
+        "sliceName": "appliesTo",
+        "min": 0,
+        "max": "*",
+        "type": [
           {
-            "code" : "Extension",
-            "profile" : [
-               "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-appliesTo"
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-appliesTo"
             ]
           }
         ],
-        "mustSupport" : false
+        "mustSupport": false
       },
       {
         "id": "Measure.group.stratifier.extension:linkId",
@@ -560,20 +566,43 @@
         "mustSupport": true
       },
       {
-        "id" : "Measure.group.stratifier.code",
-        "path" : "Measure.group.stratifier.code",
-        "mustSupport" : true
+        "id": "Measure.group.stratifier.extension:valueSet",
+        "path": "Measure.group.stratifier.extension",
+        "sliceName": "stratifierValueSet",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-valueSet"
+            ]
+          }
+        ],
+        "condition": [
+          "valset-1"
+        ],
+        "mustSupport": false
       },
       {
-        "id" : "Measure.group.stratifier.description",
-        "path" : "Measure.group.stratifier.description",
+        "id": "Measure.group.stratifier.code",
+        "path": "Measure.group.stratifier.code",
+        "mustSupport": true,
+        "binding": {
+          "strength": "preferred",
+          "valueSet": "http://terminology.HL7.org/ValueSet/measure-stratifier-type"
+        }
+      },
+      {
+        "id": "Measure.group.stratifier.description",
+        "path": "Measure.group.stratifier.description",
         "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
-        "mustSupport" : true
+        "mustSupport": true
       },
       {
-        "id" : "Measure.group.stratifier.component",
-        "path" : "Measure.group.stratifier.component",
-        "mustSupport" : true
+        "id": "Measure.group.stratifier.component",
+        "path": "Measure.group.stratifier.component",
+        "mustSupport": true
       },
       {
         "id": "Measure.group.stratifier.component.extension:linkId",
@@ -592,20 +621,43 @@
         "mustSupport": true
       },
       {
-        "id" : "Measure.group.stratifier.component.code",
-        "path" : "Measure.group.stratifier.component.code",
-        "mustSupport" : true
+        "id": "Measure.group.stratifier.component.extension:valueSet",
+        "path": "Measure.group.stratifier.component.extension",
+        "sliceName": "componentValueSet",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-valueSet"
+            ]
+          }
+        ],
+        "condition": [
+          "valset-1"
+        ],
+        "mustSupport": false
       },
       {
-        "id" : "Measure.group.stratifier.component.description",
-        "path" : "Measure.group.stratifier.component.description",
+        "id": "Measure.group.stratifier.component.code",
+        "path": "Measure.group.stratifier.component.code",
+        "mustSupport": true,
+        "binding": {
+          "strength": "preferred",
+          "valueSet": "http://terminology.HL7.org/ValueSet/measure-stratifier-type"
+        }
+      },
+      {
+        "id": "Measure.group.stratifier.component.description",
+        "path": "Measure.group.stratifier.component.description",
         "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
-        "mustSupport" : true
+        "mustSupport": true
       },
       {
-        "id" : "Measure.supplementalData",
-        "path" : "Measure.supplementalData",
-        "mustSupport" : true
+        "id": "Measure.supplementalData",
+        "path": "Measure.supplementalData",
+        "mustSupport": true
       },
       {
         "id": "Measure.supplementalData.extension:linkId",
@@ -624,21 +676,40 @@
         "mustSupport": true
       },
       {
-        "id" : "Measure.supplementalData.code",
-        "path" : "Measure.supplementalData.code",
-        "mustSupport" : true
+        "id": "Measure.supplementalData.extension:valueSet",
+        "path": "Measure.supplementalData.extension",
+        "sliceName": "supplementalDataValueSet",
+        "min": 0,
+        "max": "*",
+        "type": [
+          {
+            "code": "Extension",
+            "profile": [
+              "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-valueSet"
+            ]
+          }
+        ],
+        "condition": [
+          "valset-1"
+        ],
+        "mustSupport": false
       },
       {
-        "id" : "Measure.supplementalData.usage",
-        "path" : "Measure.supplementalData.usage",
-        "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
-        "mustSupport" : true
+        "id": "Measure.supplementalData.code",
+        "path": "Measure.supplementalData.code",
+        "mustSupport": true
       },
       {
-        "id" : "Measure.supplementalData.description",
-        "path" : "Measure.supplementalData.description",
+        "id": "Measure.supplementalData.usage",
+        "path": "Measure.supplementalData.usage",
         "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
-        "mustSupport" : true
+        "mustSupport": true
+      },
+      {
+        "id": "Measure.supplementalData.description",
+        "path": "Measure.supplementalData.description",
+        "comment": "Although this element is string-valued, it will be markdown valued in future versions so systems should be able to render markdown content when it appears in this element",
+        "mustSupport": true
       }
     ]
   }
