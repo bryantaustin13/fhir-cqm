@@ -24,5 +24,6 @@
 
 * **Applied**: Consider universal realm	([FHIR-45883](https://jira.hl7.org/browse/FHIR-45883)) Applied ([here](index.html))
 * **Applied**: Fix improvementNotationGuidance extension	([FHIR-48834](https://jira.hl7.org/browse/FHIR-48834)) Applied ([here](StructureDefinition-cqm-publishablemeasure.html))
+* **Applied**: Added attestation to Table 3-1    ([FHIR-49417](https://jira.hl7.org/browse/FHIR-49417)) Applied ([here](measure-conformance.html#conformance-requirement-3-9))
 * **Applied**: Glossary and Acronyms    ([FHIR-49602](https://jira.hl7.org/browse/FHIR-49602)) Applied ([here](glossary.html))
 * **Applied**: Clarified Ratio Measure initial populations    ([FHIR-49763](https://jira.hl7.org/browse/FHIR-49763)) Applied ([here](measure-conformance.html#ratio-measure-scoring))
