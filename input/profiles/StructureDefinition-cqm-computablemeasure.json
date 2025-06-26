@@ -107,9 +107,9 @@
           },
           {
             "key": "valset-1",
-            "severity": "warning",
+            "severity": "error",
             "human": "If present, the value set shall be consistent with the criteria (i.e., the criteria, when evaluated, will result in values from the value set).",
-            "expression": "extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-valueSet').empty() or true"
+            "expression": "extension('http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-valueSet').exists()"
           }
         ],
         "mustSupport": true
@@ -569,6 +569,7 @@
         "id": "Measure.group.stratifier.extension:valueSet",
         "path": "Measure.group.stratifier.extension",
         "sliceName": "stratifierValueSet",
+        "definition": " If present, the value set SHALL be consistent with the criteria (i.e., the criteria, when evaluated, will result in values from the value set).\"",
         "min": 0,
         "max": "*",
         "type": [
@@ -578,9 +579,6 @@
               "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-valueSet"
             ]
           }
-        ],
-        "condition": [
-          "valset-1"
         ],
         "mustSupport": false
       },
@@ -624,6 +622,7 @@
         "id": "Measure.group.stratifier.component.extension:valueSet",
         "path": "Measure.group.stratifier.component.extension",
         "sliceName": "componentValueSet",
+        "definition": " If present, the value set SHALL be consistent with the criteria (i.e., the criteria, when evaluated, will result in values from the value set).\"",
         "min": 0,
         "max": "*",
         "type": [
@@ -633,9 +632,6 @@
               "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-valueSet"
             ]
           }
-        ],
-        "condition": [
-          "valset-1"
         ],
         "mustSupport": false
       },
