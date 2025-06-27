@@ -837,9 +837,7 @@ Snippet 3-16 illustrates the use of the populationBasis extension for a patient-
     {
       "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
       "valueCode": "boolean"
-    }
-  ],
-  "extension": [
+    },
     {
         "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
         "valueDataRequirement": 
@@ -862,9 +860,7 @@ Snippet 3-17 illustrates the use of the populationBasis extension for an non-pat
     {
       "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
       "valueCode": "Encounter"
-    }
-  ],
-  "extension": [
+    },
     {
       "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
       "valueDataRequirement": 

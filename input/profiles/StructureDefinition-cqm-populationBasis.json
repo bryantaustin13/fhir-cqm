@@ -86,7 +86,7 @@
             "code": "code"
           },
           {
-            "code": "dataRequirement"
+            "code": "DataRequirement"
           }
         ],
         "binding": {
