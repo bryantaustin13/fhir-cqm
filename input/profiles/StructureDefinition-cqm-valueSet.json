@@ -44,9 +44,9 @@
       {
         "id": "Extension",
         "path": "Extension",
-        "short": "What stratifier values?",
+        "short": "What stratum values?",
         "definition": "A value set defining the set of possible values for stratum in this stratifier. If criteria and valueSet are both present, they SHALL be consistent (i.e. criteria expressions SHALL produce stratum values that are codes in the value set referenced by this element). Note that this MAY be strictly at the code level (e.g. an Age Range code that is just the string value 01Y--05Y with the system ignored).",
-        "comment": "This element may be used to define a stratifier rather than requiring the stratifier be defined with logic. For example, a measure may reference a value set defining possible age ranges, rather than (and potentially in addition to) embedding the calculation of the age ranges into measure logic. See the MeasureStratifierAgeRangeExample value set for an example."
+        "comment": "This element may be used to define a stratifier rather than requiring the stratifier be defined with logic. For example, a measure may reference a value set defining possible age ranges, rather than (and potentially in addition to) embedding the calculation of the age ranges into measure logic. See the MeasureStratifierAgeRangeExample value set for an example. If present, the value set SHALL be consistent with the criteria (i.e., the criteria, when evaluated, will result in values from the value set)."
       },
       {
         "id": "Extension.url",
