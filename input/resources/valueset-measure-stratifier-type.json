@@ -14,7 +14,7 @@
   "experimental": false,
   "date": "2025-06-24T23:21:03-06:00",
   "publisher": "Clinical Quality Information Workgroup",
-  "description": "Identifier subgroups in a population for measuring purposes.",
+  "description": "establishes types of stratification for use in identifying subgroups of populations. These stratifications are often, but not exclusively, used in quality measurement.",
   "compose": {
     "include": [
       {

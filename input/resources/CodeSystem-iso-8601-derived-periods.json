@@ -1,0 +1,60 @@
+{
+  "resourceType": "CodeSystem",
+  "status": "draft",
+  "content": "complete",
+  "name": "ISO8601DerivedPeriods",
+  "id": "ISO8601DerivedPeriods",
+  "title": "ISO-8601 Derived Periods",
+  "version": "1.0.0",
+  "url": "http://terminology.hl7.org/CodeSystem/iso-8601-derived-periods",
+  "experimental": false,
+  "description": "Defines codes for the representation of age ranges that are unambiguous, human readable and machine-readable. Age ranges are expressed through two simple durations as defined in the ISO 8601.",
+  "caseSensitive": true,
+  "concept": [
+    {
+      "code": "P",
+      "display": "Duration designator",
+      "definition": "P is the duration designator (for period) placed at the start of the duration representation."
+    },
+    {
+      "code": "Y",
+      "display": "Year designator",
+      "definition": "Y is the year designator that follows the value for the number of years."
+    },
+    {
+      "code": "M",
+      "display": "Month designator",
+      "definition": "M is the month designator that follows the value for the number of months."
+    },
+    {
+      "code": "W",
+      "display": "Week designator",
+      "definition": "W is the week designator that follows the value for the number of weeks."
+    },
+    {
+      "code": "D",
+      "display": "Day designator",
+      "definition": "D is the day designator that follows the value for the number of days."
+    },
+    {
+      "code": "T",
+      "display": "Time designator",
+      "definition": "T is the time designator that precedes the time components of the representation."
+    },
+    {
+      "code": "H",
+      "display": "Hour designator",
+      "definition": "H is the hour designator that follows the value for the number of hours."
+    },
+    {
+      "code": "M",
+      "display": "Minute designator",
+      "definition": "M is the minute designator that follows the value for the number of minutes."
+    },
+    {
+      "code": "S",
+      "display": "Second designator",
+      "definition": "S is the second designator that follows the value for the number of seconds."
+    }
+  ]
+}

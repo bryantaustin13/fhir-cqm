@@ -8,23 +8,23 @@
   "version": "1.0.0",
   "url": "http://terminology.HL7.org/CodeSystem/measure-stratifier-type",
   "experimental": false,
-  "description": "Identifier subgroups in a population for measuring purposes.",
+  "description": "This code system establishes types of stratification for use in identifying subgroups of populations. These stratifications are often, but not exclusively, used in quality measurement.",
   "caseSensitive": true,
   "concept": [
     {
       "code": "age-range",
       "display": "Age range",
-      "definition": "A range of ages."
+      "definition": "Indicates that the stratification should be determined based on age range."
     },
     {
       "code": "region",
       "display": "Region",
-      "definition": "A geographical area."
+      "definition": "Indicates that the stratification should be determined based on geographical areas."
     },
     {
       "code": "facility",
       "display": "Facility",
-      "definition": "A specific location."
+      "definition": "Indicates that the stratification should be determined based on facilities, or specific physical locations."
     }
   ]
 }
