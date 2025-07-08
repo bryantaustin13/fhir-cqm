@@ -57,7 +57,7 @@
           "extension": [
             {
               "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-valueSet",
-              "valueCanonical": "http://hl7.org/fhir/uv/cqm/ValueSet/measure-stratifier-ages-example"
+              "valueCanonical": "http://terminology.HL7.org/ValueSet/measure-stratifier-type"
             }
           ]
         }
