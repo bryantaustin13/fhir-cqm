@@ -6,7 +6,6 @@
     "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2>Measure Age Stratified Example</h2><p><strong>Publisher:</strong> Clinical Quality Information Workgroup</p><p><strong>Status:</strong> draft</p><p><strong>Scoring:</strong> Proportion</p><h3>Population Criteria</h3><ul><li><a name=\"measure-age-stratified-example-group-1-initial-population\"></a><strong>Initial Population:</strong> Patients meeting the criteria defined by the CQL expression <code>InitialPopulation</code>.</li></ul><h3>Stratifiers</h3><ul><li><strong>Age Group:</strong> Stratifies patients using WHO-based age ranges defined in the ValueSet <code>measure-stratifier-ages-example</code>.</li></ul></div>"
   },
   "url": "http://hl7.org/fhir/uv/cqm/Measure/age-stratified-example",
-  "version": "1.0.0",
   "name": "MeasureAgeStratifiedExample",
   "title": "Measure Age Stratified Example",
   "status": "draft",

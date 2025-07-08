@@ -2,7 +2,6 @@
   "resourceType": "Library",
   "id": "AgeStratifiedExample",
   "url": "http://hl7.org/fhir/uv/cqm/Library/AgeStratifiedExample",
-  "version": "1.0.0",
   "name": "AgeStratifiedExample",
   "title": "Age Stratified Example",
   "status": "active",

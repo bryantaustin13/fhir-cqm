@@ -2,7 +2,6 @@
   "resourceType": "StructureDefinition",
   "id": "cqm-valueSet",
   "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-valueSet",
-  "version": "1.0.0",
   "name": "CQMValueSet",
   "title": "CQM Value Set",
   "status": "active",

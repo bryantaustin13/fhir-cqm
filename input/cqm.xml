@@ -818,6 +818,18 @@
   </page>
 </page>
     <parameter>
+      <code value="special-url"/>
+      <value value="http://terminology.hl7.org/CodeSystem/iso-8601-derived-periods"/>
+    </parameter>
+    <parameter>
+      <code value="special-url"/>
+      <value value="http://terminology.hl7.org/ValueSet/iso-8601-derived-periods"/>
+    </parameter>
+    <parameter>
+      <code value="special-url"/>
+      <value value="http://terminology.HL7.org/CodeSystem/measure-stratifier-type"/>
+    </parameter>
+    <parameter>
       <code value="releaselabel"/>
       <value value="ballot"/>
     </parameter>
