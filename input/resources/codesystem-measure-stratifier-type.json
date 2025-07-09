@@ -6,7 +6,7 @@
   "id": "measure-stratifier-type",
   "title": "Measure Stratifier Type",
   "version": "1.0.0",
-  "url": "http://terminology.HL7.org/CodeSystem/measure-stratifier-type",
+  "url": "http://terminology.hl7.org/CodeSystem/measure-stratifier-type",
   "experimental": false,
   "description": "This code system establishes types of stratification for use in identifying subgroups of populations. These stratifications are often, but not exclusively, used in quality measurement.",
   "caseSensitive": true,

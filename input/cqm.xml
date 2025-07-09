@@ -827,11 +827,11 @@
     </parameter>
     <parameter>
       <code value="special-url"/>
-      <value value="http://terminology.HL7.org/CodeSystem/measure-stratifier-type"/>
+      <value value="http://terminology.hl7.org/CodeSystem/measure-stratifier-type"/>
     </parameter>
     <parameter>
       <code value="special-url"/>
-      <value value="http://terminology.HL7.org/ValueSet/measure-stratifier-type"/>
+      <value value="http://terminology.hl7.org/ValueSet/measure-stratifier-type"/>
     </parameter>
     <parameter>
       <code value="releaselabel"/>

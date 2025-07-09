@@ -6,7 +6,7 @@
       "http://hl7.org/fhir/StructureDefinition/shareablevalueset"
     ]
   },
-  "url": "http://terminology.HL7.org/ValueSet/measure-stratifier-type",
+  "url": "http://terminology.hl7.org/ValueSet/measure-stratifier-type",
   "version": "1.0.0",
   "name": "MeasureStratifierType",
   "title": "Measure Stratifier Type",
@@ -18,7 +18,7 @@
   "compose": {
     "include": [
       {
-        "system": "http://terminology.HL7.org/CodeSystem/measure-stratifier-type"
+        "system": "http://terminology.hl7.org/CodeSystem/measure-stratifier-type"
       }
     ]
   }

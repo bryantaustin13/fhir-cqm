@@ -581,7 +581,7 @@
         "mustSupport": true,
         "binding": {
           "strength": "preferred",
-          "valueSet": "http://terminology.HL7.org/ValueSet/measure-stratifier-type"
+          "valueSet": "http://terminology.hl7.org/ValueSet/measure-stratifier-type"
         }
       },
       {
@@ -633,7 +633,7 @@
         "mustSupport": true,
         "binding": {
           "strength": "preferred",
-          "valueSet": "http://terminology.HL7.org/ValueSet/measure-stratifier-type"
+          "valueSet": "http://terminology.hl7.org/ValueSet/measure-stratifier-type"
         }
       },
       {
