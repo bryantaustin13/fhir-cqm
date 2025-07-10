@@ -20,7 +20,9 @@
 * **Applied**: Allow for count as a quantity ([FHIR-43090](https://jira.hl7.org/browse/FHIR-43090)) Applied ([here](StructureDefinition-cqm-testcase.html))
 * **Applied**: Provide guidance regarding description elements ([FHIR-50925](https://jira.hl7.org/browse/FHIR-50925)) Applied ([here](measure-conformance.html)), ([here](StructureDefinition-cqm-publishablemeasure.html)), and ([here](StructureDefinition-cqm-computablemeasure.html))
 * **Applied**: Correct definitionTerm extension usage ([FHIR-50265](https://jira.hl7.org/browse/FHIR-50265)) Applied ([here](StructureDefinition-cqm-publishablemeasure.html)) and ([here](Measure-measure-publishable-exm.html))
+* **Applied**: require Reference.display on publisher and endorser identifiers in publishable measure ([FHIR-51101](https://jira.hl7.org/browse/FHIR-51101)) Applied ([here](StructureDefinition-cqm-publishablemeasure.html))
 * **Applied**: Not all types of measures are represented in the current Measure Type ValueSet ([FHIR-51242](https://jira.hl7.org/browse/FHIR-51242)) Applied ([here](StructureDefinition-cqm-type.html)))
+
   
 
 ### STU1 Ballot for FHIR R4 (v1.0.0)
