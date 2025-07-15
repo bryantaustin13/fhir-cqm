@@ -9265,6 +9265,11 @@
                       "",
                       "    pm.expect(responseData.codeSystem).to.exist.and.to.not.be.empty;",
                       "",
+                      "});",
+                      "pm.test(\"resource.version is a string\", function () {",
+                      "    const responseData = pm.response.json();",
+                      "    pm.expect(responseData).to.have.property(\"version\");",
+                      "    pm.expect(typeof responseData.version).to.eql(\"string\");",
                       "});"
                     ],
                     "type": "text/javascript"
