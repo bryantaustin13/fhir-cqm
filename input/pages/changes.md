@@ -22,6 +22,7 @@
 * **Applied**: Correct definitionTerm extension usage ([FHIR-50265](https://jira.hl7.org/browse/FHIR-50265)) Applied ([here](StructureDefinition-cqm-publishablemeasure.html)) and ([here](Measure-measure-publishable-exm.html))
 * **Applied**: require Reference.display on publisher and endorser identifiers in publishable measure ([FHIR-51101](https://jira.hl7.org/browse/FHIR-51101)) Applied ([here](StructureDefinition-cqm-publishablemeasure.html))
 * **Applied**: Not all types of measures are represented in the current Measure Type ValueSet ([FHIR-51242](https://jira.hl7.org/browse/FHIR-51242)) Applied ([here](StructureDefinition-cqm-type.html)))
+* **Applied**: Using CQL With FHIR IG version ([FHIR-49595](https://jira.hl7.org/browse/FHIR-49595)) Applied ([here](using-cql.html)) and changed version of hl7.fhir.uv.cql to 2.0.0 in cql.xml
 
   
 
