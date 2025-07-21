@@ -299,6 +299,7 @@ INFORMATION: Resource: The resource Measure/EXMRatio-FHIR could usefully have an
 INFORMATION: Resource: The resource Measure/measure-pi-exm could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
 INFORMATION: Resource: The resource Measure/measure-risk-adjustment-FHIR2 could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
 INFORMATION: Resource: The resource Measure/Terminology-FHIR could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
+INFORMATION: Resource: The resource Measure/age-stratified-example could usefully have an OID assigned (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/fhir-tools-ig/CodeSystem-ig-parameters.html#ig-parameters-auto-oid-root)
 
 # These following messages are expected and referenced to QICore and US Core profiles from example content and we do not want to take a dependency on QICore and US Core. QICore and US Core are models and the intent of the QM IG is to provide guidance on the development of quality measures. Example dependencies are in progress
 Details for urn:uuid:47709cc7-b3ec-4abc-9d26-3df3d3d57905 matching against profile http://hl7.org/fhir/StructureDefinition/Organization|4.0.1
