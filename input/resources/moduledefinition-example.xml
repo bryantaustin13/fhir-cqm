@@ -41,13 +41,13 @@
     <type value="depends-on"/>
     <display value="FHIR model information"/>
     <resource
-              value="http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1"/>
+              value="http://ecqi.healthit.gov/ecqms/Library/FHIR-ModelInfo|4.0.1"/>
   </relatedArtifact>
   <relatedArtifact>
     <type value="depends-on"/>
     <display value="Library FHIRHelpers"/>
     <resource
-              value="http://fhir.org/guides/cqf/common/Library/FHIRHelpers|4.0.1"/>
+              value="http://ecqi.healthit.gov/ecqms/Library/FHIRHelpers|4.0.1"/>
   </relatedArtifact>
   <relatedArtifact>
     <type value="depends-on"/>
