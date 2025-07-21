@@ -9300,6 +9300,90 @@
                 }
               },
               "response": []
+            },
+            {
+              "name": "Server 1 Terminology Capability Statement for SNOMED version string",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "",
+                      "pm.test(\"Response status code is 200\", function () {",
+                      "    pm.expect(pm.response.code).to.equal(200);",
+                      "});",
+                      "",
+                      "",
+                      "pm.test(\"Resource Type should not be empty\", function () {",
+                      "    const responseData = pm.response.json();",
+                      "",
+                      "    pm.expect(responseData.resourceType).to.exist.and.to.not.be.empty;",
+                      "    if (pm.environment.get(\"SERVER_DEBUG\") === true){",
+                      "       console.log(responseData);",
+                      "    }",
+                      "});",
+                      "",
+                      "",
+                      "pm.test(\"Test that id is not empty\", function () {",
+                      "    const responseData = pm.response.json();",
+                      "",
+                      "    pm.expect(responseData.id).to.exist.and.to.not.be.empty;",
+                      "});",
+                      "",
+                      "",
+                      "pm.test(\"Test that codeSystem is not empty\", function (){",
+                      "    const responseData = pm.response.json();",
+                      "",
+                      "    pm.expect(responseData.codeSystem).to.exist.and.to.not.be.empty;",
+                      "",
+                      "});",
+                      "pm.test(\"Check SNOMED version is a string that equals http://snomed.info/sct/731000124108/version/20250301\", function () {",
+                      "    const responseData = pm.response.json();",
+                      "    const codeSystems = responseData.codeSystem;",
+                      "    let found = false;",
+                      "    codeSystems.forEach(cs => {",
+                      "        if (cs.uri === \"http://snomed.info/sct\") {",
+                      "            pm.expect(cs.version).to.be.a(\"string\");",
+                      "            pm.expect(cs.version).to.eql(\"http://snomed.info/sct/731000124108/version/20250301\");",
+                      "            found = true;",
+                      "        }",
+                      "    });",
+                      "    pm.expect(found, \"Expected SNOMED uri not found in codeSystem array\").to.be.true;",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{SERVER_URL}}metadata?mode=terminology",
+                  "host": [
+                    "{{SERVER_URL}}metadata"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "terminology"
+                    }
+                  ]
+                }
+              },
+              "response": []
             }
           ]
         },
