@@ -31,7 +31,7 @@
      <code>
        <system value="http://terminology.hl7.org/CodeSystem/usage-context-type"/>
        <code value="venue"/>
-       <display value="Venue"/>
+         <display value="Clinical Venue"/>
       </code>
       <valueCodeableConcept>
         <coding>
