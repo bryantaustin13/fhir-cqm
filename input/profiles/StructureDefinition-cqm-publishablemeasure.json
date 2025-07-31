@@ -76,13 +76,11 @@
       "path" : "Measure.extension",
       "sliceName": "limitations",
       "definition": "identifies what limitations should be noted, including potential selection biases and confounding factors when interpreting indicator results or comparing results across the country.",
-      "min" : 0,
-      "max" : "1",
       "type": [
         {
-          "code": "markdown",
+          "code": "Extension",
           "profile": [
-            "http://hl7.org/fhir/data-types|4.0.1"
+            "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-limitations"
           ]
         }
       ],
@@ -93,13 +91,11 @@
         "path" : "Measure.extension",
         "sliceName": "trendingIssues",
         "definition": "identifies what issues might affect the interpretation of trending results, including changes in geographic coverage, data quality, coding standards and classification changes (for example, a new ICD standard).",
-        "min" : 0,
-        "max" : "1",
         "type": [
           {
-            "code": "markdown",
+            "code": "Extension",
             "profile": [
-              "http://hl7.org/fhir/data-types|4.0.1"
+              "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-trendingIssues"
             ]
           }
         ],
