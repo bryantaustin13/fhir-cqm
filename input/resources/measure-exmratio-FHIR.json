@@ -64,7 +64,7 @@
     "code": {
       "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
       "code": "venue",
-      "display": "Venue"
+      "display": "Clinical Venue"
     },
     "valueCodeableConcept": {
       "coding": [{
@@ -159,9 +159,17 @@
   "group" : [
     {
       "id" : "group-1",
+      "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.linkId",
+        "valueString": "primary"
+      }],
       "population" : [
         {
           "id" : "initial-population",
+          "extension": [ {
+            "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+            "valueString": "primary-exmratio-initial-population"
+          }],
           "code" : {
             "coding" : [
               {
@@ -178,7 +186,11 @@
         },
         {
           "id" : "numerator",
-          "code" : {
+         "extension": [ {
+            "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+            "valueString": "primary-exmratio-numerator"
+          }],
+           "code" : {
             "coding" : [
               {
                 "system" : "http://terminology.hl7.org/CodeSystem/measure-population",
@@ -194,7 +206,11 @@
         },
         {
           "id" : "denominator",
-          "code" : {
+         "extension": [ {
+            "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+            "valueString": "primary-exmratio-denominator"
+          }],
+         "code" : {
             "coding" : [
               {
                 "system" : "http://terminology.hl7.org/CodeSystem/measure-population",
@@ -212,6 +228,9 @@
           "id" : "denominator-observation",
           "extension" : [
             {
+            "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+            "valueString": "primary-exmratio-denominator-observation"
+            },{
               "url" : "http://hl7.org/fhir/StructureDefinition/cqf-criteriaReference",
               "valueString" : "denominator"
             },
@@ -238,6 +257,9 @@
           "id" : "numerator-observation",
           "extension" : [
             {
+            "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+            "valueString": "primary-exmratio-numerator-observation"
+            },{
               "url" : "http://hl7.org/fhir/StructureDefinition/cqf-criteriaReference",
               "valueString" : "numerator"
             },

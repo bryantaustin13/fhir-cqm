@@ -92,8 +92,17 @@
   },
   "group": [
     {
+      "id" : "group-1",
+      "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.linkId",
+        "valueString": "primary"
+      }],
       "population": [
         {
+          "extension": [ {
+            "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+            "valueString": "primary-riskadjustment-initial-population"
+          }],
           "code": {
             "coding": [
               {
@@ -109,6 +118,10 @@
           }
         },
         {
+          "extension": [ {
+            "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+            "valueString": "primary-riskadjustment-numerator"
+          }],
           "code": {
             "coding": [
               {
@@ -124,6 +137,10 @@
           }
         },
         {
+          "extension": [ {
+            "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+            "valueString": "primary-riskadjustment-denominator"
+          }],
           "code": {
             "coding": [
               {
@@ -144,7 +161,13 @@
   "supplementalData": [
     {
       "id": "sde-ethnicity",
-      "usage": [
+      "extension" : [
+      {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId",
+        "valueString": "primary-sde-ethnicity"
+      }
+     ],
+     "usage": [
         {
           "coding": [
             {
@@ -161,7 +184,13 @@
     },
     {
       "id": "sde-payer",
-      "usage": [
+      "extension" : [
+      {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId",
+        "valueString": "primary-sde-payer"
+      }
+     ],
+     "usage": [
         {
           "coding": [
             {
@@ -178,7 +207,13 @@
     },
     {
       "id": "sde-race",
-      "usage": [
+      "extension" : [
+      {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId",
+        "valueString": "primary-sde-race"
+      }
+     ],
+     "usage": [
         {
           "coding": [
             {
@@ -195,7 +230,13 @@
     },
     {
       "id": "sde-sex",
-      "usage": [
+      "extension" : [
+      {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId",
+        "valueString": "primary-sde-sex"
+      }
+     ],
+     "usage": [
         {
           "coding": [
             {
@@ -212,7 +253,13 @@
     },
     {
       "id": "hepatic-failure",
-      "usage": [
+      "extension" : [
+      {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId",
+        "valueString": "primary-sde-sex"
+      }
+     ],
+     "usage": [
         {
           "coding": [
             {
@@ -229,7 +276,13 @@
     },
     {
       "id": "cirrhosis-dx",
-      "usage": [
+      "extension" : [
+      {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId",
+        "valueString": "primary-sde-sex"
+      }
+     ],
+     "usage": [
         {
           "coding": [
             {
@@ -246,7 +299,13 @@
     },
     {
       "id": "bilirubin-test",
-      "usage": [
+      "extension" : [
+      {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId",
+        "valueString": "primary-sde-sex"
+      }
+     ],
+     "usage": [
         {
           "coding": [
             {
@@ -263,7 +322,13 @@
     },
     {
       "id": "serum-albumin-test",
-      "usage": [
+      "extension" : [
+      {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId",
+        "valueString": "primary-sde-sex"
+      }
+     ],
+     "usage": [
         {
           "coding": [
             {
