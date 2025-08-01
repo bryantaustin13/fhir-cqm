@@ -54,7 +54,7 @@
   "date": "2025-07-17",
   "publisher": "Example Quality Org",
   "title": "Measure CQM Publishable Example",
-  "description": "An measure to demonstrate limitations and trendingIssues extensions.",
+  "description": "A measure to demonstrate limitations and trendingIssues extensions.",
   "group": [
     {
       "population": [
