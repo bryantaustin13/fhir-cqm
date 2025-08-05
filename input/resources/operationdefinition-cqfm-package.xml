@@ -5,7 +5,7 @@
   <version value="1.0.0"/>
   <name value="CQFMPackage"/>
   <title value="CQFM Package"/>
-  <status value="draft"/>
+  <status value="active"/>
   <kind value="operation"/>
   <date value="2019-11-01T09:29:23+11:00"/>
   <publisher value="HL7 (FHIR Project)"/>

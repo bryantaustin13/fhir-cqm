@@ -216,7 +216,7 @@
   "version": "0.1.0",
   "name": "MultiRateExample",
   "title": "Multi-Rate Example Measure",
-  "status": "draft",
+  "status": "active",
   "experimental": true,
   "subjectCodeableConcept": {
     "coding": [ {
