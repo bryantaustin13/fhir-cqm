@@ -20,12 +20,12 @@
    <relatedArtifact>
       <type value="depends-on"/>
       <display value="FHIR model information"/>
-      <resource value="http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1"/>
+      <resource value="http://ecqi.healthit.gov/ecqms/Library/FHIR-ModelInfo|4.0.1"/>
    </relatedArtifact>
    <relatedArtifact>
       <type value="depends-on"/>
       <display value="Library FHIRHelpers"/>
-      <resource value="http://fhir.org/guides/common/Library/FHIRHelpers|4.0.1"/>
+      <resource value="http://ecqi.healthit.gov/ecqms/Library/FHIRHelpers|4.0.1"/>
    </relatedArtifact>
    <relatedArtifact>
       <type value="depends-on"/>
@@ -55,17 +55,17 @@
    <relatedArtifact>
       <type value="depends-on"/>
       <display value="Library FHIRHelpers"/>
-      <resource value="http://fhir.org/guides/common/Library/FHIRHelpers|4.0.1"/>
+      <resource value="http://ecqi.healthit.gov/ecqms/Library/FHIRHelpers|4.0.1"/>
    </relatedArtifact>
    <relatedArtifact>
       <type value="depends-on"/>
       <display value="Library FHIRHelpers"/>
-      <resource value="http://fhir.org/guides/common/Library/FHIRHelpers|4.0.1"/>
+      <resource value="http://ecqi.healthit.gov/ecqms/Library/FHIRHelpers|4.0.1"/>
    </relatedArtifact>
    <relatedArtifact>
       <type value="depends-on"/>
       <display value="Library FHIRHelpers"/>
-      <resource value="http://fhir.org/guides/common/Library/FHIRHelpers|4.0.1"/>
+      <resource value="http://ecqi.healthit.gov/ecqms/Library/FHIRHelpers|4.0.1"/>
    </relatedArtifact>
    <relatedArtifact>
       <type value="depends-on"/>

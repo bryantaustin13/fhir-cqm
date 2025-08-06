@@ -108,7 +108,7 @@
      <code>
        <system value="http://terminology.hl7.org/CodeSystem/usage-context-type"/>
        <code value="venue"/>
-       <display value="Venue"/>
+       <display value="Clinical Venue"/>
       </code>
       <valueCodeableConcept>
         <coding>
@@ -227,7 +227,13 @@
     </coding>
   </improvementNotation>
   <group id="group-1">
+    <extension url="http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.linkId">
+      <valueString value="primary"></valueString>
+    </extension>
     <population id="initial-population">
+      <extension url="http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId">
+        <valueString value="primary-publishablexm-initial-population"></valueString>
+      </extension>
       <code>
         <coding>
           <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
@@ -241,6 +247,9 @@
       </criteria>
     </population>
     <population id="numerator">
+      <extension url="http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId">
+        <valueString value="primary-publishablexm-numerator"></valueString>
+      </extension>
       <code>
         <coding>
           <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
@@ -254,6 +263,9 @@
       </criteria>
     </population>
     <population id="denominator">
+      <extension url="http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId">
+        <valueString value="primary-publishablexm-denominator"></valueString>
+      </extension>
       <code>
         <coding>
           <system value="http://terminology.hl7.org/CodeSystem/measure-population"/>
@@ -268,6 +280,9 @@
     </population>
   </group>
   <supplementalData id="sde-ethnicity">
+    <extension url="http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId" >
+      <valueString value="primary-sde-ethnicity"/>
+    </extension>
     <usage>
       <coding>
         <system value="http://terminology.hl7.org/CodeSystem/measure-data-usage"/>
@@ -280,6 +295,9 @@
     </criteria>
   </supplementalData>
   <supplementalData id="sde-race">
+    <extension url="http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId" >
+     <valueString value="primary-sde-race"/>
+    </extension>
     <usage>
       <coding>
         <system value="http://terminology.hl7.org/CodeSystem/measure-data-usage"/>
@@ -292,6 +310,9 @@
     </criteria>
   </supplementalData>
   <supplementalData id="sde-payer">
+    <extension url="http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId" >
+       <valueString value="primary-sde-payer" />
+    </extension>
     <usage>
       <coding>
         <system value="http://terminology.hl7.org/CodeSystem/measure-data-usage"/>
@@ -304,6 +325,9 @@
     </criteria>
   </supplementalData>
   <supplementalData id="sde-sex">
+    <extension url="http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId" >
+      <valueString value="primary-sde-sex" />
+    </extension>
     <usage>
       <coding>
         <system value="http://terminology.hl7.org/CodeSystem/measure-data-usage"/>
