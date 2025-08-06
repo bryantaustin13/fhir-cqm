@@ -318,7 +318,7 @@
       }, {
         "type": "depends-on",
         "display": "Library FHIRHelpers",
-        "resource": "http://fhir.org/guides/cqf/common/Library/FHIRHelpers|4.0.1"
+        "resource": "http://ecqi.healthit.gov/ecqms/Library/FHIRHelpers|4.0.1"
       }, {
         "type": "depends-on",
         "display": "Library Global",
@@ -622,7 +622,7 @@
     "code": {
       "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
       "code": "venue",
-      "display": "Venue"
+      "display": "Clinical Venue"
     },
     "valueCodeableConcept": {
       "coding": [{
@@ -679,8 +679,16 @@
   },
   "usage": "To ensure the measure is only looking for a cervical cytology test only after a woman turns 21 years of age, the youngest age in the initial population is 23. \n Patient self-report for procedures as well as diagnostic studies should be recorded in 'Procedure, Performed' template or 'Diagnostic Study, Performed' template in QRDA-1. \n Include only cytology and HPV \"co-testing\"; in co-testing, both cytology and HPV tests are performed (i.e., the samples are collected and both tests are ordered, regardless of the cytology result) on the same date of service. Do not include reflex testing. In addition, if the medical record indicates the HPV test was performed only after determining the cytology result, this is considered reflex testing and does not meet criteria for the measure.",
   "group": [ {
+    "extension": [ {
+      "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.linkId",
+      "valueString": "primary"
+    }],
     "description": "Percentage of women 21-64 years of age who were screened for cervical cancer using either of the following criteria: \n*  Women age 21-64 who had cervical cytology performed every 3 years \n*  Women age 30-64 who had cervical cytology/human papillomavirus (HPV) co-testing performed every 5 years",
     "population": [ {
+      "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+        "valueString": "primary-exm124-initial-population"
+      }],
       "code": {
         "coding": [ {
           "system": "http://terminology.hl7.org/CodeSystem/measure-population",
@@ -694,6 +702,10 @@
         "expression": "Initial Population"
       }
     }, {
+    "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+        "valueString": "primary-exm124-numerator"
+      }],
       "code": {
         "coding": [ {
           "system": "http://terminology.hl7.org/CodeSystem/measure-population",
@@ -707,6 +719,10 @@
         "expression": "Numerator"
       }
     }, {
+    "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+        "valueString": "primary-exm124-denominator"
+      }],
       "code": {
         "coding": [ {
           "system": "http://terminology.hl7.org/CodeSystem/measure-population",
@@ -720,6 +736,10 @@
         "expression": "Denominator"
       }
     }, {
+    "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+        "valueString": "primary-exm124-denominator-exclusion"
+      }],
       "code": {
         "coding": [ {
           "system": "http://terminology.hl7.org/CodeSystem/measure-population",
@@ -735,6 +755,12 @@
     } ]
   } ],
   "supplementalData": [ {
+    "extension" : [
+      {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId",
+        "valueString": "primary-sde-ethnicity"
+      }
+    ],
     "usage": [ {
       "coding": [ {
         "system": "http://terminology.hl7.org/CodeSystem/measure-data-usage",
@@ -746,7 +772,13 @@
       "expression": "SDE Ethnicity"
     }
   }, {
-    "usage": [ {
+    "extension" : [
+      {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId",
+        "valueString": "primary-sde-payer"
+      }
+    ],
+   "usage": [ {
       "coding": [ {
         "system": "http://terminology.hl7.org/CodeSystem/measure-data-usage",
         "code": "supplemental-data"
@@ -757,6 +789,12 @@
       "expression": "SDE Payer"
     }
   }, {
+   "extension" : [
+      {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId",
+        "valueString": "primary-sde-race"
+      }
+    ],
     "usage": [ {
       "coding": [ {
         "system": "http://terminology.hl7.org/CodeSystem/measure-data-usage",
@@ -769,6 +807,12 @@
       "expression": "SDE Race"
     }
   }, {
+   "extension" : [
+      {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId",
+        "valueString": "primary-sde-sex"
+      }
+    ],
     "code": {
       "text": "Sex"
     },

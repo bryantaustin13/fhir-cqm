@@ -821,8 +821,13 @@ In addition to the measure scoring, measures generally fall into two categories,
 **Conformance Requirement 3.10 (Population Basis):** [<img src="conformance.png" width="20" class="self-link" height="20"/>](#conformance-requirement-3-10)
 {: #conformance-requirement-3-10}
 
-1. The [`cqm-populationBasis`](StructureDefinition-cqm-populationBasis.html) extension SHALL be used to identify the result type of population criteria used in the measure
-2. Expressions used in population criteria SHALL return a value of the type specified by the populationBasis for the measure.
+1. The [`cqm-populationBasis`](StructureDefinition-cqm-populationBasis.html) extension SHALL be used to identify the result type of population criteria used in the measure, group, or population
+2. Expressions used in population criteria SHALL return a value of the type specified by the populationBasis for the measure, group, or population.
+3. If a DataRequirement is used to specify an allowed type for a population, the `type` SHALL be present and `profile`, and `codeFilter` elements MAY be present. Other elements SHALL NOT be present.
+4. If a DataRequirement is used to specify an allowed type for a population, instances SHALL be:
+    a. of the type specified in `type`
+    b. conform to ALL the profiles specified in `profile`
+    c. match ALL the codeFilters specified
 
 Snippet 3-16 illustrates the use of the populationBasis extension for a patient-based measure:
 
@@ -837,7 +842,28 @@ Snippet 3-16 illustrates the use of the populationBasis extension for a patient-
 
 Snippet 3-16: Population basis for a patient-based measure
 
-Snippet 3-17 illustrates the use of the populationBasis extension for an non-patient-based measure:
+Snippet 3-17:  illustrates the use of the populationBasis extension with a valueDataRequirement to provide more detailed description of the basis.
+
+```json
+    "extension": [
+      {
+          "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
+          "valueDataRequirement": 
+            {
+                "type": "Patient",
+                "profile": [
+                    "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient"
+                ]
+            }
+      }
+    ]
+```
+
+Snippet 3-17: Population basis for a patient-based measure with a valueDataRequirement
+
+Population basis is usually the same for all the population criteria in a group. However, it can be different for the numerator and denominator criteria in a ratio measure. In this case, each population must use the same basis as the population it derives from (i.e. the numerator and numerator observation must use the same basis as the numerator initial population).
+
+Snippet 3-18 illustrates the use of the populationBasis extension for a non-patient-based measure:
 
 ```json
   "extension": [
@@ -848,7 +874,26 @@ Snippet 3-17 illustrates the use of the populationBasis extension for an non-pat
   ]
 ```
 
-Snippet 3-17: Population basis for an non-patient-based measure
+Snippet 3-18: Population basis for an non-patient-based measure
+
+Snippet 3-19: illustrates the use of the populationBasis extension for a non-patient-based measure with a valueDataRequirement to provide more detailed description of the basis.
+
+```json
+    {
+      "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
+      "valueDataRequirement": 
+      {
+         "type": "Encounter",  
+         "profile": 
+         [
+            "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"
+         ]
+      }
+    }
+
+```
+
+Snippet 3-19: Population basis for an non-patient-based measure with a valueDataRequirement
 
 Note that this extension is specifically bound to the FHIRAllTypes ValueSet (i.e. the set of all types in FHIR, including data types and resource types, both abstract and concrete). The FHIRAllTypes value set is appropriate for the specification since it's possible to have population criteria that result in "abstract" types. Authoring environments may wish to limit the selection of population basis based on the content implementation guides used in authoring the measure, but that would be a content-driven validation, not a restriction enforced by the specification.
 
@@ -1030,10 +1075,13 @@ The difference between a ratio measure and a proportion measure is that in a pro
 {: #conformance-requirement-3-13}
 
 1. Ratio measures SHALL conform to the [CQM Ratio Measure](StructureDefinition-cqm-ratiomeasure.html) profile.
-1. Population criteria SHALL each reference a single expression as defined by [Conformance Requirement 3.8](#conformance-requirement-3-8).
-2. measure-observation criteria SHALL reference expressions as defined by [Conformance Requirement 3.14](#conformance-requirement-3-14), with the exception that instead of a measure-population, the criteriaReference element SHALL reference a numerator or denominator criteria.
-3. Expressions for patient-based measures SHALL return a Boolean to indicate whether a patient matches the population criteria (true) or not (false).
-4. Expressions for non-patient-based measures SHALL return a List of events of the same type, such as an Encounter or Procedure.
+2. Population criteria SHALL each reference a single expression as defined by [Conformance Requirement 3.8](#conformance-requirement-3-8).
+3. measure-observation criteria SHALL reference expressions as defined by [Conformance Requirement 3.14](#conformance-requirement-3-14), with the exception that instead of a measure-population, the criteriaReference element SHALL reference a numerator or denominator criteria.
+4. Expressions for patient-based criteria SHALL return a Boolean to indicate whether a patient matches the population criteria (true) or not (false).
+5. Expressions for non-patient-based criteria SHALL return a List of events of the same type, such as an Encounter or Procedure.
+6. Population basis SHALL be consistent across denominator and numerator criteria:
+      * Population basis SHALL be specified on each initial-population criteria if it is different from the population basis for the group or measure.
+      * Criteria reference SHALL be specified on denominator, denominator exclusion, numerator, numerator exclusion, and measure observation criteria if the input source is different for the denominator and numerator criteria sets.
 
 For ratio measures that include a Measure Observation, the measure observation is defined as a function that takes a single parameter of the type of elements returned by the population criteria. This is also how it is specified for continuous variable measures. In particular, for non-patient based ratio measures the Measure Observation is defined as a function that takes a single argument of the same type as the elements returned by all the population criteria, and the aggregation method is specified in the Measure resource. For patient based ratio measures the Measure Observation is defined as a function that takes no parameters.
 
