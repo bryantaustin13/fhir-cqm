@@ -68,7 +68,7 @@
       {
         "id": "Extension",
         "path": "Extension",
-        "definition": "identifies what issues might affect the interpretation of trending results.",
+        "definition": "identifies what issues might affect the interpretation of trending results, including changes in geographic coverage, data quality, coding standards and classification changes (for example, a new ICD standard).",
         "min": 0,
         "max": "1"
       },
