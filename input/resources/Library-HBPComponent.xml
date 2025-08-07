@@ -12,7 +12,7 @@
    <version value="0.0.001"/>
    <name value="HBPComponent"/>
    <title value="HBP Component Library"/>
-   <status value="draft"/>
+   <status value="active"/>
    <experimental value="true"/>
    <type>
       <coding>

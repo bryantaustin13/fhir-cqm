@@ -8,7 +8,7 @@
   "url": "http://hl7.org/fhir/uv/cqm/Measure/age-stratified-example",
   "name": "MeasureAgeStratifiedExample",
   "title": "Measure Age Stratified Example",
-  "status": "draft",
+  "status": "active",
   "experimental": true,
   "date": "2025-06-24",
   "publisher": "Clinical Quality Information Workgroup",

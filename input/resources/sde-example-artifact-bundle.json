@@ -12,7 +12,7 @@
                 "version": "4.0.1",
                 "name": "FHIRHelpers",
                 "title": "FHIR Helpers",
-                "status": "draft",
+                "status": "active",
                 "experimental": true,
                 "type": {
                     "coding": [
@@ -59,7 +59,7 @@
                 "version": "4.0.1",
                 "name": "FHIRCommon",
                 "title": "FHIRCommon",
-                "status": "draft",
+                "status": "active",
                 "experimental": true,
                 "type": {
                     "coding": [
@@ -188,7 +188,7 @@
                 "version": "6.1.000",
                 "name": "MATGlobalCommonFunctionsFHIR4",
                 "title": "MAT Global Common Functions FHIRR4",
-                "status": "draft",
+                "status": "active",
                 "experimental": true,
                 "type": {
                     "coding": [
@@ -413,7 +413,7 @@
                 "version": "2.0.000",
                 "name": "SupplementalDataElementsFHIR4",
                 "title": "SupplementalDataElementsFHIR4",
-                "status": "draft",
+                "status": "active",
                 "experimental": true,
                 "type": {
                     "coding": [
@@ -551,7 +551,7 @@
                 "version": "0.0.002",
                 "name": "NHSNGlycemicControlHypoglycemicInitialPopulation",
                 "title": "NHSN Glycemic Control Hypoglycemic Initial Population",
-                "status": "draft",
+                "status": "active",
                 "experimental": true,
                 "type": {
                     "coding": [
@@ -1802,7 +1802,7 @@
                 "version": "0.000.01",
                 "name": "NHSNGlycemicControlHypoglycemicInitialPopulation",
                 "title": "NHSN Glycemic Control, Hypoglycemia Initial Population",
-                "status": "draft",
+                "status": "active",
                 "experimental": true,
                 "date": "2022-08-29T12:53:08-08:00",
                 "publisher": "NHSN",
