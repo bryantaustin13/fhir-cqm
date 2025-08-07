@@ -823,6 +823,11 @@ In addition to the measure scoring, measures generally fall into two categories,
 
 1. The [`cqm-populationBasis`](StructureDefinition-cqm-populationBasis.html) extension SHALL be used to identify the result type of population criteria used in the measure, group, or population
 2. Expressions used in population criteria SHALL return a value of the type specified by the populationBasis for the measure, group, or population.
+3. If a DataRequirement is used to specify an allowed type for a population, the `type` SHALL be present and `profile`, and `codeFilter` elements MAY be present. Other elements SHALL NOT be present.
+4. If a DataRequirement is used to specify an allowed type for a population, instances SHALL be:
+    a. of the type specified in `type`
+    b. conform to ALL the profiles specified in `profile`
+    c. match ALL the codeFilters specified
 
 Snippet 3-16 illustrates the use of the populationBasis extension for a subject-based measure:
 
@@ -837,9 +842,28 @@ Snippet 3-16 illustrates the use of the populationBasis extension for a subject-
 
 Snippet 3-16: Population basis for a subject-based measure
 
+Snippet 3-17:  illustrates the use of the populationBasis extension with a valueDataRequirement to provide more detailed description of the basis.
+
+```json
+    "extension": [
+      {
+          "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
+          "valueDataRequirement": 
+            {
+                "type": "Patient",
+                "profile": [
+                    "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient"
+                ]
+            }
+      }
+    ]
+```
+
+Snippet 3-17: Population basis for a patient-based measure with a valueDataRequirement
+
 Population basis is usually the same for all the population criteria in a group. However, it can be different for the numerator and denominator criteria in a ratio measure. In this case, each population must use the same basis as the population it derives from (i.e. the numerator and numerator observation must use the same basis as the numerator initial population).
 
-Snippet 3-17 illustrates the use of the populationBasis extension for an non-subject-based measure:
+Snippet 3-18 illustrates the use of the populationBasis extension for an non-subject-based measure:
 
 ```json
   "extension": [
@@ -850,7 +874,26 @@ Snippet 3-17 illustrates the use of the populationBasis extension for an non-sub
   ]
 ```
 
-Snippet 3-17: Population basis for an non-subject-based measure
+Snippet 3-18: Population basis for an non-subject-based measure
+
+Snippet 3-19: illustrates the use of the populationBasis extension for a non-patient-based measure with a valueDataRequirement to provide more detailed description of the basis.
+
+```json
+    {
+      "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
+      "valueDataRequirement": 
+      {
+         "type": "Encounter",  
+         "profile": 
+         [
+            "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter"
+         ]
+      }
+    }
+
+```
+
+Snippet 3-19: Population basis for an non-patient-based measure with a valueDataRequirement
 
 Note that this extension is specifically bound to the FHIRAllTypes ValueSet (i.e. the set of all types in FHIR, including data types and resource types, both abstract and concrete). The FHIRAllTypes value set is appropriate for the specification since it's possible to have population criteria that result in "abstract" types. Authoring environments may wish to limit the selection of population basis based on the content implementation guides used in authoring the measure, but that would be a content-driven validation, not a restriction enforced by the specification.
 
