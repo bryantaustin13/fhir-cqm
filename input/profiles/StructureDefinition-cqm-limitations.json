@@ -68,7 +68,7 @@
       {
         "id": "Extension",
         "path": "Extension",
-        "definition": "identifies what limitations should be noted.",
+        "definition": "identifies what limitations should be noted, including potential selection biases and confounding factors when interpreting indicator results or comparing results across the country.",
         "min": 0,
         "max": "1"
       },
