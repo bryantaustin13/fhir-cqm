@@ -7,6 +7,9 @@
 <artifactPageExtension value="-mappings"/>
 <artifact id="Library/AdultOutpatientEncounters" key="Library-AdultOutpatientEncounters" name="Adult Outpatient Encounters Common Library"/>
 <artifact id="Library/AdvancedIllnessandFrailtyExclusion" key="Library-AdvancedIllnessandFrailtyExclusion" name="Advanced Illness and Frailty Exclusion Library"/>
+<artifact id="Library/AgeStratifiedExample" key="Library-AgeStratifiedExample" name="Age Stratified Example"/>
+<artifact id="ValueSet/age-stratified-example" key="ValueSet-age-stratified-example" name="Age Stratified Example"/>
+<artifact id="Measure/age-stratified-example" key="Measure-age-stratified-example" name="Age Stratified Example"/>
 <artifact id="ConceptMap/aggregate-method" key="ConceptMap-aggregate-method" name="Aggregate Method mapping"/>
 <artifact id="Library/BCSComponent" key="Library-BCSComponent" name="BCS Component Library"/>
 <artifact id="Measure/BCSComponent" key="Measure-BCSComponent" name="Breast Cancer Screening"/>
@@ -36,6 +39,7 @@
 <artifact id="StructureDefinition/cqm-improvementNotation" key="StructureDefinition-cqm-improvementNotation" name="CQM Improvement Notation"/>
 <artifact id="StructureDefinition/cqm-includeInReportType" key="StructureDefinition-cqm-includeInReportType" name="CQM Include In Report Type"/>
 <artifact id="StructureDefinition/cqm-isTestCase" key="StructureDefinition-cqm-isTestCase" name="CQM Is Test Case"/>
+<artifact id="StructureDefinition/cqm-limitations" key="StructureDefinition-cqm-limitations" name="CQM Limitations"/>
 <artifact id="StructureDefinition/cqm-operation" key="StructureDefinition-cqm-operation" name="CQM Operation"/>
 <artifact id="StructureDefinition/cqm-populationBasis" key="StructureDefinition-cqm-populationBasis" name="CQM Population Basis"/>
 <artifact id="StructureDefinition/cqm-proportionmeasure" key="StructureDefinition-cqm-proportionmeasure" name="CQM Proportion Measure"/>
@@ -49,7 +53,9 @@
 <artifact id="StructureDefinition/cqm-supplementalDataGuidance" key="StructureDefinition-cqm-supplementalDataGuidance" name="CQM Supplemental Data Guidance"/>
 <artifact id="StructureDefinition/cqm-testcase" key="StructureDefinition-cqm-testcase" name="CQM Test Case"/>
 <artifact id="StructureDefinition/cqm-testCaseDescription" key="StructureDefinition-cqm-testCaseDescription" name="CQM Test Case Description"/>
+<artifact id="StructureDefinition/cqm-trendingIssues" key="StructureDefinition-cqm-trendingIssues" name="CQM Trending Issues"/>
 <artifact id="StructureDefinition/cqm-type" key="StructureDefinition-cqm-type" name="CQM Type"/>
+<artifact id="StructureDefinition/cqm-valueSet" key="StructureDefinition-cqm-valueSet" name="CQM Value Set"/>
 <artifact id="StructureDefinition/cqm-weight" key="StructureDefinition-cqm-weight" name="CQM Weight"/>
 <artifact id="Measure/CCSComponent" key="Measure-CCSComponent" name="Cervical Cancer Screening"/>
 <artifact id="ValueSet/chronic-liver-disease-legacy-example" key="ValueSet-chronic-liver-disease-legacy-example" name="Chronic Liver Disease Legacy Example"/>
@@ -84,6 +90,8 @@
 <artifact deprecated="true" id="Library/fhir-model-definition-FHIR2" key="Library-fhir-model-definition-FHIR2" name="FHIR Model Definition (STU2)"/>
 <artifact id="Library/HBPComponent" key="Library-HBPComponent" name="HBP Component Library"/>
 <artifact id="Library/Hospice" key="Library-Hospice" name="Hospice FHIR Library"/>
+<artifact id="ValueSet/iso-8601-derived-periods" key="ValueSet-iso-8601-derived-periods" name="ISO-8601-Derived Periods"/>
+<artifact id="CodeSystem/iso-8601-derived-periods" key="CodeSystem-iso-8601-derived-periods" name="ISO-8601-Derived Periods"/>
 <artifact id="ConceptMap/improvement-notations" key="ConceptMap-improvement-notations" name="Improvement Notation Mapping"/>
 <artifact id="ValueSet/intended-venue" key="ValueSet-intended-venue" name="Intended Venue"/>
 <artifact id="CodeSystem/intended-venue-codes" key="CodeSystem-intended-venue-codes" name="Intended Venue Codes"/>
@@ -92,7 +100,10 @@
 <artifact id="Bundle/sde-example-artifact-bundle" key="Bundle-sde-example-artifact-bundle" name="Measure Content Bundle - Additional Supplemental Data Example"/>
 <artifact id="ConceptMap/measure-populations" key="ConceptMap-measure-populations" name="Measure Population criteria mapping"/>
 <artifact id="ConceptMap/measure-scoring" key="ConceptMap-measure-scoring" name="Measure Scoring mapping"/>
+<artifact id="ValueSet/measure-stratifier-type" key="ValueSet-measure-stratifier-type" name="Measure Stratifier Type"/>
+<artifact id="CodeSystem/measure-stratifier-type" key="CodeSystem-measure-stratifier-type" name="Measure Stratifier Type"/>
 <artifact id="ConceptMap/measure-types" key="ConceptMap-measure-types" name="Measure Type mapping"/>
+<artifact id="Measure/measure-cqm-publishable-example" key="Measure-measure-cqm-publishable-example" name="MeasureCQMPublishableExample"/>
 <artifact id="MeasureReport/testcase-example" key="MeasureReport-testcase-example" name="MeasureReport - Test Case Example"/>
 <artifact id="Library/moduledefinition-example" key="Library-moduledefinition-example" name="Module Definition Example Logic Library"/>
 <artifact id="Library/MultiRateExample-FHIR" key="Library-MultiRateExample-FHIR" name="Multi Rate Example Logic Library"/>

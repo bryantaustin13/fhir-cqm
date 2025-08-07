@@ -1,3 +1,11 @@
 {
-  "http://snomed.info/sct|http://snomed.info/sct/731000124108/version/20150301" : null
+  "urn:ietf:bcp:13|null" : null,
+  "http://example.org/fhir/|null" : null,
+  "http://example.org/fhir/CodeSystem/measure-terms|null" : null,
+  "http://unstats.un.org/unsd/methods/m49/m49.htm|null" : null,
+  "http://example.org/stratification|null" : null,
+  "http://example.org/group|null" : null,
+  "http://snomed.info/sct|http://snomed.info/sct/731000124108/version/20150301" : null,
+  "http://snomed.info/sct|http://snomed.info/sct/731000124108" : null,
+  "http://snomed.info/sct|http://snomed.info/sct/731000124108/version/201709" : null
 }
