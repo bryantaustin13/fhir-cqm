@@ -9,7 +9,7 @@
    <version value="0.0.001"/>
    <name value="PreventiveCareandWellnessAllOrNothingComposite"/>
    <title value="Preventive Care and Wellness All-Or-Nothing Composite"/>
-   <status value="draft"/>
+   <status value="active"/>
    <experimental value="true"/>
    <publisher value="National Committee for Quality Assurance"/>
    <description value="This artifact is an example of an all-or-nothing composite measure that uses a mixture of single-rate or multi-rate component measures that have different measure bases."/>
@@ -17,7 +17,7 @@
      <code>
        <system value="http://terminology.hl7.org/CodeSystem/usage-context-type"/>
        <code value="venue"/>
-       <display value="Venue"/>
+       <display value="Clinical Venue"/>
       </code>
       <valueCodeableConcept>
         <coding>

@@ -166,7 +166,7 @@
       "relatedArtifact": [ {
         "type": "depends-on",
         "display": "Library FHIRHelpers",
-        "resource": "http://fhir.org/guides/cqf/common/Library/FHIRHelpers|4.0.1"
+        "resource": "http://ecqi.healthit.gov/ecqms/Library/FHIRHelpers|4.0.1"
       }, {
         "type": "depends-on",
         "display": "Library Global",
@@ -306,7 +306,7 @@
     "code": {
       "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
       "code": "venue",
-      "display": "Venue"
+      "display": "Clinical Venue"
     },
     "valueCodeableConcept": {
       "coding": [{
@@ -363,7 +363,16 @@
   },
   "guidance": "This is an episode of care measure that examines all eligible episodes for the patient during the measurement period. If the patient has more than one episode, include all episodes in the measure.",
   "group": [ {
+    "id": "group-1",
+    "extension": [ {
+      "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.linkId",
+      "valueString": "primary"
+    }],
     "population": [ {
+    "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+        "valueString": "primary-exm146-initial-population"
+      }],
       "code": {
         "coding": [ {
           "system": "http://terminology.hl7.org/CodeSystem/measure-population",
@@ -376,6 +385,10 @@
         "expression": "Initial Population"
       }
     }, {
+    "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+        "valueString": "primary-exm146-numerator"
+      }],
       "code": {
         "coding": [ {
           "system": "http://terminology.hl7.org/CodeSystem/measure-population",
@@ -388,6 +401,10 @@
         "expression": "Numerator"
       }
     }, {
+    "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+        "valueString": "primary-exm146-denominator"
+      }],
       "code": {
         "coding": [ {
           "system": "http://terminology.hl7.org/CodeSystem/measure-population",
@@ -400,6 +417,10 @@
         "expression": "Denominator"
       }
     }, {
+    "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+        "valueString": "primary-exm146-denominator-exclusion"
+      }],
       "code": {
         "coding": [ {
           "system": "http://terminology.hl7.org/CodeSystem/measure-population",

@@ -68,18 +68,27 @@
     } ]
   },
   "group": [ {
-    "population": [ {
-      "code": {
-        "coding": [ {
-          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
-          "code": "initial-population",
-          "display": "Initial Population"
-        } ]
-      },
-      "criteria": {
-        "language": "text/cql-identifier",
-        "expression": "Initial Population"
-      }
-    } ]
+      "id" : "group-1",
+      "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.linkId",
+        "valueString": "primary"
+      }],
+      "population": [ {
+        "extension": [ {
+            "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+            "valueString": "primary-terminology-initial-population"
+          }],
+          "code": {
+          "coding": [ {
+            "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+            "code": "initial-population",
+            "display": "Initial Population"
+          } ]
+        },
+        "criteria": {
+          "language": "text/cql-identifier",
+          "expression": "Initial Population"
+        }
+      } ]
   } ]
 }

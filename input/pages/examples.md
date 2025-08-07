@@ -14,7 +14,7 @@
 
 ### Screening Measures
 
-These examples illustrate patient-based screening measures
+These examples illustrate subject-based screening measures
 
 * [**EXM124**](Measure-EXM124-FHIR.html) Cervical Cancer Screening - [Library](Library-EXM124-FHIR.html)
 * [**EXM125**](Measure-EXM125-FHIR.html) Breast Cancer Screening - [Library](Library-EXM125-FHIR.html)
@@ -36,11 +36,11 @@ These examples illustrate patient-based screening measures
 
 This section provides examples of all four composite measure scoring methods described by this implementation guide. Each composite is constructed using the same five component measures:
 
-* [Breast Cancer Screening (BCS)](Measure-BCSComponent.html) - Patient-based proportion measure
-* [Colorectal Cancer Screening (CCS)](Measure-EXM130-FHIR.html) - Patient-based proportion measure
+* [Breast Cancer Screening (BCS)](Measure-BCSComponent.html) - Subject-based proportion measure
+* [Colorectal Cancer Screening (CCS)](Measure-EXM130-FHIR.html) - Subject-based proportion measure
 * [High Blood Pressure Screening (HBP)](Measure-HBPComponent.html) - Encounter-based proportion measure
-* [Pneumococcal Vaccination (PVS)](Measure-PVSComponent.html) - Patient-based proportion measure
-* [Tobacco Screening (TSC)](Measure-TSCComponent.html) - Patient-based proportion measure
+* [Pneumococcal Vaccination (PVS)](Measure-PVSComponent.html) - Subject-based proportion measure
+* [Tobacco Screening (TSC)](Measure-TSCComponent.html) - Subject-based proportion measure
 
 For each of these measures, the population criteria are summarized as:
 

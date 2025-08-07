@@ -369,7 +369,7 @@
       }, {
         "type": "depends-on",
         "display": "Library FHIRHelpers",
-        "resource": "http://fhir.org/guides/cqf/common/Library/FHIRHelpers|4.0.1"
+        "resource": "http://ecqi.healthit.gov/ecqms/Library/FHIRHelpers|4.0.1"
       }, {
         "type": "depends-on",
         "display": "Library Global",
@@ -678,7 +678,7 @@
     "code": {
       "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
       "code": "venue",
-      "display": "Venue"
+      "display": "Clinical Venue"
     },
     "valueCodeableConcept": {
       "coding": [{
@@ -735,7 +735,16 @@
   },
   "guidance": "Patient self-report for procedures as well as diagnostic studies should be recorded in \"Procedure, Performed\" template or \"Diagnostic Study, Performed\" template in QRDA-1. Do not count DRE, FOBT tests performed in an office setting or performed on a sample collected via DRE.",
   "group": [ {
+  "id": "group-1",
+    "extension": [ {
+      "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.linkId",
+      "valueString": "primary"
+    }],
     "population": [ {
+    "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+        "valueString": "primary-exm130-initial-population"
+      }],
       "code": {
         "coding": [ {
           "system": "http://terminology.hl7.org/CodeSystem/measure-population",
@@ -748,6 +757,10 @@
         "expression": "Initial Population"
       }
     }, {
+    "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+        "valueString": "primary-exm130-numerator"
+      } ],
       "code": {
         "coding": [ {
           "system": "http://terminology.hl7.org/CodeSystem/measure-population",
@@ -760,6 +773,10 @@
         "expression": "Numerator"
       }
     }, {
+    "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+        "valueString": "primary-exm130-denominator"
+      } ],
       "code": {
         "coding": [ {
           "system": "http://terminology.hl7.org/CodeSystem/measure-population",
@@ -772,6 +789,10 @@
         "expression": "Denominator"
       }
     }, {
+    "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+        "valueString": "primary-exm130-denominator-exclusion"
+      } ],
       "code": {
         "coding": [ {
           "system": "http://terminology.hl7.org/CodeSystem/measure-population",
@@ -786,6 +807,12 @@
     } ]
   } ],
   "supplementalData": [ {
+    "extension" : [
+      {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId",
+        "valueString": "primary-sde-ethnicity"
+      }
+     ],
     "usage": [ {
       "coding": [ {
         "system": "http://terminology.hl7.org/CodeSystem/measure-data-usage",
@@ -797,6 +824,12 @@
       "expression": "SDE Ethnicity"
     }
   }, {
+      "extension" : [
+      {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId",
+        "valueString": "primary-sde-epayer"
+      }
+     ],
     "usage": [ {
       "coding": [ {
         "system": "http://terminology.hl7.org/CodeSystem/measure-data-usage",
@@ -808,6 +841,12 @@
       "expression": "SDE Payer"
     }
   }, {
+    "extension" : [
+      {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId",
+        "valueString": "primary-sde-race"
+      }
+     ],
     "usage": [ {
       "coding": [ {
         "system": "http://terminology.hl7.org/CodeSystem/measure-data-usage",
@@ -819,6 +858,12 @@
       "expression": "SDE Race"
     }
   }, {
+     "extension" : [
+      {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId",
+        "valueString": "primary-sde-sex"
+      }
+     ],
     "usage": [ {
       "coding": [ {
         "system": "http://terminology.hl7.org/CodeSystem/measure-data-usage",

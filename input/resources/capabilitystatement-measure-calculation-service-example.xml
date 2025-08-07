@@ -6,7 +6,7 @@
   <url value="http://hl7.org/fhir/uv/cqm/CapabilityStatement/measure-calculation-service-example"/>
   <name value="MeasureCalculationServiceCapabilityStatementExample"/>
   <title value="Measure Calculation Service Capability Statement Example"/>
-  <status value="draft"/>
+  <status value="active"/>
   <date value="2016-09-16"/>
   <publisher value="HL7, Inc"/>
   <contact>

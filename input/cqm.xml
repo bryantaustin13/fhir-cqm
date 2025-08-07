@@ -5,11 +5,14 @@
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-wg">
     <valueCode value="cqi"/>
   </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
+    <valueCode value="trial-use"/>
+  </extension>
   <url value="http://hl7.org/fhir/uv/cqm/ImplementationGuide/hl7.fhir.uv.cqm"/>
   <version value="1.0.0-ballot"/>
   <name value="CQMeasures"/>
   <title value="Quality Measure Implementation Guide"/>
-  <status value="draft"/>
+  <status value="active"/>
   <experimental value="false"/>
   <publisher value="HL7 International / Clinical Quality Information"/>
   <contact>
@@ -53,7 +56,7 @@
   <dependsOn id="cql">
     <uri value="http://hl7.org/fhir/uv/cql/ImplementationGuide/hl7.fhir.uv.cql"/>
      <packageId value="hl7.fhir.uv.cql"/>
-     <version value="1.0.0"/>
+     <version value="2.0.0"/>
   </dependsOn>
   <definition>
     <resource>
@@ -218,10 +221,26 @@
     </resource>
     <resource>
       <reference>
+        <reference value="Measure/measure-cqm-publishable-example"/>
+      </reference>
+      <name value="MeasureCQMPublishableExample"/>
+      <description value="A measure to demonstrate limitations and trendingIssues extensions."/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <reference>
         <reference value="Measure/Terminology-FHIR"/>
       </reference>
       <name value="Terminology FHIR"/>
       <description value="This example illustrates the use of terminology within a measure represented as a FHIR eCQM."/>
+      <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Measure/age-stratified-example"/>
+      </reference>
+      <name value="Age Stratified Example"/>
+      <description value="This example illustrates the use of codesystem and valueset measure-stratifier-ages-example."/>
       <exampleBoolean value="true"/>
     </resource>
     <resource>
@@ -365,6 +384,22 @@
     <generation value="markdown"/>
   </page>
 </page>
+    <parameter>
+      <code value="special-url"/>
+      <value value="http://terminology.hl7.org/CodeSystem/iso-8601-derived-periods"/>
+    </parameter>
+    <parameter>
+      <code value="special-url"/>
+      <value value="http://terminology.hl7.org/ValueSet/iso-8601-derived-periods"/>
+    </parameter>
+    <parameter>
+      <code value="special-url"/>
+      <value value="http://terminology.hl7.org/CodeSystem/measure-stratifier-type"/>
+    </parameter>
+    <parameter>
+      <code value="special-url"/>
+      <value value="http://terminology.hl7.org/ValueSet/measure-stratifier-type"/>
+    </parameter>
     <parameter>
       <code value="releaselabel"/>
       <value value="ballot"/>

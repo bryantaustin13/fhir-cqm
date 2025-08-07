@@ -112,7 +112,7 @@ An example of an “All-or-nothing” scored composite measure has been included
 
 Snippet 23: Components of an example All-or-nothing scored composite measure from Preventive Care and Wellness (All-or-nothing).
 
-Computationally, this method amounts to expressing each population criteria for the composite measure as the union (logical ‘or’ for patient-based measures) of the respective population criteria for each component measure, except for the numerator, which is expressed as the intersection (logical ‘and’ for patient-based measures) of the numerators of the component measures. Note that in this requires that an individual is considered for the numerator only if they meet the denominator, which is accomplished using an `implies` operator in the component measure numerator membership criteria.
+Computationally, this method amounts to expressing each population criteria for the composite measure as the union (logical ‘or’ for subject-based measures) of the respective population criteria for each component measure, except for the numerator, which is expressed as the intersection (logical ‘and’ for subject-based measures) of the numerators of the component measures. Note that in this requires that an individual is considered for the numerator only if they meet the denominator, which is accomplished using an `implies` operator in the component measure numerator membership criteria.
 
 Formally, this means the population criteria for the composite measure are expressed in terms of the population criteria for each component measure, as in:
 
@@ -152,7 +152,7 @@ define "Numerator Exclusion":
     or ComponentMeasure3."Numerator Exclusion"
 ```
 
-Snippet 24: Formal criteria for a patient-based All-or-nothing composite measure
+Snippet 24: Formal criteria for a subject-based All-or-nothing composite measure
 
 Consider this example of a composite that includes a breast cancer screening measure and a colorectal cancer screening measure. For an individual that is male, they are only eligible for the colorectal cancer screening measure, so the fact that they do not appear in the denominator or numerator of the breast cancer screening measure should not remove them from the numerator of the composite measure. Note that this approach is using component measures where the improvement notation for the component is that an increase in the score represents an improvement. If the improvement notation is decreasing for a component, its population criteria would be reversed (i.e. the absence of a patient in the component numerator would represent fulfillment). This will be shown in [Section 5.5](#improvement-notation) below.
 
@@ -334,7 +334,7 @@ define "Measure Population Exclusion":
         and ComponentMeasure2."Denominator Exclusion"
 ```
 
-Snippet 28: Formal criteria for a patient-based linear combination composite measure
+Snippet 28: Formal criteria for a subject-based linear combination composite measure
 
 Note that this approach is using component measures where the improvement notation for the component is that an increase in the score represents an improvement. If the improvement notation is decreasing for a component, its population criteria would be negated (i.e. the absence of a patient in the component numerator would represent fulfillment). This will be shown in [Section 5.5](#improvement-notation) below.
 
@@ -536,12 +536,12 @@ Note that these requirements are about ensuring that the population criteria exp
 {: #conformance-requirement-5-6}
     1. All component measures used within a composite measure SHALL have the same measure subject type
     2. All component measures used within an individual-level composite measure SHALL use the same measure basis, except that
-        a. Patient-based composite measures MAY reference non-patient-based components, but the scoring method
-           will determine how non-patient-based components are included, typically by converting the component
+        a. Subject-based composite measures MAY reference non-subject-based components, but the scoring method
+           will determine how non-subject-based components are included, typically by converting the component
            criteria to a boolean using an exists operation.
     3. Component measures of component-level composite measures MAY have the same measure basis
 
-As with single measures, composite measures may be patient-based, or use some other element as the measure basis such as encounters or procedures. However, individual membership in each component measure of an individual-level composite must be able to be determined on the same basis. This means that when an individual-level composite includes non-individual-based components, criteria for those components must be converted to an individual membership test using an exists operation. Consider the example composites included in this implementation guide. When considering membership of an individual in the criteria of the encounter-based Tobacco Screening and Cessation component measure, the existence of encounters in each population criteria determine the membership of the individual in that criteria. In other words, the encounter-based component is "demoted" to a patient-based measure for inclusion in the composite.
+As with single measures, composite measures may be subject-based, or use some other element as the measure basis such as encounters or procedures. However, individual membership in each component measure of an individual-level composite must be able to be determined on the same basis. This means that when an individual-level composite includes non-individual-based components, criteria for those components must be converted to an individual membership test using an exists operation. Consider the example composites included in this implementation guide. When considering membership of an individual in the criteria of the encounter-based Tobacco Screening and Cessation component measure, the existence of encounters in each population criteria determine the membership of the individual in that criteria. In other words, the encounter-based component is "demoted" to a subject-based measure for inclusion in the composite.
 
 ### Stratification
 {: #stratification}
