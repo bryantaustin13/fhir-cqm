@@ -815,7 +815,7 @@ In addition, the formula for calculating the measure score is implied by the sco
 
 The context of a measure is indicated using the subject element of the FHIR resource.  The subject element will be a reference to a FHIR resource type, specifically including Patient, Location, Organization, Practitioner, and Device as currently specified in the extensible SubjectType binding.  It is important to note that other resource types may be used, but it must be a FHIR resource type. We should also note that although the discussion is focused on Patient as the subject, the discussion applies to other subject types as well.
 
-In addition to the measure scoring, measures generally fall into two categories, patient-based, and non-patient-based. In general, patient-based measures count the number of patients in each population, while non-patient-based measures count the number of items (such as encounters) in each population. Although the calculation formulas are conceptually the same for both categories, for ease of expression, population criteria for patient-based measures indicates whether a patient matches the population criteria (true) or not (false). Non-patient-based measures return the item to be counted such as an encounter or procedure.
+In addition to the measure scoring, measures generally fall into two categories, subject-based, and non-subject-based. In general, subject-based measures count the number of patients in each population, while non-subject-based measures count the number of items (such as encounters) in each population. Although the calculation formulas are conceptually the same for both categories, for ease of expression, population criteria for subject-based measures indicates whether a patient matches the population criteria (true) or not (false). Non-subject-based measures return the item to be counted such as an encounter or procedure.
 
 
 **Conformance Requirement 3.10 (Population Basis):** [<img src="conformance.png" width="20" class="self-link" height="20"/>](#conformance-requirement-3-10)
@@ -829,7 +829,7 @@ In addition to the measure scoring, measures generally fall into two categories,
     b. conform to ALL the profiles specified in `profile`
     c. match ALL the codeFilters specified
 
-Snippet 3-16 illustrates the use of the populationBasis extension for a patient-based measure:
+Snippet 3-16 illustrates the use of the populationBasis extension for a subject-based measure:
 
 ```json
   "extension": [
@@ -840,7 +840,7 @@ Snippet 3-16 illustrates the use of the populationBasis extension for a patient-
   ]
 ```
 
-Snippet 3-16: Population basis for a patient-based measure
+Snippet 3-16: Population basis for a subject-based measure
 
 Snippet 3-17:  illustrates the use of the populationBasis extension with a valueDataRequirement to provide more detailed description of the basis.
 
@@ -863,7 +863,7 @@ Snippet 3-17: Population basis for a patient-based measure with a valueDataRequi
 
 Population basis is usually the same for all the population criteria in a group. However, it can be different for the numerator and denominator criteria in a ratio measure. In this case, each population must use the same basis as the population it derives from (i.e. the numerator and numerator observation must use the same basis as the numerator initial population).
 
-Snippet 3-18 illustrates the use of the populationBasis extension for a non-patient-based measure:
+Snippet 3-18 illustrates the use of the populationBasis extension for an non-subject-based measure:
 
 ```json
   "extension": [
@@ -874,7 +874,7 @@ Snippet 3-18 illustrates the use of the populationBasis extension for a non-pati
   ]
 ```
 
-Snippet 3-18: Population basis for an non-patient-based measure
+Snippet 3-18: Population basis for an non-subject-based measure
 
 Snippet 3-19: illustrates the use of the populationBasis extension for a non-patient-based measure with a valueDataRequirement to provide more detailed description of the basis.
 
@@ -927,7 +927,7 @@ define "Denominator": true
 
 In this variant, the "Denominator" is utilizing the measure dependencies but this dependency is not explicitly expressed in the CQL; this is referred to as an implicit dependency.
 
-If population criteria evaluate to null for a patient-based measure it is interpreted as false. If population criteria evaluate to null for a non-patient-based measure it is interpreted as an empty list.
+If population criteria evaluate to null for a subject-based measure it is interpreted as false. If population criteria evaluate to null for a non-subject-based measure it is interpreted as an empty list.
 
 #### Proportion Measures
 {: #proportion-measures}
@@ -936,28 +936,28 @@ A FHIR Measure resource representing a proportion measure will include one or mo
 
 The semantics of these components are unchanged from the base [Measure]({{site.data.fhir.path}}measure.html) specification; the only difference is that each component references a single criterion encoded as a formal expression.
 
-The referenced expressions return either an indication that a patient meets the population criteria (patient-based measures) or the events that a particular patient contributes to the population (non-patient-based measures). For example, consider two measures:
+The referenced expressions return either an indication that a patient meets the population criteria (subject-based measures) or the events that a particular patient contributes to the population (non-subject-based measures). For example, consider two measures:
 
-**Table 3-2: Patient-based and non-patient-based Measure Examples**
+**Table 3-2: Subject-based and non-subject-based Measure Examples**
 
 | Measure | Denominator | Numerator |
 |:--------|:------------:|:----------:|
-| Patient-based | All patients with condition A that had one or more encounters during the measurement period. | All patients with condition A that underwent procedure B during the measurement period. |
-| Non-patient-based | All diagnostic studies (CT scans) during the measurement period. | Diagnostic studies (CT scans) exceeding radiation dosage thresholds during the measurement period. |
-| Non-patient-based | All encounters where patients have condition A during the measurement period. | All encounters where patients have condition A during the measurement period and procedure B was performed during the encounter. |
+| Subject-based | All patients with condition A that had one or more encounters during the measurement period. | All patients with condition A that underwent procedure B during the measurement period. |
+| Non-subject-based | All diagnostic studies (CT scans) during the measurement period. | Diagnostic studies (CT scans) exceeding radiation dosage thresholds during the measurement period. |
+| Non-subject-based | All encounters where patients have condition A during the measurement period. | All encounters where patients have condition A during the measurement period and procedure B was performed during the encounter. |
 {: .grid}
 
-In Table 3-2, the first measure is an example of a patient-based measure. Each patient may contribute at most one count to the denominator and numerator, regardless of how many encounters they had. The second measure is a non-patient-based measure where each patient may contribute zero or more CT scans to the denominator and numerator counts. The third measure is another non-patient-based measure where each patient may contribute zero or more encounters to the denominator and numerator counts.
+In Table 3-2, the first measure is an example of a subject-based measure. Each patient may contribute at most one count to the denominator and numerator, regardless of how many encounters they had. The second measure is a non-subject-based measure where each patient may contribute zero or more CT scans to the denominator and numerator counts. The third measure is another non-subject-based measure where each patient may contribute zero or more encounters to the denominator and numerator counts.
 
-For complete examples of patient based proportion measures, see the Screening Measure [Examples](examples.html). For a complete example of an non-patient-based proportion measure, see the [EXM108](Measure-EXM108-FHIR.html) measure included in this implementation guide.
+For complete examples of patient based proportion measures, see the Screening Measure [Examples](examples.html). For a complete example of an non-subject-based proportion measure, see the [EXM108](Measure-EXM108-FHIR.html) measure included in this implementation guide.
 
 **Conformance Requirement 3.12 (Proportion Measures):** [<img src="conformance.png" width="20" class="self-link" height="20"/>](#conformance-requirement-3-12)
 {: #conformance-requirement-3-12}
 
 1. Proportion measures SHALL conform to the [CQM Proportion Measure](StructureDefinition-cqm-proportionmeasure.html) profile.
 2. Population criteria SHALL each reference a single expression as defined by [Conformance Requirement 3.8](#conformance-requirement-3-8).
-3. Expressions for patient-based measures SHALL return a Boolean to indicate whether a patient matches the population criteria (true) or not (false).
-4. Expressions for non-patient-based measures SHALL return a List of events of the same type, such as an Encounter or Procedure.
+3. Expressions for subject-based measures SHALL return a Boolean to indicate whether a patient matches the population criteria (true) or not (false).
+4. Expressions for non-subject-based measures SHALL return a List of events of the same type, such as an Encounter or Procedure.
 
 ##### Proportion measure scoring
 {: #proportion-measure-scoring}
@@ -1008,9 +1008,9 @@ Here is an example of using population types to select data on diabetes patients
 * Numerator: Patient is between the age of 16 and 74, has Diabetes Type II, and the most recent laboratory result has hbA1C value > 9%
 * Denominator Exception: Patient meets the Denominator criteria and does NOT meet the Numerator criteria, and is designated as having "Steroid Induced Diabetes" or "Gestational Diabetes"
 
-##### Patient-based Calculation
+##### Subject-based Calculation
 
-Snippet 3-18 provides precise semantics for the measure score calculation for a patient-based proportion measure:
+Snippet 3-18 provides precise semantics for the measure score calculation for a subject-based proportion measure:
 
 ```cql
 context Patient
@@ -1035,11 +1035,11 @@ define "Measure Score":
     / Count("Denominator Membership" IsMember where IsMember is true)
 ```
 
-Snippet 3-18: Patient-based proportion measure calculation semantics
+Snippet 3-18: Subject-based proportion measure calculation semantics
 
-##### Non-patient-based Calculation
+##### Non-subject-based Calculation
 
-Snippet 3-19 provides precise semantics for the measure score calculation for a non-patient-based proportion measure:
+Snippet 3-19 provides precise semantics for the measure score calculation for a non-subject-based proportion measure:
 
 ```cql
 define "Numerator Membership":
@@ -1060,7 +1060,7 @@ define "Measure Score":
     Count("Denominator Membership")
 ```
 
-Snippet 3-19: Non-patient-based proportion measure calculation semantics
+Snippet 3-19: Non-subject-based proportion measure calculation semantics
 
 #### Ratio Measures
 {: #ratio-measures}
@@ -1077,8 +1077,8 @@ The difference between a ratio measure and a proportion measure is that in a pro
 1. Ratio measures SHALL conform to the [CQM Ratio Measure](StructureDefinition-cqm-ratiomeasure.html) profile.
 2. Population criteria SHALL each reference a single expression as defined by [Conformance Requirement 3.8](#conformance-requirement-3-8).
 3. measure-observation criteria SHALL reference expressions as defined by [Conformance Requirement 3.14](#conformance-requirement-3-14), with the exception that instead of a measure-population, the criteriaReference element SHALL reference a numerator or denominator criteria.
-4. Expressions for patient-based criteria SHALL return a Boolean to indicate whether a patient matches the population criteria (true) or not (false).
-5. Expressions for non-patient-based criteria SHALL return a List of events of the same type, such as an Encounter or Procedure.
+4. Expressions for subject-based criteria SHALL return a Boolean to indicate whether a patient matches the population criteria (true) or not (false).
+5. Expressions for non-subject-based criteria SHALL return a List of events of the same type, such as an Encounter or Procedure.
 6. Population basis SHALL be consistent across denominator and numerator criteria:
       * Population basis SHALL be specified on each initial-population criteria if it is different from the population basis for the group or measure.
       * Criteria reference SHALL be specified on denominator, denominator exclusion, numerator, numerator exclusion, and measure observation criteria if the input source is different for the denominator and numerator criteria sets.
@@ -1146,9 +1146,9 @@ Using individual observations for all cases in the Numerator and not in the Nume
 Ratio = aggregate Numerator / aggregate Denominator
 ```
 
-##### Patient-based Calculation
+##### Subject-based Calculation
 
-Snippet 20 provides precise semantics for the measure score calculation for a patient-based ratio measure:
+Snippet 20 provides precise semantics for the measure score calculation for a subject-based ratio measure:
 
 ```cql
 context Patient
@@ -1172,11 +1172,11 @@ define "Measure Ratio Denominator":
   Count("Denominator Membership" IsMember where IsMember is true)
 ```
 
-Snippet 20: Patient-based ratio measure calculation semantics
+Snippet 20: Subject-based ratio measure calculation semantics
 
-##### Non-patient-based Calculation
+##### Non-subject-based Calculation
 
-Snippet 21 provides precise semantics for the measure score calculation for a non-patient-based ratio measure:
+Snippet 21 provides precise semantics for the measure score calculation for a non-subject-based ratio measure:
 
 ```cql
 define "Numerator Membership":
@@ -1198,7 +1198,7 @@ define "Measure Score Denominator":
   Count("Denominator Membership")
 ```
 
-Snippet 21: Non-patient-based ratio measure calculation semantics
+Snippet 21: Non-subject-based ratio measure calculation semantics
 
 #### Continuous Variable Measure
 {: #continuous-variable-measure}
@@ -1312,9 +1312,9 @@ Snippet 3-28: Definition from Snippet 3-23 (Sample CQL (from [EXM55.cql](Library
       b. accept a single argument whose type matches the elements of the list returned by the expression referenced from the criteriaReference extension of the measure-observation criteria
       c. return either an Integer, a Decimal, or a Quantity
 
-For non-patient-based continuous variable measures, the measure observation is defined as a function that takes a single parameter of the type of elements returned by the population criteria. The Initial Population, Measure Population, and Measure Population Exclusion criteria expressions must all return a list of elements of the same type.
+For non-subject-based continuous variable measures, the measure observation is defined as a function that takes a single parameter of the type of elements returned by the population criteria. The Initial Population, Measure Population, and Measure Population Exclusion criteria expressions must all return a list of elements of the same type.
 
-For patient-based continuous variable measures, the measure observation is defined as a function that takes no parameters.
+For subject-based continuous variable measures, the measure observation is defined as a function that takes no parameters.
 
 Note that the criteria reference in the measure observation definition is present to resolve which measure population should be used in the case of multiple populations, but the actual input to the measure observation definition needs to account for population membership (i.e. account for exclusions). In the case of a continuous variable measure with multiple populations, the identifier of the population criteria in the Measure resource is used to ensure that the measure observation definition refers to a unique population criteria.
 
@@ -1384,7 +1384,7 @@ Snippet 3-28: Continuous variable measure scoring semantics
 #### Cohort Definitions
 {: #cohort-definitions}
 
-For cohort definitions, only the Initial Population criteria type is used. For patient-based cohort definitions, the criteria should return a true or false (or null). For other types of cohort definitions, the criteria may return any type.
+For cohort definitions, only the Initial Population criteria type is used. For subject-based cohort definitions, the criteria should return a true or false (or null). For other types of cohort definitions, the criteria may return any type.
 
 In a cohort measure, a population is identified from the population of all items being counted. For example, one might identify all the patients who have had H1N1 symptoms. The identified population is very similar to the Initial Population but is called a Cohort Population for public health purposes. In the Constrained Information Model (CIM), the population will be expressed using the InitialPopulationCriteria act. The Cohort Population result is used by public health agencies to trigger specific public health activities. The following diagram depicts the population for a Cohort measure and the table below provides its definition.
 
@@ -1491,9 +1491,9 @@ define "Gender Stratification":
 
 Snippet 3-31: Example of stratification by gender
 
-If component stratifiers are used and the component expressions return the same type as other population criteria expressions in the measure, population semantics are applied to determine the stratifier population (i.e. true/false for patient-based measures, intersection of events for non-patient-based measures). If component stratifiers are used and the component expressions return the stratum value, the combination of the component values are considered the stratum value.
+If component stratifiers are used and the component expressions return the same type as other population criteria expressions in the measure, population semantics are applied to determine the stratifier population (i.e. true/false for subject-based measures, intersection of events for non-subject-based measures). If component stratifiers are used and the component expressions return the stratum value, the combination of the component values are considered the stratum value.
 
-For example, given the following two component stratifier expressions in a patient-based measure:
+For example, given the following two component stratifier expressions in a subject-based measure:
 
 ```cql
 define "Gender Stratification":
@@ -1561,7 +1561,7 @@ Snippet 3-34: Example Supplemental Data Element from [Library-SupplementalDataEl
 
 With CQL, supplemental data elements are specified using the same mechanism as any other population criteria, by defining an expression that returns the appropriate data element, and then identifying that expression within the Measure resource. Examples of the Measure resource and CQL are given in Snippet 3-33 and Snippet 3-34, respectively.
 
-By convention, the name of each supplemental data element expression should start with "SDE". The supplemental data element expressions are normally expected to return a single value when evaluated in the context of a member of the population. For example, patient-based measures would return the value of a supplemental data element for a given patient. However, there are cases where returning multiple elements for supplemental data is useful. For example, collecting observations related to a particular condition. The intent of this conformance requirement is to simplify implementation of supplemental data collection, so care should be taken when using supplemental data elements that return multiple elements.
+By convention, the name of each supplemental data element expression should start with "SDE". The supplemental data element expressions are normally expected to return a single value when evaluated in the context of a member of the population. For example, subject-based measures would return the value of a supplemental data element for a given patient. However, there are cases where returning multiple elements for supplemental data is useful. For example, collecting observations related to a particular condition. The intent of this conformance requirement is to simplify implementation of supplemental data collection, so care should be taken when using supplemental data elements that return multiple elements.
 
 #### Risk Adjustment
 {: #risk-adjustment}
