@@ -2,18 +2,8 @@
 
 {:toc}
 
-{:.stu-note}
->  This STU 1.0.0 ballot updates the Quality Measure IG, moving it from the US Realm to the Universal Realm. The US realm is still available [here.](https://hl7.org/fhir/us/cqfmeasures/index.html) 
-
-Where possible, new and updated content are highlighted with green text and background
-{: .new-content}
-
-<div markdown="1" class="bg-info">
-
-{{ site.data.package-list.list[0].desc }}
-
-</div>
-
+{: .stu-note}
+>  This implementation guide is the Universal Realm successor of the US-based [Quality Measure IG STU 5](http://hl7.org/fhir/us/cqfmeasures), and incorporates stakeholder feedback and implementation experience from that specification. 
 
 ## Quality Measure Implementation Guide
 {: #quality-measure-implementation-guide}
