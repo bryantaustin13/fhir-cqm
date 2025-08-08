@@ -6,8 +6,8 @@
   <li><a href="composite-measures.html" class="item">Composites</a></li>
   <li><a href="packaging.html" class="item">Packaging</a></li>
   <li class="dropdown">
-    <a data-toggle="dropdown" href="#" class="dropdown-toggle">FHIR Artifacts
-      <b class="caret"></b>
+    <a data-toggle="dropdown" href="#" class="dropdown-toggle">FHIR Artifacts<b class="caret">
+      </b>
     </a>
     <ul class="dropdown-menu">
       <li><a href="profiles.html" class="item">Profiles</a></li>
@@ -22,7 +22,7 @@
   <li><a href="glossary.html" class="item">Glossary</a></li>
   <li class="dropdown">
     <a data-toggle="dropdown" href="#" class="dropdown-toggle">Support<b class="caret">
-      <b class="caret"></b>
+      </b>
     </a>
     <ul class="dropdown-menu">
       <li><a target="_blank" href="{{site.data.fhir.path}}index.html">FHIR Spec</a></li>
@@ -39,7 +39,7 @@
   </li>
   <li class="dropdown">
     <a data-toggle="dropdown" href="#" class="dropdown-toggle">Changes<b class="caret">
-      <b class="caret"></b>
+      </b>
     </a>
     <ul class="dropdown-menu">
       <li><a href="changes.html">Changes</a></li>
