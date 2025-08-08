@@ -1,0 +1,102 @@
+<Measure xmlns="http://hl7.org/fhir">
+   <id value="PreventiveCareandWellnessPatientLevelLinearComposite"></id>
+   <meta>
+      <profile value="http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-compositemeasure"></profile>
+      <profile value="http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-shareablemeasure"></profile>
+   </meta>
+   <language value="en"></language>
+   <extension url="http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-softwaresystem">
+      <valueReference>
+         <reference value="Device/cqf-tooling"></reference>
+      </valueReference>
+   </extension>
+   <url value="http://hl7.org/fhir/uv/cqm/Measure/PreventiveCareandWellnessPatientLevelLinearComposite"></url>
+   <version value="0.0.001"></version>
+   <name value="PreventiveCareandWellnessPatientLevelLinearComposite"></name>
+   <title value="Preventive Care and Wellness Patient-level Linear Composite"></title>
+   <status value="active"></status>
+   <experimental value="true"></experimental>
+   <publisher value="National Committee for Quality Assurance"></publisher>
+   <description value="This artifact is an example of a patient-level linear composite measure that uses a mixture of single-rate or multi-rate component measures that have different measure bases."></description>
+   <useContext>
+      <code>
+         <system value="http://terminology.hl7.org/CodeSystem/usage-context-type"></system>
+         <code value="venue"></code>
+         <display value="Clinical Venue"></display>
+      </code>
+      <valueCodeableConcept>
+         <coding>
+            <system value="http://hl7.org/fhir/uv/cqm/CodeSystem/intended-venue-codes"></system>
+            <code value="ec"></code>
+            <display value="EC"></display>
+         </coding>
+      </valueCodeableConcept>
+   </useContext>
+   <effectivePeriod>
+      <start value="2022-01-01"></start>
+      <end value="2022-12-31"></end>
+   </effectivePeriod>
+   <relatedArtifact>
+      <type value="composed-of"></type>
+      <display value="Breast Cancer Screening"></display>
+      <resource value="http://hl7.org/fhir/uv/cqm/Measure/BCSComponent"></resource>
+   </relatedArtifact>
+   <relatedArtifact>
+      <type value="composed-of"></type>
+      <display value="High Blood Pressure Screening"></display>
+      <resource value="http://hl7.org/fhir/uv/cqm/Measure/HBPComponent"></resource>
+   </relatedArtifact>
+   <relatedArtifact>
+      <type value="composed-of"></type>
+      <display value="Colorectal Cancer Screening"></display>
+      <resource value="http://hl7.org/fhir/uv/cqm/Measure/CCSComponent"></resource>
+   </relatedArtifact>
+   <relatedArtifact>
+      <type value="composed-of"></type>
+      <display value="Pneumococcal Vaccination Status"></display>
+      <resource value="http://hl7.org/fhir/uv/cqm/Measure/PVSComponent"></resource>
+   </relatedArtifact>
+   <relatedArtifact>
+      <extension url="http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-groupId">
+         <valueString value="group-1"></valueString>
+      </extension>
+      <type value="composed-of"></type>
+      <display value="Tobacco Use Screening and Cessation, Group 1"></display>
+      <resource value="http://hl7.org/fhir/uv/cqm/Measure/TSCComponent"></resource>
+   </relatedArtifact>
+   <relatedArtifact>
+      <extension url="http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-groupId">
+         <valueString value="group-2"></valueString>
+      </extension>
+      <type value="composed-of"></type>
+      <display value="Tobacco Use Screening and Cessation, Group 2"></display>
+      <resource value="http://hl7.org/fhir/uv/cqm/Measure/TSCComponent"></resource>
+   </relatedArtifact>
+   <scoring>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/measure-scoring"></system>
+         <code value="composite"></code>
+         <display value="Composite"></display>
+      </coding>
+   </scoring>
+   <compositeScoring>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/composite-measure-scoring"></system>
+         <code value="linear"></code>
+         <display value="Linear"></display>
+      </coding>
+   </compositeScoring>
+   <type>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/measure-type"></system>
+         <code value="process"></code>
+         <display value="Process"></display>
+      </coding>
+   </type>
+   <improvementNotation>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/measure-improvement-notation"></system>
+         <code value="increase"></code>
+      </coding>
+   </improvementNotation>
+</Measure>

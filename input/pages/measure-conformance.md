@@ -9,7 +9,7 @@ In FHIR, a Quality Measure (QM) is represented as a [Measure](http://hl7.org/fhi
     <start value="2018-01-01"/>
     <end value="2018-12-31"/>
   </effectivePeriod>
-  <library value="http://hl7.org/fhir/uv/cqm/Library/EXMLogic-FHIR"/>
+  <library value="http://hl7.org/fhir/uv/cqm/Library/EXMLogic"/>
   <group>
     <population>
       <code>
@@ -90,14 +90,14 @@ For measures that make use of CQL, any included CQL library must contain a libra
 library EXM146 version '4.0.0'
 ```
 
-Snippet 3-2: Library declaration line from [EXM146.cql](Library-EXM146-FHIR.html#cql-content)
+Snippet 3-2: Library declaration line from [EXM146.cql](Library-EXM146.html#cql-content)
 
 When using multiple CQL libraries to define a measure, refer to the [Nested Libraries]({{site.data.fhir.ver.cql}}/using-cql.html#nested-libraries) section of the [Using CQL](using-cql.html) topic of this guide.
 
 Inclusion of CQL in a FHIR QM is accomplished through the use of a FHIR Library resource as shown in Snippet 3-4. These libraries are then incorporated into the FHIR QM using the `library` element of the Measure (Snippet 3). CQL library content is encoded as `base64` and included as the `content` element of the Library resource.
 
 ```xml
-<library value="http://hl7.org/fhir/uv/cqm/Library/EXMLogic-FHIR"/>
+<library value="http://hl7.org/fhir/uv/cqm/Library/EXMLogic"/>
 ```
 Snippet 3-3: `library` element from Snippet 3-1
 
@@ -112,13 +112,13 @@ Snippet 3-4 illustrates a FHIR Library resource containing a CQL library with a 
 ```json
 {
   "resourceType": "Library",
-  "id": "exm-146",
+  "id": "EXM146",
   "meta": {
     "profile": [
       "http://hl7.org/fhir/uv/cql/StructureDefinition/cql-library"
     ]
   },
-  "url": "http://hl7.org/fhir/uv/cqm/Library/exm-146",
+  "url": "http://hl7.org/fhir/uv/cqm/Library/EXM146",
   "identifier": [
     {
       "use": "official",
@@ -184,19 +184,19 @@ Snippet 3-4 illustrates a FHIR Library resource containing a CQL library with a 
   "relatedArtifact": [
     {
       "type": "depends-on",
-      "resource": "http://hl7.org/fhir/Library/FHIR-ModelInfo|4.0.1"
+      "resource": "http://hl7.org/uv/cql/fhir/Library/FHIR-ModelInfo|4.0.1"
     },
     {
       "type": "depends-on",
-      "resource": "http://hl7.org/fhir/Library/FHIRHelpers|4.0.1"
+      "resource": "http://hl7.org/fhir/uv/cql/Library/FHIRHelpers|4.0.1"
     },
     {
       "type": "depends-on",
-      "resource": "http://hl7.org/fhir/Library/Common|2.0.0"
+      "resource": "http://hl7.org/fhir/uv/cqm/Library/Common|2.0.0"
     },
     {
       "type": "depends-on",
-      "resource": "http://somewhere.org/fhir/uv/mycontentig/Library/MATGlobalCommonFunctions|5.0.000"
+      "resource": "http://hl7.org/fhir/uv/cqm/Library/MATGlobalCommonFunctions|5.0.000"
     },
     {
       "type": "depends-on",
@@ -391,7 +391,7 @@ Snippet 3-4 illustrates a FHIR Library resource containing a CQL library with a 
 }
 ```
 
-Snippet 3-4: Example CQL Library (from [library-EXM146.json](Library-EXM146-FHIR.html#cql-content))
+Snippet 3-4: Example CQL Library (from [library-EXM146.json](Library-EXM146.html#cql-content))
 
 Inclusion of CQL libraries within the FHIR-based QM framework must conform to [Conformance Requirement 3.2](#conformance-requirement-3-2).
 
@@ -435,7 +435,7 @@ For measures that use CQL, the value of the "Measurement Period" control variabl
 parameter "Measurement Period" Interval<DateTime>
 ```
 
-Snippet 3-6: CQL declaration of the measurement period parameter (from [EXM146.cql](Library-EXM146-FHIR.html#cql-content))
+Snippet 3-6: CQL declaration of the measurement period parameter (from [EXM146.cql](Library-EXM146.html#cql-content))
 
 Rather than specifying a static effective period, implementations may specify the effective period using a start date and a reporting period duration.
 
@@ -472,7 +472,7 @@ This section describes how to use codes and valuesets from codesystems like LOIN
 
 When terminology artifacts are defined and distributed as part of quality measure content, guidance provided as part of the [Canonical Resource Management Infrastructure IG]({{site.data.fhir.ver.crmi}}/packaging.html#artifact-terminology) should be followed.
 
-When using CQL to represent measure criteria, valuesets and direct-reference codes used by the expressions are declared in the header section of the CQL using the CQL valueset and code constructs. Examples of code system, valueset, and code declarations can be seen in the accompanying [CommonTerminologies.cql](Library-CommonTerminologies.html#cql-content) and [Terminology.cql](Library-Terminology-FHIR.html#cql-content).
+When using CQL to represent measure criteria, valuesets and direct-reference codes used by the expressions are declared in the header section of the CQL using the CQL valueset and code constructs. Examples of code system, valueset, and code declarations can be seen in the accompanying [CommonTerminologies.cql](Library-CommonTerminologies.html#cql-content) and [Terminology.cql](Library-Terminology.html#cql-content).
 
 
 ```cql
@@ -520,7 +520,7 @@ For measures that use CQL, valuesets and direct-reference codes that are associa
 ]
 ```
 
-Snippet 3-9: Example Library terminology definitions (from [library-Terminology.json](Library-Terminology-FHIR.json.html))
+Snippet 3-9: Example Library terminology definitions (from [library-Terminology.json](Library-Terminology.json.html))
 
 Regardless of whether a measure uses CQL, all valuesets and direct-reference codes referenced by the measure are surfaced in the [_effective data requirements_](StructureDefinition-cqm-computablemeasure-definitions.html#diff_Measure.extension:effectiveDataRequirements) library for a computable measure. 
 
@@ -576,7 +576,7 @@ The data criteria section defines the patient data of interest for the measure a
 ]
 ```
 
-Snippet 3-11: Example data criteria (from [library-Terminology.json](Library-Terminology-FHIR.json.html))
+Snippet 3-11: Example data criteria (from [library-Terminology.json](Library-Terminology.json.html))
 
 **Conformance Requirement 3.6 (Data Criteria Inclusion):**[<img src="conformance.png" width="20" class="self-link" height="20"/>](#conformance-requirement-3-6)
 {: #conformance-requirement-3-6}
@@ -658,7 +658,7 @@ Snippet 3-12: ELM data reference for Condition: Acute Pharyngitis (from [EXM146_
 }
 ```
 
-Snippet 3-13: dataRequirement for Condition: Acute Pharyngitis (from [library-EXM146.json](Library-EXM146-FHIR.xml.html))
+Snippet 3-13: dataRequirement for Condition: Acute Pharyngitis (from [library-EXM146.json](Library-EXM146.xml.html))
 
 ### Population Criteria
 {: #population-criteria}
@@ -756,7 +756,7 @@ define "Initial Population":
    "Pharyngitis Encounters With Antibiotics"
 ```
 
-Snippet 3-16: CQL definition of the "Initial Population" criteria (from [EXM146.cql](Library-EXM146-FHIR.html#cql-content))
+Snippet 3-16: CQL definition of the "Initial Population" criteria (from [EXM146.cql](Library-EXM146.html#cql-content))
 
 **Conformance Requirement 3.8 (Referential Integrity):** [<img src="conformance.png" width="20" class="self-link" height="20"/>](#conformance-requirement-3-8)
 {: #conformance-requirement-3-8}
@@ -1264,7 +1264,7 @@ define function "Measure Observation" (encounter Encounter):
   duration in minutes of "Related ED Visit"(encounter).period
 ```
 
-Snippet 3-23: Sample CQL (from [EXM55.cql](Library-EXM55-FHIR.html#cql-content)) for a continuous-variable measure
+Snippet 3-23: Sample CQL (from [EXM55.cql](Library-EXM55.html#cql-content)) for a continuous-variable measure
 
 In the example shown in Snippet 3-22 and Snippet 3-23: the measure reports the aggregate type (Snippet 3-24) of the result of executing the "Measure Observation" function (Snippet 3-25, Snippet 3-26) on each of the events in the measure population, as determined by the “Measure Population” expression (Snippet 3-27, and Snippet 3-28).
 
@@ -1285,7 +1285,7 @@ Snippet 3-25: "Measure Observation" function in Snippet 3-22 (Sample measure obs
 ```cql
 define function "Measure Observation" (encounter Encounter):
 ```
-Snippet 3-26: "Measure Observation" function in Snippet 3-23 (Sample CQL (from [EXM55.cql](Library-EXM55-FHIR.html#cql-content)) for a continuous-variable measure)
+Snippet 3-26: "Measure Observation" function in Snippet 3-23 (Sample CQL (from [EXM55.cql](Library-EXM55.html#cql-content)) for a continuous-variable measure)
 
 ```json
 {
@@ -1298,7 +1298,7 @@ Snippet 3-27: Identifier referenced in Snippet 3-22 (Sample measure observation 
 ```cql
 define "Measure Population":
 ```
-Snippet 3-28: Definition from Snippet 3-23 (Sample CQL (from [EXM55.cql](Library-EXM55-FHIR.html#cql-content)) for a continuous-variable measure)
+Snippet 3-28: Definition from Snippet 3-23 (Sample CQL (from [EXM55.cql](Library-EXM55.html#cql-content)) for a continuous-variable measure)
 
 **Conformance Requirement 3.14 (Continuous Variable Measures):** [<img src="conformance.png" width="20" class="self-link" height="20"/>](#conformance-requirement-3-14)
 {: #conformance-requirement-3-14}
@@ -1480,7 +1480,7 @@ define "Stratification 1":
     where not (PrincipalDiagnosis(Encounter).code in "Psychiatric/Mental Health Patient")
 ```
 
-Snippet 3-30: Example Stratifier from [EXM55.cql](Library-EXM55-FHIR.html#cql-content)
+Snippet 3-30: Example Stratifier from [EXM55.cql](Library-EXM55.html#cql-content)
 
 Alternatively, the stratifier expression may return the actual stratum value:
 
@@ -1597,7 +1597,7 @@ Measures may define variables used to adjust scores based on a measure of “ris
 ]
 ```
 
-Snippet 3-35: Sample Risk Adjustment Data from [EXMRiskAdjustment_FHIR.xml](Measure-measure-risk-adjustment-FHIR2.xml.html)
+Snippet 3-35: Sample Risk Adjustment Data
 
 ```cql
 define "Hepatic Failure":
@@ -1606,9 +1606,7 @@ define "Hepatic Failure":
     and exists ("Serum Albumin Test")
 ```
 
-Snippet 3-36: Sample Risk Adjustment data from [EXMRiskAdjustment_FHIR2.cql](Library-risk-adjustment-FHIR2.html#cql-content)                                                
-
-An example of risk adjustment can be found in the included [examples](Measure-measure-risk-adjustment-FHIR2.html); the relevant sections of the FHIR Measure (Snippet 3-35) and CQL (Snippet 3-36) have been included.
+Snippet 3-36: Sample Risk Adjustment data
 
 ### Manifest
 {: #manifest}

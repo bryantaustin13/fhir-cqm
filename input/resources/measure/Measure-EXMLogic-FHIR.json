@@ -1,0 +1,758 @@
+{
+  "resourceType": "Measure",
+  "id": "EXMLogic-FHIR",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-proportionmeasure", "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-computablemeasure", "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-executablemeasure", "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-cqlmeasure", "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-elmmeasure", "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-computablemeasure" ]
+  },
+  "contained": [ {
+    "resourceType": "Library",
+    "id": "effective-data-requirements-exmlogic",
+    "extension": [ {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-directReferenceCode",
+      "valueCoding": {
+        "system": "http://terminology.hl7.org/CodeSystem/diagnosis-role",
+        "code": "billing",
+        "display": "Billing"
+      }
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "EXMLogic"
+      }, {
+        "url": "name",
+        "valueString": "SDE Sex"
+      }, {
+        "url": "statement",
+        "valueString": "define \"SDE Sex\":\n  case\n    when Patient.gender = 'male' then Code { code: 'M', system: 'http://hl7.org/fhir/v3/AdministrativeGender', display: 'Male' }\n    when Patient.gender = 'female' then Code { code: 'F', system: 'http://hl7.org/fhir/v3/AdministrativeGender', display: 'Female' }\n    else null\n  end"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 0
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "EXMLogic"
+      }, {
+        "url": "name",
+        "valueString": "Inpatient Encounter"
+      }, {
+        "url": "statement",
+        "valueString": "define \"Inpatient Encounter\" :\n  [\"Encounter\"] Encounter\n    where LengthInDays(Encounter.period) <= 120\n      and Encounter.period ends during \"Measurement Period\""
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 1
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "EXMLogic"
+      }, {
+        "url": "name",
+        "valueString": "Stratifier 3"
+      }, {
+        "url": "statement",
+        "valueString": "define \"Stratifier 3\" :\n  \"Inpatient Encounter\" Encounter\n    where PrincipalDiagnosis(Encounter) is null"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 2
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "EXMLogic"
+      }, {
+        "url": "name",
+        "valueString": "Stratifier 4"
+      }, {
+        "url": "statement",
+        "valueString": "define \"Stratifier 4\" :\n  \"Inpatient Encounter\" Encounter\n    where PrincipalDiagnosis(Encounter) is null"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 3
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "EXMLogic"
+      }, {
+        "url": "name",
+        "valueString": "SDE Payer"
+      }, {
+        "url": "statement",
+        "valueString": "define \"SDE Payer\":\n    [Coverage: type in \"Payer\"] Payer\n      return {\n        code: Payer.type,\n        period: Payer.period\n      }"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 4
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "EXMLogic"
+      }, {
+        "url": "name",
+        "valueString": "Initial Population"
+      }, {
+        "url": "statement",
+        "valueString": "define \"Initial Population\" :\n  \"Inpatient Encounter\" Encounter"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 5
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "EXMLogic"
+      }, {
+        "url": "name",
+        "valueString": "SDE Ethnicity"
+      }, {
+        "url": "statement",
+        "valueString": "define \"SDE Ethnicity\":\n  (flatten (\n    Patient.extension Extension\n      where Extension.url = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity'\n        return Extension.extension\n  )) E\n    where E.url = 'ombCategory'\n      or E.url = 'detailed'\n    return E.value as Coding"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 6
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "EXMLogic"
+      }, {
+        "url": "name",
+        "valueString": "SDE Race"
+      }, {
+        "url": "statement",
+        "valueString": "define \"SDE Race\":\n  (flatten (\n    Patient.extension Extension\n      where Extension.url = 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race'\n        return Extension.extension\n  )) E\n    where E.url = 'ombCategory'\n      or E.url = 'detailed'\n    return E.value as Coding"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 7
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "EXMLogic"
+      }, {
+        "url": "name",
+        "valueString": "Stratifier 1"
+      }, {
+        "url": "statement",
+        "valueString": "define \"Stratifier 1\" :\n  \"Inpatient Encounter\" Encounter\n    where not (PrincipalDiagnosis(Encounter).code in \"Psychiatric/Mental Health Patient\")"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 8
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "EXMLogic"
+      }, {
+        "url": "name",
+        "valueString": "Stratifier 2"
+      }, {
+        "url": "statement",
+        "valueString": "define \"Stratifier 2\" :\n  \"Inpatient Encounter\" Encounter\n    where PrincipalDiagnosis(Encounter).code in \"Psychiatric/Mental Health Patient\""
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 9
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToString"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToString(value AdministrativeGender): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 10
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "EXMLogic"
+      }, {
+        "url": "name",
+        "valueString": "LengthInDays"
+      }, {
+        "url": "statement",
+        "valueString": "define function \"LengthInDays\"(Value Interval<DateTime>):\n\tdifference in days between start of Value and end of Value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 11
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToInterval"
+      }, {
+        "url": "statement",
+        "valueString": "/*\n@description: Converts the given [Period](https://hl7.org/fhir/datatypes.html#Period)\nvalue to a CQL DateTime Interval\n@comment: If the start value of the given period is unspecified, the starting\nboundary of the resulting interval will be open (meaning the start of the interval\nis unknown, as opposed to interpreted as the beginning of time).\n*/\ndefine function ToInterval(period FHIR.Period):\n    if period is null then\n        null\n    else\n        if period.\"start\" is null then\n            Interval(period.\"start\".value, period.\"end\".value]\n        else\n            Interval[period.\"start\".value, period.\"end\".value]"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 12
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "EXMLogic"
+      }, {
+        "url": "name",
+        "valueString": "PrincipalDiagnosis"
+      }, {
+        "url": "statement",
+        "valueString": "define function \"PrincipalDiagnosis\"(Encounter Encounter):\n\t(singleton from (Encounter.diagnosis D where D.use ~ ToConcept(\"Billing\") and D.rank.value = 1)) PD\n\t\treturn singleton from ([Condition: id in \"GetId\"(PD.condition.reference)])"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 13
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToConcept"
+      }, {
+        "url": "statement",
+        "valueString": "/*\n@description: Converts the given FHIR [CodeableConcept](https://hl7.org/fhir/datatypes.html#CodeableConcept) value to a CQL Concept.\n*/\ndefine function ToConcept(concept FHIR.CodeableConcept):\n    if concept is null then\n        null\n    else\n        System.Concept {\n            codes: concept.coding C return ToCode(C),\n            display: concept.text.value\n        }"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 14
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToCode"
+      }, {
+        "url": "statement",
+        "valueString": "/*\n@description: Converts the given FHIR [Coding](https://hl7.org/fhir/datatypes.html#Coding) value to a CQL Code.\n*/\ndefine function ToCode(coding FHIR.Coding):\n    if coding is null then\n        null\n    else\n        System.Code {\n          code: coding.code.value,\n          system: coding.system.value,\n          version: coding.version.value,\n          display: coding.display.value\n        }"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 15
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "EXMLogic"
+      }, {
+        "url": "name",
+        "valueString": "GetId"
+      }, {
+        "url": "statement",
+        "valueString": "define function \"GetId\"(uri String):\n\tLast(Split(uri, '/'))"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 16
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToString"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToString(value string): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 17
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToString"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToString(value uri): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 18
+      } ]
+    } ],
+    "name": "EffectiveDataRequirements",
+    "status": "active",
+    "type": {
+      "coding": [ {
+        "system": "http://terminology.hl7.org/CodeSystem/library-type",
+        "code": "module-definition"
+      } ]
+    },
+    "relatedArtifact": [ {
+      "type": "depends-on",
+      "display": "Library FHIRHelpers",
+      "resource": "http://hl7.org/fhir/uv/cql/Library/FHIRHelpers|4.0.1"
+    }, {
+      "type": "depends-on",
+      "display": "Code system Diagnosis Role",
+      "resource": "http://terminology.hl7.org/CodeSystem/diagnosis-role"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Payer",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591"
+    }, {
+      "type": "depends-on",
+      "display": "Value set Psychiatric/Mental Health Patient",
+      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.299"
+    } ],
+    "parameter": [ {
+      "name": "Measurement Period",
+      "use": "in",
+      "min": 0,
+      "max": "1",
+      "type": "Period"
+    }, {
+      "name": "SDE Sex",
+      "use": "out",
+      "min": 0,
+      "max": "1",
+      "type": "Coding"
+    }, {
+      "name": "Stratifier 3",
+      "use": "out",
+      "min": 0,
+      "max": "*",
+      "type": "Encounter"
+    }, {
+      "name": "Stratifier 4",
+      "use": "out",
+      "min": 0,
+      "max": "*",
+      "type": "Encounter"
+    }, {
+      "name": "SDE Payer",
+      "use": "out",
+      "min": 0,
+      "max": "*",
+      "type": "Resource"
+    }, {
+      "name": "Initial Population",
+      "use": "out",
+      "min": 0,
+      "max": "*",
+      "type": "Encounter"
+    }, {
+      "name": "SDE Ethnicity",
+      "use": "out",
+      "min": 0,
+      "max": "*",
+      "type": "Coding"
+    }, {
+      "name": "SDE Race",
+      "use": "out",
+      "min": 0,
+      "max": "*",
+      "type": "Coding"
+    }, {
+      "name": "Stratifier 1",
+      "use": "out",
+      "min": 0,
+      "max": "*",
+      "type": "Encounter"
+    }, {
+      "name": "Stratifier 2",
+      "use": "out",
+      "min": 0,
+      "max": "*",
+      "type": "Encounter"
+    } ],
+    "dataRequirement": [ {
+      "type": "Patient",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Patient" ],
+      "mustSupport": [ "url", "extension", "value" ]
+    }, {
+      "type": "Encounter",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Encounter" ],
+      "mustSupport": [ "period", "use", "rank", "rank.value", "condition", "condition.reference" ]
+    }, {
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Condition" ],
+      "mustSupport": [ "id" ],
+      "codeFilter": [ {
+        "path": "id"
+      } ]
+    }, {
+      "type": "Coverage",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Coverage" ],
+      "mustSupport": [ "type", "period" ],
+      "codeFilter": [ {
+        "path": "type",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591"
+      } ]
+    } ]
+  } ],
+  "extension": [ {
+    "url": "http://hl7.org/fhir/StructureDefinition/cqf-artifactComment",
+    "extension": [ {
+      "url": "type",
+      "valueCode": "documentation"
+    }, {
+      "url": "text",
+      "valueMarkdown": "This illustrates an example comment"
+    } ]
+  }, {
+    "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
+    "valueCode": "Encounter"
+  }, {
+    "url": "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-softwaresystem",
+    "valueReference": {
+      "reference": "Device/software-system-example"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-effectiveDataRequirements",
+    "valueCanonical": "#effective-data-requirements-exmlogic"
+  }, {
+    "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoringPrecision",
+    "valuePositiveInt": 2
+  } ],
+  "url": "http://hl7.org/fhir/uv/cqm/Measure/EXMLogic-FHIR",
+  "identifier": [ {
+    "system": "http://example.org/fhir/cqi/ecqm/Measure/Identifier/exm",
+    "value": "EXM"
+  } ],
+  "version": "2.0.0",
+  "name": "MeasureEXM",
+  "title": "EXM Measure",
+  "status": "active",
+  "experimental": true,
+  "date": "2025-08-07",
+  "publisher": "Clinical Quality Information WG",
+  "contact": [ {
+    "telecom": [ {
+      "system": "url",
+      "value": "http://www.hl7.org/Special/committees/cqi"
+    } ]
+  } ],
+  "description": "An example FHIR-based measure",
+  "useContext": [ {
+    "code": {
+      "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+      "code": "venue",
+      "display": "Clinical Venue"
+    },
+    "valueCodeableConcept": {
+      "coding": [ {
+        "system": "http://hl7.org/fhir/uv/cqm/CodeSystem/intended-venue-codes",
+        "code": "ec",
+        "display": "EC"
+      } ]
+    }
+  } ],
+  "jurisdiction": [ {
+    "coding": [ {
+      "system": "urn:iso:std:iso:3166",
+      "code": "US"
+    } ]
+  } ],
+  "purpose": "This measure has been developed to support improvement in clinical care.",
+  "usage": "Users of this measure should be aware that this is intentionally simplified to show specific aspects of a measure.",
+  "copyright": "Example Copyright Statement",
+  "approvalDate": "2019-02-17",
+  "lastReviewDate": "2019-02-17",
+  "effectivePeriod": {
+    "extension": [ {
+      "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-effectivePeriodAnchor",
+      "valueDateTime": "2018-01-01"
+    }, {
+      "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-effectivePeriodDuration",
+      "valueDuration": {
+        "value": 1,
+        "system": "http://unitsofmeasure.org",
+        "code": "a"
+      }
+    } ],
+    "start": "2018-01-01",
+    "end": "2018-12-31"
+  },
+  "topic": [ {
+    "coding": [ {
+      "system": "http://loinc.org",
+      "code": "57024-2"
+    } ],
+    "text": "Health Quality Measure Document"
+  } ],
+  "author": [ {
+    "name": "Example Measure Content Developer"
+  } ],
+  "library": [ "http://hl7.org/fhir/uv/cqm/Library/EXMLogic" ],
+  "disclaimer": "Example disclaimer",
+  "scoring": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/measure-scoring",
+      "code": "proportion",
+      "display": "Proportion"
+    } ]
+  },
+  "type": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/measure-type",
+      "code": "process"
+    } ]
+  } ],
+  "riskAdjustment": "Risk adjustment for this measure is performed by...",
+  "rateAggregation": "Rate aggregation for this measure is performed by...",
+  "rationale": "The purpose of this measure is to show how all the elements of a FHIR-based quality measure are represented.",
+  "clinicalRecommendationStatement": "The clinical recommendation statement for this measure is...",
+  "improvementNotation": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/measure-improvement-notation",
+      "code": "increase",
+      "display": "Increased score indicates improvement"
+    } ]
+  },
+  "guidance": "Additional guidance provided to help communicate the intent of the measure",
+  "group": [ {
+    "id": "group-1",
+    "extension": [ {
+      "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.linkId",
+      "valueString": "primary"
+    } ],
+    "code": {
+      "coding": [ {
+        "system": "http://example.org/group",
+        "code": "group",
+        "display": "group-1"
+      } ]
+    },
+    "population": [ {
+      "id": "initial-population-1",
+      "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+        "valueString": "primary-exmlogic-initial-population"
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "Initial Population"
+      }
+    }, {
+      "id": "numerator",
+      "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+        "valueString": "primary-exmlogic-numerator"
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "Numerator"
+      }
+    }, {
+      "id": "denominator",
+      "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+        "valueString": "primary-exmlogic-denominator"
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "Denominator"
+      }
+    } ],
+    "stratifier": [ {
+      "id": "stratifier-1",
+      "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.stratifier.linkId",
+        "valueString": "primary-exmlogic-stratification-1"
+      }, {
+        "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-appliesTo",
+        "valueCodeableConcept": {
+          "coding": [ {
+            "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+            "code": "initial-population",
+            "display": "Initial Population"
+          } ],
+          "text": "initial-population"
+        }
+      } ],
+      "code": {
+        "text": "Stratifier 1"
+      },
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "Stratifier 1"
+      }
+    }, {
+      "id": "stratifier-2",
+      "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.stratifier.linkId",
+        "valueString": "primary-exmlogic-stratification-2"
+      }, {
+        "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-appliesTo",
+        "valueCodeableConcept": {
+          "coding": [ {
+            "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+            "code": "initial-population",
+            "display": "Initial Population"
+          } ],
+          "text": "initial-population"
+        }
+      } ],
+      "code": {
+        "text": "Stratifier 2"
+      },
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "Stratifier 2"
+      }
+    }, {
+      "id": "stratifier-3",
+      "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.stratifier.linkId",
+        "valueString": "primary-exmlogic-stratification-3"
+      }, {
+        "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-appliesTo",
+        "valueCodeableConcept": {
+          "coding": [ {
+            "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+            "code": "initial-population",
+            "display": "Initial Population"
+          } ],
+          "text": "initial-population"
+        }
+      } ],
+      "code": {
+        "text": "Stratifier 3"
+      },
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "Stratifier 3"
+      }
+    }, {
+      "id": "stratifier-4",
+      "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.stratifier.linkId",
+        "valueString": "primary-exmlogic-stratification-4"
+      }, {
+        "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-appliesTo",
+        "valueCodeableConcept": {
+          "coding": [ {
+            "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+            "code": "initial-population",
+            "display": "Initial Population"
+          } ],
+          "text": "initial-population"
+        }
+      } ],
+      "code": {
+        "text": "Stratifier 4"
+      },
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "Stratifier 4"
+      }
+    } ]
+  } ],
+  "supplementalData": [ {
+    "id": "sde-ethnicity",
+    "extension": [ {
+      "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId",
+      "valueString": "primary-sde-ethnicity"
+    } ],
+    "usage": [ {
+      "coding": [ {
+        "system": "http://terminology.hl7.org/CodeSystem/measure-data-usage",
+        "code": "supplemental-data"
+      } ]
+    } ],
+    "criteria": {
+      "language": "text/cql-identifier",
+      "expression": "SDE Ethnicity"
+    }
+  }, {
+    "id": "sde-race",
+    "extension": [ {
+      "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId",
+      "valueString": "primary-sde-race"
+    } ],
+    "usage": [ {
+      "coding": [ {
+        "system": "http://terminology.hl7.org/CodeSystem/measure-data-usage",
+        "code": "supplemental-data"
+      } ]
+    } ],
+    "criteria": {
+      "language": "text/cql-identifier",
+      "expression": "SDE Race"
+    }
+  }, {
+    "id": "sde-payer",
+    "extension": [ {
+      "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId",
+      "valueString": "primary-sde-payer"
+    } ],
+    "usage": [ {
+      "coding": [ {
+        "system": "http://terminology.hl7.org/CodeSystem/measure-data-usage",
+        "code": "supplemental-data"
+      } ]
+    } ],
+    "criteria": {
+      "language": "text/cql-identifier",
+      "expression": "SDE Payer"
+    }
+  }, {
+    "id": "sde-sex",
+    "extension": [ {
+      "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.supplementalData.linkId",
+      "valueString": "primary-sde-sex"
+    } ],
+    "usage": [ {
+      "coding": [ {
+        "system": "http://terminology.hl7.org/CodeSystem/measure-data-usage",
+        "code": "supplemental-data"
+      } ]
+    } ],
+    "criteria": {
+      "language": "text/cql-identifier",
+      "expression": "SDE Sex"
+    }
+  } ]
+}

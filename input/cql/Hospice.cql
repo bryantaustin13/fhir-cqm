@@ -12,8 +12,9 @@ library Hospice version '2.0.000'
 
 using FHIR version '4.0.1'
 
+include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers
+
 include MATGlobalCommonFunctions version '5.0.000' called Global
-include FHIRHelpers version '4.0.1' called FHIRHelpers
 
 codesystem "SNOMEDCT:2017-09": 'http://snomed.info/sct' version 'http://snomed.info/sct/731000124108/version/201709'
 

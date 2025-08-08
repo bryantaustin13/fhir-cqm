@@ -1,0 +1,224 @@
+{
+  "resourceType": "Measure",
+  "id": "EXMRatio-FHIR",
+  "meta": {
+    "profile": [ "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-ratiomeasure", "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-computablemeasure", "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-cqlmeasure" ]
+  },
+  "extension": [ {
+    "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
+    "valueCode": "Encounter"
+  }, {
+    "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-scoringUnit",
+    "valueCodeableConcept": {
+      "coding": [ {
+        "system": "http://unitsofmeasure.org",
+        "code": "/1000.d"
+      } ]
+    }
+  }, {
+    "url": "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-softwaresystem",
+    "valueReference": {
+      "reference": "Device/software-system-example"
+    }
+  }, {
+    "url": "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-effectiveDataRequirements",
+    "valueCanonical": "#effective-data-requirements-exmlogic"
+  } ],
+  "url": "http://example.org/fhir/measures/measure-ratio-exm",
+  "identifier": [ {
+    "system": "http://example.org/fhir/cqi/ecqm/Measure/Identifier/exm",
+    "value": "EXMRatio-FHIR"
+  } ],
+  "version": "2.0.0",
+  "name": "EXMRatioMeasure",
+  "title": "EXM Ratio Measure",
+  "status": "active",
+  "experimental": true,
+  "date": "2022-02-22",
+  "publisher": "Clinical Quality Information WG",
+  "contact": [ {
+    "telecom": [ {
+      "system": "url",
+      "value": "http://www.hl7.org/Special/committees/cqi"
+    } ]
+  } ],
+  "description": "An example FHIR-based publishable measure",
+  "useContext": [ {
+    "code": {
+      "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
+      "code": "venue",
+      "display": "Clinical Venue"
+    },
+    "valueCodeableConcept": {
+      "coding": [ {
+        "system": "http://hl7.org/fhir/uv/cqm/CodeSystem/intended-venue-codes",
+        "code": "ec",
+        "display": "EC"
+      } ]
+    }
+  } ],
+  "jurisdiction": [ {
+    "coding": [ {
+      "system": "urn:iso:std:iso:3166",
+      "code": "US"
+    } ]
+  } ],
+  "purpose": "This measure has been developed to support improvement in clinical care.",
+  "usage": "Users of this measure should be aware of...",
+  "copyright": "Example Copyright Statement",
+  "approvalDate": "2019-02-17",
+  "lastReviewDate": "2019-02-17",
+  "effectivePeriod": {
+    "extension": [ {
+      "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-effectivePeriodAnchor",
+      "valueDateTime": "2018-01-01"
+    }, {
+      "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-effectivePeriodDuration",
+      "valueDuration": {
+        "value": 1,
+        "system": "http://unitsofmeasure.org",
+        "code": "a"
+      }
+    } ],
+    "start": "2018-01-01",
+    "end": "2018-12-31"
+  },
+  "topic": [ {
+    "coding": [ {
+      "system": "http://loinc.org",
+      "code": "57024-2"
+    } ],
+    "text": "Health Quality Measure Document"
+  } ],
+  "author": [ {
+    "name": "Example Measure Content Developer"
+  } ],
+  "library": [ "http://hl7.org/fhir/uv/cqm/Library/EXMRatio" ],
+  "disclaimer": "Example disclaimer",
+  "scoring": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/measure-scoring",
+      "code": "ratio",
+      "display": "Ratio"
+    } ]
+  },
+  "type": [ {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/measure-type",
+      "code": "process"
+    } ]
+  } ],
+  "rationale": "The rationale of this measure is...",
+  "improvementNotation": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/measure-improvement-notation",
+      "code": "decrease",
+      "display": "Decreased score indicates improvement"
+    } ]
+  },
+  "group": [ {
+    "id": "group-1",
+    "extension": [ {
+      "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.linkId",
+      "valueString": "primary"
+    } ],
+    "population": [ {
+      "id": "initial-population",
+      "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+        "valueString": "primary-exmratio-initial-population"
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population",
+          "display": "Initial Population"
+        } ]
+      },
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "Initial Population"
+      }
+    }, {
+      "id": "numerator",
+      "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+        "valueString": "primary-exmratio-numerator"
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "numerator",
+          "display": "Numerator"
+        } ]
+      },
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "Numerator"
+      }
+    }, {
+      "id": "denominator",
+      "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+        "valueString": "primary-exmratio-denominator"
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "denominator",
+          "display": "Denominator"
+        } ]
+      },
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "Denominator"
+      }
+    }, {
+      "id": "denominator-observation",
+      "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+        "valueString": "primary-exmratio-denominator-observation"
+      }, {
+        "url": "http://hl7.org/fhir/StructureDefinition/cqf-criteriaReference",
+        "valueString": "denominator"
+      }, {
+        "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-aggregateMethod",
+        "valueCode": "sum"
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "measure-observation",
+          "display": "Measure Observation"
+        } ]
+      },
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "Measure Denominator Observation"
+      }
+    }, {
+      "id": "numerator-observation",
+      "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId",
+        "valueString": "primary-exmratio-numerator-observation"
+      }, {
+        "url": "http://hl7.org/fhir/StructureDefinition/cqf-criteriaReference",
+        "valueString": "numerator"
+      }, {
+        "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-aggregateMethod",
+        "valueCode": "sum"
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "measure-observation",
+          "display": "Measure Observation"
+        } ]
+      },
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "Measure Numerator Observation"
+      }
+    } ]
+  } ]
+}

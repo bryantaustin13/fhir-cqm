@@ -8,6 +8,9 @@
   <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status">
     <valueCode value="trial-use"/>
   </extension>
+  <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm">
+    <valueInteger value="4"/>
+  </extension>
   <url value="http://hl7.org/fhir/uv/cqm/ImplementationGuide/hl7.fhir.uv.cqm"/>
   <version value="1.0.0"/>
   <name value="CQMeasures"/>
@@ -59,6 +62,9 @@
      <version value="2.0.0"/>
   </dependsOn>
   <definition>
+   <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-internal-dependency">
+    <valueCode value="hl7.fhir.us.qicore#6.0.0"/>
+   </extension>
    <resource>
       <reference>
         <reference value="Measure/EXM55-FHIR"/>
@@ -213,14 +219,6 @@
     </resource>
     <resource>
       <reference>
-        <reference value="Measure/measure-risk-adjustment-FHIR2"/>
-      </reference>
-      <name value="Risk Adjustment FHIR DSTU2"/>
-      <description value="This example illustrates the use of risk adjustment data within a measure represented as a FHIR eCQM."/>
-      <exampleBoolean value="true"/>
-    </resource>
-    <resource>
-      <reference>
         <reference value="Measure/measure-cqm-publishable-example"/>
       </reference>
       <name value="MeasureCQMPublishableExample"/>
@@ -293,11 +291,19 @@
     </resource>
     <resource>
       <reference>
-        <reference value="Bundle/bundle-example"/>
+        <reference value="Bundle/measurereport-bundle-example"/>
       </reference>
       <name value="Bundle example"/>
       <description value="Example of a transaction bundle"/>
       <exampleBoolean value="true"/>
+    </resource>
+    <resource>
+      <reference>
+        <reference value="Parameters/manifest"/>
+      </reference>
+      <name value="Input Expansion Parameters"/>
+      <description value="The input expansion parameters resource for this implementation guide, specifying SNOMED Edition and version. This resource will be contained within the published implementation guide with all pinned references."/>
+      <exampleBoolean value="false"/>
     </resource>
     <page>
       <nameUrl value="index.html"/>
@@ -402,19 +408,63 @@
     </parameter>
     <parameter>
       <code value="releaselabel"/>
-      <value value="ballot"/>
+      <value value="STU 1"/>
     </parameter>
     <parameter>
       <code value="copyrightyear"/>
       <value value="2019+"/>
     </parameter>
     <parameter>
-      <code value="path-resource"/>
-      <value value="input/resources"/>
+      <code value="path-expansion-params"/>
+      <value value="resources/parameters/Parameters-manifest.json"/>
     </parameter>
     <parameter>
-      <code value="path-expansion-params"/>
-      <value value="_resources/exp-params.json"/>
+      <code value="path-resource"/>
+      <value value="input/resources/bundle"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/resources/capabilitystatement"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/resources/device"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/resources/library"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/resources/measure"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/resources/measurereport"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/resources/operationdefinition"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/resources/parameters"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/resources/searchparameter"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/vocabulary/codesystem"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/vocabulary/conceptmap"/>
+    </parameter>
+    <parameter>
+      <code value="path-resource"/>
+      <value value="input/vocabulary/valueset"/>
     </parameter>
     <parameter>
     <code value="find-other-resources"/>
@@ -468,7 +518,11 @@
     </parameter>
     <parameter>
       <code value="pin-canonicals"/>
-      <value value="pin-multiples"/>
+      <value value="pin-all"/>
+    </parameter>
+    <parameter>
+      <code value="pin-manifest"/>
+      <value value="manifest"/>
     </parameter>
   </definition>
 </ImplementationGuide>

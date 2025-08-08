@@ -2,12 +2,11 @@
 
 ### Examples
 
-* [**Simple Example**](Measure-EXMLogic-FHIR.html) Usage example illustrating all the common data elements of the CQF Measure profile - [Library](Library-EXMLogic-FHIR.html)
-* [**EXM146**](Measure-EXM146-FHIR.html) Encounter-based proportion measure example - [Library](Library-EXM146-FHIR.html)
-* [**EXM55**](Measure-EXM55-FHIR.html) Continuous-variable measure example - [Library](Library-EXM55-FHIR.html)
-* [**RatioMeasure**](Measure-EXMRatio-FHIR.html) Ratio measure example - [Library](Library-EXMRatio-FHIR.html)
-* [**Terminology**](Measure-Terminology-FHIR.html) Example illustrating terminology usage - [Library](Library-Terminology-FHIR.html)
-* [**RiskAdjustment**](Measure-measure-risk-adjustment-FHIR2.html) Example illustrating risk adjustment usage - [Library](Library-risk-adjustment-FHIR2.html)
+* [**Simple Example**](Measure-EXMLogic-FHIR.html) Usage example illustrating all the common data elements of the CQF Measure profile - [Library](Library-EXMLogic.html)
+* [**EXM146**](Measure-EXM146-FHIR.html) Encounter-based proportion measure example - [Library](Library-EXM146.html)
+* [**EXM55**](Measure-EXM55-FHIR.html) Continuous-variable measure example - [Library](Library-EXM55.html)
+* [**RatioMeasure**](Measure-EXMRatio-FHIR.html) Ratio measure example - [Library](Library-EXMRatio.html)
+* [**Terminology**](Measure-Terminology-FHIR.html) Example illustrating terminology usage - [Library](Library-Terminology.html)
 * [**PromotingInteroperabilityMeasure**](Measure-measure-pi-exm.html) Promoting Interoperability measure example <!---  [Library](Library-EXMRatio.html) -->
 * [**Common Library**](Library-Common.html) Usage example illustrating a library to share logic between measures
 * [**SupplementalDataElements**](Library-SupplementalDataElements.html) Library illustrating common supplemental data elements
@@ -16,13 +15,13 @@
 
 These examples illustrate subject-based screening measures
 
-* [**EXM124**](Measure-EXM124-FHIR.html) Cervical Cancer Screening - [Library](Library-EXM124-FHIR.html)
-* [**EXM125**](Measure-EXM125-FHIR.html) Breast Cancer Screening - [Library](Library-EXM125-FHIR.html)
-* [**EXM130**](Measure-EXM130-FHIR.html) Colorectal Cancer Screening - [Library](Library-EXM130-FHIR.html)
+* [**EXM124**](Measure-EXM124-FHIR.html) Cervical Cancer Screening - [Library](Library-EXM124.html)
+* [**EXM125**](Measure-EXM125-FHIR.html) Breast Cancer Screening - [Library](Library-EXM125.html)
+* [**EXM130**](Measure-EXM130-FHIR.html) Colorectal Cancer Screening - [Library](Library-EXM130.html)
 
 ### Hospital Measures
 
-* [**EXM108**](Measure-EXM108-FHIR.html) Venous Thromboembolism Prophylaxis - [Library](Library-EXM108-FHIR.html)
+* [**EXM108**](Measure-EXM108-FHIR.html) Venous Thromboembolism Prophylaxis - [Library](Library-EXM108.html)
 
 ### Additional Supplemental Data Elements Measures
 
@@ -30,7 +29,7 @@ These examples illustrate subject-based screening measures
 
 ### Multiple-Rate Measures
 
-* [**Multirate Example**](Measure-MultiRateExample-FHIR.html) Example measure illustrating multiple rates in a single Measure resource - [Library](Library-MultiRateExample-FHIR.html)
+* [**Multirate Example**](Measure-MultiRateExample-FHIR.html) Example measure illustrating multiple rates in a single Measure resource - [Library](Library-MultiRateExample.html)
 
 ### Composite Measures
 
@@ -91,5 +90,5 @@ Manifests are used to communicate sets of measures together with all the informa
 The sections provide examples of test cases
 
 * [Simple Test Case](MeasureReport-testcase-example.html) - Example test case illustrating expected input parameters and expected output results given those input parameters.
-* [Bundled Test Case](Bundle-bundle-example.html) - Example test case in a bundle illustrating expected input parameters and expected output results given those input parameters along with evaluatedResources.
+* [Bundled Test Case](Bundle-measurereport-bundle-example.html) - Example test case in a bundle illustrating expected input parameters and expected output results given those input parameters along with evaluatedResources.
 

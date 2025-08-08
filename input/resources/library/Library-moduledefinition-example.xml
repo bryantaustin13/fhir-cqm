@@ -1,0 +1,227 @@
+<Library xmlns="http://hl7.org/fhir">
+   <id value="moduledefinition-example"></id>
+   <meta>
+      <profile value="http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-moduledefinitionlibrary"></profile>
+   </meta>
+   <url value="http://hl7.org/fhir/uv/cqm/Library/moduledefinition-example"></url>
+   <identifier>
+      <use value="official"></use>
+      <system value="http://example.org/fhir/cqi/ecqm/Library/Identifier"></system>
+      <value value="EXMLogic"></value>
+   </identifier>
+   <version value="1.0.0"></version>
+   <name value="EXMLogicModuleDefinition"></name>
+   <title value="Module Definition Example Logic Library"></title>
+   <status value="active"></status>
+   <experimental value="true"></experimental>
+   <type>
+      <coding>
+         <system value="http://terminology.hl7.org/CodeSystem/library-type"></system>
+         <code value="module-definition"></code>
+      </coding>
+   </type>
+   <date value="2019-09-03"></date>
+   <publisher value="HL7 International / Clinical Decision Support"></publisher>
+   <contact>
+      <telecom>
+         <system value="url"></system>
+         <value value="http://www.hl7.org/Special/committees/dss"></value>
+      </telecom>
+   </contact>
+   <description value="This library is used as an example module definition in the FHIR Quality Measure Implementation Guide"></description>
+   <jurisdiction>
+      <coding>
+         <system value="http://unstats.un.org/unsd/methods/m49/m49.htm"></system>
+         <code value="001"></code>
+         <display value="World"></display>
+      </coding>
+   </jurisdiction>
+   <relatedArtifact>
+      <type value="depends-on"></type>
+      <display value="FHIR model information"></display>
+      <resource value="http://hl7.org/fhir/uv/cql/Library/FHIR-ModelInfo|4.0.1"></resource>
+   </relatedArtifact>
+   <relatedArtifact>
+      <type value="depends-on"></type>
+      <display value="Library FHIRHelpers"></display>
+      <resource value="http://hl7.org/fhir/uv/cql/Library/FHIRHelpers|4.0.1"></resource>
+   </relatedArtifact>
+   <relatedArtifact>
+      <type value="depends-on"></type>
+      <display value="Code system Diagnosis Role"></display>
+      <resource value="http://terminology.hl7.org/CodeSystem/diagnosis-role"></resource>
+   </relatedArtifact>
+   <relatedArtifact>
+      <type value="depends-on"></type>
+      <display value="Value set Emergency Department Visit"></display>
+      <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.292"></resource>
+   </relatedArtifact>
+   <relatedArtifact>
+      <type value="depends-on"></type>
+      <display value="Value set Psychiatric/Mental Health Patient"></display>
+      <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.299"></resource>
+   </relatedArtifact>
+   <relatedArtifact>
+      <type value="depends-on"></type>
+      <display value="Value set Hospital Settings"></display>
+      <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1111.126"></resource>
+   </relatedArtifact>
+   <relatedArtifact>
+      <type value="depends-on"></type>
+      <display value="Value set ONC Administrative Sex"></display>
+      <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1"></resource>
+   </relatedArtifact>
+   <relatedArtifact>
+      <type value="depends-on"></type>
+      <display value="Value set Race"></display>
+      <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836"></resource>
+   </relatedArtifact>
+   <relatedArtifact>
+      <type value="depends-on"></type>
+      <display value="Value set Ethnicity"></display>
+      <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837"></resource>
+   </relatedArtifact>
+   <relatedArtifact>
+      <type value="depends-on"></type>
+      <display value="Value set Payer"></display>
+      <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591"></resource>
+   </relatedArtifact>
+   <parameter>
+      <name value="Measurement Period"></name>
+      <use value="in"></use>
+      <min value="0"></min>
+      <max value="1"></max>
+      <type value="Period"></type>
+   </parameter>
+   <parameter>
+      <name value="Patient"></name>
+      <use value="out"></use>
+      <min value="0"></min>
+      <max value="1"></max>
+      <type value="Patient"></type>
+   </parameter>
+   <parameter>
+      <name value="Inpatient Encounter"></name>
+      <use value="out"></use>
+      <min value="0"></min>
+      <max value="*"></max>
+      <type value="Encounter"></type>
+   </parameter>
+   <parameter>
+      <name value="Initial Population"></name>
+      <use value="out"></use>
+      <min value="0"></min>
+      <max value="*"></max>
+      <type value="Encounter"></type>
+   </parameter>
+   <parameter>
+      <name value="Measure Population"></name>
+      <use value="out"></use>
+      <min value="0"></min>
+      <max value="*"></max>
+      <type value="Encounter"></type>
+   </parameter>
+   <parameter>
+      <name value="Stratifier 1"></name>
+      <use value="out"></use>
+      <min value="0"></min>
+      <max value="*"></max>
+      <type value="Encounter"></type>
+   </parameter>
+   <parameter>
+      <name value="Stratifier 2"></name>
+      <use value="out"></use>
+      <min value="0"></min>
+      <max value="*"></max>
+      <type value="Encounter"></type>
+   </parameter>
+   <parameter>
+      <name value="Stratifier 3"></name>
+      <use value="out"></use>
+      <min value="0"></min>
+      <max value="*"></max>
+      <type value="Encounter"></type>
+   </parameter>
+   <parameter>
+      <name value="Stratifier 4"></name>
+      <use value="out"></use>
+      <min value="0"></min>
+      <max value="*"></max>
+      <type value="Encounter"></type>
+   </parameter>
+   <parameter>
+      <name value="SDE Ethnicity"></name>
+      <use value="out"></use>
+      <min value="0"></min>
+      <max value="*"></max>
+      <type value="Coding"></type>
+   </parameter>
+   <parameter>
+      <name value="SDE Payer"></name>
+      <use value="out"></use>
+      <min value="0"></min>
+      <max value="*"></max>
+      <type value="Resource"></type>
+   </parameter>
+   <parameter>
+      <name value="SDE Race"></name>
+      <use value="out"></use>
+      <min value="0"></min>
+      <max value="*"></max>
+      <type value="Coding"></type>
+   </parameter>
+   <parameter>
+      <name value="SDE Sex"></name>
+      <use value="out"></use>
+      <min value="0"></min>
+      <max value="1"></max>
+      <type value="Coding"></type>
+   </parameter>
+   <dataRequirement>
+      <extension url="http://hl7.org/fhir/StructureDefinition/cqf-fhirQueryPattern">
+         <valueString value="Patient?_id={{context.patientId}}"></valueString>
+      </extension>
+      <extension url="http://hl7.org/fhir/StructureDefinition/cqf-valueFilter">
+         <extension url="path">
+            <valueString value="url"></valueString>
+         </extension>
+         <extension url="comparator">
+            <valueCode value="eq"></valueCode>
+         </extension>
+         <extension url="value">
+            <valueString value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"></valueString>
+         </extension>
+      </extension>
+      <type value="Patient"></type>
+      <profile value="http://hl7.org/fhir/StructureDefinition/Patient"></profile>
+   </dataRequirement>
+   <dataRequirement>
+      <extension url="http://hl7.org/fhir/StructureDefinition/cqf-fhirQueryPattern">
+         <valueString value="Encounter?status=finished&amp;subject=Patient/{{context.patientId}}&amp;type:in=http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.292"></valueString>
+      </extension>
+      <type value="Encounter"></type>
+      <profile value="http://hl7.org/fhir/StructureDefinition/Encounter"></profile>
+      <codeFilter>
+         <path value="type"></path>
+         <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.292"></valueSet>
+      </codeFilter>
+   </dataRequirement>
+   <dataRequirement>
+      <type value="Condition"></type>
+      <profile value="http://hl7.org/fhir/StructureDefinition/Condition"></profile>
+      <codeFilter>
+         <path value="id"></path>
+      </codeFilter>
+   </dataRequirement>
+   <dataRequirement>
+      <extension url="http://hl7.org/fhir/StructureDefinition/cqf-fhirQueryPattern">
+         <valueString value="Coverage?policy-holder=Patient/{{context.patientId}}&amp;type:in=http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591"></valueString>
+      </extension>
+      <type value="Coverage"></type>
+      <profile value="http://hl7.org/fhir/StructureDefinition/Coverage"></profile>
+      <codeFilter>
+         <path value="type"></path>
+         <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591"></valueSet>
+      </codeFilter>
+   </dataRequirement>
+</Library>

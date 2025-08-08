@@ -22,7 +22,7 @@ For example:
 library EXM146 version '4.0.0'
 ```
 
-Snippet 4-1: Library line from [EXM146.cql](Library-EXM146-FHIR.html#cql-content)
+Snippet 4-1: Library line from [EXM146.cql](Library-EXM146.html#cql-content)
 
 #### Library Versioning
 {: #library-versioning}
@@ -61,7 +61,7 @@ are expected to retain forward and backwards-compatibility, and may only be used
 library EXM146 version '4.0.0'
 ```
 
-Snippet 4-2: Library line from [EXM146.cql](Library-EXM146-FHIR.html#cql-content), the fourth major version.
+Snippet 4-2: Library line from [EXM146.cql](Library-EXM146.html#cql-content), the fourth major version.
 
 #### Nested Libraries
 {: #nested-libraries}
@@ -79,7 +79,7 @@ For example:
 include Common version '2.0.0' called Common
 ```
 
-Snippet 4-3: Nested library within [EXM146.cql](Library-EXM146-FHIR.html#cql-content)
+Snippet 4-3: Nested library within [EXM146.cql](Library-EXM146.html#cql-content)
 
 #### Library Namespaces
 {: #library-namespaces}
@@ -114,7 +114,7 @@ For example:
 using FHIR version '4.0.1'
 ```
 
-Snippet 4-5: Data Model line from [EXM146.cql](Library-EXM146-FHIR.html#cql-content)
+Snippet 4-5: Data Model line from [EXM146.cql](Library-EXM146.html#cql-content)
 
 For additional information on conformance requirements for the use of Model Information as part of FHIR Knowledge Artifacts that make use of CQL, reference the Using CQL with FHIR IG's section on [Using ModelInfo](http://hl7.org/fhir/uv/cql/using-modelinfo.html)
 
@@ -134,7 +134,7 @@ codesystem "SNOMED CT:20240901": 'http://snomed.info/sct'
   version 'http://snomed.info/sct/731000124108/version/20240901'
 ```
 
-Snippet 4-6: codesystem definition line from [Terminology.cql](Library-Terminology-FHIR.html#cql-content).
+Snippet 4-6: codesystem definition line from [Terminology.cql](Library-Terminology.html#cql-content).
 
 #### Representation in a Library
 {: #representation-in-a-library}
@@ -156,7 +156,7 @@ For example:
 valueset "Acute Pharyngitis": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.102.12.1011'
 ```
 
-Snippet 4-7: Valueset reference from [EXM146.cql](Library-EXM146-FHIR.html#cql-content)
+Snippet 4-7: Valueset reference from [EXM146.cql](Library-EXM146.html#cql-content)
 
 The canonical URL for a value set is typically defined by the value set author, though it may be provided by the
 publisher as well. For example, value sets defined in the Value Set Authority Center and exposed via the VSAC FHIR
@@ -205,7 +205,7 @@ valueset "Encounter Inpatient SNOMEDCT Value Set":
    'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.7.307|20160929'
 ```
 
-Snippet 4-10: valueset definition from [Terminology.cql](Library-Terminology-FHIR.html#cql-content).
+Snippet 4-10: valueset definition from [Terminology.cql](Library-Terminology.html#cql-content).
 
 This is a _version specific value set reference_, and can be resolved as a search by the `url` and `version` elements:
 
@@ -252,7 +252,7 @@ For example:
 code "Venous foot pump, device (physical object)": '442023007' from "SNOMED CT"
 ```
 
-Snippet 4-12: code definition from [Terminology.cql](Library-Terminology-FHIR.html#cql-content).
+Snippet 4-12: code definition from [Terminology.cql](Library-Terminology.html#cql-content).
 
 #### Representation in a Library
 {: #representation-in-a-library}
@@ -301,7 +301,7 @@ define "Flexible Sigmoidoscopy Performed":
       and FlexibleSigmoidoscopy.performed ends 5 years or less on or before end of "Measurement Period"
 ```
 
-Snippet 4-13: Expression definition from [EXM130.cql](Library-EXM130-FHIR.html#cql-content)
+Snippet 4-13: Expression definition from [EXM130.cql](Library-EXM130.html#cql-content)
 
 `Procedure` is the name of the model data type (FHIR resource type) in this example.
 

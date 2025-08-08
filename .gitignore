@@ -9,3 +9,4 @@
 publisher.jar
 
 thunder-tests/environments/tc_env_local.json
+/input-cache/tooling-cli-3.8.0.jar

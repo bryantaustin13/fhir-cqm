@@ -8,7 +8,7 @@ library CommonTerminologies version '1.0.0'
 
 using FHIR version '4.0.1'
 
-include FHIRHelpers version '4.0.1' called FHIRHelpers
+include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers
 
 // NOTE: Versioning is used in this example to illustrate completely how versioning is applied
 // References to specific versions of code systems and value sets should be used only when necessary

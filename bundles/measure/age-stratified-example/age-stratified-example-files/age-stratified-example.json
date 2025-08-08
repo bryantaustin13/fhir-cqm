@@ -1,0 +1,49 @@
+{
+  "resourceType": "Measure",
+  "id": "age-stratified-example",
+  "url": "http://hl7.org/fhir/uv/cqm/Measure/age-stratified-example",
+  "name": "MeasureAgeStratifiedExample",
+  "title": "Measure Age Stratified Example",
+  "status": "active",
+  "experimental": true,
+  "date": "2025-06-24",
+  "publisher": "Clinical Quality Information Workgroup",
+  "description": "A sample measure demonstrating age stratification using WHO-based age ranges.",
+  "library": [ "http://hl7.org/fhir/uv/cqm/Library/AgeStratificationExample" ],
+  "scoring": {
+    "coding": [ {
+      "system": "http://terminology.hl7.org/CodeSystem/measure-scoring",
+      "code": "proportion"
+    } ]
+  },
+  "group": [ {
+    "id": "group-1",
+    "population": [ {
+      "code": {
+        "coding": [ {
+          "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+          "code": "initial-population"
+        } ]
+      },
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "InitialPopulation"
+      }
+    } ],
+    "stratifier": [ {
+      "id": "age-stratifier",
+      "extension": [ {
+        "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-valueSet",
+        "valueCanonical": "http://hl7.org/fhir/uv/cqm/ValueSet/age-stratified-example"
+      } ],
+      "code": {
+        "text": "Age Group"
+      },
+      "description": "Stratifies patients by WHO-based age ranges.",
+      "criteria": {
+        "language": "text/cql-identifier",
+        "expression": "AgeGroup"
+      }
+    } ]
+  } ]
+}
