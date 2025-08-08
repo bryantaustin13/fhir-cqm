@@ -6,12 +6,11 @@
 <artifactPageExtension value="-definitions"/>
 <artifactPageExtension value="-examples"/>
 <artifactPageExtension value="-mappings"/>
-<artifact id="Parameters/manifest" key="Library-AdultOutpatientEncounters" name=""/>
 <artifact id="Library/AdultOutpatientEncounters" key="Library-AdultOutpatientEncounters" name="Adult Outpatient Encounters Common Library"/>
 <artifact id="Library/AdvancedIllnessandFrailtyExclusion" key="Library-AdvancedIllnessandFrailtyExclusion" name="Advanced Illness and Frailty Exclusion Library"/>
+<artifact id="Library/AgeStratificationExample" key="Library-AgeStratificationExample" name="Age Stratification Example"/>
 <artifact id="ValueSet/age-stratified-example" key="ValueSet-age-stratified-example" name="Age Stratified Example"/>
 <artifact id="Measure/age-stratified-example" key="Measure-age-stratified-example" name="Age Stratified Example"/>
-<artifact id="Library/AgeStratificationExample" key="Library-AgeStratificationExample" name="AgeStratificationExample"/>
 <artifact id="ConceptMap/aggregate-method" key="ConceptMap-aggregate-method" name="Aggregate Method mapping"/>
 <artifact id="Library/BCSComponent" key="Library-BCSComponent" name="BCS Component Library"/>
 <artifact id="Measure/BCSComponent" key="Measure-BCSComponent" name="Breast Cancer Screening"/>
@@ -66,6 +65,8 @@
 <artifact id="ConceptMap/composite-measure-scoring" key="ConceptMap-composite-measure-scoring" name="Composite Measure Scoring mapping"/>
 <artifact id="ConceptMap/data-usages" key="ConceptMap-data-usages" name="Data Usage Mapping"/>
 <artifact id="Device/software-system-example" key="Device-software-system-example" name="Device - Software System Example"/>
+<artifact id="Library/EXMAggregate" key="Library-EXMAggregate" name="EXM Aggregate"/>
+<artifact id="Library/EXMIA" key="Library-EXMIA" name="EXM Improvement Activities"/>
 <artifact id="Measure/EXMLogic-FHIR" key="Measure-EXMLogic-FHIR" name="EXM Measure"/>
 <artifact id="Measure/measure-pi-exm" key="Measure-measure-pi-exm" name="EXM Promoting Interoperability Measure"/>
 <artifact id="Measure/measure-publishable-exm" key="Measure-measure-publishable-exm" name="EXM Publishable Measure"/>
@@ -82,8 +83,6 @@
 <artifact id="Library/EXM146" key="Library-EXM146-FHIR" name="EXM146 - Example Proportion Measure Library"/>
 <artifact id="Measure/EXM55-FHIR" key="Measure-EXM55-FHIR" name="EXM55 - Median Emergency Department Visit Duration"/>
 <artifact id="Library/EXM55" key="Library-EXM55-FHIR" name="EXM55 - Median Emergency Department Visit Duration Library (Example Continuous Variable Measure Library)"/>
-<artifact id="Library/EXMAggregate" key="Library-EXMAggregate" name="EXMAggregate"/>
-<artifact id="Library/EXMIA" key="Library-EXMIA" name="EXMIA"/>
 <artifact id="Library/EXMRatio" key="Library-EXMRatio-FHIR" name="EXMRatio - Example Ratio Measure Library"/>
 <artifact id="Library/EXMComputableLibrary" key="Library-EXMComputableLibrary" name="Example Computable Library"/>
 <artifact id="Library/EXMExecutableLibrary" key="Library-EXMExecutableLibrary" name="Example Executable Library"/>
@@ -97,6 +96,7 @@
 <artifact id="ValueSet/iso-8601-derived-periods" key="ValueSet-iso-8601-derived-periods" name="ISO-8601-Derived Periods"/>
 <artifact id="CodeSystem/iso-8601-derived-periods" key="CodeSystem-iso-8601-derived-periods" name="ISO-8601-Derived Periods"/>
 <artifact id="ConceptMap/improvement-notations" key="ConceptMap-improvement-notations" name="Improvement Notation Mapping"/>
+<artifact id="Parameters/manifest" key="Parameters-manifest" name="Input Expansion Parameters"/>
 <artifact id="ValueSet/intended-venue" key="ValueSet-intended-venue" name="Intended Venue"/>
 <artifact id="CodeSystem/intended-venue-codes" key="CodeSystem-intended-venue-codes" name="Intended Venue Codes"/>
 <artifact id="Library/MATGlobalCommonFunctions" key="Library-MATGlobalCommonFunctions" name="MAT Global Common Functions FHIR Library"/>
@@ -127,7 +127,7 @@
 <artifact id="SearchParameter/Library-expansion-identifier" key="SearchParameter-Library-expansion-identifier" name="Search Parameter - Library expansion identifier"/>
 <artifact id="SearchParameter/ValueSet-keyword" key="SearchParameter-ValueSet-keyword" name="Search Parameter - Valuset Keyword"/>
 <artifact id="ValueSet/subject-type" key="ValueSet-subject-type" name="Subject Type Value Set"/>
-<artifact id="Library/SupplementalDataElements" key="Library-SupplementalDataElements" name="SupplementalDataElements"/>
+<artifact id="Library/SupplementalDataElements" key="Library-SupplementalDataElements" name="Supplemental Data Elements"/>
 <artifact id="Library/TJCOverall" key="Library-TJCOverall" name="TJC Overall Library"/>
 <artifact id="Library/TSCComponent" key="Library-TSCComponent" name="TSC Component Library"/>
 <artifact id="Measure/Terminology-FHIR" key="Measure-Terminology-FHIR" name="Terminology FHIR"/>

@@ -89,7 +89,7 @@
                     {
                         "type": "depends-on",
                         "display": "Code system SNOMEDCT",
-                        "resource": "http://snomed.info|http://snomed.info/sct/900000000000207008/version/20240201"
+                        "resource": "http://snomed.info/sct|http://snomed.info/sct/731000124108/version/20240901"
                     },
                     {
                         "type": "depends-on",
@@ -238,7 +238,7 @@
                     {
                         "type": "depends-on",
                         "display": "Code system SNOMEDCT",
-                        "resource": "http://snomed.info|http://snomed.info/sct/900000000000207008/version/20240201"
+                        "resource": "http://snomed.info/sct|http://snomed.info/sct/731000124108/version/20240901"
                     },
                     {
                         "type": "depends-on",
