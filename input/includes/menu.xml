@@ -33,7 +33,7 @@
       <li><a target="_blank" href="https://chat.fhir.org/#narrow/channel/179220-cql">Discussion Forum</a></li>
       <li><a target="_blank" href="https://confluence.hl7.org/spaces/CQIWC/pages/35718927/Clinical+Quality+Framework">Project Page</a></li>
       <li><a target="_blank" href="https://jira.hl7.org/secure/Dashboard.jspa?selectPageId=17812">Specification Dashboard</a></li>
-      <li><a target="_blank" href="https://jira.hl7.org/secure/CreateIssueDetails!init.jspa?pid=10405&amp;issuetype=10600&amp;customfield_11302=FHIR-uv-cqm">Propose a Change</a></li>
+      <li><a target="_blank" href="https://jira.hl7.org/secure/CreateIssueDetails!init.jspa?pid=10405&amp;issuetype=10600&amp;customfield_11302=FHIR-qm">Propose a Change</a></li>
       <li><a href="downloads.html">Downloads</a></li>
     </ul>
   </li>
