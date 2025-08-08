@@ -141,83 +141,17 @@ Snippet 3-4 illustrates a FHIR Library resource containing a CQL library with a 
   },
   "date": "2019-09-03",
   "publisher": "Health Level 7 International - Clinical Quality Information Work Group",
-  "contact": [
-    {
-      "telecom": [
-        {
-          "system": "url",
-          "value": "http://www.hl7.org/Special/committees/cqi/index.cfm"
-        }
-      ]
-    }
-  ],
   "description": "This library is used as an example in the FHIR Quality Measure Implementation Guide",
-  "useContext": [
-    {
-      "code": {
-        "system": "http://terminology.hl7.org/CodeSystem/usage-context-type",
-        "code": "program"
-      },
-      "valueCodeableConcept": {
-        "coding": [
-          {
-            "system": "http://hl7.org/fhir/uv/cqm/CodeSystem/quality-programs",
-            "code": "ep-ec",
-            "display": "EP/EC"
-          }
-        ]
-      }
-    }
-  ],
-  "jurisdiction": [
-    {
-      "coding": [
-        {
-          "system": "urn:iso:std:iso:3166",
-          "code": "US"
-        }
-      ]
-    }
-  ],
-  "approvalDate": "2019-08-03",
-  "lastReviewDate": "2019-08-03",
   "relatedArtifact": [
-    {
-      "type": "depends-on",
-      "resource": "http://hl7.org/uv/cql/fhir/Library/FHIR-ModelInfo|4.0.1"
-    },
-    {
-      "type": "depends-on",
-      "resource": "http://hl7.org/fhir/uv/cql/Library/FHIRHelpers|4.0.1"
-    },
     {
       "type": "depends-on",
       "resource": "http://hl7.org/fhir/uv/cqm/Library/Common|2.0.0"
     },
     {
       "type": "depends-on",
-      "resource": "http://hl7.org/fhir/uv/cqm/Library/MATGlobalCommonFunctions|5.0.000"
-    },
-    {
-      "type": "depends-on",
       "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.102.12.1011"
     },
-    {
-      "type": "depends-on",
-      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.102.12.1012"
-    },
-    {
-      "type": "depends-on",
-      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1061"
-    },
-    {
-      "type": "depends-on",
-      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.196.12.1001"
-    },
-    {
-      "type": "depends-on",
-      "resource": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1012"
-    }
+    ...
   ],
   "parameter": [
     {
@@ -227,90 +161,7 @@ Snippet 3-4 illustrates a FHIR Library resource containing a CQL library with a 
       "max": "1",
       "type": "Period"
     },
-    {
-      "name": "Patient",
-      "use": "out",
-      "min": 0,
-      "max": "1",
-      "type": "Patient"
-    },
-    {
-      "name": "Is Between 2 and 17 Years of Age at Start of Measurement Period",
-      "use": "out",
-      "min": 0,
-      "max": "1",
-      "type": "boolean"
-    },
-    {
-      "name": "Antibiotics",
-      "use": "out",
-      "min": 0,
-      "max": "*",
-      "type": "MedicationRequest"
-    },
-    {
-      "name": "Pharyngitis",
-      "use": "out",
-      "min": 0,
-      "max": "*",
-      "type": "Condition"
-    },
-    {
-      "name": "Measurement Period Encounters",
-      "use": "out",
-      "min": 0,
-      "max": "*",
-      "type": "Encounter"
-    },
-    {
-      "name": "Pharyngitis Encounters With Antibiotics",
-      "use": "out",
-      "min": 0,
-      "max": "*",
-      "type": "Encounter"
-    },
-    {
-      "name": "Initial Population",
-      "use": "out",
-      "min": 0,
-      "max": "*",
-      "type": "Encounter"
-    },
-    {
-      "name": "Pharyngitis With Prior Antibiotics",
-      "use": "out",
-      "min": 0,
-      "max": "*",
-      "type": "Condition"
-    },
-    {
-      "name": "Excluded Encounters",
-      "use": "out",
-      "min": 0,
-      "max": "*",
-      "type": "Encounter"
-    },
-    {
-      "name": "Denominator Exclusions",
-      "use": "out",
-      "min": 0,
-      "max": "*",
-      "type": "Encounter"
-    },
-    {
-      "name": "Strep Test Encounters",
-      "use": "out",
-      "min": 0,
-      "max": "*",
-      "type": "Encounter"
-    },
-    {
-      "name": "Numerator",
-      "use": "out",
-      "min": 0,
-      "max": "*",
-      "type": "Encounter"
-    }
+    ...
   ],
   "dataRequirement": [
     {
@@ -325,54 +176,7 @@ Snippet 3-4 illustrates a FHIR Library resource containing a CQL library with a 
         }
       ]
     },
-    {
-      "type": "Condition",
-      "profile": [
-        "http://hl7.org/fhir/StructureDefinition/Condition"
-      ],
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.102.12.1011"
-        }
-      ]
-    },
-    {
-      "type": "Condition",
-      "profile": [
-        "http://hl7.org/fhir/StructureDefinition/Condition"
-      ],
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.102.12.1012"
-        }
-      ]
-    },
-    {
-      "type": "Encounter",
-      "profile": [
-        "http://hl7.org/fhir/StructureDefinition/Encounter"
-      ],
-      "codeFilter": [
-        {
-          "path": "type",
-          "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1061"
-        }
-      ]
-    },
-    {
-      "type": "Observation",
-      "profile": [
-        "http://hl7.org/fhir/StructureDefinition/Observation"
-      ],
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1012"
-        }
-      ]
-    }
+    ...
   ],
   "content": [
     {
@@ -1435,7 +1239,7 @@ For multiple population ratio measures that specify 2 initial populations, the p
 1. When specifying multiple populations and/or multiple population groups the following naming scheme SHOULD be used
 
 ```
-(Criteria Name) (population group number)( population number)
+(Criteria Name) (population group number) (population number)
 ```
 
 Note when a measure has a single population group but multiple populations (such as a ratio measure), the underscore ("\_") is dropped. For example, "Initial Population 1", "Initial Population 2" refers to the populations NOT population groups.
