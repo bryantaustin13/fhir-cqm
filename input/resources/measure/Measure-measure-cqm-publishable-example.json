@@ -10,11 +10,6 @@
   }, {
     "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-trendingIssues",
     "valueMarkdown": "Recent changes in ICD-10 coding may affect comparison with historical data."
-  }, {
-    "url": "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-softwaresystem",
-    "valueReference": {
-      "reference": "Device/cqf-tooling"
-    }
   } ],
   "url": "http://hl7.org/fhir/uv/cqm/Measure/measure-cqm-publishable-example",
   "identifier": [ {

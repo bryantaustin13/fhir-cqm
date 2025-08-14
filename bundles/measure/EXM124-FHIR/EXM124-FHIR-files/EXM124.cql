@@ -61,7 +61,6 @@ define "Absence of Cervix":
      )
   union [Condition : "Congenital absence of cervix (disorder)"] NoCervixBirth
 		where Global."Normalize Interval"(NoCervixBirth.onset) starts on or before end of "Measurement Period"
-  //    and NoCervixBirth.clinicalStatus ~ ToConcept(Global."active") because this is an excluion, all statuses are acceptable
 
 define "Numerator":
 	exists "Cervical Cytology Within 3 Years"

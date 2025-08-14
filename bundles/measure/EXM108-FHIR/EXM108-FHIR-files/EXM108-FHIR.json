@@ -2,14 +2,11 @@
   "resourceType": "Measure",
   "id": "EXM108-FHIR",
   "meta": {
-    "profile": [ "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-shareablemeasure", "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-computablemeasure", "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-proportionmeasure", "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-cqlmeasure" ]
+    "profile": [ "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-shareablemeasure", "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-computablemeasure", "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-proportionmeasure", "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-cqlmeasure", "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-computablemeasure", "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-measure-cqfm" ]
   },
   "contained": [ {
     "resourceType": "Library",
-    "id": "effective-data-requirements-exm108",
-    "meta": {
-      "profile": [ "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-moduledefinitionlibrary" ]
-    },
+    "id": "effective-data-requirements",
     "extension": [ {
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-directReferenceCode",
       "valueCoding": {
@@ -72,7 +69,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "SDE Sex"
@@ -102,13 +99,13 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Admission Without VTE or Obstetrical Conditions"
       }, {
         "url": "statement",
-        "valueString": "define \"Admission Without VTE or Obstetrical Conditions\":\n\t  \tGlobal.\"Inpatient Encounter\" InpatientEncounter\n\t\t    where not (exists (Global.EncounterDiagnosis(InpatientEncounter)) EncounterDiagnosis\n              where (EncounterDiagnosis.code in \"Obstetrics\"\n\t\t\t\t\t\t\t\tor EncounterDiagnosis.code in \"Venous Thromboembolism\"\n\t\t\t\t\t\t\t\tor EncounterDiagnosis.code in \"Obstetrics VTE\"\n\t\t\t         )\n        )"
+        "valueString": "define \"Admission Without VTE or Obstetrical Conditions\":\n  Global.\"Inpatient Encounter\" InpatientEncounter\n    where not exists (\n      (Global.EncounterDiagnosis(InpatientEncounter)) EncounterDiagnosis\n        where EncounterDiagnosis.code in \"Obstetrics\"\n          or EncounterDiagnosis.code in \"Venous Thromboembolism\"\n          or EncounterDiagnosis.code in \"Obstetrics VTE\"\n    )"
       }, {
         "url": "displaySequence",
         "valueInteger": 3
@@ -117,13 +114,13 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions"
       }, {
         "url": "statement",
-        "valueString": "// Note: added FHIRHelpers.ToDate() in R4\ndefine \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\":\n    ( Global.\"Inpatient Encounter\" InpatientEncounter\n    \t\twith [\"Patient\"] BirthDate\n    \t\t\tsuch that Global.\"CalendarAgeInYearsAt\"(FHIRHelpers.ToDate(BirthDate.birthDate), start of InpatientEncounter.period) >= 18\n    )\n    intersect \"Admission Without VTE or Obstetrical Conditions\""
+        "valueString": "// Note: added FHIRHelpers.ToDate() in R4\ndefine \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\":\n  ( Global.\"Inpatient Encounter\" InpatientEncounter\n        where Global.\"CalendarAgeInYearsAt\"(FHIRHelpers.ToDate(Patient.birthDate), start of InpatientEncounter.period) >= 18\n  )\n    intersect \"Admission Without VTE or Obstetrical Conditions\""
       }, {
         "url": "displaySequence",
         "valueInteger": 4
@@ -147,13 +144,13 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Encounter With VTE Prophylaxis Received on Day of or Day After Admission or Procedure"
       }, {
         "url": "statement",
-        "valueString": "define \"Encounter With VTE Prophylaxis Received on Day of or Day After Admission or Procedure\":\n \t( from\n   \t\t\t\"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter,\n   \t\t\t\"VTE Prophylaxis by Medication Administered or Device Applied\" VTEProphylaxis\n  \t\twhere Coalesce(Global.\"Normalize Interval\"(VTEProphylaxis.effective), Global.\"Normalize Interval\"(VTEProphylaxis.performed)) starts during TJC.\"CalendarDayOfOrDayAfter\"(start of QualifyingEncounter.period)\n  \t\treturn QualifyingEncounter\n \t)\n \tunion (\n    from\n  \t\t\t\"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter,\n  \t\t\t[\"Procedure\": \"General or Neuraxial Anesthesia\"] AnesthesiaProcedure,\n  \t\t\t\"VTE Prophylaxis by Medication Administered or Device Applied\" VTEProphylaxis\n\t\t\twhere Global.\"Normalize Interval\"(AnesthesiaProcedure.performed) ends 1 day after day of start of QualifyingEncounter.period\n\t\t\t\tand Coalesce(Global.\"Normalize Interval\"(VTEProphylaxis.effective), Global.\"Normalize Interval\"(VTEProphylaxis.performed)) starts during TJC.\"CalendarDayOfOrDayAfter\"(end of Global.\"Normalize Interval\"(AnesthesiaProcedure.performed))\n\t\t\treturn QualifyingEncounter\n\t)"
+        "valueString": "define \"Encounter With VTE Prophylaxis Received on Day of or Day After Admission or Procedure\":\n \t( from\n      \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter,\n      \"VTE Prophylaxis by Medication Administered or Device Applied\" VTEProphylaxis\n    where Coalesce(Global.\"Normalize Interval\"(VTEProphylaxis.effective), Global.\"Normalize Interval\"(VTEProphylaxis.performed)) starts during TJC.\"CalendarDayOfOrDayAfter\"(start of QualifyingEncounter.period)\n    return QualifyingEncounter\n \t)\n \tunion (\n    from\n      \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter,\n      [\"Procedure\": \"General or Neuraxial Anesthesia\"] AnesthesiaProcedure,\n      \"VTE Prophylaxis by Medication Administered or Device Applied\" VTEProphylaxis\n    where Global.\"Normalize Interval\"(AnesthesiaProcedure.performed) ends 1 day after day of start of QualifyingEncounter.period\n      and Coalesce(Global.\"Normalize Interval\"(VTEProphylaxis.effective), Global.\"Normalize Interval\"(VTEProphylaxis.performed)) starts during TJC.\"CalendarDayOfOrDayAfter\"(end of Global.\"Normalize Interval\"(AnesthesiaProcedure.performed))\n    return QualifyingEncounter\n\t)"
       }, {
         "url": "displaySequence",
         "valueInteger": 6
@@ -162,7 +159,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Encounter With Medication Oral Factor Xa Inhibitor Administered on Day of or Day After Admission or Procedure"
@@ -177,13 +174,13 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Encounter With Prior or Present Diagnosis of Atrial Fibrillation or VTE"
       }, {
         "url": "statement",
-        "valueString": "/*NOTE: Feedback at Digitial Quality Summit 2019 indicates verificationStatus may be difficult for implementers to retrieve\n        both condition.clinicalStatus and condition.verificationStatus = 'confirmed'\n*/\ndefine \"Encounter With Prior or Present Diagnosis of Atrial Fibrillation or VTE\":\n\t( \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter\n\t\twith [\"Condition\": code in \"Atrial Fibrillation/Flutter\"] AtrialFibrillation\n\t\tsuch that FHIRHelpers.ToConcept(AtrialFibrillation.clinicalStatus) in { Global.\"active\", Global.\"recurrence\", Global.\"relapse\" }\n\t\t\tand Global.\"Normalize Interval\"(AtrialFibrillation.onset) starts on or before end of QualifyingEncounter.period\n    )\n    union ( \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter\n    \t\t\t\twhere Global.EncounterDiagnosis(QualifyingEncounter).code in \"Atrial Fibrillation/Flutter\"\n    \t\t\t)\n    union ( \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter\n    \t\t\t\twith [\"Condition\": code in \"Venous Thromboembolism\"] VTEDiagnosis\n    \t\t\t\tsuch that  FHIRHelpers.ToConcept(VTEDiagnosis.clinicalStatus) in { Global.\"inactive\", Global.\"remission\", Global.\"resolved\" }\n      \t\t\t\t\t//and VTEDiagnosis.verificationStatus = 'confirmed'\n    \t\t\t\tand Global.\"Normalize Interval\"(VTEDiagnosis.onset) before start of QualifyingEncounter.period\n      \t\t)"
+        "valueString": "define \"Encounter With Prior or Present Diagnosis of Atrial Fibrillation or VTE\":\n\t( \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter\n\t\twith [\"Condition\": code in \"Atrial Fibrillation/Flutter\"] AtrialFibrillation\n\t\tsuch that FHIRHelpers.ToConcept(AtrialFibrillation.clinicalStatus) in { Global.\"active\", Global.\"recurrence\", Global.\"relapse\" }\n\t\t\tand Global.\"Normalize Interval\"(AtrialFibrillation.onset) starts on or before end of QualifyingEncounter.period\n    )\n    union ( \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter\n    \t\t\t\twhere Global.EncounterDiagnosis(QualifyingEncounter).code in \"Atrial Fibrillation/Flutter\"\n    \t\t\t)\n    union ( \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter\n    \t\t\t\twith [\"Condition\": code in \"Venous Thromboembolism\"] VTEDiagnosis\n    \t\t\t\tsuch that  FHIRHelpers.ToConcept(VTEDiagnosis.clinicalStatus) in { Global.\"inactive\", Global.\"remission\", Global.\"resolved\" }\n      \t\t\t\t\t//and VTEDiagnosis.verificationStatus = 'confirmed'\n    \t\t\t\tand Global.\"Normalize Interval\"(VTEDiagnosis.onset) before start of QualifyingEncounter.period\n      \t\t)"
       }, {
         "url": "displaySequence",
         "valueInteger": 8
@@ -192,7 +189,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Encounter With Prior or Present Procedure of Hip or Knee Replacement Surgery"
@@ -207,7 +204,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Is In Low Risk for VTE or On Anticoagulant"
@@ -222,7 +219,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Low Risk for VTE or Anticoagulant Administered From Day of Start of Hospitalization To Day After Admission"
@@ -237,7 +234,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Low Risk for VTE or Anticoagulant Administered on Day of or Day After Procedure"
@@ -252,7 +249,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Encounter With Low Risk for VTE or Anticoagulant Administered"
@@ -267,7 +264,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "No VTE Prophylaxis Medication Administered or Ordered"
@@ -282,7 +279,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "No VTE Prophylaxis Medication Due to Medical Reason From Day of Start of Hospitalization To Day After Admission"
@@ -297,13 +294,13 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "No VTE Prophylaxis Device Applied or Ordered"
       }, {
         "url": "statement",
-        "valueString": "define \"No VTE Prophylaxis Device Applied or Ordered\":\n  ((\n    [\"ServiceRequest\": \"Venous foot pumps (VFP)\"]\n    union [\"ServiceRequest\": \"Intermittent pneumatic compression devices (IPC)\"]\n    union [\"ServiceRequest\": \"Graduated compression stockings (GCS)\"]\n    ) DeviceOrder\n    where DeviceOrder.status = 'completed'\n    //11/5 discussion: all expressions for QI-Core must include a status\n    //ServiceRequest.status -  draft | active | suspended | completed | entered-in-error | cancelled\n        and DeviceOrder.doNotPerform is true\n    return {id: DeviceOrder.id, requestStatusReason: GetStatusReason(DeviceOrder), authoredOn: DeviceOrder.authoredOn}\n    )\n  union\n    (\n      [\"Procedure\": \"Device Application\"] DeviceApplied\n      let DeviceNotDoneTiming: Global.GetExtension(DeviceApplied, 'qicore-recorded').value\n      where (DeviceApplied.usedCode in \"Intermittent pneumatic compression devices (IPC)\"\n            or DeviceApplied.usedCode in \"Venous foot pumps (VFP)\"\n            or DeviceApplied.usedCode in \"Graduated compression stockings (GCS)\"\n            )\n         and  DeviceApplied.status = 'not-done'\n         return {id: DeviceApplied.id, requestStatusReason: DeviceApplied.statusReason, authoredOn: DeviceNotDoneTiming}\n\n    )"
+        "valueString": "define \"No VTE Prophylaxis Device Applied or Ordered\":\n  ((\n    [\"ServiceRequest\": \"Venous foot pumps (VFP)\"]\n    union [\"ServiceRequest\": \"Intermittent pneumatic compression devices (IPC)\"]\n    union [\"ServiceRequest\": \"Graduated compression stockings (GCS)\"]\n    ) DeviceOrder\n    where DeviceOrder.status = 'completed'\n        and DeviceOrder.doNotPerform is true\n    return {id: DeviceOrder.id, requestStatusReason: GetStatusReason(DeviceOrder), authoredOn: DeviceOrder.authoredOn}\n    )\n  union\n    (\n      [\"Procedure\": \"Device Application\"] DeviceApplied\n      let DeviceNotDoneTiming: Global.GetExtension(DeviceApplied, 'qicore-recorded').value\n      where (DeviceApplied.usedCode in \"Intermittent pneumatic compression devices (IPC)\"\n            or DeviceApplied.usedCode in \"Venous foot pumps (VFP)\"\n            or DeviceApplied.usedCode in \"Graduated compression stockings (GCS)\"\n            )\n         and  DeviceApplied.status = 'not-done'\n         return {id: DeviceApplied.id, requestStatusReason: DeviceApplied.statusReason, authoredOn: DeviceNotDoneTiming}\n\n    )"
       }, {
         "url": "displaySequence",
         "valueInteger": 16
@@ -312,7 +309,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "No VTE Prophylaxis Device Due to Medical Reason From Day of Start of Hospitalization To Day After Admission"
@@ -327,7 +324,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "No VTE Prophylaxis Medication Due to Medical Reason on Day of or Day After Procedure"
@@ -342,7 +339,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "No VTE Prophylaxis Device Due to Medical Reason on Day of or Day After Procedure"
@@ -357,7 +354,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Encounter With No VTE Prophylaxis Due to Medical Reason"
@@ -372,7 +369,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "No VTE Prophylaxis Medication or Device Due to Patient Refusal"
@@ -387,7 +384,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "No VTE Prophylaxis Due to Patient Refusal From Day of Start of Hospitalization To Day After Admission"
@@ -402,7 +399,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "No VTE Prophylaxis Due to Patient Refusal on Day of or Day After Procedure"
@@ -417,7 +414,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Encounter With No VTE Prophylaxis Due to Patient Refusal"
@@ -432,13 +429,13 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Numerator"
       }, {
         "url": "statement",
-        "valueString": "define \"Numerator\":\n    \"Encounter With VTE Prophylaxis Received on Day of or Day After Admission or Procedure\"\n    union ( \"Encounter With Medication Oral Factor Xa Inhibitor Administered on Day of or Day After Admission or Procedure\"\n    \t\t\t  intersect ( \"Encounter With Prior or Present Diagnosis of Atrial Fibrillation or VTE\"\n    \t\t\t\t\t\t    union \"Encounter With Prior or Present Procedure of Hip or Knee Replacement Surgery\"\n    \t\t\t            )\n          )\n    union \"Encounter With Low Risk for VTE or Anticoagulant Administered\"\n    union \"Encounter With No VTE Prophylaxis Due to Medical Reason\"\n    union \"Encounter With No VTE Prophylaxis Due to Patient Refusal\""
+        "valueString": "define \"Numerator\":\n  \"Encounter With VTE Prophylaxis Received on Day of or Day After Admission or Procedure\"\n    union ( \"Encounter With Medication Oral Factor Xa Inhibitor Administered on Day of or Day After Admission or Procedure\"\n    \t\t\t  intersect ( \"Encounter With Prior or Present Diagnosis of Atrial Fibrillation or VTE\"\n    \t\t\t\t\t\t    union \"Encounter With Prior or Present Procedure of Hip or Knee Replacement Surgery\"\n    \t\t\t            )\n          )\n    union \"Encounter With Low Risk for VTE or Anticoagulant Administered\"\n    union \"Encounter With No VTE Prophylaxis Due to Medical Reason\"\n    union \"Encounter With No VTE Prophylaxis Due to Patient Refusal\""
       }, {
         "url": "displaySequence",
         "valueInteger": 25
@@ -447,7 +444,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Initial Population"
@@ -462,7 +459,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Denominator"
@@ -492,7 +489,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "SDE Payer"
@@ -522,7 +519,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "SDE Ethnicity"
@@ -537,7 +534,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Encounter Less Than 2 Days"
@@ -552,7 +549,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Encounter With ICU Location Stay 1 Day or More"
@@ -567,7 +564,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Encounter With Principal Diagnosis of Mental Disorder or Stroke"
@@ -582,7 +579,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "SCIP VTE Selected Surgery"
@@ -597,13 +594,13 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Encounter With Principal Procedure of SCIP VTE Selected Surgery"
       }, {
         "url": "statement",
-        "valueString": "/* NOTE: 2 options to express Principal Procedure to retrive \"encounter Procedure as an url\" and proedure \"rank as extension\" in R4\n          VTE-1 uses Option 1 - generic extension funtion\n          VTE-2 uses Option 2 - Specific extension functions\n  TODO:  Mapping Table needs revision on using \"Encounter.procedure.code\", \"Encounter.procedure.sequence\"\n*/\ndefine \"Encounter With Principal Procedure of SCIP VTE Selected Surgery\":\n  from\n      \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter,\n      \"SCIP VTE Selected Surgery\" SelectedProcedure\n      let EncounterProcedure: Global.GetExtension(QualifyingEncounter, 'qicore-encounter-procedure')\n  where FHIRHelpers.ToInteger(Global.GetExtension(EncounterProcedure, 'rank').value as FHIR.positiveInt) = 1\n      and Global.GetId(FHIRHelpers.ToString((Global.GetExtension(EncounterProcedure, 'procedure').value as FHIR.Reference).reference)) = SelectedProcedure.id\n      and Global.\"Normalize Interval\"(SelectedProcedure.performed) during QualifyingEncounter.period"
+        "valueString": "define \"Encounter With Principal Procedure of SCIP VTE Selected Surgery\":\n  from\n    \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter,\n    \"SCIP VTE Selected Surgery\" SelectedProcedure\n  let EncounterProcedure: Global.GetExtension(QualifyingEncounter, 'qicore-encounter-procedure')\n  where FHIRHelpers.ToInteger(Global.GetExtension(EncounterProcedure, 'rank').value as FHIR.positiveInt) = 1\n    and Global.GetId(FHIRHelpers.ToString((Global.GetExtension(EncounterProcedure, 'procedure').value as FHIR.Reference).reference)) = SelectedProcedure.id\n    and Global.\"Normalize Interval\"(SelectedProcedure.performed) during QualifyingEncounter.period"
       }, {
         "url": "displaySequence",
         "valueInteger": 36
@@ -612,7 +609,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Intervention Comfort Measures"
@@ -627,7 +624,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Encounter With Intervention Comfort Measures From Day of Start of Hospitalization To Day After Admission"
@@ -642,13 +639,13 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Encounter With Intervention Comfort Measures on Day of or Day After Procedure"
       }, {
         "url": "statement",
-        "valueString": "define \"Encounter With Intervention Comfort Measures on Day of or Day After Procedure\":\n  from\n  \t\t\"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter,\n  \t\t[\"Procedure\": \"General or Neuraxial Anesthesia\"] AnesthesiaProcedure,\n  \t\t\"Intervention Comfort Measures\" ComfortMeasure\n\t\twhere AnesthesiaProcedure.status = 'completed'\n\t\t\t\tand Global.\"Normalize Interval\"(AnesthesiaProcedure.performed) ends 1 day after day of start of QualifyingEncounter.period\n        and Coalesce(start of Global.\"Normalize Interval\"(ComfortMeasure.performed), ComfortMeasure.authoredOn) during TJC.\"CalendarDayOfOrDayAfter\"(end of Global.\"Normalize Interval\"(AnesthesiaProcedure.performed))\n    return QualifyingEncounter"
+        "valueString": "define \"Encounter With Intervention Comfort Measures on Day of or Day After Procedure\":\n  from\n    \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter,\n    [\"Procedure\": \"General or Neuraxial Anesthesia\"] AnesthesiaProcedure,\n    \"Intervention Comfort Measures\" ComfortMeasure\n  where AnesthesiaProcedure.status = 'completed'\n      and Global.\"Normalize Interval\"(AnesthesiaProcedure.performed) ends 1 day after day of start of QualifyingEncounter.period\n      and Coalesce(start of Global.\"Normalize Interval\"(ComfortMeasure.performed), ComfortMeasure.authoredOn) during TJC.\"CalendarDayOfOrDayAfter\"(end of Global.\"Normalize Interval\"(AnesthesiaProcedure.performed))\n  return QualifyingEncounter"
       }, {
         "url": "displaySequence",
         "valueInteger": 39
@@ -657,13 +654,13 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "Denominator Exclusion"
       }, {
         "url": "statement",
-        "valueString": "define \"Denominator Exclusion\":\n    \"Encounter Less Than 2 Days\"\n     union \"Encounter With ICU Location Stay 1 Day or More\"\n     union \"Encounter With Principal Diagnosis of Mental Disorder or Stroke\"\n     union \"Encounter With Principal Procedure of SCIP VTE Selected Surgery\"\n     union \"Encounter With Intervention Comfort Measures From Day of Start of Hospitalization To Day After Admission\"\n     union \"Encounter With Intervention Comfort Measures on Day of or Day After Procedure\""
+        "valueString": "define \"Denominator Exclusion\":\n  \"Encounter Less Than 2 Days\"\n     union \"Encounter With ICU Location Stay 1 Day or More\"\n     union \"Encounter With Principal Diagnosis of Mental Disorder or Stroke\"\n     union \"Encounter With Principal Procedure of SCIP VTE Selected Surgery\"\n     union \"Encounter With Intervention Comfort Measures From Day of Start of Hospitalization To Day After Admission\"\n     union \"Encounter With Intervention Comfort Measures on Day of or Day After Procedure\""
       }, {
         "url": "displaySequence",
         "valueInteger": 40
@@ -687,7 +684,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM108-FHIR"
+        "valueString": "EXM108"
       }, {
         "url": "name",
         "valueString": "SDE Race"
@@ -698,11 +695,563 @@
         "url": "displaySequence",
         "valueInteger": 42
       } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToString"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToString(value AdministrativeGender): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 43
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToString"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToString(value EncounterStatus): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 44
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "MATGlobalCommonFunctions"
+      }, {
+        "url": "name",
+        "valueString": "LengthInDays"
+      }, {
+        "url": "statement",
+        "valueString": "define function \"LengthInDays\"(Value Interval<DateTime>):\n\tdifference in days between start of Value and end of Value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 45
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToInterval"
+      }, {
+        "url": "statement",
+        "valueString": "/*\n@description: Converts the given [Period](https://hl7.org/fhir/datatypes.html#Period)\nvalue to a CQL DateTime Interval\n@comment: If the start value of the given period is unspecified, the starting\nboundary of the resulting interval will be open (meaning the start of the interval\nis unknown, as opposed to interpreted as the beginning of time).\n*/\ndefine function ToInterval(period FHIR.Period):\n    if period is null then\n        null\n    else\n        if period.\"start\" is null then\n            Interval(period.\"start\".value, period.\"end\".value]\n        else\n            Interval[period.\"start\".value, period.\"end\".value]"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 46
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "MATGlobalCommonFunctions"
+      }, {
+        "url": "name",
+        "valueString": "CalendarAgeInYearsAt"
+      }, {
+        "url": "statement",
+        "valueString": "define function \"CalendarAgeInYearsAt\"(BirthDateTime DateTime, AsOf DateTime):\n\tyears between ToDate(BirthDateTime)and ToDate(AsOf)"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 47
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "MATGlobalCommonFunctions"
+      }, {
+        "url": "name",
+        "valueString": "ToDate"
+      }, {
+        "url": "statement",
+        "valueString": "define function \"ToDate\"(Value DateTime):\n\tDateTime(year from Value, month from Value, day from Value, 0, 0, 0, 0, timezoneoffset from Value)"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 48
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToDate"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToDate(value date): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 49
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "MATGlobalCommonFunctions"
+      }, {
+        "url": "name",
+        "valueString": "EncounterDiagnosis"
+      }, {
+        "url": "statement",
+        "valueString": "define function \"EncounterDiagnosis\"(Encounter Encounter):\n  Encounter.diagnosis D\n    return singleton from ([Condition] C where C.id = \"GetId\"(D.condition.reference))"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 50
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToString"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToString(value string): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 51
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "MATGlobalCommonFunctions"
+      }, {
+        "url": "name",
+        "valueString": "GetId"
+      }, {
+        "url": "statement",
+        "valueString": "define function \"GetId\"(uri String):\n\tLast(Split(uri, '/'))"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 52
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToConcept"
+      }, {
+        "url": "statement",
+        "valueString": "/*\n@description: Converts the given FHIR [CodeableConcept](https://hl7.org/fhir/datatypes.html#CodeableConcept) value to a CQL Concept.\n*/\ndefine function ToConcept(concept FHIR.CodeableConcept):\n    if concept is null then\n        null\n    else\n        System.Concept {\n            codes: concept.coding C return ToCode(C),\n            display: concept.text.value\n        }"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 53
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToCode"
+      }, {
+        "url": "statement",
+        "valueString": "/*\n@description: Converts the given FHIR [Coding](https://hl7.org/fhir/datatypes.html#Coding) value to a CQL Code.\n*/\ndefine function ToCode(coding FHIR.Coding):\n    if coding is null then\n        null\n    else\n        System.Code {\n          code: coding.code.value,\n          system: coding.system.value,\n          version: coding.version.value,\n          display: coding.display.value\n        }"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 54
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToString"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToString(value MedicationAdministrationStatus): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 55
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToString"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToString(value ProcedureStatus): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 56
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "TJCOverall"
+      }, {
+        "url": "name",
+        "valueString": "CalendarDayOfOrDayAfter"
+      }, {
+        "url": "statement",
+        "valueString": "define function \"CalendarDayOfOrDayAfter\"(StartValue DateTime ):\n\tInterval(Global.\"ToDate\"(StartValue), Global.\"ToDate\"(StartValue + 2 days))"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 57
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToString"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToString(value ObservationStatus): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 58
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToQuantity"
+      }, {
+        "url": "statement",
+        "valueString": "/*\n@description: Converts the given FHIR [Quantity](https://hl7.org/fhir/datatypes.html#Quantity) \nvalue to a CQL Quantity\n@comment: If the given quantity has a comparator specified, a runtime error is raised. If the given quantity\nhas a system other than UCUM (i.e. `http://unitsofmeasure.org`) or CQL calendar units (i.e. `http://hl7.org/fhirpath/CodeSystem/calendar-units`)\nan error is raised. For UCUM to calendar units, the `ToCalendarUnit` function is used.\n@seealso: ToCalendarUnit\n*/\ndefine function ToQuantity(quantity FHIR.Quantity):\n    case\n        when quantity is null then null\n        when quantity.value is null then null\n        when quantity.comparator is not null then\n            Message(null, true, 'FHIRHelpers.ToQuantity.ComparatorQuantityNotSupported', 'Error', 'FHIR Quantity value has a comparator and cannot be converted to a System.Quantity value.')\n        when quantity.system is null or quantity.system.value = 'http://unitsofmeasure.org'\n              or quantity.system.value = 'http://hl7.org/fhirpath/CodeSystem/calendar-units' then\n            System.Quantity { value: quantity.value.value, unit: ToCalendarUnit(Coalesce(quantity.code.value, quantity.unit.value, '1')) }\n        else\n            Message(null, true, 'FHIRHelpers.ToQuantity.InvalidFHIRQuantity', 'Error', 'Invalid FHIR Quantity code: ' & quantity.unit.value & ' (' & quantity.system.value & '|' & quantity.code.value & ')')\n    end"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 59
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToCalendarUnit"
+      }, {
+        "url": "statement",
+        "valueString": "/*\n@description: Converts a UCUM definite duration unit to a CQL calendar duration\nunit using conversions specified in the [quantities](https://cql.hl7.org/02-authorsguide.html#quantities) \ntopic of the CQL specification.\n@comment: Note that for durations above days (or weeks), the conversion is understood to be approximate\n*/\ndefine function ToCalendarUnit(unit System.String):\n    case unit\n        when 'ms' then 'millisecond'\n        when 's' then 'second'\n        when 'min' then 'minute'\n        when 'h' then 'hour'\n        when 'd' then 'day'\n        when 'wk' then 'week'\n        when 'mo' then 'month'\n        when 'a' then 'year'\n        else unit\n    end"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 60
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "VTEICU"
+      }, {
+        "url": "name",
+        "valueString": "FromDayOfStartOfHospitalizationToDayAfterAdmission"
+      }, {
+        "url": "statement",
+        "valueString": "define function \"FromDayOfStartOfHospitalizationToDayAfterAdmission\"(Encounter FHIR.Encounter ):\n\tInterval[Global.\"ToDate\"(start of Global.\"HospitalizationWithObservation\"(Encounter)), Global.\"ToDate\"(start of Encounter.period + 2 days))"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 61
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "MATGlobalCommonFunctions"
+      }, {
+        "url": "name",
+        "valueString": "HospitalizationWithObservation"
+      }, {
+        "url": "statement",
+        "valueString": "define function \"HospitalizationWithObservation\"(TheEncounter FHIR.Encounter):\n\tTheEncounter Visit\n\t\tlet ObsVisit: Last([Encounter: \"Observation Services\"] LastObs\n\t\t\t\twhere LastObs.period ends 1 hour or less on or before start of Visit.period\n\t\t\t\tsort by end of period\n\t\t\t),\n\t\t\tVisitStart: Coalesce(start of ObsVisit.period, start of Visit.period),\n\t\t\tEDVisit: Last([Encounter: \"Emergency Department Visit\"] LastED\n\t\t\t\twhere LastED.period ends 1 hour or less on or before VisitStart\n\t\t\t\tsort by end of period\n\t\t\t)\n\t\treturn Interval[Coalesce(start of EDVisit.period, VisitStart), end of Visit.period]"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 62
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToBoolean"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToBoolean(value boolean): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 63
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToString"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToString(value MedicationRequestStatus): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 64
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToDateTime"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToDateTime(value dateTime): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 65
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToString"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToString(value ServiceRequestStatus): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 66
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "EXM108"
+      }, {
+        "url": "name",
+        "valueString": "GetStatusReason"
+      }, {
+        "url": "statement",
+        "valueString": "//11/5: ServiceRequest not done reason is an extension in QI-Core R4 as ServiceRequest.extension:statusReason\ndefine function GetStatusReason(requestReason ServiceRequest):\n      Global.GetBaseExtension(requestReason, 'request-statusReason')"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 67
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "MATGlobalCommonFunctions"
+      }, {
+        "url": "name",
+        "valueString": "GetBaseExtension"
+      }, {
+        "url": "statement",
+        "valueString": "define function \"GetBaseExtension\"(domainResource DomainResource, url String):\n  singleton from \"GetBaseExtensions\"(domainResource, url)"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 68
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "MATGlobalCommonFunctions"
+      }, {
+        "url": "name",
+        "valueString": "GetBaseExtensions"
+      }, {
+        "url": "statement",
+        "valueString": "/*\nNOTE: Extensions are not the preferred approach, but are used as a way to access\ncontent that is defined by extensions but not yet surfaced in the\nCQL model info.\n*/\ndefine function \"GetBaseExtensions\"(domainResource DomainResource, url String):\n  domainResource.extension E\n\t  where E.url = ('http://hl7.org/fhir/StructureDefinition/' + url)\n\t\treturn E"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 69
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToString"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToString(value uri): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 70
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "MATGlobalCommonFunctions"
+      }, {
+        "url": "name",
+        "valueString": "GetExtension"
+      }, {
+        "url": "statement",
+        "valueString": "define function \"GetExtension\"(domainResource DomainResource, url String):\n  singleton from \"GetExtensions\"(domainResource, url)"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 71
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "MATGlobalCommonFunctions"
+      }, {
+        "url": "name",
+        "valueString": "GetExtensions"
+      }, {
+        "url": "statement",
+        "valueString": "/*\nNOTE: Extensions are not the preferred approach, but are used as a way to access\ncontent that is defined by extensions but not yet surfaced in the\nCQL model info.\n*/\ndefine function \"GetExtensions\"(domainResource DomainResource, url String):\n  domainResource.extension E\n\t  where E.url = ('http://hl7.org/fhir/us/qicore/StructureDefinition/' + url)\n\t\treturn E"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 72
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToDateTime"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToDateTime(value instant): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 73
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "MATGlobalCommonFunctions"
+      }, {
+        "url": "name",
+        "valueString": "GetLocation"
+      }, {
+        "url": "statement",
+        "valueString": "// Returns the location for the given location reference\ndefine function GetLocation(reference Reference):\n  singleton from (\n    [Location] L where L.id = GetId(reference.reference)\n  )"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 74
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "MATGlobalCommonFunctions"
+      }, {
+        "url": "name",
+        "valueString": "PrincipalDiagnosis"
+      }, {
+        "url": "statement",
+        "valueString": "// Returns the condition that is specified as the principal diagnosis for the encounter\n// TODO: BTR 2019-07-30: Shouldn't need the FHIRHelpers reference here, investigate\ndefine function \"PrincipalDiagnosis\"(Encounter Encounter):\n\t(singleton from (Encounter.diagnosis D where FHIRHelpers.ToInteger(D.rank) = 1)) PD\n\t\treturn singleton from ([Condition] C where C.id = \"GetId\"(PD.condition.reference))"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 75
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToInteger"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToInteger(value integer): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 76
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "MATGlobalCommonFunctions"
+      }, {
+        "url": "name",
+        "valueString": "GetExtension"
+      }, {
+        "url": "statement",
+        "valueString": "define function \"GetExtension\"(element Element, url String):\n  singleton from \"GetExtensions\"(element, url)"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 77
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "MATGlobalCommonFunctions"
+      }, {
+        "url": "name",
+        "valueString": "GetExtensions"
+      }, {
+        "url": "statement",
+        "valueString": "/*\nNOTE: Extensions are not the preferred approach, but are used as a way to access\ncontent that is defined by extensions but not yet surfaced in the\nCQL model info.\n*/\ndefine function \"GetExtensions\"(element Element, url String):\n  element.extension E\n\t  where E.url = (url)\n\t\treturn E"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 78
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToString"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToString(value ServiceRequestIntent): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 79
+      } ]
     } ],
-    "url": "http://hl7.org/fhir/uv/cqm/Library/effective-data-requirements-exm108",
-    "version": "1.0.0",
     "name": "EffectiveDataRequirements",
-    "title": "Module Definition Library - EXM108",
     "status": "active",
     "type": {
       "coding": [ {
@@ -710,8 +1259,6 @@
         "code": "module-definition"
       } ]
     },
-    "date": "2022-02-22T10:37:04-07:00",
-    "description": "This library is used as an example module definition in the FHIR Quality Measure Implementation Guide",
     "relatedArtifact": [ {
       "type": "depends-on",
       "display": "Library SDE",
@@ -926,7 +1473,7 @@
       "use": "out",
       "min": 0,
       "max": "*",
-      "type": "Any"
+      "type": "Resource"
     }, {
       "name": "Initial Population",
       "use": "out",
@@ -944,7 +1491,7 @@
       "use": "out",
       "min": 0,
       "max": "*",
-      "type": "Any"
+      "type": "Resource"
     }, {
       "name": "SDE Race",
       "use": "out",
@@ -955,19 +1502,19 @@
     "dataRequirement": [ {
       "type": "Patient",
       "profile": [ "http://hl7.org/fhir/StructureDefinition/Patient" ],
-      "mustSupport": [ "extension", "value", "birthDate", "url" ]
+      "mustSupport": [ "url", "extension", "value" ]
     }, {
       "type": "Encounter",
       "profile": [ "http://hl7.org/fhir/StructureDefinition/Encounter" ],
-      "mustSupport": [ "period", "type" ],
+      "mustSupport": [ "type", "status", "period", "condition", "condition.reference", "location", "rank" ],
       "codeFilter": [ {
         "path": "type",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.292"
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307"
       } ]
     }, {
       "type": "Encounter",
       "profile": [ "http://hl7.org/fhir/StructureDefinition/Encounter" ],
-      "mustSupport": [ "period", "type" ],
+      "mustSupport": [ "type", "period", "condition", "condition.reference", "location", "rank" ],
       "codeFilter": [ {
         "path": "type",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1111.143"
@@ -975,223 +1522,11 @@
     }, {
       "type": "Encounter",
       "profile": [ "http://hl7.org/fhir/StructureDefinition/Encounter" ],
-      "mustSupport": [ "period", "type", "status" ],
+      "mustSupport": [ "type", "period", "condition", "condition.reference", "location", "rank" ],
       "codeFilter": [ {
         "path": "type",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307"
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.292"
       } ]
-    }, {
-      "type": "MedicationAdministration",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationAdministration" ],
-      "mustSupport": [ "dosage.route", "dosage", "medication" ],
-      "codeFilter": [ {
-        "path": "medication",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.218"
-      } ]
-    }, {
-      "type": "MedicationAdministration",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationAdministration" ],
-      "mustSupport": [ "medication" ],
-      "codeFilter": [ {
-        "path": "medication",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.205"
-      } ]
-    }, {
-      "type": "MedicationAdministration",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationAdministration" ],
-      "mustSupport": [ "medication" ],
-      "codeFilter": [ {
-        "path": "medication",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1045.41"
-      } ]
-    }, {
-      "type": "MedicationAdministration",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationAdministration" ],
-      "mustSupport": [ "dosage.route", "dosage", "medication", "status" ],
-      "codeFilter": [ {
-        "path": "medication",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1045.39"
-      } ]
-    }, {
-      "type": "MedicationAdministration",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationAdministration" ],
-      "mustSupport": [ "medication", "status" ],
-      "codeFilter": [ {
-        "path": "medication",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.219"
-      } ]
-    }, {
-      "type": "MedicationAdministration",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationAdministration" ],
-      "mustSupport": [ "medication", "status" ],
-      "codeFilter": [ {
-        "path": "medication",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.211"
-      } ]
-    }, {
-      "type": "MedicationAdministration",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationAdministration" ],
-      "mustSupport": [ "medication", "status" ],
-      "codeFilter": [ {
-        "path": "medication",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.232"
-      } ]
-    }, {
-      "type": "MedicationAdministration",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationAdministration" ],
-      "mustSupport": [ "effective", "medication", "status" ],
-      "codeFilter": [ {
-        "path": "medication",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.134"
-      } ]
-    }, {
-      "type": "MedicationRequest",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationRequest" ],
-      "mustSupport": [ "medication" ],
-      "codeFilter": [ {
-        "path": "medication",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1045.39"
-      } ]
-    }, {
-      "type": "MedicationRequest",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationRequest" ],
-      "mustSupport": [ "medication" ],
-      "codeFilter": [ {
-        "path": "medication",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.219"
-      } ]
-    }, {
-      "type": "MedicationRequest",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationRequest" ],
-      "mustSupport": [ "medication" ],
-      "codeFilter": [ {
-        "path": "medication",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.211"
-      } ]
-    }, {
-      "type": "MedicationRequest",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationRequest" ],
-      "mustSupport": [ "medication" ],
-      "codeFilter": [ {
-        "path": "medication",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.232"
-      } ]
-    }, {
-      "type": "ServiceRequest",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/ServiceRequest" ],
-      "mustSupport": [ "code" ],
-      "codeFilter": [ {
-        "path": "code",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.230"
-      } ]
-    }, {
-      "type": "ServiceRequest",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/ServiceRequest" ],
-      "mustSupport": [ "code" ],
-      "codeFilter": [ {
-        "path": "code",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.214"
-      } ]
-    }, {
-      "type": "ServiceRequest",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/ServiceRequest" ],
-      "mustSupport": [ "code" ],
-      "codeFilter": [ {
-        "path": "code",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.256"
-      } ]
-    }, {
-      "type": "ServiceRequest",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/ServiceRequest" ],
-      "mustSupport": [ "code", "intent" ],
-      "codeFilter": [ {
-        "path": "code",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/1.3.6.1.4.1.33895.1.3.0.45"
-      } ]
-    }, {
-      "type": "Procedure",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/Procedure" ],
-      "mustSupport": [ "code" ],
-      "codeFilter": [ {
-        "path": "code",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.255"
-      } ]
-    }, {
-      "type": "Procedure",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/Procedure" ],
-      "mustSupport": [ "code" ],
-      "codeFilter": [ {
-        "path": "code",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.257"
-      } ]
-    }, {
-      "type": "Procedure",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/Procedure" ],
-      "mustSupport": [ "code" ],
-      "codeFilter": [ {
-        "path": "code",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.258"
-      } ]
-    }, {
-      "type": "Procedure",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/Procedure" ],
-      "mustSupport": [ "code" ],
-      "codeFilter": [ {
-        "path": "code",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.260"
-      } ]
-    }, {
-      "type": "Procedure",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/Procedure" ],
-      "mustSupport": [ "code" ],
-      "codeFilter": [ {
-        "path": "code",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.272"
-      } ]
-    }, {
-      "type": "Procedure",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/Procedure" ],
-      "mustSupport": [ "code", "status" ],
-      "codeFilter": [ {
-        "path": "code",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/1.3.6.1.4.1.33895.1.3.0.45"
-      } ]
-    }, {
-      "type": "Procedure",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/Procedure" ],
-      "mustSupport": [ "code" ],
-      "codeFilter": [ {
-        "path": "code",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.259"
-      } ]
-    }, {
-      "type": "Procedure",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/Procedure" ],
-      "mustSupport": [ "code" ],
-      "codeFilter": [ {
-        "path": "code",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.261"
-      } ]
-    }, {
-      "type": "Procedure",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/Procedure" ],
-      "mustSupport": [ "code", "statusReason", "usedCode", "id", "status" ],
-      "codeFilter": [ {
-        "path": "code",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1110.48"
-      } ]
-    }, {
-      "type": "Procedure",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/Procedure" ],
-      "mustSupport": [ "code", "performed", "status" ],
-      "codeFilter": [ {
-        "path": "code",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.1743"
-      } ]
-    }, {
-      "type": "Condition",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/Condition" ],
-      "mustSupport": [ "id" ]
     }, {
       "type": "Condition",
       "profile": [ "http://hl7.org/fhir/StructureDefinition/Condition" ],
@@ -1209,9 +1544,161 @@
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.279"
       } ]
     }, {
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Condition" ],
+      "mustSupport": [ "id", "code" ]
+    }, {
+      "type": "MedicationAdministration",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationAdministration" ],
+      "mustSupport": [ "medication", "status", "effective", "dosage", "dosage.route", "id" ],
+      "codeFilter": [ {
+        "path": "medication",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.134"
+      } ]
+    }, {
+      "type": "MedicationAdministration",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationAdministration" ],
+      "mustSupport": [ "medication", "dosage", "dosage.route", "status", "id", "effective" ],
+      "codeFilter": [ {
+        "path": "medication",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.218"
+      } ]
+    }, {
+      "type": "MedicationAdministration",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationAdministration" ],
+      "mustSupport": [ "medication", "dosage", "dosage.route", "status", "id", "effective" ],
+      "codeFilter": [ {
+        "path": "medication",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.205"
+      } ]
+    }, {
+      "type": "MedicationAdministration",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationAdministration" ],
+      "mustSupport": [ "medication", "dosage", "dosage.route", "status", "id", "effective" ],
+      "codeFilter": [ {
+        "path": "medication",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1045.41"
+      } ]
+    }, {
+      "type": "MedicationAdministration",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationAdministration" ],
+      "mustSupport": [ "medication.reference", "dosage", "dosage.route", "status", "id", "effective" ]
+    }, {
+      "type": "MedicationAdministration",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationAdministration" ],
+      "mustSupport": [ "medication", "status", "dosage", "dosage.route", "id", "effective" ],
+      "codeFilter": [ {
+        "path": "medication",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1045.39"
+      } ]
+    }, {
+      "type": "MedicationAdministration",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationAdministration" ],
+      "mustSupport": [ "medication", "status", "dosage", "dosage.route", "id", "effective" ],
+      "codeFilter": [ {
+        "path": "medication",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.219"
+      } ]
+    }, {
+      "type": "MedicationAdministration",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationAdministration" ],
+      "mustSupport": [ "medication", "status", "dosage", "dosage.route", "id", "effective" ],
+      "codeFilter": [ {
+        "path": "medication",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.211"
+      } ]
+    }, {
+      "type": "MedicationAdministration",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationAdministration" ],
+      "mustSupport": [ "medication", "status", "dosage", "dosage.route", "id", "effective" ],
+      "codeFilter": [ {
+        "path": "medication",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.232"
+      } ]
+    }, {
+      "type": "Procedure",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Procedure" ],
+      "mustSupport": [ "code", "status", "usedCode", "performed", "id", "statusReason" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1110.48"
+      } ]
+    }, {
+      "type": "Procedure",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Procedure" ],
+      "mustSupport": [ "code", "status", "performed", "id" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.255"
+      } ]
+    }, {
+      "type": "Procedure",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Procedure" ],
+      "mustSupport": [ "code", "status", "performed", "id" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.257"
+      } ]
+    }, {
+      "type": "Procedure",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Procedure" ],
+      "mustSupport": [ "code", "status", "performed", "id" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.258"
+      } ]
+    }, {
+      "type": "Procedure",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Procedure" ],
+      "mustSupport": [ "code", "status", "performed", "id" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.259"
+      } ]
+    }, {
+      "type": "Procedure",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Procedure" ],
+      "mustSupport": [ "code", "status", "performed", "id" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.260"
+      } ]
+    }, {
+      "type": "Procedure",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Procedure" ],
+      "mustSupport": [ "code", "status", "performed", "id" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.261"
+      } ]
+    }, {
+      "type": "Procedure",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Procedure" ],
+      "mustSupport": [ "code", "status", "performed", "id" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.272"
+      } ]
+    }, {
+      "type": "Procedure",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Procedure" ],
+      "mustSupport": [ "code", "status", "performed", "id" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/1.3.6.1.4.1.33895.1.3.0.45"
+      } ]
+    }, {
+      "type": "Procedure",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Procedure" ],
+      "mustSupport": [ "code", "performed", "status", "id" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.1743"
+      } ]
+    }, {
       "type": "Observation",
       "profile": [ "http://hl7.org/fhir/StructureDefinition/Observation" ],
-      "mustSupport": [ "code", "value", "status" ],
+      "mustSupport": [ "code", "value", "status", "effective" ],
       "codeFilter": [ {
         "path": "code",
         "code": [ {
@@ -1223,15 +1710,83 @@
     }, {
       "type": "Observation",
       "profile": [ "http://hl7.org/fhir/StructureDefinition/Observation" ],
-      "mustSupport": [ "code", "id", "issued", "value", "status" ],
+      "mustSupport": [ "code", "value", "status", "id", "issued", "effective" ],
       "codeFilter": [ {
         "path": "code",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.213"
       } ]
     }, {
+      "type": "Medication",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Medication" ],
+      "mustSupport": [ "id", "code" ]
+    }, {
+      "type": "MedicationRequest",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationRequest" ],
+      "mustSupport": [ "medication", "doNotPerform", "status" ],
+      "codeFilter": [ {
+        "path": "medication",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1045.39"
+      } ]
+    }, {
+      "type": "MedicationRequest",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationRequest" ],
+      "mustSupport": [ "medication", "doNotPerform", "status" ],
+      "codeFilter": [ {
+        "path": "medication",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.219"
+      } ]
+    }, {
+      "type": "MedicationRequest",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationRequest" ],
+      "mustSupport": [ "medication", "doNotPerform", "status" ],
+      "codeFilter": [ {
+        "path": "medication",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.211"
+      } ]
+    }, {
+      "type": "MedicationRequest",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/MedicationRequest" ],
+      "mustSupport": [ "medication", "doNotPerform", "status" ],
+      "codeFilter": [ {
+        "path": "medication",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.232"
+      } ]
+    }, {
+      "type": "ServiceRequest",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/ServiceRequest" ],
+      "mustSupport": [ "code", "status", "doNotPerform", "id", "authoredOn" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.230"
+      } ]
+    }, {
+      "type": "ServiceRequest",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/ServiceRequest" ],
+      "mustSupport": [ "code", "status", "doNotPerform", "id", "authoredOn" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.214"
+      } ]
+    }, {
+      "type": "ServiceRequest",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/ServiceRequest" ],
+      "mustSupport": [ "code", "status", "doNotPerform", "id", "authoredOn" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.256"
+      } ]
+    }, {
+      "type": "ServiceRequest",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/ServiceRequest" ],
+      "mustSupport": [ "code", "intent", "status", "doNotPerform", "id", "authoredOn" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/1.3.6.1.4.1.33895.1.3.0.45"
+      } ]
+    }, {
       "type": "Coverage",
       "profile": [ "http://hl7.org/fhir/StructureDefinition/Coverage" ],
-      "mustSupport": [ "period", "type" ],
+      "mustSupport": [ "type", "period" ],
       "codeFilter": [ {
         "path": "type",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591"
@@ -1246,8 +1801,9 @@
     "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
     "valueCode": "Encounter"
   }, {
+    "id": "effective-data-requirements",
     "url": "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-effectiveDataRequirements",
-    "valueCanonical": "#effective-data-requirements-exm108"
+    "valueCanonical": "#effective-data-requirements"
   } ],
   "url": "http://hl7.org/fhir/uv/cqm/Measure/EXM108-FHIR",
   "identifier": [ {
@@ -1260,7 +1816,7 @@
   "title": "EXM108 - Venous Thromboembolism Prophylaxis",
   "status": "active",
   "experimental": true,
-  "date": "2022-02-22",
+  "date": "2025-08-13",
   "publisher": "The Joint Commission",
   "contact": [ {
     "telecom": [ {

@@ -6,7 +6,7 @@
   },
   "contained": [ {
     "resourceType": "Library",
-    "id": "effective-data-requirements-exm124",
+    "id": "effective-data-requirements",
     "extension": [ {
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-directReferenceCode",
       "valueCoding": {
@@ -101,7 +101,7 @@
         "valueString": "Numerator"
       }, {
         "url": "statement",
-        "valueString": "//    and NoCervixBirth.clinicalStatus ~ ToConcept(Global.\"active\") because this is an excluion, all statuses are acceptable\n\ndefine \"Numerator\":\n\texists \"Cervical Cytology Within 3 Years\"\n\t\tor exists \"HPV Test Within 5 Years for Women Age 30 and Older\""
+        "valueString": "define \"Numerator\":\n\texists \"Cervical Cytology Within 3 Years\"\n\t\tor exists \"HPV Test Within 5 Years for Women Age 30 and Older\""
       }, {
         "url": "displaySequence",
         "valueInteger": 4
@@ -733,8 +733,9 @@
     "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
     "valueCode": "boolean"
   }, {
+    "id": "effective-data-requirements",
     "url": "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-effectiveDataRequirements",
-    "valueCanonical": "#effective-data-requirements-exm124"
+    "valueCanonical": "#effective-data-requirements"
   } ],
   "url": "http://hl7.org/fhir/uv/cqm/Measure/EXM124-FHIR",
   "identifier": [ {
@@ -783,7 +784,7 @@
   "title": "EXM124 - Cervical Cancer Screening",
   "status": "active",
   "experimental": true,
-  "date": "2025-08-07",
+  "date": "2025-08-13",
   "publisher": "National Committee for Quality Assurance",
   "contact": [ {
     "telecom": [ {

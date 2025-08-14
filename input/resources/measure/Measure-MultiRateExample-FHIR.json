@@ -6,7 +6,7 @@
   },
   "contained": [ {
     "resourceType": "Library",
-    "id": "effective-data-requirements-mre",
+    "id": "effective-data-requirements",
     "extension": [ {
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
@@ -218,6 +218,12 @@
       "max": "*",
       "type": "Patient"
     }, {
+      "name": "Screening Procedures",
+      "use": "out",
+      "min": 0,
+      "max": "*",
+      "type": "Procedure"
+    }, {
       "name": "Denominator",
       "use": "out",
       "min": 0,
@@ -271,8 +277,9 @@
     "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
     "valueCode": "Patient"
   }, {
+    "id": "effective-data-requirements",
     "url": "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-effectiveDataRequirements",
-    "valueCanonical": "#effective-data-requirements-mre"
+    "valueCanonical": "#effective-data-requirements"
   } ],
   "url": "http://hl7.org/fhir/uv/cqm/Measure/MultiRateExample-FHIR",
   "version": "0.1.0",
@@ -286,7 +293,7 @@
       "code": "Location"
     } ]
   },
-  "date": "2025-08-07T20:50:23-07:00",
+  "date": "2025-08-13T16:14:51-07:00",
   "description": "This measure example illustrates the use of the group-level computation extensions to describe a multi-rate measure with mixed population bases",
   "useContext": [ {
     "code": {
@@ -641,7 +648,7 @@
       "description": "Total number of screening procedures",
       "criteria": {
         "language": "text/cql-identifier",
-        "expression": "Procedures"
+        "expression": "Screening Procedures"
       }
     }, {
       "extension": [ {
@@ -657,7 +664,7 @@
       "description": "Total number of screening procedures",
       "criteria": {
         "language": "text/cql-identifier",
-        "expression": "Procedures"
+        "expression": "Screening Procedures"
       }
     }, {
       "extension": [ {

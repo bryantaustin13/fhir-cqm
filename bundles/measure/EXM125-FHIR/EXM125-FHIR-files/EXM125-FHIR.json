@@ -2,14 +2,11 @@
   "resourceType": "Measure",
   "id": "EXM125-FHIR",
   "meta": {
-    "profile": [ "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-proportionmeasure", "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-computablemeasure", "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-cqlmeasure" ]
+    "profile": [ "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-proportionmeasure", "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-computablemeasure", "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-cqlmeasure", "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-computablemeasure", "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-measure-cqfm" ]
   },
   "contained": [ {
     "resourceType": "Library",
-    "id": "effective-data-requirements-exm125",
-    "meta": {
-      "profile": [ "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-moduledefinitionlibrary" ]
-    },
+    "id": "effective-data-requirements",
     "extension": [ {
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-directReferenceCode",
       "valueCoding": {
@@ -51,7 +48,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM125-FHIR"
+        "valueString": "EXM125"
       }, {
         "url": "name",
         "valueString": "SDE Sex"
@@ -66,7 +63,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM125-FHIR"
+        "valueString": "EXM125"
       }, {
         "url": "name",
         "valueString": "Numerator"
@@ -96,7 +93,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM125-FHIR"
+        "valueString": "EXM125"
       }, {
         "url": "name",
         "valueString": "Initial Population"
@@ -111,7 +108,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM125-FHIR"
+        "valueString": "EXM125"
       }, {
         "url": "name",
         "valueString": "Denominator"
@@ -141,7 +138,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM125-FHIR"
+        "valueString": "EXM125"
       }, {
         "url": "name",
         "valueString": "SDE Payer"
@@ -171,7 +168,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM125-FHIR"
+        "valueString": "EXM125"
       }, {
         "url": "name",
         "valueString": "SDE Ethnicity"
@@ -201,7 +198,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM125-FHIR"
+        "valueString": "EXM125"
       }, {
         "url": "name",
         "valueString": "Unilateral Mastectomy Procedure"
@@ -216,7 +213,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM125-FHIR"
+        "valueString": "EXM125"
       }, {
         "url": "name",
         "valueString": "Right Mastectomy"
@@ -231,7 +228,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM125-FHIR"
+        "valueString": "EXM125"
       }, {
         "url": "name",
         "valueString": "Left Mastectomy"
@@ -246,7 +243,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM125-FHIR"
+        "valueString": "EXM125"
       }, {
         "url": "name",
         "valueString": "History Bilateral Mastectomy"
@@ -261,7 +258,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM125-FHIR"
+        "valueString": "EXM125"
       }, {
         "url": "name",
         "valueString": "Bilateral Mastectomy Procedure"
@@ -276,7 +273,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM125-FHIR"
+        "valueString": "EXM125"
       }, {
         "url": "name",
         "valueString": "Denominator Exclusion"
@@ -306,7 +303,7 @@
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
       "extension": [ {
         "url": "libraryName",
-        "valueString": "EXM125-FHIR"
+        "valueString": "EXM125"
       }, {
         "url": "name",
         "valueString": "SDE Race"
@@ -317,11 +314,203 @@
         "url": "displaySequence",
         "valueInteger": 18
       } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToString"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToString(value AdministrativeGender): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 19
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToString"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToString(value DiagnosticReportStatus): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 20
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "MATGlobalCommonFunctions"
+      }, {
+        "url": "name",
+        "valueString": "CalendarAgeInYearsAt"
+      }, {
+        "url": "statement",
+        "valueString": "define function \"CalendarAgeInYearsAt\"(BirthDateTime DateTime, AsOf DateTime):\n\tyears between ToDate(BirthDateTime)and ToDate(AsOf)"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 21
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "MATGlobalCommonFunctions"
+      }, {
+        "url": "name",
+        "valueString": "ToDate"
+      }, {
+        "url": "statement",
+        "valueString": "define function \"ToDate\"(Value DateTime):\n\tDateTime(year from Value, month from Value, day from Value, 0, 0, 0, 0, timezoneoffset from Value)"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 22
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToDate"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToDate(value date): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 23
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToInterval"
+      }, {
+        "url": "statement",
+        "valueString": "/*\n@description: Converts the given [Period](https://hl7.org/fhir/datatypes.html#Period)\nvalue to a CQL DateTime Interval\n@comment: If the start value of the given period is unspecified, the starting\nboundary of the resulting interval will be open (meaning the start of the interval\nis unknown, as opposed to interpreted as the beginning of time).\n*/\ndefine function ToInterval(period FHIR.Period):\n    if period is null then\n        null\n    else\n        if period.\"start\" is null then\n            Interval(period.\"start\".value, period.\"end\".value]\n        else\n            Interval[period.\"start\".value, period.\"end\".value]"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 24
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToString"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToString(value EncounterStatus): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 25
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToString"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToString(value uri): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 26
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToConcept"
+      }, {
+        "url": "statement",
+        "valueString": "/*\n@description: Converts the given FHIR [CodeableConcept](https://hl7.org/fhir/datatypes.html#CodeableConcept) value to a CQL Concept.\n*/\ndefine function ToConcept(concept FHIR.CodeableConcept):\n    if concept is null then\n        null\n    else\n        System.Concept {\n            codes: concept.coding C return ToCode(C),\n            display: concept.text.value\n        }"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 27
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToCode"
+      }, {
+        "url": "statement",
+        "valueString": "/*\n@description: Converts the given FHIR [Coding](https://hl7.org/fhir/datatypes.html#Coding) value to a CQL Code.\n*/\ndefine function ToCode(coding FHIR.Coding):\n    if coding is null then\n        null\n    else\n        System.Code {\n          code: coding.code.value,\n          system: coding.system.value,\n          version: coding.version.value,\n          display: coding.display.value\n        }"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 28
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToString"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToString(value ServiceRequestIntent): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 29
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToDateTime"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToDateTime(value dateTime): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 30
+      } ]
+    }, {
+      "url": "http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition",
+      "extension": [ {
+        "url": "libraryName",
+        "valueString": "FHIRHelpers"
+      }, {
+        "url": "name",
+        "valueString": "ToString"
+      }, {
+        "url": "statement",
+        "valueString": "define function ToString(value ProcedureStatus): value.value"
+      }, {
+        "url": "displaySequence",
+        "valueInteger": 31
+      } ]
     } ],
-    "url": "http://hl7.org/fhir/uv/cqm/Library/effective-data-requirements-exm125",
-    "version": "1.0.0",
     "name": "EffectiveDataRequirements",
-    "title": "Module Definition Library - EXM125",
     "status": "active",
     "type": {
       "coding": [ {
@@ -329,8 +518,6 @@
         "code": "module-definition"
       } ]
     },
-    "date": "2022-02-22T10:37:03-07:00",
-    "description": "This library is used as an example module definition in the FHIR Quality Measure Implementation Guide",
     "relatedArtifact": [ {
       "type": "depends-on",
       "display": "Library SDE",
@@ -457,7 +644,7 @@
       "use": "out",
       "min": 0,
       "max": "*",
-      "type": "Any"
+      "type": "Resource"
     }, {
       "name": "Initial Population",
       "use": "out",
@@ -484,56 +671,88 @@
       "type": "Coding"
     } ],
     "dataRequirement": [ {
+      "type": "Patient",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Patient" ],
+      "mustSupport": [ "url", "extension", "value" ]
+    }, {
+      "type": "DiagnosticReport",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/DiagnosticReport" ],
+      "mustSupport": [ "code", "effective", "status" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1018"
+      } ]
+    }, {
+      "type": "Encounter",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Encounter" ],
+      "mustSupport": [ "type", "period", "status" ],
+      "codeFilter": [ {
+        "path": "type",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001"
+      } ]
+    }, {
+      "type": "Encounter",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Encounter" ],
+      "mustSupport": [ "type", "period", "status" ],
+      "codeFilter": [ {
+        "path": "type",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240"
+      } ]
+    }, {
+      "type": "Encounter",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Encounter" ],
+      "mustSupport": [ "type", "period", "status" ],
+      "codeFilter": [ {
+        "path": "type",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025"
+      } ]
+    }, {
+      "type": "Encounter",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Encounter" ],
+      "mustSupport": [ "type", "period", "status" ],
+      "codeFilter": [ {
+        "path": "type",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023"
+      } ]
+    }, {
+      "type": "Encounter",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Encounter" ],
+      "mustSupport": [ "type", "period", "status" ],
+      "codeFilter": [ {
+        "path": "type",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016"
+      } ]
+    }, {
+      "type": "Encounter",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Encounter" ],
+      "mustSupport": [ "type", "status", "hospitalization", "hospitalization.dischargeDisposition", "period" ],
+      "codeFilter": [ {
+        "path": "type",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307"
+      } ]
+    }, {
       "type": "Coverage",
       "profile": [ "http://hl7.org/fhir/StructureDefinition/Coverage" ],
-      "mustSupport": [ "period", "type" ],
+      "mustSupport": [ "type", "period" ],
       "codeFilter": [ {
         "path": "type",
         "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591"
       } ]
     }, {
-      "type": "Patient",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/Patient" ],
-      "mustSupport": [ "extension", "value", "url" ]
-    }, {
-      "type": "Condition",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/Condition" ],
-      "mustSupport": [ "code", "clinicalStatus" ],
+      "type": "ServiceRequest",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/ServiceRequest" ],
+      "mustSupport": [ "code", "intent", "authoredOn" ],
       "codeFilter": [ {
         "path": "code",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1070"
-      } ]
-    }, {
-      "type": "Condition",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/Condition" ],
-      "mustSupport": [ "code", "clinicalStatus" ],
-      "codeFilter": [ {
-        "path": "code",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1069"
-      } ]
-    }, {
-      "type": "Condition",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/Condition" ],
-      "mustSupport": [ "bodySite", "code", "clinicalStatus" ],
-      "codeFilter": [ {
-        "path": "code",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1071"
-      } ]
-    }, {
-      "type": "Condition",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/Condition" ],
-      "mustSupport": [ "code", "clinicalStatus", "onset" ],
-      "codeFilter": [ {
-        "path": "code",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1068"
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1108.15"
       } ]
     }, {
       "type": "Procedure",
       "profile": [ "http://hl7.org/fhir/StructureDefinition/Procedure" ],
-      "mustSupport": [ "code", "performed", "status" ],
+      "mustSupport": [ "code", "status", "performed" ],
       "codeFilter": [ {
         "path": "code",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1005"
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1108.15"
       } ]
     }, {
       "type": "Procedure",
@@ -549,71 +768,39 @@
       "mustSupport": [ "code", "performed", "status" ],
       "codeFilter": [ {
         "path": "code",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1108.15"
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1005"
       } ]
     }, {
-      "type": "Encounter",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/Encounter" ],
-      "mustSupport": [ "type" ],
-      "codeFilter": [ {
-        "path": "type",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001"
-      } ]
-    }, {
-      "type": "Encounter",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/Encounter" ],
-      "mustSupport": [ "type" ],
-      "codeFilter": [ {
-        "path": "type",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.526.3.1240"
-      } ]
-    }, {
-      "type": "Encounter",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/Encounter" ],
-      "mustSupport": [ "type" ],
-      "codeFilter": [ {
-        "path": "type",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1025"
-      } ]
-    }, {
-      "type": "Encounter",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/Encounter" ],
-      "mustSupport": [ "type" ],
-      "codeFilter": [ {
-        "path": "type",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1023"
-      } ]
-    }, {
-      "type": "Encounter",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/Encounter" ],
-      "mustSupport": [ "type" ],
-      "codeFilter": [ {
-        "path": "type",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1016"
-      } ]
-    }, {
-      "type": "Encounter",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/Encounter" ],
-      "mustSupport": [ "period", "hospitalization", "hospitalization.dischargeDisposition", "type", "status" ],
-      "codeFilter": [ {
-        "path": "type",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.666.5.307"
-      } ]
-    }, {
-      "type": "ServiceRequest",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/ServiceRequest" ],
-      "mustSupport": [ "code", "authoredOn", "intent" ],
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Condition" ],
+      "mustSupport": [ "code", "clinicalStatus", "onset" ],
       "codeFilter": [ {
         "path": "code",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1108.15"
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1070"
       } ]
     }, {
-      "type": "DiagnosticReport",
-      "profile": [ "http://hl7.org/fhir/StructureDefinition/DiagnosticReport" ],
-      "mustSupport": [ "effective", "code", "status" ],
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Condition" ],
+      "mustSupport": [ "code", "clinicalStatus", "onset" ],
       "codeFilter": [ {
         "path": "code",
-        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1018"
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1069"
+      } ]
+    }, {
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Condition" ],
+      "mustSupport": [ "code", "bodySite", "clinicalStatus", "onset" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1071"
+      } ]
+    }, {
+      "type": "Condition",
+      "profile": [ "http://hl7.org/fhir/StructureDefinition/Condition" ],
+      "mustSupport": [ "code", "onset", "clinicalStatus" ],
+      "codeFilter": [ {
+        "path": "code",
+        "valueSet": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1068"
       } ]
     } ]
   } ],
@@ -621,8 +808,9 @@
     "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
     "valueCode": "boolean"
   }, {
+    "id": "effective-data-requirements",
     "url": "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-effectiveDataRequirements",
-    "valueCanonical": "#effective-data-requirements-exm125"
+    "valueCanonical": "#effective-data-requirements"
   } ],
   "url": "http://hl7.org/fhir/uv/cqm/Measure/EXM125-FHIR",
   "identifier": [ {
@@ -639,7 +827,7 @@
   "title": "EXM125 - Breast Cancer Screening",
   "status": "active",
   "experimental": true,
-  "date": "2022-02-22",
+  "date": "2025-08-13",
   "publisher": "National Committee for Quality Assurance",
   "contact": [ {
     "telecom": [ {

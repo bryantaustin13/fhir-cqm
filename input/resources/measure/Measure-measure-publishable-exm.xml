@@ -3,7 +3,6 @@
    <meta>
       <profile value="http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-publishablemeasure"></profile>
       <profile value="http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-computablemeasure"></profile>
-      <profile value="http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-computablemeasure"></profile>
    </meta>
    <contained>
       <Library xmlns="http://hl7.org/fhir">
@@ -124,6 +123,21 @@
          </extension>
          <extension url="http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition">
             <extension url="libraryName">
+               <valueString value="EXMPublishableLibrary"></valueString>
+            </extension>
+            <extension url="name">
+               <valueString value="Measure Population"></valueString>
+            </extension>
+            <extension url="statement">
+               <valueString value="define &quot;Measure Population&quot; :
+  &quot;Initial Population&quot;"></valueString>
+            </extension>
+            <extension url="displaySequence">
+               <valueInteger value="6"></valueInteger>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition">
+            <extension url="libraryName">
                <valueString value="FHIRHelpers"></valueString>
             </extension>
             <extension url="name">
@@ -133,7 +147,7 @@
                <valueString value="define function ToString(value AdministrativeGender): value.value"></valueString>
             </extension>
             <extension url="displaySequence">
-               <valueInteger value="6"></valueInteger>
+               <valueInteger value="7"></valueInteger>
             </extension>
          </extension>
          <extension url="http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition">
@@ -148,7 +162,7 @@
 	difference in days between start of Value and end of Value"></valueString>
             </extension>
             <extension url="displaySequence">
-               <valueInteger value="7"></valueInteger>
+               <valueInteger value="8"></valueInteger>
             </extension>
          </extension>
          <extension url="http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition">
@@ -176,7 +190,7 @@ define function ToInterval(period FHIR.Period):
             Interval[period.&quot;start&quot;.value, period.&quot;end&quot;.value]"></valueString>
             </extension>
             <extension url="displaySequence">
-               <valueInteger value="8"></valueInteger>
+               <valueInteger value="9"></valueInteger>
             </extension>
          </extension>
          <extension url="http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition">
@@ -190,7 +204,55 @@ define function ToInterval(period FHIR.Period):
                <valueString value="define function ToString(value uri): value.value"></valueString>
             </extension>
             <extension url="displaySequence">
-               <valueInteger value="9"></valueInteger>
+               <valueInteger value="10"></valueInteger>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="EXMPublishableLibrary"></valueString>
+            </extension>
+            <extension url="name">
+               <valueString value="Measure Observation"></valueString>
+            </extension>
+            <extension url="statement">
+               <valueString value="define function &quot;Measure Observation&quot; (Encounter &quot;Encounter&quot; ) :
+  duration in minutes of &quot;Related ED Visit&quot;(Encounter).period"></valueString>
+            </extension>
+            <extension url="displaySequence">
+               <valueInteger value="11"></valueInteger>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="EXMPublishableLibrary"></valueString>
+            </extension>
+            <extension url="name">
+               <valueString value="Related ED Visit"></valueString>
+            </extension>
+            <extension url="statement">
+               <valueString value="//Measure Observation
+define function &quot;Related ED Visit&quot; (Encounter &quot;Encounter&quot; ) :
+  Last([&quot;Encounter&quot; : &quot;Emergency Department Visit&quot;] ED
+    where ED.status = 'finished'
+      and ED.period ends 1 hour or less before start of Encounter.period
+    sort by start of period )"></valueString>
+            </extension>
+            <extension url="displaySequence">
+               <valueInteger value="12"></valueInteger>
+            </extension>
+         </extension>
+         <extension url="http://hl7.org/fhir/StructureDefinition/cqf-logicDefinition">
+            <extension url="libraryName">
+               <valueString value="FHIRHelpers"></valueString>
+            </extension>
+            <extension url="name">
+               <valueString value="ToString"></valueString>
+            </extension>
+            <extension url="statement">
+               <valueString value="define function ToString(value EncounterStatus): value.value"></valueString>
+            </extension>
+            <extension url="displaySequence">
+               <valueInteger value="13"></valueInteger>
             </extension>
          </extension>
          <name value="EffectiveDataRequirements"></name>
@@ -210,6 +272,11 @@ define function ToInterval(period FHIR.Period):
             <type value="depends-on"></type>
             <display value="Value set Payer"></display>
             <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591"></resource>
+         </relatedArtifact>
+         <relatedArtifact>
+            <type value="depends-on"></type>
+            <display value="Value set Emergency Department Visit"></display>
+            <resource value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.292"></resource>
          </relatedArtifact>
          <parameter>
             <name value="Measurement Period"></name>
@@ -253,6 +320,13 @@ define function ToInterval(period FHIR.Period):
             <max value="*"></max>
             <type value="Coding"></type>
          </parameter>
+         <parameter>
+            <name value="Measure Population"></name>
+            <use value="out"></use>
+            <min value="0"></min>
+            <max value="*"></max>
+            <type value="Encounter"></type>
+         </parameter>
          <dataRequirement>
             <type value="Patient"></type>
             <profile value="http://hl7.org/fhir/StructureDefinition/Patient"></profile>
@@ -273,6 +347,17 @@ define function ToInterval(period FHIR.Period):
          <dataRequirement>
             <type value="Encounter"></type>
             <profile value="http://hl7.org/fhir/StructureDefinition/Encounter"></profile>
+            <mustSupport value="type"></mustSupport>
+            <mustSupport value="status"></mustSupport>
+            <mustSupport value="period"></mustSupport>
+            <codeFilter>
+               <path value="type"></path>
+               <valueSet value="http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.117.1.7.1.292"></valueSet>
+            </codeFilter>
+         </dataRequirement>
+         <dataRequirement>
+            <type value="Encounter"></type>
+            <profile value="http://hl7.org/fhir/StructureDefinition/Encounter"></profile>
             <mustSupport value="period"></mustSupport>
          </dataRequirement>
       </Library>
@@ -284,9 +369,6 @@ define function ToInterval(period FHIR.Period):
       <valueReference>
          <reference value="Device/software-system-example"></reference>
       </valueReference>
-   </extension>
-   <extension url="http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-effectiveDataRequirements">
-      <valueCanonical value="#effective-data-requirements"></valueCanonical>
    </extension>
    <extension url="http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.term">
       <extension url="code">
@@ -301,6 +383,9 @@ define function ToInterval(period FHIR.Period):
       <extension url="definition">
          <valueMarkdown value="A term used in the measure that bears clearly definition to communicate the measure intent"></valueMarkdown>
       </extension>
+   </extension>
+   <extension id="effective-data-requirements" url="http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-effectiveDataRequirements">
+      <valueCanonical value="#effective-data-requirements"></valueCanonical>
    </extension>
    <url value="http://hl7.org/fhir/uv/cqm/Measure/measure-publishable-exm"></url>
    <identifier>
@@ -369,7 +454,7 @@ define function ToInterval(period FHIR.Period):
    <title value="EXM Publishable Measure"></title>
    <status value="active"></status>
    <experimental value="true"></experimental>
-   <date value="2025-08-07"></date>
+   <date value="2025-08-13"></date>
    <publisher value="Clinical Quality Information WG"></publisher>
    <contact>
       <telecom>
@@ -479,8 +564,8 @@ define function ToInterval(period FHIR.Period):
    <scoring>
       <coding>
          <system value="http://terminology.hl7.org/CodeSystem/measure-scoring"></system>
-         <code value="proportion"></code>
-         <display value="Proportion"></display>
+         <code value="continuous-variable"></code>
+         <display value="Continuous Variable"></display>
       </coding>
    </scoring>
    <type>
@@ -520,36 +605,36 @@ define function ToInterval(period FHIR.Period):
             <expression value="Initial Population"></expression>
          </criteria>
       </population>
-      <population id="numerator">
+      <population id="measure-population">
          <extension url="http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId">
-            <valueString value="primary-publishablexm-numerator"></valueString>
+            <valueString value="primary-publishablexm-measure-population"></valueString>
          </extension>
          <code>
             <coding>
                <system value="http://terminology.hl7.org/CodeSystem/measure-population"></system>
-               <code value="numerator"></code>
-               <display value="Numerator"></display>
+               <code value="measure-population"></code>
+               <display value="Measure Population"></display>
             </coding>
          </code>
          <criteria>
             <language value="text/cql-identifier"></language>
-            <expression value="Numerator"></expression>
+            <expression value="Measure Population"></expression>
          </criteria>
       </population>
-      <population id="denominator">
+      <population id="measure-observation">
          <extension url="http://hl7.org/fhir/5.0/StructureDefinition/extension-Measure.group.population.linkId">
-            <valueString value="primary-publishablexm-denominator"></valueString>
+            <valueString value="primary-publishablexm-measure-observation"></valueString>
          </extension>
          <code>
             <coding>
                <system value="http://terminology.hl7.org/CodeSystem/measure-population"></system>
-               <code value="denominator"></code>
-               <display value="Denominator"></display>
+               <code value="measure-observation"></code>
+               <display value="Measure Observation"></display>
             </coding>
          </code>
          <criteria>
             <language value="text/cql-identifier"></language>
-            <expression value="Denominator"></expression>
+            <expression value="Measure Observation"></expression>
          </criteria>
       </population>
    </group>

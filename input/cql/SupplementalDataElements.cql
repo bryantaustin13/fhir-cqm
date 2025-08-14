@@ -3,10 +3,6 @@ This example is a work in progress and should not be considered a final specific
 or recommendation for guidance. This example will help guide and direct the process
 of finding conventions and usage patterns that meet the needs of the various stakeholders
 in the measure development community.
-
-@update: BTR 2020-03-31 ->
-Incremented version to 2.0.0
-Updated FHIR version to 4.0.1
 */
 library SupplementalDataElements version '2.0.000'
 

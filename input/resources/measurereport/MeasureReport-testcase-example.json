@@ -59,8 +59,25 @@
   },
   "group": [
     {
+      "id": "group-1",
+      "extension": [ {
+        "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MeasureReport.group.linkId",
+        "valueString": "primary"
+      } ],
+      "code": {
+        "coding": [ {
+          "system": "http://example.org/group",
+          "code": "group",
+          "display": "group-1"
+        } ]
+      },
       "population": [
         {
+          "id": "initial-population-1",
+          "extension": [ {
+            "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MeasureReport.group.population.linkId",
+            "valueString": "primary-exmlogic-initial-population"
+          } ],
           "code": {
             "coding": [
               {
@@ -73,26 +90,32 @@
           "count": 1
         },
         {
+          "id": "measure-population",
+          "extension": [ {
+            "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MeasureReport.group.population.linkId",
+            "valueString": "primary-exmlogic-measure-population"
+          } ],
           "code": {
-            "coding": [
-              {
-                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
-                "code": "denominator"
-              }
-            ],
-            "text": "Denominator"
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+              "code": "measure-population",
+              "display": "Measure Population"
+            } ]
           },
           "count": 1
         },
         {
+          "id": "measure-observation",
+          "extension": [ {
+            "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MeasureReport.group.population.linkId",
+            "valueString": "primary-exmlogic-measure-observation"
+          } ],
           "code": {
-            "coding": [
-              {
-                "system": "http://terminology.hl7.org/CodeSystem/measure-population",
-                "code": "numerator"
-              }
-            ],
-            "text": "Numerator"
+            "coding": [ {
+              "system": "http://terminology.hl7.org/CodeSystem/measure-population",
+              "code": "measure-observation",
+              "display": "Measure Observation"
+            } ]
           },
           "count": 1
         }
@@ -103,6 +126,10 @@
       "stratifier": [
         {
           "id": "stratifier-1",
+          "extension": [ {
+            "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MeasureReport.group.stratifier.linkId",
+            "valueString": "primary-exmlogic-stratification-1"
+          } ],
           "code": [ {
             "text": "Stratifier 1"
           } ],
@@ -119,6 +146,10 @@
         },
         {
           "id": "stratifier-2",
+          "extension": [ {
+            "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MeasureReport.group.stratifier.linkId",
+            "valueString": "primary-exmlogic-stratification-2"
+          } ],
           "code": [ {
             "text": "Stratifier 2"
           } ],
@@ -135,6 +166,10 @@
         },
         {
           "id": "stratifier-3",
+          "extension": [ {
+            "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MeasureReport.group.stratifier.linkId",
+            "valueString": "primary-exmlogic-stratification-3"
+          } ],
           "code": [ {
             "text": "Stratifier 3"
           } ],
@@ -151,6 +186,10 @@
         },
         {
           "id": "stratifier-4",
+          "extension": [ {
+            "url": "http://hl7.org/fhir/5.0/StructureDefinition/extension-MeasureReport.group.stratifier.linkId",
+            "valueString": "primary-exmlogic-stratification-4"
+          } ],
           "code": [ {
             "text": "Stratifier 4"
           } ],

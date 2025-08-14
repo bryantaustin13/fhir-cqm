@@ -23,8 +23,6 @@ parameter "Measurement Period" Interval<DateTime>
 
 context Patient
 
-// Region: Initial Population
-
 define "Is Between 2 and 17 Years of Age at Start of Measurement Period":
    AgeInYearsAt(start of "Measurement Period") >= 2
       and AgeInYearsAt(start of "Measurement Period") <= 17
@@ -56,15 +54,8 @@ define "Pharyngitis Encounters With Antibiotics":
 define "Initial Population":
    "Pharyngitis Encounters With Antibiotics"
 
-// EndRegion: Initial Population
-
-// Region: Denominator
-
-// None
-
-// EndRegion: Denominator
-
-// Region: Denominator Exclusions
+define "Denominator":
+   "Initial Population"
 
 define "Pharyngitis With Prior Antibiotics":
    "Pharyngitis" Pharyngitis
@@ -79,16 +70,6 @@ define "Excluded Encounters":
 define "Denominator Exclusions":
   "Excluded Encounters"
 
-// EndRegion: Denominator Exclusions
-
-// Region: Denominator Exceptions
-
-// None
-
-// EndRegion: Denominator Exceptions
-
-// Region: Numerator
-
 define "Strep Test Encounters":
    "Pharyngitis Encounters With Antibiotics" Encounters
       with [Observation: code in "Group A Streptococcus Test"] Tests
@@ -99,11 +80,3 @@ define "Strep Test Encounters":
 
 define "Numerator":
    "Strep Test Encounters"
-
-// EndRegion: Numerator
-
-// Region: Numerator Exclusion
-
-// None
-
-// EndRegion: Numerator Exclusion

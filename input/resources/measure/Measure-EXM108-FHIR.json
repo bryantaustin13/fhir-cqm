@@ -6,7 +6,7 @@
   },
   "contained": [ {
     "resourceType": "Library",
-    "id": "effective-data-requirements-exm108",
+    "id": "effective-data-requirements",
     "extension": [ {
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-directReferenceCode",
       "valueCoding": {
@@ -105,7 +105,7 @@
         "valueString": "Admission Without VTE or Obstetrical Conditions"
       }, {
         "url": "statement",
-        "valueString": "define \"Admission Without VTE or Obstetrical Conditions\":\n\t  \tGlobal.\"Inpatient Encounter\" InpatientEncounter\n\t\t    where not (exists (Global.EncounterDiagnosis(InpatientEncounter)) EncounterDiagnosis\n              where (EncounterDiagnosis.code in \"Obstetrics\"\n\t\t\t\t\t\t\t\tor EncounterDiagnosis.code in \"Venous Thromboembolism\"\n\t\t\t\t\t\t\t\tor EncounterDiagnosis.code in \"Obstetrics VTE\"\n\t\t\t         )\n        )"
+        "valueString": "define \"Admission Without VTE or Obstetrical Conditions\":\n  Global.\"Inpatient Encounter\" InpatientEncounter\n    where not exists (\n      (Global.EncounterDiagnosis(InpatientEncounter)) EncounterDiagnosis\n        where EncounterDiagnosis.code in \"Obstetrics\"\n          or EncounterDiagnosis.code in \"Venous Thromboembolism\"\n          or EncounterDiagnosis.code in \"Obstetrics VTE\"\n    )"
       }, {
         "url": "displaySequence",
         "valueInteger": 3
@@ -120,7 +120,7 @@
         "valueString": "Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions"
       }, {
         "url": "statement",
-        "valueString": "// Note: added FHIRHelpers.ToDate() in R4\ndefine \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\":\n    ( Global.\"Inpatient Encounter\" InpatientEncounter\n    \t\twith [\"Patient\"] BirthDate\n    \t\t\tsuch that Global.\"CalendarAgeInYearsAt\"(FHIRHelpers.ToDate(BirthDate.birthDate), start of InpatientEncounter.period) >= 18\n    )\n    intersect \"Admission Without VTE or Obstetrical Conditions\""
+        "valueString": "// Note: added FHIRHelpers.ToDate() in R4\ndefine \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\":\n  ( Global.\"Inpatient Encounter\" InpatientEncounter\n        where Global.\"CalendarAgeInYearsAt\"(FHIRHelpers.ToDate(Patient.birthDate), start of InpatientEncounter.period) >= 18\n  )\n    intersect \"Admission Without VTE or Obstetrical Conditions\""
       }, {
         "url": "displaySequence",
         "valueInteger": 4
@@ -150,7 +150,7 @@
         "valueString": "Encounter With VTE Prophylaxis Received on Day of or Day After Admission or Procedure"
       }, {
         "url": "statement",
-        "valueString": "define \"Encounter With VTE Prophylaxis Received on Day of or Day After Admission or Procedure\":\n \t( from\n   \t\t\t\"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter,\n   \t\t\t\"VTE Prophylaxis by Medication Administered or Device Applied\" VTEProphylaxis\n  \t\twhere Coalesce(Global.\"Normalize Interval\"(VTEProphylaxis.effective), Global.\"Normalize Interval\"(VTEProphylaxis.performed)) starts during TJC.\"CalendarDayOfOrDayAfter\"(start of QualifyingEncounter.period)\n  \t\treturn QualifyingEncounter\n \t)\n \tunion (\n    from\n  \t\t\t\"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter,\n  \t\t\t[\"Procedure\": \"General or Neuraxial Anesthesia\"] AnesthesiaProcedure,\n  \t\t\t\"VTE Prophylaxis by Medication Administered or Device Applied\" VTEProphylaxis\n\t\t\twhere Global.\"Normalize Interval\"(AnesthesiaProcedure.performed) ends 1 day after day of start of QualifyingEncounter.period\n\t\t\t\tand Coalesce(Global.\"Normalize Interval\"(VTEProphylaxis.effective), Global.\"Normalize Interval\"(VTEProphylaxis.performed)) starts during TJC.\"CalendarDayOfOrDayAfter\"(end of Global.\"Normalize Interval\"(AnesthesiaProcedure.performed))\n\t\t\treturn QualifyingEncounter\n\t)"
+        "valueString": "define \"Encounter With VTE Prophylaxis Received on Day of or Day After Admission or Procedure\":\n \t( from\n      \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter,\n      \"VTE Prophylaxis by Medication Administered or Device Applied\" VTEProphylaxis\n    where Coalesce(Global.\"Normalize Interval\"(VTEProphylaxis.effective), Global.\"Normalize Interval\"(VTEProphylaxis.performed)) starts during TJC.\"CalendarDayOfOrDayAfter\"(start of QualifyingEncounter.period)\n    return QualifyingEncounter\n \t)\n \tunion (\n    from\n      \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter,\n      [\"Procedure\": \"General or Neuraxial Anesthesia\"] AnesthesiaProcedure,\n      \"VTE Prophylaxis by Medication Administered or Device Applied\" VTEProphylaxis\n    where Global.\"Normalize Interval\"(AnesthesiaProcedure.performed) ends 1 day after day of start of QualifyingEncounter.period\n      and Coalesce(Global.\"Normalize Interval\"(VTEProphylaxis.effective), Global.\"Normalize Interval\"(VTEProphylaxis.performed)) starts during TJC.\"CalendarDayOfOrDayAfter\"(end of Global.\"Normalize Interval\"(AnesthesiaProcedure.performed))\n    return QualifyingEncounter\n\t)"
       }, {
         "url": "displaySequence",
         "valueInteger": 6
@@ -180,7 +180,7 @@
         "valueString": "Encounter With Prior or Present Diagnosis of Atrial Fibrillation or VTE"
       }, {
         "url": "statement",
-        "valueString": "/*NOTE: Feedback at Digitial Quality Summit 2019 indicates verificationStatus may be difficult for implementers to retrieve\n        both condition.clinicalStatus and condition.verificationStatus = 'confirmed'\n*/\ndefine \"Encounter With Prior or Present Diagnosis of Atrial Fibrillation or VTE\":\n\t( \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter\n\t\twith [\"Condition\": code in \"Atrial Fibrillation/Flutter\"] AtrialFibrillation\n\t\tsuch that FHIRHelpers.ToConcept(AtrialFibrillation.clinicalStatus) in { Global.\"active\", Global.\"recurrence\", Global.\"relapse\" }\n\t\t\tand Global.\"Normalize Interval\"(AtrialFibrillation.onset) starts on or before end of QualifyingEncounter.period\n    )\n    union ( \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter\n    \t\t\t\twhere Global.EncounterDiagnosis(QualifyingEncounter).code in \"Atrial Fibrillation/Flutter\"\n    \t\t\t)\n    union ( \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter\n    \t\t\t\twith [\"Condition\": code in \"Venous Thromboembolism\"] VTEDiagnosis\n    \t\t\t\tsuch that  FHIRHelpers.ToConcept(VTEDiagnosis.clinicalStatus) in { Global.\"inactive\", Global.\"remission\", Global.\"resolved\" }\n      \t\t\t\t\t//and VTEDiagnosis.verificationStatus = 'confirmed'\n    \t\t\t\tand Global.\"Normalize Interval\"(VTEDiagnosis.onset) before start of QualifyingEncounter.period\n      \t\t)"
+        "valueString": "define \"Encounter With Prior or Present Diagnosis of Atrial Fibrillation or VTE\":\n\t( \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter\n\t\twith [\"Condition\": code in \"Atrial Fibrillation/Flutter\"] AtrialFibrillation\n\t\tsuch that FHIRHelpers.ToConcept(AtrialFibrillation.clinicalStatus) in { Global.\"active\", Global.\"recurrence\", Global.\"relapse\" }\n\t\t\tand Global.\"Normalize Interval\"(AtrialFibrillation.onset) starts on or before end of QualifyingEncounter.period\n    )\n    union ( \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter\n    \t\t\t\twhere Global.EncounterDiagnosis(QualifyingEncounter).code in \"Atrial Fibrillation/Flutter\"\n    \t\t\t)\n    union ( \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter\n    \t\t\t\twith [\"Condition\": code in \"Venous Thromboembolism\"] VTEDiagnosis\n    \t\t\t\tsuch that  FHIRHelpers.ToConcept(VTEDiagnosis.clinicalStatus) in { Global.\"inactive\", Global.\"remission\", Global.\"resolved\" }\n      \t\t\t\t\t//and VTEDiagnosis.verificationStatus = 'confirmed'\n    \t\t\t\tand Global.\"Normalize Interval\"(VTEDiagnosis.onset) before start of QualifyingEncounter.period\n      \t\t)"
       }, {
         "url": "displaySequence",
         "valueInteger": 8
@@ -300,7 +300,7 @@
         "valueString": "No VTE Prophylaxis Device Applied or Ordered"
       }, {
         "url": "statement",
-        "valueString": "define \"No VTE Prophylaxis Device Applied or Ordered\":\n  ((\n    [\"ServiceRequest\": \"Venous foot pumps (VFP)\"]\n    union [\"ServiceRequest\": \"Intermittent pneumatic compression devices (IPC)\"]\n    union [\"ServiceRequest\": \"Graduated compression stockings (GCS)\"]\n    ) DeviceOrder\n    where DeviceOrder.status = 'completed'\n    //11/5 discussion: all expressions for QI-Core must include a status\n    //ServiceRequest.status -  draft | active | suspended | completed | entered-in-error | cancelled\n        and DeviceOrder.doNotPerform is true\n    return {id: DeviceOrder.id, requestStatusReason: GetStatusReason(DeviceOrder), authoredOn: DeviceOrder.authoredOn}\n    )\n  union\n    (\n      [\"Procedure\": \"Device Application\"] DeviceApplied\n      let DeviceNotDoneTiming: Global.GetExtension(DeviceApplied, 'qicore-recorded').value\n      where (DeviceApplied.usedCode in \"Intermittent pneumatic compression devices (IPC)\"\n            or DeviceApplied.usedCode in \"Venous foot pumps (VFP)\"\n            or DeviceApplied.usedCode in \"Graduated compression stockings (GCS)\"\n            )\n         and  DeviceApplied.status = 'not-done'\n         return {id: DeviceApplied.id, requestStatusReason: DeviceApplied.statusReason, authoredOn: DeviceNotDoneTiming}\n\n    )"
+        "valueString": "define \"No VTE Prophylaxis Device Applied or Ordered\":\n  ((\n    [\"ServiceRequest\": \"Venous foot pumps (VFP)\"]\n    union [\"ServiceRequest\": \"Intermittent pneumatic compression devices (IPC)\"]\n    union [\"ServiceRequest\": \"Graduated compression stockings (GCS)\"]\n    ) DeviceOrder\n    where DeviceOrder.status = 'completed'\n        and DeviceOrder.doNotPerform is true\n    return {id: DeviceOrder.id, requestStatusReason: GetStatusReason(DeviceOrder), authoredOn: DeviceOrder.authoredOn}\n    )\n  union\n    (\n      [\"Procedure\": \"Device Application\"] DeviceApplied\n      let DeviceNotDoneTiming: Global.GetExtension(DeviceApplied, 'qicore-recorded').value\n      where (DeviceApplied.usedCode in \"Intermittent pneumatic compression devices (IPC)\"\n            or DeviceApplied.usedCode in \"Venous foot pumps (VFP)\"\n            or DeviceApplied.usedCode in \"Graduated compression stockings (GCS)\"\n            )\n         and  DeviceApplied.status = 'not-done'\n         return {id: DeviceApplied.id, requestStatusReason: DeviceApplied.statusReason, authoredOn: DeviceNotDoneTiming}\n\n    )"
       }, {
         "url": "displaySequence",
         "valueInteger": 16
@@ -435,7 +435,7 @@
         "valueString": "Numerator"
       }, {
         "url": "statement",
-        "valueString": "define \"Numerator\":\n    \"Encounter With VTE Prophylaxis Received on Day of or Day After Admission or Procedure\"\n    union ( \"Encounter With Medication Oral Factor Xa Inhibitor Administered on Day of or Day After Admission or Procedure\"\n    \t\t\t  intersect ( \"Encounter With Prior or Present Diagnosis of Atrial Fibrillation or VTE\"\n    \t\t\t\t\t\t    union \"Encounter With Prior or Present Procedure of Hip or Knee Replacement Surgery\"\n    \t\t\t            )\n          )\n    union \"Encounter With Low Risk for VTE or Anticoagulant Administered\"\n    union \"Encounter With No VTE Prophylaxis Due to Medical Reason\"\n    union \"Encounter With No VTE Prophylaxis Due to Patient Refusal\""
+        "valueString": "define \"Numerator\":\n  \"Encounter With VTE Prophylaxis Received on Day of or Day After Admission or Procedure\"\n    union ( \"Encounter With Medication Oral Factor Xa Inhibitor Administered on Day of or Day After Admission or Procedure\"\n    \t\t\t  intersect ( \"Encounter With Prior or Present Diagnosis of Atrial Fibrillation or VTE\"\n    \t\t\t\t\t\t    union \"Encounter With Prior or Present Procedure of Hip or Knee Replacement Surgery\"\n    \t\t\t            )\n          )\n    union \"Encounter With Low Risk for VTE or Anticoagulant Administered\"\n    union \"Encounter With No VTE Prophylaxis Due to Medical Reason\"\n    union \"Encounter With No VTE Prophylaxis Due to Patient Refusal\""
       }, {
         "url": "displaySequence",
         "valueInteger": 25
@@ -600,7 +600,7 @@
         "valueString": "Encounter With Principal Procedure of SCIP VTE Selected Surgery"
       }, {
         "url": "statement",
-        "valueString": "/* NOTE: 2 options to express Principal Procedure to retrive \"encounter Procedure as an url\" and proedure \"rank as extension\" in R4\n          VTE-1 uses Option 1 - generic extension funtion\n          VTE-2 uses Option 2 - Specific extension functions\n  TODO:  Mapping Table needs revision on using \"Encounter.procedure.code\", \"Encounter.procedure.sequence\"\n*/\n\ndefine \"Encounter With Principal Procedure of SCIP VTE Selected Surgery\":\n  from\n      \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter,\n      \"SCIP VTE Selected Surgery\" SelectedProcedure\n      let EncounterProcedure: Global.GetExtension(QualifyingEncounter, 'qicore-encounter-procedure')\n  where FHIRHelpers.ToInteger(Global.GetExtension(EncounterProcedure, 'rank').value as FHIR.positiveInt) = 1\n      and Global.GetId(FHIRHelpers.ToString((Global.GetExtension(EncounterProcedure, 'procedure').value as FHIR.Reference).reference)) = SelectedProcedure.id\n      and Global.\"Normalize Interval\"(SelectedProcedure.performed) during QualifyingEncounter.period"
+        "valueString": "define \"Encounter With Principal Procedure of SCIP VTE Selected Surgery\":\n  from\n    \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter,\n    \"SCIP VTE Selected Surgery\" SelectedProcedure\n  let EncounterProcedure: Global.GetExtension(QualifyingEncounter, 'qicore-encounter-procedure')\n  where FHIRHelpers.ToInteger(Global.GetExtension(EncounterProcedure, 'rank').value as FHIR.positiveInt) = 1\n    and Global.GetId(FHIRHelpers.ToString((Global.GetExtension(EncounterProcedure, 'procedure').value as FHIR.Reference).reference)) = SelectedProcedure.id\n    and Global.\"Normalize Interval\"(SelectedProcedure.performed) during QualifyingEncounter.period"
       }, {
         "url": "displaySequence",
         "valueInteger": 36
@@ -645,7 +645,7 @@
         "valueString": "Encounter With Intervention Comfort Measures on Day of or Day After Procedure"
       }, {
         "url": "statement",
-        "valueString": "define \"Encounter With Intervention Comfort Measures on Day of or Day After Procedure\":\n  from\n  \t\t\"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter,\n  \t\t[\"Procedure\": \"General or Neuraxial Anesthesia\"] AnesthesiaProcedure,\n  \t\t\"Intervention Comfort Measures\" ComfortMeasure\n\t\twhere AnesthesiaProcedure.status = 'completed'\n\t\t\t\tand Global.\"Normalize Interval\"(AnesthesiaProcedure.performed) ends 1 day after day of start of QualifyingEncounter.period\n        and Coalesce(start of Global.\"Normalize Interval\"(ComfortMeasure.performed), ComfortMeasure.authoredOn) during TJC.\"CalendarDayOfOrDayAfter\"(end of Global.\"Normalize Interval\"(AnesthesiaProcedure.performed))\n    return QualifyingEncounter"
+        "valueString": "define \"Encounter With Intervention Comfort Measures on Day of or Day After Procedure\":\n  from\n    \"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions\" QualifyingEncounter,\n    [\"Procedure\": \"General or Neuraxial Anesthesia\"] AnesthesiaProcedure,\n    \"Intervention Comfort Measures\" ComfortMeasure\n  where AnesthesiaProcedure.status = 'completed'\n      and Global.\"Normalize Interval\"(AnesthesiaProcedure.performed) ends 1 day after day of start of QualifyingEncounter.period\n      and Coalesce(start of Global.\"Normalize Interval\"(ComfortMeasure.performed), ComfortMeasure.authoredOn) during TJC.\"CalendarDayOfOrDayAfter\"(end of Global.\"Normalize Interval\"(AnesthesiaProcedure.performed))\n  return QualifyingEncounter"
       }, {
         "url": "displaySequence",
         "valueInteger": 39
@@ -660,7 +660,7 @@
         "valueString": "Denominator Exclusion"
       }, {
         "url": "statement",
-        "valueString": "define \"Denominator Exclusion\":\n    \"Encounter Less Than 2 Days\"\n     union \"Encounter With ICU Location Stay 1 Day or More\"\n     union \"Encounter With Principal Diagnosis of Mental Disorder or Stroke\"\n     union \"Encounter With Principal Procedure of SCIP VTE Selected Surgery\"\n     union \"Encounter With Intervention Comfort Measures From Day of Start of Hospitalization To Day After Admission\"\n     union \"Encounter With Intervention Comfort Measures on Day of or Day After Procedure\""
+        "valueString": "define \"Denominator Exclusion\":\n  \"Encounter Less Than 2 Days\"\n     union \"Encounter With ICU Location Stay 1 Day or More\"\n     union \"Encounter With Principal Diagnosis of Mental Disorder or Stroke\"\n     union \"Encounter With Principal Procedure of SCIP VTE Selected Surgery\"\n     union \"Encounter With Intervention Comfort Measures From Day of Start of Hospitalization To Day After Admission\"\n     union \"Encounter With Intervention Comfort Measures on Day of or Day After Procedure\""
       }, {
         "url": "displaySequence",
         "valueInteger": 40
@@ -1502,7 +1502,7 @@
     "dataRequirement": [ {
       "type": "Patient",
       "profile": [ "http://hl7.org/fhir/StructureDefinition/Patient" ],
-      "mustSupport": [ "birthDate", "url", "extension", "value" ]
+      "mustSupport": [ "url", "extension", "value" ]
     }, {
       "type": "Encounter",
       "profile": [ "http://hl7.org/fhir/StructureDefinition/Encounter" ],
@@ -1801,8 +1801,9 @@
     "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
     "valueCode": "Encounter"
   }, {
+    "id": "effective-data-requirements",
     "url": "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-effectiveDataRequirements",
-    "valueCanonical": "#effective-data-requirements-exm108"
+    "valueCanonical": "#effective-data-requirements"
   } ],
   "url": "http://hl7.org/fhir/uv/cqm/Measure/EXM108-FHIR",
   "identifier": [ {
@@ -1815,7 +1816,7 @@
   "title": "EXM108 - Venous Thromboembolism Prophylaxis",
   "status": "active",
   "experimental": true,
-  "date": "2025-08-07",
+  "date": "2025-08-13",
   "publisher": "The Joint Commission",
   "contact": [ {
     "telecom": [ {

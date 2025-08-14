@@ -344,6 +344,7 @@
     "server" : "http://tx.fhir.org/r4",
     "filename" : "vs-152593fe-3444-4830-bd06-d843a2e6ebc0.json"
   },
+  "http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/computable-measure-cqfm" : null,
   "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.108.12.1038" : {
     "server" : "http://tx.fhir.org/r4",
     "filename" : "vs-21fd8dd3-205a-439d-8390-c5658c1daf2f.json"
@@ -364,6 +365,7 @@
     "server" : "http://tx.fhir.org/r4",
     "filename" : "vs-d6b9daf8-94ba-4875-802d-8412cf4bd6de.json"
   },
+  "http://fhir.org/guides/cqf/common/Library/FHIR-ModelInfo|4.0.1" : null,
   "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1071" : {
     "server" : "http://tx.fhir.org/r4",
     "filename" : "vs-cc8fb568-c51b-4a35-a070-402aa35e09ec.json"

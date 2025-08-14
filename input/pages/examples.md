@@ -1,4 +1,4 @@
-
+> NOTE: The examples in this implementation guide have been chosen to illlustrate specific capabilities of measure specifications, such as proportion measures, continuous variables, stratification, and composite measures. Some of the example content is based on measure specifications that were published in prior measurement years. For more examples of FHIR-based measure specifications, refer to the [eCQM Content Index](https://github.com/cqframework/ecqm-content/blob/main/README.md).
 
 ### Examples
 

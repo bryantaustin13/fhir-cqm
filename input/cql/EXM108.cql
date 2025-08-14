@@ -84,26 +84,25 @@ define "Initial Population":
 
 // Note: added FHIRHelpers.ToDate() in R4
 define "Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions":
-    ( Global."Inpatient Encounter" InpatientEncounter
-    		with ["Patient"] BirthDate
-    			such that Global."CalendarAgeInYearsAt"(FHIRHelpers.ToDate(BirthDate.birthDate), start of InpatientEncounter.period) >= 18
-    )
+  ( Global."Inpatient Encounter" InpatientEncounter
+        where Global."CalendarAgeInYearsAt"(FHIRHelpers.ToDate(Patient.birthDate), start of InpatientEncounter.period) >= 18
+  )
     intersect "Admission Without VTE or Obstetrical Conditions"
 
-  define "Admission Without VTE or Obstetrical Conditions":
-	  	Global."Inpatient Encounter" InpatientEncounter
-		    where not (exists (Global.EncounterDiagnosis(InpatientEncounter)) EncounterDiagnosis
-              where (EncounterDiagnosis.code in "Obstetrics"
-								or EncounterDiagnosis.code in "Venous Thromboembolism"
-								or EncounterDiagnosis.code in "Obstetrics VTE"
-			         )
-        )
+define "Admission Without VTE or Obstetrical Conditions":
+  Global."Inpatient Encounter" InpatientEncounter
+    where not exists (
+      (Global.EncounterDiagnosis(InpatientEncounter)) EncounterDiagnosis
+        where EncounterDiagnosis.code in "Obstetrics"
+          or EncounterDiagnosis.code in "Venous Thromboembolism"
+          or EncounterDiagnosis.code in "Obstetrics VTE"
+    )
 
 define "Denominator":
       "Initial Population"
 
 define "Denominator Exclusion":
-    "Encounter Less Than 2 Days"
+  "Encounter Less Than 2 Days"
      union "Encounter With ICU Location Stay 1 Day or More"
      union "Encounter With Principal Diagnosis of Mental Disorder or Stroke"
      union "Encounter With Principal Procedure of SCIP VTE Selected Surgery"
@@ -128,20 +127,14 @@ define "Encounter With Principal Diagnosis of Mental Disorder or Stroke":
         or Global."PrincipalDiagnosis"(QualifyingEncounter).code in "Hemorrhagic Stroke"
         or Global."PrincipalDiagnosis"(QualifyingEncounter).code in "Ischemic Stroke"
 
-/* NOTE: 2 options to express Principal Procedure to retrive "encounter Procedure as an url" and proedure "rank as extension" in R4
-          VTE-1 uses Option 1 - generic extension funtion
-          VTE-2 uses Option 2 - Specific extension functions
-  TODO:  Mapping Table needs revision on using "Encounter.procedure.code", "Encounter.procedure.sequence"
-*/
-
 define "Encounter With Principal Procedure of SCIP VTE Selected Surgery":
   from
-      "Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions" QualifyingEncounter,
-      "SCIP VTE Selected Surgery" SelectedProcedure
-      let EncounterProcedure: Global.GetExtension(QualifyingEncounter, 'qicore-encounter-procedure')
+    "Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions" QualifyingEncounter,
+    "SCIP VTE Selected Surgery" SelectedProcedure
+  let EncounterProcedure: Global.GetExtension(QualifyingEncounter, 'qicore-encounter-procedure')
   where FHIRHelpers.ToInteger(Global.GetExtension(EncounterProcedure, 'rank').value as FHIR.positiveInt) = 1
-      and Global.GetId(FHIRHelpers.ToString((Global.GetExtension(EncounterProcedure, 'procedure').value as FHIR.Reference).reference)) = SelectedProcedure.id
-      and Global."Normalize Interval"(SelectedProcedure.performed) during QualifyingEncounter.period
+    and Global.GetId(FHIRHelpers.ToString((Global.GetExtension(EncounterProcedure, 'procedure').value as FHIR.Reference).reference)) = SelectedProcedure.id
+    and Global."Normalize Interval"(SelectedProcedure.performed) during QualifyingEncounter.period
 
 define "SCIP VTE Selected Surgery":
   (	["Procedure": "General Surgery"]
@@ -168,16 +161,16 @@ define "Intervention Comfort Measures":
 
 define "Encounter With Intervention Comfort Measures on Day of or Day After Procedure":
   from
-  		"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions" QualifyingEncounter,
-  		["Procedure": "General or Neuraxial Anesthesia"] AnesthesiaProcedure,
-  		"Intervention Comfort Measures" ComfortMeasure
-		where AnesthesiaProcedure.status = 'completed'
-				and Global."Normalize Interval"(AnesthesiaProcedure.performed) ends 1 day after day of start of QualifyingEncounter.period
-        and Coalesce(start of Global."Normalize Interval"(ComfortMeasure.performed), ComfortMeasure.authoredOn) during TJC."CalendarDayOfOrDayAfter"(end of Global."Normalize Interval"(AnesthesiaProcedure.performed))
-    return QualifyingEncounter
+    "Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions" QualifyingEncounter,
+    ["Procedure": "General or Neuraxial Anesthesia"] AnesthesiaProcedure,
+    "Intervention Comfort Measures" ComfortMeasure
+  where AnesthesiaProcedure.status = 'completed'
+      and Global."Normalize Interval"(AnesthesiaProcedure.performed) ends 1 day after day of start of QualifyingEncounter.period
+      and Coalesce(start of Global."Normalize Interval"(ComfortMeasure.performed), ComfortMeasure.authoredOn) during TJC."CalendarDayOfOrDayAfter"(end of Global."Normalize Interval"(AnesthesiaProcedure.performed))
+  return QualifyingEncounter
 
 define "Numerator":
-    "Encounter With VTE Prophylaxis Received on Day of or Day After Admission or Procedure"
+  "Encounter With VTE Prophylaxis Received on Day of or Day After Admission or Procedure"
     union ( "Encounter With Medication Oral Factor Xa Inhibitor Administered on Day of or Day After Admission or Procedure"
     			  intersect ( "Encounter With Prior or Present Diagnosis of Atrial Fibrillation or VTE"
     						    union "Encounter With Prior or Present Procedure of Hip or Knee Replacement Surgery"
@@ -189,19 +182,19 @@ define "Numerator":
 
 define "Encounter With VTE Prophylaxis Received on Day of or Day After Admission or Procedure":
  	( from
-   			"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions" QualifyingEncounter,
-   			"VTE Prophylaxis by Medication Administered or Device Applied" VTEProphylaxis
-  		where Coalesce(Global."Normalize Interval"(VTEProphylaxis.effective), Global."Normalize Interval"(VTEProphylaxis.performed)) starts during TJC."CalendarDayOfOrDayAfter"(start of QualifyingEncounter.period)
-  		return QualifyingEncounter
+      "Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions" QualifyingEncounter,
+      "VTE Prophylaxis by Medication Administered or Device Applied" VTEProphylaxis
+    where Coalesce(Global."Normalize Interval"(VTEProphylaxis.effective), Global."Normalize Interval"(VTEProphylaxis.performed)) starts during TJC."CalendarDayOfOrDayAfter"(start of QualifyingEncounter.period)
+    return QualifyingEncounter
  	)
  	union (
     from
-  			"Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions" QualifyingEncounter,
-  			["Procedure": "General or Neuraxial Anesthesia"] AnesthesiaProcedure,
-  			"VTE Prophylaxis by Medication Administered or Device Applied" VTEProphylaxis
-			where Global."Normalize Interval"(AnesthesiaProcedure.performed) ends 1 day after day of start of QualifyingEncounter.period
-				and Coalesce(Global."Normalize Interval"(VTEProphylaxis.effective), Global."Normalize Interval"(VTEProphylaxis.performed)) starts during TJC."CalendarDayOfOrDayAfter"(end of Global."Normalize Interval"(AnesthesiaProcedure.performed))
-			return QualifyingEncounter
+      "Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions" QualifyingEncounter,
+      ["Procedure": "General or Neuraxial Anesthesia"] AnesthesiaProcedure,
+      "VTE Prophylaxis by Medication Administered or Device Applied" VTEProphylaxis
+    where Global."Normalize Interval"(AnesthesiaProcedure.performed) ends 1 day after day of start of QualifyingEncounter.period
+      and Coalesce(Global."Normalize Interval"(VTEProphylaxis.effective), Global."Normalize Interval"(VTEProphylaxis.performed)) starts during TJC."CalendarDayOfOrDayAfter"(end of Global."Normalize Interval"(AnesthesiaProcedure.performed))
+    return QualifyingEncounter
 	)
 
 // 10/29: Replaced DeviceUseStatement with Procedure with a new value set and procedure.usdCode for specifying devices
@@ -241,9 +234,6 @@ define "Encounter With Medication Oral Factor Xa Inhibitor Administered on Day o
       			return QualifyingEncounter
       		)
 
-/*NOTE: Feedback at Digitial Quality Summit 2019 indicates verificationStatus may be difficult for implementers to retrieve
-        both condition.clinicalStatus and condition.verificationStatus = 'confirmed'
-*/
 define "Encounter With Prior or Present Diagnosis of Atrial Fibrillation or VTE":
 	( "Encounter With Age Range and Without VTE Diagnosis or Obstetrical Conditions" QualifyingEncounter
 		with ["Condition": code in "Atrial Fibrillation/Flutter"] AtrialFibrillation
@@ -374,8 +364,6 @@ define "No VTE Prophylaxis Device Applied or Ordered":
     union ["ServiceRequest": "Graduated compression stockings (GCS)"]
     ) DeviceOrder
     where DeviceOrder.status = 'completed'
-    //11/5 discussion: all expressions for QI-Core must include a status
-    //ServiceRequest.status -  draft | active | suspended | completed | entered-in-error | cancelled
         and DeviceOrder.doNotPerform is true
     return {id: DeviceOrder.id, requestStatusReason: GetStatusReason(DeviceOrder), authoredOn: DeviceOrder.authoredOn}
     )

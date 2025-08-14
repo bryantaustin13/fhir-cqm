@@ -56,13 +56,13 @@
   "title": "EXM Improvement Activities",
   "status": "active",
   "experimental": true,
-  "description": "This library provides an example of logic for an IA (Improvement Activities) measure.",
   "type": {
     "coding": [ {
       "system": "http://terminology.hl7.org/CodeSystem/library-type",
       "code": "logic-library"
     } ]
   },
+  "description": "This library provides an example of logic for an IA (Improvement Activities) measure.",
   "relatedArtifact": [ {
     "type": "depends-on",
     "display": "FHIR model information",

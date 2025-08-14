@@ -5,11 +5,6 @@
       <profile value="http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-shareablemeasure"></profile>
    </meta>
    <language value="en"></language>
-   <extension url="http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-softwaresystem">
-      <valueReference>
-         <reference value="Device/cqf-tooling"></reference>
-      </valueReference>
-   </extension>
    <url value="http://hl7.org/fhir/uv/cqm/Measure/PreventiveCareandWellnessWeightedComposite"></url>
    <version value="0.0.001"></version>
    <name value="PreventiveCareandWellnessWeightedComposite"></name>

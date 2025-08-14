@@ -15,6 +15,12 @@ parameter "Measurement Period" Interval<Date> default Interval[@2020-01-01, @202
 
 context Patient
 
+define "Initial Population":
+  exists (
+    [Encounter] E
+      where E.period during "Measurement Period"
+  )
+  
 /*
 By Patient Age as of the start of the Measurement Period
 Age (10-14, 15-19, 20+)
@@ -26,3 +32,4 @@ define "By Age":
     when AgeInYearsAt(start of "Measurement Period") >= 20 then "P20Y--P9999Y"
     else null
   end
+

@@ -3,16 +3,6 @@
    <meta>
       <profile value="http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-attestationmeasure"></profile>
    </meta>
-   <extension url="http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-softwaresystem">
-      <valueReference>
-         <reference value="Device/software-system-example"></reference>
-      </valueReference>
-   </extension>
-   <extension url="http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-softwaresystem">
-      <valueReference>
-         <reference value="Device/cqf-tooling"></reference>
-      </valueReference>
-   </extension>
    <url value="http://example.org/fhir/measures/measure-pi-exm"></url>
    <identifier>
       <system value="http://example.org/fhir/cqi/ecqm/Measure/Identifier/exm"></system>

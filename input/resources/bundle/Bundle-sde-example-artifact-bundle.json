@@ -1940,20 +1940,6 @@
                             "language": "text/cql-identifier",
                             "expression": "SDE Minimal Medication Requests"
                         }
-                    },
-                    {
-                        "id": "sde-ethnicity-coding",
-                        "criteria": {
-                            "language": "text/cql-identifier",
-                            "expression": "SDE Ethnicity Coding"
-                        }
-                    },
-                    {
-                        "id": "sde-race-coding",
-                        "criteria": {
-                            "language": "text/cql-identifier",
-                            "expression": "SDE Race Coding"
-                        }
                     }
                 ]
             },

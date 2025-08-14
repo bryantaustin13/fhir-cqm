@@ -1,10 +1,9 @@
 <Measure xmlns="http://hl7.org/fhir">
    <id value="HBPComponent"></id>
    <meta>
-      <profile value="http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-proportionmeasure"></profile>
-      <profile value="http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-computablemeasure"></profile>
       <profile value="http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-publishablemeasure"></profile>
       <profile value="http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-computablemeasure"></profile>
+      <profile value="http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-proportionmeasure"></profile>
    </meta>
    <language value="en"></language>
    <contained>
@@ -1416,9 +1415,6 @@ define function ToCode(coding FHIR.Coding):
          <reference value="Device/software-system-example"></reference>
       </valueReference>
    </extension>
-   <extension url="http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-effectiveDataRequirements">
-      <valueCanonical value="#effective-data-requirements"></valueCanonical>
-   </extension>
    <extension url="http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-supplementalDataGuidance">
       <extension url="usage">
          <valueCodeableConcept>
@@ -1431,6 +1427,9 @@ define function ToCode(coding FHIR.Coding):
       <extension url="guidance">
          <valueMarkdown value="This guidance provides instructions on how to collect and report supplemental data elements for this measure."></valueMarkdown>
       </extension>
+   </extension>
+   <extension id="effective-data-requirements" url="http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-effectiveDataRequirements">
+      <valueCanonical value="#effective-data-requirements"></valueCanonical>
    </extension>
    <url value="http://hl7.org/fhir/uv/cqm/Measure/HBPComponent"></url>
    <identifier>
@@ -1473,7 +1472,7 @@ define function ToCode(coding FHIR.Coding):
    <title value="Preventive Care and Screening: Screening for High Blood Pressure and Follow-Up Documented"></title>
    <status value="active"></status>
    <experimental value="true"></experimental>
-   <date value="2025-08-07T21:50:23-06:00"></date>
+   <date value="2025-08-13T17:14:51-06:00"></date>
    <publisher value="Centers for Medicare &amp; Medicaid Services (CMS)"></publisher>
    <description value="This is an example only."></description>
    <useContext>

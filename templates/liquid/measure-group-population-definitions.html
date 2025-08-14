@@ -39,7 +39,9 @@
                   {% assign aheader = 'Unknown Population Type' %}
               {% endif %}
             {% endif %}
-            {%include logic-definition-primary.html extension=extension header=aheader %}
+            {%assign populationLinkId = population.extension.where(url.endsWith('linkId')).value %}
+            {%assign populationKey = iif(populationLinkId.exists(), populationLinkId, iif(population.id.exists(), population.id, population.code.coding.first().code)) %}
+            {%include logic-definition-primary.html extension=extension header=aheader groupKey=include.groupKey populationKey=populationKey %}
           {% endif %}
         {% endfor %}
       {% endif %}

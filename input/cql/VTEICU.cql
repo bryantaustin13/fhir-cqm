@@ -3,10 +3,6 @@ This example is a work in progress and should not be considered a final specific
 or recommendation for guidance. This example will help guide and direct the process
 of finding conventions and usage patterns that meet the needs of the various stakeholders
 in the measure development community.
-
-@update: BTR 2020-03-31 ->
-Incremented version to 5.0.000
-Updated FHIR version to 4.0.1
 */
 library VTEICU version '5.0.000'
 
@@ -14,7 +10,6 @@ using FHIR version '4.0.1'
 
 include hl7.fhir.uv.cql.FHIRHelpers version '4.0.1' called FHIRHelpers
 
-// NOTE: BTR 2019-07-30: Updated dependencies
 include MATGlobalCommonFunctions version '5.0.000' called Global
 
 valueset "Intensive Care Unit": 'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1110.23'

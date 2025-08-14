@@ -6,7 +6,7 @@
   },
   "contained": [ {
     "resourceType": "Library",
-    "id": "effective-data-requirements-exm125",
+    "id": "effective-data-requirements",
     "extension": [ {
       "url": "http://hl7.org/fhir/StructureDefinition/cqf-directReferenceCode",
       "valueCoding": {
@@ -808,8 +808,9 @@
     "url": "http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-populationBasis",
     "valueCode": "boolean"
   }, {
+    "id": "effective-data-requirements",
     "url": "http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-effectiveDataRequirements",
-    "valueCanonical": "#effective-data-requirements-exm125"
+    "valueCanonical": "#effective-data-requirements"
   } ],
   "url": "http://hl7.org/fhir/uv/cqm/Measure/EXM125-FHIR",
   "identifier": [ {
@@ -826,7 +827,7 @@
   "title": "EXM125 - Breast Cancer Screening",
   "status": "active",
   "experimental": true,
-  "date": "2025-08-07",
+  "date": "2025-08-13",
   "publisher": "National Committee for Quality Assurance",
   "contact": [ {
     "telecom": [ {

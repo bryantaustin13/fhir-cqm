@@ -484,7 +484,7 @@
     </parameter>
     -->
     <parameter>
-      <code value="path-liquid"/>
+      <code value="path-liquid-ig"/>
       <value value="templates/liquid"/>
     </parameter>
     <parameter>

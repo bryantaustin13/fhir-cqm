@@ -1,10 +1,9 @@
 <Measure xmlns="http://hl7.org/fhir">
    <id value="TSCComponent"></id>
    <meta>
-      <profile value="http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-proportionmeasure"></profile>
-      <profile value="http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-computablemeasure"></profile>
       <profile value="http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-publishablemeasure"></profile>
       <profile value="http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-computablemeasure"></profile>
+      <profile value="http://hl7.org/fhir/uv/cqm/StructureDefinition/cqm-proportionmeasure"></profile>
    </meta>
    <language value="en"></language>
    <contained>
@@ -1547,7 +1546,7 @@ define function ToCalendarUnit(unit System.String):
          <reference value="Device/software-system-example"></reference>
       </valueReference>
    </extension>
-   <extension url="http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-effectiveDataRequirements">
+   <extension id="effective-data-requirements" url="http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-effectiveDataRequirements">
       <valueCanonical value="#effective-data-requirements"></valueCanonical>
    </extension>
    <url value="http://hl7.org/fhir/uv/cqm/Measure/TSCComponent"></url>
@@ -1591,7 +1590,7 @@ define function ToCalendarUnit(unit System.String):
    <title value="Preventive Care and Screening: Tobacco Use: Screening and Cessation Intervention"></title>
    <status value="active"></status>
    <experimental value="true"></experimental>
-   <date value="2025-08-07T21:50:23-06:00"></date>
+   <date value="2025-08-13T17:14:51-06:00"></date>
    <publisher value="National Committee for Quality Assurance"></publisher>
    <description value="This is an example only."></description>
    <useContext>
