@@ -37,11 +37,15 @@ A direct reference code (DRC) is a specific code that is referenced directly in 
 
 #### Digital Quality Measure (dQM)
 
-A clinical quality measure that is expressed and formatted to use data from electronic health records (EHR) and/or health information technology systems to measure healthcare quality, specifically data captured in structured form during the process of patient care. Synonymous with eCQM
+A quality measure that uses standardized, digital data from one or more sources of health information that are captured and exchanged via interoperable systems; apply quality measure specifications that are standards-based and use code packages; and are computable in an integrated environment without additional effort. [Source](https://ecqi.healthit.gov/glossary)
+
+One use of the term dQM is to help capture the notion that they are measure specifications that can make use any data source, be it clinical, administrative, or even potentially patient-generated data, whereas eCQMs have typically been focused on clinical and administrative data sources.
 
 #### Electronic Clinical Quality Measure (eCQM)
 
 A clinical quality measure that is expressed and formatted to use data from electronic health records (EHR) and/or health information technology systems to measure healthcare quality, specifically data captured in structured form during the process of patient care. So they can be reported from an EHR, the FHIR Measure Resource is used to format the eCQM content using QI Core to define the data elements and Clinical Quality Language (CQL) to express the logic needed to evaluate a provider or organization's performance. [Source](https://ecqi.healthit.gov/glossary)
+
+Historically, eCQM is a term that has often been applied to the currently published measure specifications that make use of HQMF. Conceptually, an eCQM isn't necessarily just a measure formmatted in HQMF, but sometimes "FHIR-based eCQM" is used to help distinguish the two.
 
 #### Health Quality Measures Format (HQMF)
 

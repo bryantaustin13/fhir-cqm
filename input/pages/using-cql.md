@@ -116,7 +116,7 @@ using FHIR version '4.0.1'
 
 Snippet 4-5: Data Model line from [EXM146.cql](Library-EXM146.html#cql-content)
 
-For additional information on conformance requirements for the use of Model Information as part of FHIR Knowledge Artifacts that make use of CQL, reference the Using CQL with FHIR IG's section on [Using ModelInfo](http://hl7.org/fhir/uv/cql/using-modelinfo.html)
+For additional information on conformance requirements for the use of Model Information as part of FHIR Knowledge Artifacts that make use of CQL, reference the Using CQL with FHIR IG's section on [Using ModelInfo]({{site.data.fhir.ver.cql}}/using-modelinfo.html)
 
 ### Code Systems
 {: #code-systems}
@@ -163,7 +163,7 @@ publisher as well. For example, value sets defined in the Value Set Authority Ce
 interface have a base URL of `http://cts.nlm.nih.gov/fhir/`. This base is then used to construct the canonical URL for
 the value set (in the same way as any FHIR URL) using the resource type (`ValueSet` in this case) and the id (the value
 set OID in this case). Note that the _canonical URL_ is a globally unique, stable, version-independent identifier for the
-value set. See [Canonical URLs](http://hl7.org/fhir/references.html#canonical) in the base FHIR specification for more information.
+value set. See [Canonical URLs](http://hl7.org/fhir/R4/references.html#canonical) in the base FHIR specification for more information.
 
 The local identifier for the value set within CQL should be the same as the name of the value set in the
 [Value Set Authority Center (VSAC)](https://vsac.nlm.nih.gov/). However, because the name of the value set is not

@@ -82,7 +82,7 @@ The rest of this section describes some of the more important components to the 
 #### Related Documents
 {: #related-documents}
 
-[Clinical Quality Language R1](http://www.hl7.org/implement/standards/product_brief.cfm?product_id=400) can be used in conjunction with the FHIR Measure resource to construct CQL-based quality measures. CQL is a domain specific language used in the Clinical Quality Measurement and Clinical Decision Support domains. Measures written in CQL leverage the expressivity and computability of CQL to define the population criteria used in the QM. This implementation guide supports the use of CQL version 1.5 (currently published as Errata 1, version 1.5.2), however any future backward-compatible version of the specification may be used.
+[Clinical Quality Language R1](http://cql.hl7.org) can be used in conjunction with the FHIR Measure resource to construct CQL-based quality measures. CQL is a domain specific language used in the Clinical Quality Measurement and Clinical Decision Support domains. Measures written in CQL leverage the expressivity and computability of CQL to define the population criteria used in the QM. This implementation guide supports the use of CQL version 1.5 (currently published as Errata 2, version 1.5.3), however any future backward-compatible version of the specification may be used.
 
 For measures that make use of CQL, any included CQL library must contain a library declaration line as its first line as in Snippet 3-2.
 
@@ -594,7 +594,7 @@ The name of an expression specifying a population criteria within a measure SHOU
 
 Note that the Measure Observation criteria is the name of a function used in the Continuous Variable Measure. See the [Continuous Variable Measure](measure-conformance.html#continuous-variable-measure) section for more.
 
-For each scoring type, the set of applicable criteria are specified in the [Quality Reporting](http://www.hl7.org/fhir/clinicalreasoning-quality-reporting.html) topic of the FHIR Clinical Reasoning module. The table is reproduced here for reference:
+For each scoring type, the set of applicable criteria are specified in the [Quality Reporting](http://www.hl7.org/fhir/R4/clinicalreasoning-quality-reporting.html) topic of the FHIR Clinical Reasoning module. The table is reproduced here for reference:
 
 **Table 3-1: Measure populations based on types of measure scoring.**
 
