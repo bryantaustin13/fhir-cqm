@@ -9,8 +9,8 @@
 <artifact id="Library/AdultOutpatientEncounters" key="Library-AdultOutpatientEncounters" name="Adult Outpatient Encounters Common Library"/>
 <artifact id="Library/AdvancedIllnessandFrailtyExclusion" key="Library-AdvancedIllnessandFrailtyExclusion" name="Advanced Illness and Frailty Exclusion Library"/>
 <artifact id="Library/AgeStratificationExample" key="Library-AgeStratificationExample" name="Age Stratification Example"/>
-<artifact id="ValueSet/age-stratified-example" key="ValueSet-age-stratified-example" name="Age Stratified Example"/>
 <artifact id="Measure/age-stratified-example" key="Measure-age-stratified-example" name="Age Stratified Example"/>
+<artifact id="ValueSet/age-stratified-example" key="ValueSet-age-stratified-example" name="Age Stratified Example Age Groups"/>
 <artifact id="ConceptMap/aggregate-method" key="ConceptMap-aggregate-method" name="Aggregate Method mapping"/>
 <artifact id="Library/BCSComponent" key="Library-BCSComponent" name="BCS Component Library"/>
 <artifact id="Measure/BCSComponent" key="Measure-BCSComponent" name="Breast Cancer Screening"/>
@@ -94,7 +94,7 @@
 <artifact id="Library/HBPComponent" key="Library-HBPComponent" name="HBP Component Library"/>
 <artifact id="Library/Hospice" key="Library-Hospice" name="Hospice FHIR Library"/>
 <artifact id="ValueSet/iso-8601-derived-periods" key="ValueSet-iso-8601-derived-periods" name="ISO-8601-Derived Periods"/>
-<artifact id="CodeSystem/iso-8601-derived-periods" key="CodeSystem-iso-8601-derived-periods" name="ISO-8601-Derived Periods"/>
+<artifact id="CodeSystem/iso-8601-derived-periods" key="CodeSystem-iso-8601-derived-periods" name="ISO-8601-Derived Periods Codes"/>
 <artifact id="ConceptMap/improvement-notations" key="ConceptMap-improvement-notations" name="Improvement Notation Mapping"/>
 <artifact id="Parameters/manifest" key="Parameters-manifest" name="Input Expansion Parameters"/>
 <artifact id="ValueSet/intended-venue" key="ValueSet-intended-venue" name="Intended Venue"/>
@@ -105,7 +105,7 @@
 <artifact id="ConceptMap/measure-populations" key="ConceptMap-measure-populations" name="Measure Population criteria mapping"/>
 <artifact id="ConceptMap/measure-scoring" key="ConceptMap-measure-scoring" name="Measure Scoring mapping"/>
 <artifact id="ValueSet/measure-stratifier-type" key="ValueSet-measure-stratifier-type" name="Measure Stratifier Type"/>
-<artifact id="CodeSystem/measure-stratifier-type" key="CodeSystem-measure-stratifier-type" name="Measure Stratifier Type"/>
+<artifact id="CodeSystem/measure-stratifier-type" key="CodeSystem-measure-stratifier-type" name="Measure Stratifier Type Codes"/>
 <artifact id="ConceptMap/measure-types" key="ConceptMap-measure-types" name="Measure Type mapping"/>
 <artifact id="Measure/measure-cqm-publishable-example" key="Measure-measure-cqm-publishable-example" name="MeasureCQMPublishableExample"/>
 <artifact id="MeasureReport/testcase-example" key="MeasureReport-testcase-example" name="MeasureReport - Test Case Example"/>
