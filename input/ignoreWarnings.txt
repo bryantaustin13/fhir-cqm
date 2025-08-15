@@ -560,11 +560,6 @@ INFORMATION: ValueSet/intended-venue: ValueSet.extension[0]: This element does n
 INFORMATION: ValueSet/intended-venue: ValueSet.extension[1]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-shareablevalueset|1.0.0 (this may not be a problem, but you should check that it's not intended to match a slice)
 INFORMATION: ValueSet/intended-venue: ValueSet.extension[2]: This element does not match any known slice defined in the profile http://hl7.org/fhir/uv/crmi/StructureDefinition/crmi-shareablevalueset|1.0.0 (this may not be a problem, but you should check that it's not intended to match a slice)
 
-# 1.0.0:009 - I've set the display name to 12 lead EKG panel, but it still says it's the wrong display name. I've verified with LOINC that this is the correct display name: https://loinc.org/search/?t=1&s=34534-8 Zulip discussion here: https://chat.fhir.org/#narrow/channel/179252-IG-creation/topic/Wrong.20display.20name.20for.2034534-8
-ERROR: Library/HBPComponent: Library.dataRequirement[4].codeFilter[0].code[0].display: Wrong Display Name '12 lead EKG panel' for http://loinc.org#34534-8. There are no valid display names found for language(s) 'en'. Default display is '12 lead EKG panel'
-ERROR: Measure/HBPComponent: Measure.contained[0]/*Library/effective-data-requirements*/.extension[2].value.ofType(Coding).display: Wrong Display Name '12 lead EKG panel' for http://loinc.org#34534-8. There are no valid display names found for language(s) 'en'. Default display is '12 lead EKG panel'
-ERROR: Measure/HBPComponent: Measure.contained[0]/*Library/effective-data-requirements*/.dataRequirement[4].codeFilter[0].code[0].display: Wrong Display Name '12 lead EKG panel' for http://loinc.org#34534-8. There are no valid display names found for language(s) 'en'. Default display is '12 lead EKG panel'
-
 # 1.0.0:010 - This is a grammar-based code system, so no support is expected
 INFORMATION: CodeSystem/iso-8601-derived-periods: CodeSystem: Review the All Codes Value Set - incomplete CodeSystems generally should not have an all codes value set specified
 WARNING: ValueSet/age-stratified-example: ValueSet.compose.include[0]: The value set references CodeSystem 'http://terminology.hl7.org/CodeSystem/iso-8601-derived-periods' which has status 'not-present'
