@@ -4,7 +4,7 @@
     "path": "http://hl7.org/fhir/uv/cqm/STU1",
     "mode": "milestone",
     "status": "trial-use",
-    "sequence": "STU1 (v1.0.0)",
+    "sequence": "STU 1",
     "desc": "Release 1.0.0 STU 1",
     "descmd": "This STU 1 release moves the QM IG from US Realm to Universal Realm, as well as incorporating updates based on implementation and connectathon feedback. For a detailed change log, please refer to the Changes page of the implementation guide.",
     "first" : false
