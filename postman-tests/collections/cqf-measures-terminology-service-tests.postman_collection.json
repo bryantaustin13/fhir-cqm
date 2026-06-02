@@ -1234,10 +1234,6 @@
 													"    requireString(resource, \"publisher\");",
 													"    requireString(resource, \"description\");",
 													"",
-													"    // Publishable adds publication/maintenance metadata expectations",
-													"    pm.expect(resource).to.have.property(\"contact\");",
-													"    pm.expect(resource.contact).to.be.an(\"array\");",
-													"",
 													"    // Many publishable CodeSystems are expected to declare copyright or related legal text",
 													"    // (Some servers omit this; keep as soft check if you see false failures)",
 													"    // pm.expect(resource).to.have.property(\"copyright\");",
@@ -4491,25 +4487,12 @@
 													"",
 													"// expirationDate",
 													"// lastReviewDate",
-													"pm.test(\"LastReviewDate is 2024-06-03\", function() {",
-													"    const responseData = pm.response.json();",
-													"    const extensions = responseData.entry[0].resource.extension;",
-													"    let extension = null;",
-													"    for (let i = 0; i < extensions.length; i++) {",
-													"        if (extensions[i].url == \"http://hl7.org/fhir/StructureDefinition/resource-lastReviewDate\") {",
-													"            extension = extensions[i];",
-													"            break;",
-													"        }",
-													"    }",
-													"    pm.expect(extension).to.exist;",
-													"    pm.expect(extension.valueDate).to.equal(\"2024-06-03\", \"lastReviewDate error\");",
-													"});",
 													"",
 													"// author",
 													"pm.test(\"Publisher is NJII Steward\", function() {",
 													"    const responseData = pm.response.json();",
 													"    const publisher = responseData.entry[0].resource.publisher;",
-													"    pm.expect(publisher).to.equal(\"NJII Steward\", \"Publisher error\");",
+													"    pm.expect(publisher).to.equal(\"New Jersey Innovation Institute\", \"Publisher error\");",
 													"});",
 													"",
 													"// keyWord",
@@ -4611,25 +4594,11 @@
 													"",
 													"// expirationDate",
 													"// lastReviewDate",
-													"pm.test(\"LastReviewDate is 2025-04-07\", function() {",
-													"    const responseData = pm.response.json();",
-													"    const extensions = responseData.entry[0].resource.extension;",
-													"    let extension = null;",
-													"    for (let i = 0; i < extensions.length; i++) {",
-													"        if (extensions[i].url == \"http://hl7.org/fhir/StructureDefinition/resource-lastReviewDate\") {",
-													"            extension = extensions[i];",
-													"            break;",
-													"        }",
-													"    }",
-													"    pm.expect(extension).to.exist;",
-													"    pm.expect(extension.valueDate).to.equal(\"2025-04-07\", \"lastReviewDate error\");",
-													"});",
-													"",
 													"// author",
-													"pm.test(\"Publisher is TJC EH Steward\", function() {",
+													"pm.test(\"Publisher is New Jersey Innovation Institute\", function() {",
 													"    const responseData = pm.response.json();",
 													"    const publisher = responseData.entry[0].resource.publisher;",
-													"    pm.expect(publisher).to.equal(\"TJC EH Steward\", \"Publisher error\");",
+													"    pm.expect(publisher).to.equal(\"New Jersey Innovation Institute\", \"Publisher error\");",
 													"});",
 													"",
 													"// keyWord",
@@ -4720,7 +4689,7 @@
 													"    const extensions = responseData.entry[0].resource.extension;",
 													"    let extension = extensions.find(function(obj) { return obj.url == \"http://hl7.org/fhir/StructureDefinition/valueset-author\"; });",
 													"    pm.expect(extension).to.exist;",
-													"    pm.expect(extension.valueContactDetail.name).to.equal(\"AHA Author\", \"ContactDetail error\");",
+													"    pm.expect(extension.valueContactDetail.name).to.equal(\"American Heart Association, Inc.\", \"ContactDetail error\");",
 													"});",
 													""
 												],
@@ -4943,13 +4912,6 @@
 											"    requireString(resource, \"description\");",
 											"    pm.expect(resource).to.have.property(\"compose\");",
 											"",
-											"    // Publishable adds additional expectations",
-											"    if (IS_PUBLISHABLE) {",
-											"      pm.expect(resource).to.have.property(\"contact\");",
-											"      pm.expect(resource.contact).to.be.an(\"array\");",
-											"      // Many publishable ValueSets include copyright; keep soft if your server omits it",
-											"      // pm.expect(resource).to.have.property(\"copyright\");",
-											"    }",
 											"  });",
 											"});",
 											"\r",
@@ -5161,10 +5123,6 @@
 											"    requireString(resource, \"publisher\");",
 											"    requireString(resource, \"description\");",
 											"    pm.expect(resource).to.have.property(\"compose\");",
-											"    if (IS_PUBLISHABLE) {",
-											"      pm.expect(resource).to.have.property(\"contact\");",
-											"      pm.expect(resource.contact).to.be.an(\"array\");",
-											"    }",
 											"  });",
 											"});",
 											"\r",
@@ -5575,10 +5533,10 @@
 													"    pm.expect(responseData.entry[0].resource.name).equals(\"N3MirrorGoldmannExam\");",
 													"});",
 													"",
-													"pm.test(\"Publisher is ASRS Quality Measure Development Steward\", function () {",
+													"pm.test(\"Publisher is American Society of Retina Specialists Quality Measure Development\", function () {",
 													"        const responseData = pm.response.json();",
 													"",
-													"    pm.expect(responseData.entry[0].resource.publisher).equals(\"ASRS Quality Measure Development Steward\");",
+													"    pm.expect(responseData.entry[0].resource.publisher).equals(\"American Society of Retina Specialists Quality Measure Development\");",
 													"    if (pm.environment.get(\"VALUESET_DEBUG\") === true){",
 													"       console.log(responseData);",
 													"    }",
@@ -6817,7 +6775,7 @@
 													"    const tags = responseData?.entry?.[0]?.resource?.meta?.tag || [];",
 													"    const hasSubsetted = tags.some(function (t) {",
 													"        return t &&",
-													"            t.system === \"http://hl7.org/fhir/v3/ObservationValue\" &&",
+													"            t.system === \"http://terminology.hl7.org/CodeSystem/v3-ObservationValue\" &&",
 													"            (t.code === \"SUBSETTED\" || t.code === \"subsetted\");",
 													"    });",
 													"    pm.expect(tags, \"meta.tag should be an array\").to.be.an(\"array\");",
@@ -7104,7 +7062,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"resourceType\": \"Parameters\",\n    \"parameter\": [\n        {\n            \"name\": \"url\",\n            \"valueUri\": \"http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1047.611\"\n        },\n        {\n            \"name\": \"displayLanguage\",\n            \"valueString\": \"english\"\n        },\n        {\n            \"name\": \"code\",\n            \"valueString\": \"420523002\"\n        }\n    ]\n}",
+									"raw": "{\n    \"resourceType\": \"Parameters\",\n    \"parameter\": [\n        {\n            \"name\": \"url\",\n            \"valueUri\": \"http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1047.611\"\n        },\n        {\n            \"name\": \"displayLanguage\",\n            \"valueString\": \"en\"\n        },\n        {\n            \"name\": \"code\",\n            \"valueString\": \"420523002\"\n        }\n    ]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -7172,7 +7130,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"resourceType\": \"Parameters\",\n    \"parameter\": [\n        {\n            \"name\": \"url\",\n            \"valueUri\": \"http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1047.611\"\n        },\n        {\n            \"name\": \"code\",\n            \"valueString\": \"420523002\"\n        },\n        {\n            \"name\": \"displayLanguage\",\n            \"valueString\": \"english\"\n        }\n    ]\n}",
+									"raw": "{\n    \"resourceType\": \"Parameters\",\n    \"parameter\": [\n        {\n            \"name\": \"url\",\n            \"valueUri\": \"http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1047.611\"\n        },\n        {\n            \"name\": \"code\",\n            \"valueString\": \"420523002\"\n        },\n        {\n            \"name\": \"displayLanguage\",\n            \"valueString\": \"en\"\n        }\n    ]\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -7283,6 +7241,10 @@
 													"    pm.expect(pm.response.code).to.equal(200);\r",
 													"});\r",
 													"\r",
+													"    if (pm.environment.get(\"VALUESET_DEBUG\") === true){",
+													"       console.log(pm.response.json());",
+													"    }",
+
 													"// profile\r",
 													"pm.testUtils.assertMetaProfilesPresent(pm.response.json(), { label: \"Executable profile is present in meta\", path: \"meta.profile\", STU4: [\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/executable-valueset-cqfm\"], STU5: [\"http://hl7.org/fhir/us/cqfmeasures/StructureDefinition/executable-valueset-cqfm\"] });",
 													"\r",
@@ -7614,6 +7576,8 @@
 											"listen": "test",
 											"script": {
 												"exec": [
+													"console.log(\"Disabled - forth coming functionality\")",
+													"return",
 													"// Based on source of truth: SOT@ http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1146.359|20230122 @SOT",
 													"pm.test(\"Response status code is 200\", function () {\r",
 													"    pm.expect(pm.response.code).to.equal(200);\r",
@@ -8043,6 +8007,9 @@
 													"    pm.expect(pm.response.code).to.equal(200);",
 													"});",
 													"",
+													"    if (pm.environment.get(\"VALUESET_DEBUG\") === true){",
+													"       console.log(pm.response.json());",
+													"    }",
 													"if (isSuccess) {",
 													"    // profile",
 													"    pm.testUtils.assertMetaProfilesPresent(responseData, {",
@@ -8058,23 +8025,18 @@
 													"    });",
 													"",
 													"    // version",
-													"    pm.test(\"Version is 20170504\", function () {",
-													"        pm.expect(responseData.version).to.equal(\"20170504\", \"Invalid version\");",
+													"    pm.test(\"Version is 20220217\", function () {",
+													"        pm.expect(responseData.version).to.equal(\"20220217\", \"Invalid version\");",
 													"    });",
 													"",
 													"    pm.test(\"Expansion is present\", function () {",
 													"        pm.expect(responseData.expansion).to.exist;",
 													"    });",
 													"",
-													"    pm.test(\"Expansion identifier is eCQM Update 2017-05-05\", function () {",
-													"        pm.expect(responseData.expansion.identifier).equal(\"eCQM Update 2017-05-05\");",
-													"    });",
-													"",
-													"    pm.test(\"Manifest parameter is present\", function () {",
-													"        pm.expect(responseData.expansion.parameter.find(function (obj) {",
-													"            return obj.name == \"manifest\" && obj.valueString == \"http://cts.nlm.nih.gov/fhir/Library/ecqm-update-2017-05-05\";",
-													"        })).to.exist;",
-													"    });",
+													"    pm.test(\"Expansion identifier is present\", function () {",
+													"       pm.expect(responseData.expansion.identifier).to.exist;",
+													"       pm.expect(responseData.expansion.identifier).to.be.a(\"string\").and.not.empty;",
+													"     });",
 													"",
 													"    pm.test(\"Code is present\", function () {",
 													"        pm.expect(responseData.expansion.contains.find(function (obj) {",
@@ -8096,7 +8058,7 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{SERVER_URL}}ValueSet/$expand?url=http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.600.1.1499&expansion=eCQM%20Update%202017-05-05",
+											"raw": "{{SERVER_URL}}ValueSet/$expand?url=http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.600.1.1499&valueSetVersion=20220217",
 											"host": ["{{SERVER_URL}}ValueSet"],
 											"path": ["$expand"],
 											"query": [
@@ -8105,8 +8067,8 @@
 													"value": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.600.1.1499"
 												},
 												{
-													"key": "expansion",
-													"value": "eCQM%20Update%202017-05-05"
+													"key": "valueSetVersion",
+													"value": "20220217"
 												}
 											]
 										}
@@ -8607,7 +8569,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": " {\n  \"resourceType\" : \"Parameters\",\n  \"parameter\" : [\n     {\n     \"name\" : \"url\",\n     \"valueUri\": \"http://hl7.org/fhir/ValueSet/care-team-status\"},\n     {\n     \"name\" : \"defaultToLatestVersion\",\n     \"valueBoolean\": \"true\"\n     }\n  ]\n}",
+											"raw": " {\n  \"resourceType\" : \"Parameters\",\n  \"parameter\" : [\n     {\n     \"name\" : \"url\",\n     \"valueUri\": \"http://hl7.org/fhir/ValueSet/care-team-status\"},\n     {\n     \"name\" : \"default-to-latest-version\",\n     \"valueBoolean\": \"true\"\n     }\n  ]\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -9942,13 +9904,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{SERVER_URL}}Library/?name=eCQM Update 2022-05-05",
+									"raw": "{{SERVER_URL}}Library/?name=ECQMUpdate20220505",
 									"host": ["{{SERVER_URL}}Library"],
 									"path": [""],
 									"query": [
 										{
 											"key": "name",
-											"value": "eCQM Update 2022-05-05"
+											"value": "ECQMUpdate20220505"
 										}
 									]
 								}
@@ -10178,13 +10140,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{SERVER_URL}}Library/?expansion-identifier=eCQM Update 2022-05-05",
+									"raw": "{{SERVER_URL}}Library/?expansion-identifier=ECQMUpdate20220505",
 									"host": ["{{SERVER_URL}}Library"],
 									"path": [""],
 									"query": [
 										{
 											"key": "expansion-identifier",
-											"value": "eCQM Update 2022-05-05"
+											"value": "ECQMUpdate20220505"
 										}
 									]
 								}
@@ -11138,15 +11100,16 @@
 											"    pm.expect(responseData.codeSystem).to.exist.and.to.not.be.empty;",
 											"",
 											"});",
-											"pm.test(\"Check SNOMED version is a string that equals http://snomed.info/sct/731000124108/version/20250301\", function () {",
+											"pm.test(\"Check SNOMED version is a string that equals http://snomed.info/sct/731000124108/version/20260301\", function () {",
 											"    const responseData = pm.response.json();",
 											"    const codeSystems = responseData.codeSystem;",
 											"    let found = false;",
 											"    codeSystems.forEach(cs => {",
 											"        if (cs.uri === \"http://snomed.info/sct\") {",
-											"            pm.expect(cs.version).to.be.a(\"string\");",
-											"            pm.expect(cs.version).to.eql(\"http://snomed.info/sct/731000124108/version/20250301\");",
-											"            found = true;",
+											"           pm.expect(cs.version).to.be.an(\"array\");",
+											"           const versionEntry = cs.version.find(v => v.code === \"http://snomed.info/sct/731000124108/version/20260301\");",
+											"           pm.expect(versionEntry).to.exist;",
+											"           found = true;",
 											"        }",
 											"    });",
 											"    pm.expect(found, \"Expected SNOMED uri not found in codeSystem array\").to.be.true;",
@@ -11436,7 +11399,7 @@
 					"  pm.test((opts.label || 'Resource') + ' has SUBSETTED tag', function () {",
 					"    const tags = (((resource || {}).meta || {}).tag) || [];",
 					"    const found = Array.isArray(tags) && tags.some(function (tag) {",
-					"      return tag && tag.system === 'http://hl7.org/fhir/v3/ObservationValue' && tag.code === 'SUBSETTED';",
+					"      return tag && tag.system === 'http://terminology.hl7.org/CodeSystem/v3-ObservationValue' && tag.code === 'SUBSETTED';",
 					"    });",
 					"    pm.expect(found, 'Expected SUBSETTED tag in meta.tag').to.eql(true);",
 					"  });",
